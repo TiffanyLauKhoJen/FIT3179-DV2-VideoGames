@@ -1,26 +1,32 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
 
-  "width": 700,
-  "height": 380,
+  "width": 760,
+  "height": 420,
 
   "title": {
-    "text": "How Has the Video Game Genre Landscape Changed?",
-    "subtitle": "Share of genre-coded main games represented in IGDB across 5-year periods, 1980–2024",
+    "text": "Which Themes Distinguish Major Video Game Genres?",
+    "subtitle": [
+      "Difference from the overall theme rate among IGDB main games with both genre and theme data, 1980–2025",
+      "Blue = more common within the genre; red = less common within the genre"
+    ],
     "anchor": "start"
   },
 
   "data": {
-    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/dataset_g2_5year.csv",
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/dataset_g2_genre_theme.csv",
     "format": {
       "type": "csv",
       "parse": {
-        "Period_order": "number",
-        "Genre_rank": "number",
-        "Genre_count": "number",
-        "Genre_coded_games": "number",
-        "Total_main_games": "number",
-        "Genre_share_pct": "number"
+        "Genre_order": "number",
+        "Theme_order": "number",
+        "Pair_count": "number",
+        "Genre_theme_coded_games": "number",
+        "All_genre_theme_coded_games": "number",
+        "Theme_pct_within_genre": "number",
+        "Theme_baseline_pct": "number",
+        "Association_pp": "number",
+        "Association_ratio": "number"
       }
     }
   },
@@ -33,22 +39,26 @@
 
   "encoding": {
     "x": {
-      "field": "Period",
-      "type": "ordinal",
-      "title": "Gaming Period",
+      "field": "Theme",
+      "type": "nominal",
+      "title": "Theme",
       "sort": [
-        "1980–84",
-        "1985–89",
-        "1990–94",
-        "1995–99",
-        "2000–04",
-        "2005–09",
-        "2010–14",
-        "2015–19",
-        "2020–24"
+        "Action",
+        "Fantasy",
+        "Science fiction",
+        "Horror",
+        "Comedy",
+        "Erotic",
+        "Mystery",
+        "Kids",
+        "Romance",
+        "Survival",
+        "Educational",
+        "Historical"
       ],
       "axis": {
-        "labelAngle": 0
+        "labelAngle": -35,
+        "labelLimit": 120
       }
     },
 
@@ -59,65 +69,75 @@
       "sort": [
         "Indie",
         "Adventure",
+        "Role-playing (RPG)",
         "Simulator",
         "Strategy",
-        "Role-playing (RPG)",
-        "Puzzle",
         "Arcade",
+        "Puzzle",
         "Shooter",
         "Platformer",
-        "Sport",
         "Visual Novel",
+        "Sport",
         "Racing"
       ]
     },
 
     "color": {
-      "field": "Genre_share_pct",
+      "field": "Association_pp",
       "type": "quantitative",
-      "title": "% of Games",
+      "title": "Difference from overall rate (pp)",
       "scale": {
-        "type": "threshold",
-        "domain": [5, 10, 20, 30, 50],
-        "range": [
-          "#f7fbff",
-          "#deebf7",
-          "#c6dbef",
-          "#9ecae1",
-          "#4292c6",
-          "#08519c"
-        ]
+        "scheme": "redblue",
+        "domain": [-55, 55]
       }
     },
 
     "tooltip": [
-      {
-        "field": "Period",
-        "type": "ordinal",
-        "title": "Period"
-      },
       {
         "field": "Genre",
         "type": "nominal",
         "title": "Genre"
       },
       {
-        "field": "Genre_count",
+        "field": "Theme",
+        "type": "nominal",
+        "title": "Theme"
+      },
+      {
+        "field": "Pair_count",
         "type": "quantitative",
-        "title": "Games with Genre",
+        "title": "Games with this pairing",
         "format": ",d"
       },
       {
-        "field": "Genre_coded_games",
+        "field": "Genre_theme_coded_games",
         "type": "quantitative",
-        "title": "Games with Genre Data",
+        "title": "Games in genre with theme data",
         "format": ",d"
       },
       {
-        "field": "Genre_share_pct",
+        "field": "Theme_pct_within_genre",
         "type": "quantitative",
-        "title": "% of Games",
+        "title": "% of genre tagged with theme",
         "format": ".1f"
+      },
+      {
+        "field": "Theme_baseline_pct",
+        "type": "quantitative",
+        "title": "Overall theme rate (%)",
+        "format": ".1f"
+      },
+      {
+        "field": "Association_pp",
+        "type": "quantitative",
+        "title": "Difference (percentage points)",
+        "format": "+.1f"
+      },
+      {
+        "field": "Association_ratio",
+        "type": "quantitative",
+        "title": "Relative association",
+        "format": ".2f"
       }
     ]
   },
@@ -133,8 +153,9 @@
     },
 
     "legend": {
-      "titleFontSize": 12,
-      "labelFontSize": 11
+      "titleFontSize": 11,
+      "labelFontSize": 10,
+      "gradientLength": 180
     }
   }
 }
