@@ -5,8 +5,8 @@
   "height": 350,
 
   "data": {
-    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/dataset_g1.csv"
-  },
+  "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/dataset_g1.csv"
+},
 
   "mark": {
     "type": "line",
