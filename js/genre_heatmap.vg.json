@@ -1,32 +1,28 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
 
-  "width": 760,
-  "height": 420,
+  "width": 850,
+  "height": 360,
 
   "title": {
-    "text": "Which Themes Distinguish Major Video Game Genres?",
+    "text": "How Has the Genre Mix of Recorded Video Game Releases Changed?",
     "subtitle": [
-      "Difference from the overall theme rate among IGDB main games with both genre and theme data, 1980–2025",
-      "Blue = more common within the genre; red = less common within the genre"
+      "Genre share of title-console release records by year, 1980–2024",
+      "Record counts are much lower in the early years and after 2020, so interpret those columns cautiously"
     ],
     "anchor": "start"
   },
 
   "data": {
-    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/dataset_g2_genre_theme.csv",
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/dataset_g2_sales_genre_year.csv",
     "format": {
       "type": "csv",
       "parse": {
+        "Year": "number",
         "Genre_order": "number",
-        "Theme_order": "number",
-        "Pair_count": "number",
-        "Genre_theme_coded_games": "number",
-        "All_genre_theme_coded_games": "number",
-        "Theme_pct_within_genre": "number",
-        "Theme_baseline_pct": "number",
-        "Association_pp": "number",
-        "Association_ratio": "number"
+        "Genre_count": "number",
+        "Year_release_records": "number",
+        "Genre_share_pct": "number"
       }
     }
   },
@@ -34,31 +30,28 @@
   "mark": {
     "type": "rect",
     "stroke": "white",
-    "strokeWidth": 1
+    "strokeWidth": 0.5
   },
 
   "encoding": {
     "x": {
-      "field": "Theme",
-      "type": "nominal",
-      "title": "Theme",
-      "sort": [
-        "Action",
-        "Fantasy",
-        "Science fiction",
-        "Horror",
-        "Comedy",
-        "Erotic",
-        "Mystery",
-        "Kids",
-        "Romance",
-        "Survival",
-        "Educational",
-        "Historical"
-      ],
+      "field": "Year",
+      "type": "ordinal",
+      "title": "Release Year",
       "axis": {
-        "labelAngle": -35,
-        "labelLimit": 120
+        "values": [
+          1980,
+          1985,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2020,
+          2024
+        ],
+        "labelAngle": 0
       }
     },
 
@@ -67,77 +60,65 @@
       "type": "nominal",
       "title": "Genre",
       "sort": [
-        "Indie",
+        "Action",
         "Adventure",
-        "Role-playing (RPG)",
-        "Simulator",
-        "Strategy",
-        "Arcade",
-        "Puzzle",
+        "Sports",
+        "Role-Playing (RPG)",
         "Shooter",
         "Platformer",
-        "Visual Novel",
-        "Sport",
-        "Racing"
+        "Strategy",
+        "Puzzle",
+        "Racing",
+        "Simulation",
+        "Fighting",
+        "Action-Adventure"
       ]
     },
 
     "color": {
-      "field": "Association_pp",
+      "field": "Genre_share_pct",
       "type": "quantitative",
-      "title": "Difference from overall rate (pp)",
+      "title": "Share of Releases (%)",
       "scale": {
-        "scheme": "redblue",
-        "domain": [-55, 55]
+        "scheme": "blues",
+        "domain": [0, 25],
+        "clamp": true
       }
     },
 
     "tooltip": [
+      {
+        "field": "Year",
+        "type": "ordinal",
+        "title": "Year"
+      },
       {
         "field": "Genre",
         "type": "nominal",
         "title": "Genre"
       },
       {
-        "field": "Theme",
+        "field": "Genre_count",
+        "type": "quantitative",
+        "title": "Release records in genre",
+        "format": ",d"
+      },
+      {
+        "field": "Year_release_records",
+        "type": "quantitative",
+        "title": "All release records that year",
+        "format": ",d"
+      },
+      {
+        "field": "Genre_share_pct",
+        "type": "quantitative",
+        "title": "Share of releases",
+        "format": ".1f"
+      },
+      {
+        "field": "Coverage",
         "type": "nominal",
-        "title": "Theme"
-      },
-      {
-        "field": "Pair_count",
-        "type": "quantitative",
-        "title": "Games with this pairing",
-        "format": ",d"
-      },
-      {
-        "field": "Genre_theme_coded_games",
-        "type": "quantitative",
-        "title": "Games in genre with theme data",
-        "format": ",d"
-      },
-      {
-        "field": "Theme_pct_within_genre",
-        "type": "quantitative",
-        "title": "% of genre tagged with theme",
-        "format": ".1f"
-      },
-      {
-        "field": "Theme_baseline_pct",
-        "type": "quantitative",
-        "title": "Overall theme rate (%)",
-        "format": ".1f"
-      },
-      {
-        "field": "Association_pp",
-        "type": "quantitative",
-        "title": "Difference (percentage points)",
-        "format": "+.1f"
-      },
-      {
-        "field": "Association_ratio",
-        "type": "quantitative",
-        "title": "Relative association",
-        "format": ".2f"
+        "title": "Coverage note"
       }
     ]
   },
