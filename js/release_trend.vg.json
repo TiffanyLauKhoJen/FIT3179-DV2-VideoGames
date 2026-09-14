@@ -1,0 +1,47 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "width": 700,
+  "height": 350,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/dataset_q1.csv"
+  },
+
+  "mark": {
+    "type": "line",
+    "point": true
+  },
+
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "quantitative",
+      "title": "Release Year",
+      "axis": {
+        "format": "d"
+      }
+    },
+
+    "y": {
+      "field": "Main_game_count",
+      "type": "quantitative",
+      "title": "Number of Main Games"
+    },
+
+    "tooltip": [
+      {
+        "field": "Year",
+        "type": "quantitative",
+        "title": "Year",
+        "format": "d"
+      },
+      {
+        "field": "Main_game_count",
+        "type": "quantitative",
+        "title": "Main Games",
+        "format": ",d"
+      }
+    ]
+  }
+}
