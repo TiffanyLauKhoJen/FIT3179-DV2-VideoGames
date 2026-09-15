@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Alluvial diagram of the top 8 named publishers and top 10 genres by distinct-title count.",
+  "description": "Alluvial diagram of the top 8 named publishers and top 10 genres by distinct-title count. Links use Vega-Lite trail marks.",
   "width": 860,
   "height": 520,
   "title": {
@@ -41,12 +41,16 @@
       "transform": [
         {
           "filter": "datum.row_type === 'flow'"
+        },
+        {
+          "calculate": "(datum.y0 + datum.y1) / 2",
+          "as": "y_center"
         }
       ],
       "mark": {
-        "type": "area",
-        "opacity": 0.52,
-        "interpolate": "monotone"
+        "type": "trail",
+        "opacity": 0.55,
+        "orient": "horizontal"
       },
       "encoding": {
         "x": {
@@ -61,7 +65,7 @@
           "axis": null
         },
         "y": {
-          "field": "y0",
+          "field": "y_center",
           "type": "quantitative",
           "scale": {
             "domain": [
@@ -72,15 +76,28 @@
           },
           "axis": null
         },
-        "y2": {
-          "field": "y1"
-        },
         "detail": {
-          "field": "flow_id"
+          "field": "flow_id",
+          "type": "nominal"
         },
         "order": {
           "field": "step",
           "type": "quantitative"
+        },
+        "size": {
+          "field": "game_count",
+          "type": "quantitative",
+          "legend": null,
+          "scale": {
+            "domain": [
+              0,
+              334
+            ],
+            "range": [
+              0,
+              20.971
+            ]
+          }
         },
         "color": {
           "field": "publisher",
@@ -135,7 +152,7 @@
           {
             "field": "publisher_top10_coverage_percent",
             "type": "quantitative",
-            "title": "Top-10 Genres Coverage of Publisher Catalogue (%)",
+            "title": "Top-10 Genre Coverage of Publisher Catalogue (%)",
             "format": ".1f"
           }
         ]

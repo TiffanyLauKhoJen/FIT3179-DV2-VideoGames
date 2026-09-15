@@ -1,0 +1,116 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Lollipop chart showing the ten most frequently tagged themes in the cleaned IGDB-derived game dataset.",
+  "width": 600,
+  "height": 360,
+  "data": {
+    "url": "data/theme_lollipop_top10.csv"
+  },
+  "title": {
+    "text": "Which Themes Appear Most Frequently in Video Games?",
+    "subtitle": "Top 10 themes by distinct game count; games may have multiple themes"
+  },
+  "encoding": {
+    "y": {
+      "field": "theme",
+      "type": "nominal",
+      "sort": {
+        "field": "distinct_game_count",
+        "order": "descending"
+      },
+      "title": null,
+      "axis": {
+        "labelLimit": 150
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "distinct_game_count",
+          "type": "quantitative",
+          "title": "Number of distinct games",
+          "axis": {
+            "format": ",d"
+          }
+        },
+        "x2": {
+          "datum": 0
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 120
+      },
+      "encoding": {
+        "x": {
+          "field": "distinct_game_count",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "rank",
+            "type": "ordinal",
+            "title": "Rank"
+          },
+          {
+            "field": "theme",
+            "type": "nominal",
+            "title": "Theme"
+          },
+          {
+            "field": "distinct_game_count",
+            "type": "quantitative",
+            "title": "Distinct games",
+            "format": ",d"
+          },
+          {
+            "field": "share_of_themed_games_pct",
+            "type": "quantitative",
+            "title": "Share of themed games (%)",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 8
+      },
+      "encoding": {
+        "x": {
+          "field": "distinct_game_count",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "distinct_game_count",
+          "type": "quantitative",
+          "format": ",d"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axisY": {
+      "ticks": false,
+      "domain": false
+    },
+    "axisX": {
+      "grid": true
+    }
+  }
+}
