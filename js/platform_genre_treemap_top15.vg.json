@@ -1,18 +1,20 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Nested treemap of recorded video-game sales by platform and genre.",
+
+  "description": "Treemap showing the top 15 video game platforms by recorded sales.",
+
   "width": 700,
   "height": 470,
+
   "title": {
-    "text": "Which Platforms and Genres Dominate Recorded Video Game Sales?",
-    "subtitle": [
-      "Outer regions represent platform sales; inner rectangles show genre composition.",
-      "Top 15 platforms are shown individually; remaining platforms are grouped as Other."
-    ]
+    "text": "Which Platforms Account for the Most Recorded Video Game Sales?",
+    "subtitle": "Top 15 platforms by reported total sales in the dataset"
   },
+
   "data": {
-    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/platform_genre_treemap_top15.csv"
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/platform_sales_treemap_top15.csv"
   },
+
   "transform": [
     {
       "calculate": "(datum.x0 + datum.x1) / 2",
@@ -23,52 +25,47 @@
       "as": "y_mid"
     },
     {
-      "calculate": "(datum.parent_x0 + datum.parent_x1) / 2",
-      "as": "parent_x_mid"
-    },
-    {
-      "calculate": "datum.parent_y0 + 2.2",
-      "as": "parent_label_y"
+      "calculate": "format(datum.share_of_top15_percent, '.1f') + '%'",
+      "as": "share_label"
     }
   ],
+
   "layer": [
     {
       "mark": {
         "type": "rect",
         "stroke": "white",
-        "strokeWidth": 0.8,
-        "opacity": 0.9
+        "strokeWidth": 2
       },
+
       "encoding": {
         "x": {
           "field": "x0",
           "type": "quantitative",
           "scale": {
-            "domain": [
-              0,
-              100
-            ]
+            "domain": [0, 100]
           },
           "axis": null
         },
+
         "x2": {
           "field": "x1"
         },
+
         "y": {
           "field": "y0",
           "type": "quantitative",
           "scale": {
-            "domain": [
-              0,
-              100
-            ],
+            "domain": [0, 100],
             "reverse": true
           },
           "axis": null
         },
+
         "y2": {
           "field": "y1"
         },
+
         "color": {
           "field": "platform",
           "type": "nominal",
@@ -77,6 +74,7 @@
             "scheme": "tableau20"
           }
         },
+
         "tooltip": [
           {
             "field": "platform_full",
@@ -84,247 +82,97 @@
             "title": "Platform"
           },
           {
-            "field": "genre",
-            "type": "nominal",
-            "title": "Genre"
-          },
-          {
             "field": "recorded_sales_millions",
             "type": "quantitative",
-            "title": "Recorded sales (M)",
+            "title": "Recorded Sales (Million Units)",
             "format": ".2f"
           },
           {
-            "field": "genre_share_within_platform",
+            "field": "share_of_top15_percent",
             "type": "quantitative",
-            "title": "Genre share within platform (%)",
-            "format": ".1f"
-          },
-          {
-            "field": "platform_share_of_all_recorded_sales",
-            "type": "quantitative",
-            "title": "Platform share of recorded sales (%)",
+            "title": "Share of Top 15 (%)",
             "format": ".1f"
           },
           {
             "field": "sales_coverage_percent",
             "type": "quantitative",
-            "title": "Platform sales-data coverage (%)",
+            "title": "Sales Data Coverage (%)",
             "format": ".1f"
           }
         ]
       }
     },
+
     {
-      "transform": [
-        {
-          "filter": "datum.genre_label != ''"
-        }
-      ],
       "mark": {
         "type": "text",
-        "fontSize": 10,
+        "fontSize": 14,
+        "fontWeight": "bold",
         "baseline": "middle",
-        "align": "center"
+        "dy": -8
       },
+
       "encoding": {
         "x": {
           "field": "x_mid",
           "type": "quantitative",
           "scale": {
-            "domain": [
-              0,
-              100
-            ]
+            "domain": [0, 100]
           },
           "axis": null
         },
+
         "y": {
           "field": "y_mid",
           "type": "quantitative",
           "scale": {
-            "domain": [
-              0,
-              100
-            ],
+            "domain": [0, 100],
             "reverse": true
           },
           "axis": null
         },
+
         "text": {
-          "field": "genre_label"
+          "field": "platform"
         }
       }
     },
+
     {
-      "transform": [
-        {
-          "aggregate": [
-            {
-              "op": "min",
-              "field": "parent_x0",
-              "as": "px0"
-            },
-            {
-              "op": "max",
-              "field": "parent_x1",
-              "as": "px1"
-            },
-            {
-              "op": "min",
-              "field": "parent_y0",
-              "as": "py0"
-            },
-            {
-              "op": "max",
-              "field": "parent_y1",
-              "as": "py1"
-            },
-            {
-              "op": "min",
-              "field": "parent_x_mid",
-              "as": "pxmid"
-            },
-            {
-              "op": "min",
-              "field": "parent_label_y",
-              "as": "plabely"
-            },
-            {
-              "op": "max",
-              "field": "platform_share_of_all_recorded_sales",
-              "as": "pshare"
-            }
-          ],
-          "groupby": [
-            "platform"
-          ]
-        }
-      ],
-      "mark": {
-        "type": "rect",
-        "fillOpacity": 0,
-        "stroke": "#222",
-        "strokeWidth": 2
-      },
-      "encoding": {
-        "x": {
-          "field": "px0",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              0,
-              100
-            ]
-          },
-          "axis": null
-        },
-        "x2": {
-          "field": "px1"
-        },
-        "y": {
-          "field": "py0",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              0,
-              100
-            ],
-            "reverse": true
-          },
-          "axis": null
-        },
-        "y2": {
-          "field": "py1"
-        }
-      }
-    },
-    {
-      "transform": [
-        {
-          "aggregate": [
-            {
-              "op": "min",
-              "field": "parent_x0",
-              "as": "px0"
-            },
-            {
-              "op": "max",
-              "field": "parent_x1",
-              "as": "px1"
-            },
-            {
-              "op": "min",
-              "field": "parent_y0",
-              "as": "py0"
-            },
-            {
-              "op": "max",
-              "field": "parent_y1",
-              "as": "py1"
-            },
-            {
-              "op": "max",
-              "field": "platform_share_of_all_recorded_sales",
-              "as": "pshare"
-            }
-          ],
-          "groupby": [
-            "platform"
-          ]
-        },
-        {
-          "calculate": "(datum.px0 + datum.px1)/2",
-          "as": "pxmid"
-        },
-        {
-          "calculate": "datum.py0 + 2.0",
-          "as": "pylabel"
-        },
-        {
-          "calculate": "datum.platform + '  ' + format(datum.pshare, '.1f') + '%'",
-          "as": "platform_label"
-        },
-        {
-          "filter": "(datum.px1-datum.px0)*(datum.py1-datum.py0) >= 85"
-        }
-      ],
       "mark": {
         "type": "text",
-        "fontSize": 12,
-        "fontWeight": "bold",
-        "baseline": "top"
+        "fontSize": 11,
+        "baseline": "middle",
+        "dy": 10
       },
+
       "encoding": {
         "x": {
-          "field": "pxmid",
+          "field": "x_mid",
           "type": "quantitative",
           "scale": {
-            "domain": [
-              0,
-              100
-            ]
+            "domain": [0, 100]
           },
           "axis": null
         },
+
         "y": {
-          "field": "pylabel",
+          "field": "y_mid",
           "type": "quantitative",
           "scale": {
-            "domain": [
-              0,
-              100
-            ],
+            "domain": [0, 100],
             "reverse": true
           },
           "axis": null
         },
+
         "text": {
-          "field": "platform_label"
+          "field": "share_label"
         }
       }
     }
   ],
+
   "config": {
     "view": {
       "stroke": "transparent"
