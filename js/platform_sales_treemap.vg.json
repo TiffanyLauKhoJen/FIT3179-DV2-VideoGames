@@ -1,0 +1,209 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Treemap of recorded video-game sales by platform using precomputed rectangle coordinates.",
+  "width": 650,
+  "height": 430,
+  "title": {
+    "text": "How Are Recorded Video Game Sales Distributed Across Platforms?",
+    "subtitle": [
+      "Area represents reported total sales (millions of units).",
+      "Top 12 platforms are shown individually; all remaining platforms are grouped as Other."
+    ]
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/platform_sales_treemap.csv"
+  },
+  "transform": [
+    {
+      "calculate": "(datum.x0 + datum.x1) / 2",
+      "as": "x_mid"
+    },
+    {
+      "calculate": "(datum.y0 + datum.y1) / 2",
+      "as": "y_mid"
+    },
+    {
+      "calculate": "format(datum.sales_share_percent, '.1f') + '%'",
+      "as": "share_label"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "white",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "x0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          },
+          "axis": null
+        },
+        "x2": {
+          "field": "x1"
+        },
+        "y": {
+          "field": "y0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "y2": {
+          "field": "y1"
+        },
+        "color": {
+          "field": "platform_family",
+          "type": "nominal",
+          "title": "Platform family",
+          "scale": {
+            "domain": [
+              "PlayStation",
+              "Xbox",
+              "Nintendo",
+              "PC",
+              "Other"
+            ],
+            "range": [
+              "#8ecae6",
+              "#90be6d",
+              "#f4978e",
+              "#cdb4db",
+              "#d9d9d9"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "platform_full",
+            "type": "nominal",
+            "title": "Platform"
+          },
+          {
+            "field": "recorded_sales_millions",
+            "type": "quantitative",
+            "title": "Recorded sales (M)",
+            "format": ".2f"
+          },
+          {
+            "field": "sales_share_percent",
+            "type": "quantitative",
+            "title": "Share of recorded sales",
+            "format": ".2f"
+          },
+          {
+            "field": "sales_records",
+            "type": "quantitative",
+            "title": "Rows with sales data",
+            "format": ","
+          },
+          {
+            "field": "total_records",
+            "type": "quantitative",
+            "title": "Total platform rows",
+            "format": ","
+          },
+          {
+            "field": "sales_coverage_percent",
+            "type": "quantitative",
+            "title": "Sales-data coverage (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "fontWeight": "bold",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "x": {
+          "field": "x_mid",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y_mid",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "platform"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "baseline": "middle",
+        "dy": 16
+      },
+      "encoding": {
+        "x": {
+          "field": "x_mid",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y_mid",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "share_label"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    },
+    "legend": {
+      "orient": "bottom",
+      "direction": "horizontal"
+    }
+  }
+}
