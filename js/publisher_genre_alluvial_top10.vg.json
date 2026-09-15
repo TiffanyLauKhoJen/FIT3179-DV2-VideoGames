@@ -1,0 +1,392 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Alluvial diagram of the top 8 named publishers and top 10 genres by distinct-title count.",
+  "width": 860,
+  "height": 520,
+  "title": {
+    "text": "How Do Major Video Game Publishers Differ in Their Genre Portfolios?",
+    "subtitle": [
+      "Flow width represents distinct game titles.",
+      "Top 8 named publishers and top 10 genres are shown; no residual 'Other Genres' category is included."
+    ],
+    "anchor": "middle"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/publisher_genre_alluvial_top10.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "flow_id": "number",
+        "step": "number",
+        "x": "number",
+        "y0": "number",
+        "y1": "number",
+        "node_x0": "number",
+        "node_x1": "number",
+        "node_y0": "number",
+        "node_y1": "number",
+        "label_x": "number",
+        "label_y": "number",
+        "game_count": "number",
+        "publisher_visible_total": "number",
+        "publisher_full_total": "number",
+        "publisher_top10_coverage_percent": "number",
+        "publisher_visible_share_percent": "number",
+        "genre_visible_total": "number"
+      }
+    }
+  },
+  "layer": [
+    {
+      "transform": [
+        {
+          "filter": "datum.row_type === 'flow'"
+        }
+      ],
+      "mark": {
+        "type": "area",
+        "opacity": 0.52,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              1
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              8282.0
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "y2": {
+          "field": "y1"
+        },
+        "detail": {
+          "field": "flow_id"
+        },
+        "order": {
+          "field": "step",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "publisher",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "domain": [
+              "Sega",
+              "Microsoft",
+              "Nintendo",
+              "Konami",
+              "Sony Computer Entertainment",
+              "Ubisoft",
+              "Electronic Arts",
+              "Activision"
+            ],
+            "range": [
+              "#4E79A7",
+              "#F28E2B",
+              "#E15759",
+              "#76B7B2",
+              "#59A14F",
+              "#EDC948",
+              "#B07AA1",
+              "#FF9DA7"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "publisher",
+            "type": "nominal",
+            "title": "Publisher"
+          },
+          {
+            "field": "genre",
+            "type": "nominal",
+            "title": "Genre"
+          },
+          {
+            "field": "game_count",
+            "type": "quantitative",
+            "title": "Distinct Titles",
+            "format": ","
+          },
+          {
+            "field": "publisher_visible_share_percent",
+            "type": "quantitative",
+            "title": "Share of Publisher's Top-10-Genre Titles (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "publisher_top10_coverage_percent",
+            "type": "quantitative",
+            "title": "Top-10 Genres Coverage of Publisher Catalogue (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.row_type === 'publisher_node'"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "node_x0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              1
+            ]
+          },
+          "axis": null
+        },
+        "x2": {
+          "field": "node_x1"
+        },
+        "y": {
+          "field": "node_y0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              8282.0
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "y2": {
+          "field": "node_y1"
+        },
+        "color": {
+          "field": "publisher",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "domain": [
+              "Sega",
+              "Microsoft",
+              "Nintendo",
+              "Konami",
+              "Sony Computer Entertainment",
+              "Ubisoft",
+              "Electronic Arts",
+              "Activision"
+            ],
+            "range": [
+              "#4E79A7",
+              "#F28E2B",
+              "#E15759",
+              "#76B7B2",
+              "#59A14F",
+              "#EDC948",
+              "#B07AA1",
+              "#FF9DA7"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "publisher",
+            "type": "nominal",
+            "title": "Publisher"
+          },
+          {
+            "field": "publisher_visible_total",
+            "type": "quantitative",
+            "title": "Titles in Top 10 Genres",
+            "format": ","
+          },
+          {
+            "field": "publisher_full_total",
+            "type": "quantitative",
+            "title": "All Distinct Titles",
+            "format": ","
+          },
+          {
+            "field": "publisher_top10_coverage_percent",
+            "type": "quantitative",
+            "title": "Top-10 Genre Coverage (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.row_type === 'genre_node'"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "fill": "#D9D9D9",
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "node_x0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              1
+            ]
+          },
+          "axis": null
+        },
+        "x2": {
+          "field": "node_x1"
+        },
+        "y": {
+          "field": "node_y0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              8282.0
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "y2": {
+          "field": "node_y1"
+        },
+        "tooltip": [
+          {
+            "field": "genre",
+            "type": "nominal",
+            "title": "Genre"
+          },
+          {
+            "field": "genre_visible_total",
+            "type": "quantitative",
+            "title": "Distinct Titles",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.row_type === 'publisher_node'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "dx": -5
+      },
+      "encoding": {
+        "x": {
+          "field": "label_x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              1
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "label_y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              8282.0
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "publisher"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.row_type === 'genre_node'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 12,
+        "dx": 5
+      },
+      "encoding": {
+        "x": {
+          "field": "label_x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              1
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "label_y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              8282.0
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "genre"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    },
+    "title": {
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "subtitlePadding": 5
+    }
+  }
+}
