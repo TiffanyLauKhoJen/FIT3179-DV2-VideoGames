@@ -1,30 +1,36 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Treemap of the top 15 platforms plus all remaining platforms grouped as Other, sized by recorded video-game sales.",
+  "description": "Hierarchical treemap of recorded video-game sales: platform family to individual platform.",
   "width": 700,
   "height": 470,
   "title": {
-    "text": "How Are Recorded Video Game Sales Distributed Across Platforms?",
+    "text": "How Are Recorded Video Game Sales Distributed Across Platform Families?",
     "subtitle": [
-      "Rectangle size represents recorded total sales.",
-      "Top 15 platforms are shown individually; all remaining platforms are grouped as Other."
+      "Outer regions group related platform families; inner rectangles represent individual platforms.",
+      "Area represents recorded total sales; Top 15 platforms are shown individually and the rest are grouped as Other."
     ]
   },
   "data": {
-    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/platform_sales_treemap_top15_plus_other.csv",
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/platform_family_treemap_top15_plus_other.csv",
     "format": {
       "type": "csv",
       "parse": {
         "rank": "number",
         "recorded_sales_millions": "number",
         "share_of_all_recorded_sales_percent": "number",
+        "family_recorded_sales_millions": "number",
+        "family_share_of_all_recorded_sales_percent": "number",
         "sales_records": "number",
         "total_records": "number",
         "sales_coverage_percent": "number",
         "x0": "number",
         "x1": "number",
         "y0": "number",
-        "y1": "number"
+        "y1": "number",
+        "parent_x0": "number",
+        "parent_x1": "number",
+        "parent_y0": "number",
+        "parent_y1": "number"
       }
     }
   },
@@ -43,7 +49,7 @@
     },
     {
       "calculate": "format(datum.share_of_all_recorded_sales_percent, '.1f') + '%'",
-      "as": "share_label"
+      "as": "platform_share_label"
     },
     {
       "calculate": "format(datum.recorded_sales_millions, '.0f') + 'M units'",
@@ -55,7 +61,7 @@
       "mark": {
         "type": "rect",
         "stroke": "white",
-        "strokeWidth": 2
+        "strokeWidth": 1.5
       },
       "encoding": {
         "x": {
@@ -88,14 +94,32 @@
           "field": "y1"
         },
         "color": {
-          "field": "platform",
+          "field": "family",
           "type": "nominal",
-          "legend": null,
+          "title": "Platform family",
           "scale": {
-            "scheme": "tableau20"
+            "domain": [
+              "PlayStation",
+              "Xbox",
+              "Nintendo",
+              "PC",
+              "Other Platforms"
+            ],
+            "range": [
+              "#7EA6E0",
+              "#82B366",
+              "#D79B00",
+              "#9673A6",
+              "#B3B3B3"
+            ]
           }
         },
         "tooltip": [
+          {
+            "field": "family",
+            "type": "nominal",
+            "title": "Platform Family"
+          },
           {
             "field": "platform_full",
             "type": "nominal",
@@ -114,16 +138,10 @@
             "format": ".1f"
           },
           {
-            "field": "sales_records",
+            "field": "family_share_of_all_recorded_sales_percent",
             "type": "quantitative",
-            "title": "Records with Sales Data",
-            "format": ","
-          },
-          {
-            "field": "total_records",
-            "type": "quantitative",
-            "title": "Total Platform Records",
-            "format": ","
+            "title": "Family Share of Recorded Sales (%)",
+            "format": ".1f"
           },
           {
             "field": "sales_coverage_percent",
@@ -132,6 +150,74 @@
             "format": ".1f"
           }
         ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "min",
+              "field": "parent_x0",
+              "as": "px0"
+            },
+            {
+              "op": "max",
+              "field": "parent_x1",
+              "as": "px1"
+            },
+            {
+              "op": "min",
+              "field": "parent_y0",
+              "as": "py0"
+            },
+            {
+              "op": "max",
+              "field": "parent_y1",
+              "as": "py1"
+            }
+          ],
+          "groupby": [
+            "family"
+          ]
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "fillOpacity": 0,
+        "stroke": "#333333",
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "x": {
+          "field": "px0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          },
+          "axis": null
+        },
+        "x2": {
+          "field": "px1"
+        },
+        "y": {
+          "field": "py0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "y2": {
+          "field": "py1"
+        }
       }
     },
     {
@@ -206,14 +292,14 @@
           "axis": null
         },
         "text": {
-          "field": "share_label"
+          "field": "platform_share_label"
         }
       }
     },
     {
       "transform": [
         {
-          "filter": "datum.cell_area >= 330"
+          "filter": "datum.cell_area >= 300"
         }
       ],
       "mark": {
@@ -251,11 +337,99 @@
           "field": "sales_label"
         }
       }
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "min",
+              "field": "parent_x0",
+              "as": "px0"
+            },
+            {
+              "op": "max",
+              "field": "parent_x1",
+              "as": "px1"
+            },
+            {
+              "op": "min",
+              "field": "parent_y0",
+              "as": "py0"
+            },
+            {
+              "op": "max",
+              "field": "parent_y1",
+              "as": "py1"
+            },
+            {
+              "op": "max",
+              "field": "family_share_of_all_recorded_sales_percent",
+              "as": "family_share"
+            }
+          ],
+          "groupby": [
+            "family"
+          ]
+        },
+        {
+          "calculate": "(datum.px0 + datum.px1) / 2",
+          "as": "family_x"
+        },
+        {
+          "calculate": "datum.py0 + 1.3",
+          "as": "family_y"
+        },
+        {
+          "calculate": "datum.family + '  ' + format(datum.family_share, '.1f') + '%'",
+          "as": "family_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "baseline": "top",
+        "align": "center"
+      },
+      "encoding": {
+        "x": {
+          "field": "family_x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "family_y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "family_label"
+        }
+      }
     }
   ],
   "config": {
     "view": {
       "stroke": "transparent"
+    },
+    "legend": {
+      "orient": "bottom",
+      "direction": "horizontal",
+      "title": null
     },
     "title": {
       "fontSize": 18,
