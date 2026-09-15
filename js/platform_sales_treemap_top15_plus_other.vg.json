@@ -1,17 +1,32 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Treemap of recorded video-game sales by platform using precomputed rectangle coordinates.",
-  "width": 650,
-  "height": 430,
+  "description": "Treemap of the top 15 platforms plus all remaining platforms grouped as Other, sized by recorded video-game sales.",
+  "width": 700,
+  "height": 470,
   "title": {
     "text": "How Are Recorded Video Game Sales Distributed Across Platforms?",
     "subtitle": [
-      "Area represents reported total sales (millions of units).",
-      "Top 12 platforms are shown individually; all remaining platforms are grouped as Other."
+      "Rectangle size represents recorded total sales.",
+      "Top 15 platforms are shown individually; all remaining platforms are grouped as Other."
     ]
   },
   "data": {
-    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/platform_sales_treemap.csv"
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/platform_sales_treemap_top15_plus_other.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "rank": "number",
+        "recorded_sales_millions": "number",
+        "share_of_all_recorded_sales_percent": "number",
+        "sales_records": "number",
+        "total_records": "number",
+        "sales_coverage_percent": "number",
+        "x0": "number",
+        "x1": "number",
+        "y0": "number",
+        "y1": "number"
+      }
+    }
   },
   "transform": [
     {
@@ -23,8 +38,16 @@
       "as": "y_mid"
     },
     {
-      "calculate": "format(datum.sales_share_percent, '.1f') + '%'",
+      "calculate": "(datum.x1-datum.x0)*(datum.y1-datum.y0)",
+      "as": "cell_area"
+    },
+    {
+      "calculate": "format(datum.share_of_all_recorded_sales_percent, '.1f') + '%'",
       "as": "share_label"
+    },
+    {
+      "calculate": "format(datum.recorded_sales_millions, '.0f') + 'M units'",
+      "as": "sales_label"
     }
   ],
   "layer": [
@@ -65,24 +88,11 @@
           "field": "y1"
         },
         "color": {
-          "field": "platform_family",
+          "field": "platform",
           "type": "nominal",
-          "title": "Platform family",
+          "legend": null,
           "scale": {
-            "domain": [
-              "PlayStation",
-              "Xbox",
-              "Nintendo",
-              "PC",
-              "Other"
-            ],
-            "range": [
-              "#8ecae6",
-              "#90be6d",
-              "#f4978e",
-              "#cdb4db",
-              "#d9d9d9"
-            ]
+            "scheme": "tableau20"
           }
         },
         "tooltip": [
@@ -94,31 +104,31 @@
           {
             "field": "recorded_sales_millions",
             "type": "quantitative",
-            "title": "Recorded sales (M)",
+            "title": "Recorded Sales (Million Units)",
             "format": ".2f"
           },
           {
-            "field": "sales_share_percent",
+            "field": "share_of_all_recorded_sales_percent",
             "type": "quantitative",
-            "title": "Share of recorded sales",
-            "format": ".2f"
+            "title": "Share of All Recorded Sales (%)",
+            "format": ".1f"
           },
           {
             "field": "sales_records",
             "type": "quantitative",
-            "title": "Rows with sales data",
+            "title": "Records with Sales Data",
             "format": ","
           },
           {
             "field": "total_records",
             "type": "quantitative",
-            "title": "Total platform rows",
+            "title": "Total Platform Records",
             "format": ","
           },
           {
             "field": "sales_coverage_percent",
             "type": "quantitative",
-            "title": "Sales-data coverage (%)",
+            "title": "Sales Data Coverage (%)",
             "format": ".1f"
           }
         ]
@@ -127,9 +137,11 @@
     {
       "mark": {
         "type": "text",
-        "fontSize": 13,
+        "fontSize": 14,
         "fontWeight": "bold",
-        "baseline": "middle"
+        "baseline": "middle",
+        "align": "center",
+        "dy": -12
       },
       "encoding": {
         "x": {
@@ -164,8 +176,10 @@
       "mark": {
         "type": "text",
         "fontSize": 11,
+        "fontWeight": "bold",
         "baseline": "middle",
-        "dy": 16
+        "align": "center",
+        "dy": 4
       },
       "encoding": {
         "x": {
@@ -195,15 +209,58 @@
           "field": "share_label"
         }
       }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.cell_area >= 330"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 10,
+        "baseline": "middle",
+        "align": "center",
+        "dy": 20
+      },
+      "encoding": {
+        "x": {
+          "field": "x_mid",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y_mid",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "sales_label"
+        }
+      }
     }
   ],
   "config": {
     "view": {
       "stroke": "transparent"
     },
-    "legend": {
-      "orient": "bottom",
-      "direction": "horizontal"
+    "title": {
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "anchor": "middle"
     }
   }
 }
