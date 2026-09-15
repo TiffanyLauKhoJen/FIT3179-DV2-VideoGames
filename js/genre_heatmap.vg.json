@@ -7,14 +7,13 @@
   "title": {
     "text": "How Has the Genre Mix of Recorded Video Game Releases Changed?",
     "subtitle": [
-      "Genre share of title-console release records by year, 1980–2024",
-      "Record counts are much lower in the early years and after 2020, so interpret those columns cautiously"
+      "Genre share of title-console release records by year, 1980–2024"
     ],
     "anchor": "start"
   },
 
   "data": {
-    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/dataset_g2_sales_genre_year.csv",
+    "url":"https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/refs/heads/main/data/dataset_g2_sales_genre_year.csv",
     "format": {
       "type": "csv",
       "parse": {
