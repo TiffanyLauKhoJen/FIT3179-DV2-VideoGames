@@ -1,11 +1,11 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Slope chart comparing the prevalence of the eight themes with the largest absolute percentage-point changes between 2000 and 2024.",
   "width": 560,
   "height": 420,
   "data": {
-    "url": "data/theme_slope_2000_2024.csv"
-  },
+  "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/theme_slope_2000_2024.csv"
+},
   "title": {
     "text": "How Have Video Game Themes Shifted Since 2000?",
     "subtitle": "Eight themes with the largest absolute changes in prevalence, 2000 vs 2024"
