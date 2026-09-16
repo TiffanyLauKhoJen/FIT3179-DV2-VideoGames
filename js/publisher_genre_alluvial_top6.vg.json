@@ -46,14 +46,16 @@
       "transform": [
         {
           "filter": "datum.row_type === 'link'"
+        },
+        {
+          "calculate": "(datum.y0 + datum.y1) / 2",
+          "as": "y_center"
         }
       ],
       "mark": {
-        "type": "area",
+        "type": "trail",
         "opacity": 0.62,
-        "interpolate": "monotone",
-        "stroke": "#ffffff",
-        "strokeWidth": 0.25
+        "interpolate": "monotone"
       },
       "encoding": {
         "x": {
@@ -68,7 +70,7 @@
           "axis": null
         },
         "y": {
-          "field": "y0",
+          "field": "y_center",
           "type": "quantitative",
           "scale": {
             "domain": [
@@ -78,8 +80,20 @@
           },
           "axis": null
         },
-        "y2": {
-          "field": "y1"
+        "size": {
+          "field": "title_count",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              300
+            ],
+            "range": [
+              0,
+              31
+            ]
+          },
+          "legend": null
         },
         "order": {
           "field": "x",
@@ -154,62 +168,7 @@
     {
       "transform": [
         {
-          "filter": "datum.row_type === 'publisher_node'"
-        }
-      ],
-      "mark": {
-        "type": "rect",
-        "color": "#374151",
-        "cornerRadius": 1
-      },
-      "encoding": {
-        "x": {
-          "field": "x1",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              0,
-              1
-            ]
-          },
-          "axis": null
-        },
-        "x2": {
-          "field": "x2"
-        },
-        "y": {
-          "field": "y0",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              100,
-              0
-            ]
-          },
-          "axis": null
-        },
-        "y2": {
-          "field": "y1"
-        },
-        "tooltip": [
-          {
-            "field": "publisher",
-            "type": "nominal",
-            "title": "Publisher"
-          },
-          {
-            "field": "node_count",
-            "type": "quantitative",
-            "title": "Titles in six genres",
-            "format": ",.0f"
-          }
-        ]
-      }
-    },
-    {
-      "transform": [
-        {
-          "filter": "datum.row_type === 'genre_node'"
+          "filter": "datum.row_type !== 'link'"
         }
       ],
       "mark": {
@@ -246,29 +205,43 @@
           "field": "y1"
         },
         "color": {
-          "field": "genre",
-          "type": "nominal",
-          "scale": {
-            "domain": [
-              "Sports",
-              "Action",
-              "Shooter",
-              "Platform",
-              "Puzzle",
-              "Role-Playing"
-            ],
-            "range": [
-              "#4E79A7",
-              "#F28E2B",
-              "#E15759",
-              "#59A14F",
-              "#B07AA1",
-              "#EDC948"
-            ]
+          "condition": {
+            "test": "datum.row_type === 'genre_node'",
+            "field": "genre",
+            "type": "nominal",
+            "scale": {
+              "domain": [
+                "Sports",
+                "Action",
+                "Shooter",
+                "Platform",
+                "Puzzle",
+                "Role-Playing"
+              ],
+              "range": [
+                "#4E79A7",
+                "#F28E2B",
+                "#E15759",
+                "#59A14F",
+                "#B07AA1",
+                "#EDC948"
+              ]
+            }
           },
+          "value": "#374151",
           "legend": null
         },
         "tooltip": [
+          {
+            "field": "node_label",
+            "type": "nominal",
+            "title": "Node"
+          },
+          {
+            "field": "row_type",
+            "type": "nominal",
+            "title": "Type"
+          },
           {
             "field": "genre",
             "type": "nominal",
@@ -368,6 +341,13 @@
       }
     }
   ],
+  "resolve": {
+    "scale": {
+      "x": "shared",
+      "y": "shared",
+      "color": "shared"
+    }
+  },
   "config": {
     "font": "Arial",
     "view": {
