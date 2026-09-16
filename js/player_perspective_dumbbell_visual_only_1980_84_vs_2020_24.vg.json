@@ -1,16 +1,16 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "description": "Dumbbell chart comparing five visual player perspectives in 1984 and 2024.",
+  "description": "Horizontal dumbbell chart comparing five visual player perspectives in 1980–84 and 2020–24, using a visual-perspective-only denominator.",
   "width": 610,
   "height": 300,
   "data": {
-  "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/player_perspective_dumbbell_1984_2024.csv"
-},
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/player_perspective_dumbbell_visual_only_1980_84_vs_2020_24.csv"
+  },
   "title": {
-    "text": "How Have Visual Player Perspectives Changed Over 40 Years?",
+    "text": "How Have Visual Player Perspectives Shifted from Early to Modern Gaming?",
     "subtitle": [
-      "Share of main games with recorded player-perspective metadata, 1984 vs 2024.",
-      "Auditory and Text are omitted from display; games may contain multiple perspectives."
+      "Share of main games with at least one selected visual perspective, 1980–84 vs 2020–24.",
+      "Only Side view, First person, Bird view / Isometric, Third person, and Virtual Reality are included; games may contain multiple perspectives."
     ],
     "anchor": "start",
     "fontSize": 18,
@@ -29,18 +29,21 @@
         "y": {
           "field": "perspective",
           "type": "nominal",
-          "sort": {
-            "field": "abs_change_pp",
-            "order": "descending"
-          },
+          "sort": [
+            "Side view",
+            "First person",
+            "Bird view / Isometric",
+            "Third person",
+            "Virtual Reality"
+          ],
           "axis": {
             "title": null,
             "labelFontSize": 12,
-            "labelLimit": 160
+            "labelLimit": 170
           }
         },
         "x": {
-          "field": "pct_1984",
+          "field": "pct_1980_84",
           "type": "quantitative",
           "scale": {
             "domain": [
@@ -49,7 +52,7 @@
             ]
           },
           "axis": {
-            "title": "Share of games with recorded perspective metadata (%)",
+            "title": "Share of games with selected visual perspective metadata (%)",
             "titleFontSize": 12,
             "labelFontSize": 11,
             "grid": true,
@@ -57,7 +60,7 @@
           }
         },
         "x2": {
-          "field": "pct_2024"
+          "field": "pct_2020_24"
         }
       }
     },
@@ -74,13 +77,16 @@
         "y": {
           "field": "perspective",
           "type": "nominal",
-          "sort": {
-            "field": "abs_change_pp",
-            "order": "descending"
-          }
+          "sort": [
+            "Side view",
+            "First person",
+            "Bird view / Isometric",
+            "Third person",
+            "Virtual Reality"
+          ]
         },
         "x": {
-          "field": "pct_1984",
+          "field": "pct_1980_84",
           "type": "quantitative"
         },
         "tooltip": [
@@ -90,25 +96,25 @@
             "title": "Perspective"
           },
           {
-            "value": "1984",
-            "title": "Year"
+            "value": "1980–84",
+            "title": "Period"
           },
           {
-            "field": "pct_1984",
+            "field": "pct_1980_84",
             "type": "quantitative",
-            "title": "Share",
+            "title": "Share (%)",
             "format": ".1f"
           },
           {
-            "field": "count_1984",
+            "field": "count_1980_84",
             "type": "quantitative",
             "title": "Games",
             "format": ","
           },
           {
-            "field": "denominator_1984",
+            "field": "denominator_1980_84",
             "type": "quantitative",
-            "title": "Games with perspective data",
+            "title": "Games with selected visual perspective data",
             "format": ","
           }
         ]
@@ -117,8 +123,8 @@
     {
       "transform": [
         {
-          "calculate": "'1984: ' + format(datum.pct_1984, '.1f') + '%'",
-          "as": "label_1984"
+          "calculate": "'1980–84: ' + format(datum.pct_1980_84, '.1f') + '%'",
+          "as": "label_early"
         }
       ],
       "mark": {
@@ -131,17 +137,20 @@
         "y": {
           "field": "perspective",
           "type": "nominal",
-          "sort": {
-            "field": "abs_change_pp",
-            "order": "descending"
-          }
+          "sort": [
+            "Side view",
+            "First person",
+            "Bird view / Isometric",
+            "Third person",
+            "Virtual Reality"
+          ]
         },
         "x": {
-          "field": "pct_1984",
+          "field": "pct_1980_84",
           "type": "quantitative"
         },
         "text": {
-          "field": "label_1984"
+          "field": "label_early"
         }
       }
     },
@@ -158,13 +167,16 @@
         "y": {
           "field": "perspective",
           "type": "nominal",
-          "sort": {
-            "field": "abs_change_pp",
-            "order": "descending"
-          }
+          "sort": [
+            "Side view",
+            "First person",
+            "Bird view / Isometric",
+            "Third person",
+            "Virtual Reality"
+          ]
         },
         "x": {
-          "field": "pct_2024",
+          "field": "pct_2020_24",
           "type": "quantitative"
         },
         "tooltip": [
@@ -174,25 +186,25 @@
             "title": "Perspective"
           },
           {
-            "value": "2024",
-            "title": "Year"
+            "value": "2020–24",
+            "title": "Period"
           },
           {
-            "field": "pct_2024",
+            "field": "pct_2020_24",
             "type": "quantitative",
-            "title": "Share",
+            "title": "Share (%)",
             "format": ".1f"
           },
           {
-            "field": "count_2024",
+            "field": "count_2020_24",
             "type": "quantitative",
             "title": "Games",
             "format": ","
           },
           {
-            "field": "denominator_2024",
+            "field": "denominator_2020_24",
             "type": "quantitative",
-            "title": "Games with perspective data",
+            "title": "Games with selected visual perspective data",
             "format": ","
           },
           {
@@ -207,8 +219,8 @@
     {
       "transform": [
         {
-          "calculate": "'2024: ' + format(datum.pct_2024, '.1f') + '%'",
-          "as": "label_2024"
+          "calculate": "'2020–24: ' + format(datum.pct_2020_24, '.1f') + '%'",
+          "as": "label_modern"
         }
       ],
       "mark": {
@@ -221,17 +233,20 @@
         "y": {
           "field": "perspective",
           "type": "nominal",
-          "sort": {
-            "field": "abs_change_pp",
-            "order": "descending"
-          }
+          "sort": [
+            "Side view",
+            "First person",
+            "Bird view / Isometric",
+            "Third person",
+            "Virtual Reality"
+          ]
         },
         "x": {
-          "field": "pct_2024",
+          "field": "pct_2020_24",
           "type": "quantitative"
         },
         "text": {
-          "field": "label_2024"
+          "field": "label_modern"
         }
       }
     }
