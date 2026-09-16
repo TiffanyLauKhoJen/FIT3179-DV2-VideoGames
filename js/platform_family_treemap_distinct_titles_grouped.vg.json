@@ -1,0 +1,394 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Grouped hierarchical treemap of distinct game-title availability by platform family and platform.",
+  "width": 760,
+  "height": 500,
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/platform_family_treemap_distinct_titles_grouped.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "distinct_titles": "number",
+        "platform_share_all_percent": "number",
+        "family_platform_title_total": "number",
+        "family_share_all_percent": "number",
+        "platform_share_family_percent": "number",
+        "x0": "number",
+        "x1": "number",
+        "y0": "number",
+        "y1": "number",
+        "parent_x0": "number",
+        "parent_x1": "number",
+        "parent_y0": "number",
+        "parent_y1": "number"
+      }
+    }
+  },
+  "title": {
+    "text": "How Is the Video Game Collection Distributed Across Platform Ecosystems?",
+    "subtitle": [
+      "Parent regions represent platform families; child rectangles represent individual platforms.",
+      "Area represents distinct game titles recorded on each platform; multiplatform titles may appear in multiple platforms.",
+      "Minor ecosystems are grouped as Other ecosystems; aggregate 'All' and 'Series' records are excluded."
+    ],
+    "anchor": "start",
+    "fontSize": 18,
+    "subtitleFontSize": 11,
+    "subtitleColor": "#666666",
+    "offset": 12
+  },
+  "transform": [
+    {
+      "calculate": "(datum.x0 + datum.x1) / 2",
+      "as": "x_mid"
+    },
+    {
+      "calculate": "(datum.y0 + datum.y1) / 2",
+      "as": "y_mid"
+    },
+    {
+      "calculate": "(datum.x1-datum.x0)*(datum.y1-datum.y0)",
+      "as": "cell_area"
+    },
+    {
+      "calculate": "format(datum.distinct_titles, ',') + ' titles'",
+      "as": "title_count_label"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "white",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "x": {
+          "field": "x0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          },
+          "axis": null
+        },
+        "x2": {
+          "field": "x1"
+        },
+        "y": {
+          "field": "y0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "y2": {
+          "field": "y1"
+        },
+        "color": {
+          "field": "family",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "domain": [
+              "Nintendo",
+              "PlayStation",
+              "PC / Computer",
+              "Xbox",
+              "Sega",
+              "Other ecosystems",
+              "Mobile / Web"
+            ],
+            "range": [
+              "#79A7E3",
+              "#E1A400",
+              "#A27BB4",
+              "#82B366",
+              "#668CC0",
+              "#A9A9A9",
+              "#86BFC4"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "family",
+            "type": "nominal",
+            "title": "Platform family"
+          },
+          {
+            "field": "platform_full",
+            "type": "nominal",
+            "title": "Platform"
+          },
+          {
+            "field": "distinct_titles",
+            "type": "quantitative",
+            "title": "Distinct titles",
+            "format": ","
+          },
+          {
+            "field": "platform_share_all_percent",
+            "type": "quantitative",
+            "title": "Share of platform-title total (%)",
+            "format": ".2f"
+          },
+          {
+            "field": "platform_share_family_percent",
+            "type": "quantitative",
+            "title": "Share within family (%)",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "min",
+              "field": "parent_x0",
+              "as": "px0"
+            },
+            {
+              "op": "max",
+              "field": "parent_x1",
+              "as": "px1"
+            },
+            {
+              "op": "min",
+              "field": "parent_y0",
+              "as": "py0"
+            },
+            {
+              "op": "max",
+              "field": "parent_y1",
+              "as": "py1"
+            }
+          ],
+          "groupby": [
+            "family"
+          ]
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "fillOpacity": 0,
+        "stroke": "#333333",
+        "strokeWidth": 2.2
+      },
+      "encoding": {
+        "x": {
+          "field": "px0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          },
+          "axis": null
+        },
+        "x2": {
+          "field": "px1"
+        },
+        "y": {
+          "field": "py0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "y2": {
+          "field": "py1"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.cell_area >= 85"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "align": "center",
+        "baseline": "middle",
+        "dy": -7
+      },
+      "encoding": {
+        "x": {
+          "field": "x_mid",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y_mid",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "platform"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.cell_area >= 85"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 10,
+        "align": "center",
+        "baseline": "middle",
+        "dy": 8
+      },
+      "encoding": {
+        "x": {
+          "field": "x_mid",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y_mid",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "title_count_label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "min",
+              "field": "parent_x0",
+              "as": "px0"
+            },
+            {
+              "op": "max",
+              "field": "parent_x1",
+              "as": "px1"
+            },
+            {
+              "op": "min",
+              "field": "parent_y0",
+              "as": "py0"
+            },
+            {
+              "op": "max",
+              "field": "parent_y1",
+              "as": "py1"
+            },
+            {
+              "op": "max",
+              "field": "family_share_all_percent",
+              "as": "family_share"
+            }
+          ],
+          "groupby": [
+            "family"
+          ]
+        },
+        {
+          "calculate": "datum.px0 + 0.8",
+          "as": "label_x"
+        },
+        {
+          "calculate": "datum.py0 + 0.7",
+          "as": "label_y"
+        },
+        {
+          "calculate": "datum.family + '  ' + format(datum.family_share, '.1f') + '%'",
+          "as": "family_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "align": "left",
+        "baseline": "top"
+      },
+      "encoding": {
+        "x": {
+          "field": "label_x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "label_y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "family_label"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}
