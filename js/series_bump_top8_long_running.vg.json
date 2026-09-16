@@ -1,0 +1,250 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Bump chart ranking eight objectively selected long-running video-game series by distinct game releases in each five-year gaming era.",
+  "width": 760,
+  "height": 430,
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/series_bump_top8_long_running.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "era_order": "number",
+        "era_start": "number",
+        "era_end": "number",
+        "release_count": "number",
+        "rank": "number",
+        "total_distinct_titles": "number",
+        "first_release_year": "number",
+        "last_release_year": "number",
+        "span_years": "number",
+        "active_eras": "number"
+      }
+    }
+  },
+  "title": {
+    "text": "Which Long-Running Game Series Were Most Prolific Across Gaming Eras?",
+    "subtitle": [
+      "Ranked by distinct game releases within each five-year era; ties share the same rank.",
+      "Top 8 selected by total titles among series spanning ≥30 years and active in ≥7 five-year eras."
+    ],
+    "anchor": "start"
+  },
+  "params": [
+    {
+      "name": "series_hover",
+      "select": {
+        "type": "point",
+        "fields": [
+          "series"
+        ],
+        "on": "pointerover",
+        "clear": "pointerout"
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "isValid(datum.rank)"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {
+          "field": "era",
+          "type": "ordinal",
+          "sort": {
+            "field": "era_order",
+            "order": "ascending"
+          },
+          "title": "Gaming Era",
+          "axis": {
+            "labelAngle": 0,
+            "labelPadding": 8,
+            "grid": false
+          }
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative",
+          "title": "Rank by Distinct Game Releases",
+          "scale": {
+            "domain": [
+              1,
+              8
+            ],
+            "reverse": true
+          },
+          "axis": {
+            "values": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "tickMinStep": 1,
+            "grid": true
+          }
+        },
+        "color": {
+          "field": "series",
+          "type": "nominal",
+          "title": "Series",
+          "scale": {
+            "domain": [
+              "Sonic the Hedgehog",
+              "Super Mario",
+              "Final Fantasy",
+              "Tetris",
+              "Bomberman",
+              "Castlevania",
+              "Dragon Quest",
+              "Mega Man"
+            ],
+            "scheme": "tableau10"
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": 4,
+            "labelLimit": 160
+          }
+        },
+        "detail": {
+          "field": "series"
+        },
+        "opacity": {
+          "condition": {
+            "param": "series_hover",
+            "value": 1,
+            "empty": false
+          },
+          "value": 0.72
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 115,
+        "stroke": "white",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "x": {
+          "field": "era",
+          "type": "ordinal",
+          "sort": {
+            "field": "era_order",
+            "order": "ascending"
+          }
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1,
+              8
+            ],
+            "reverse": true
+          }
+        },
+        "color": {
+          "field": "series",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Sonic the Hedgehog",
+              "Super Mario",
+              "Final Fantasy",
+              "Tetris",
+              "Bomberman",
+              "Castlevania",
+              "Dragon Quest",
+              "Mega Man"
+            ],
+            "scheme": "tableau10"
+          },
+          "legend": null
+        },
+        "opacity": {
+          "condition": {
+            "param": "series_hover",
+            "value": 1,
+            "empty": false
+          },
+          "value": 0.9
+        },
+        "tooltip": [
+          {
+            "field": "series",
+            "type": "nominal",
+            "title": "Series"
+          },
+          {
+            "field": "era",
+            "type": "ordinal",
+            "title": "Gaming Era"
+          },
+          {
+            "field": "rank",
+            "type": "quantitative",
+            "title": "Rank",
+            "format": "d"
+          },
+          {
+            "field": "release_count",
+            "type": "quantitative",
+            "title": "Distinct Games Released",
+            "format": "d"
+          },
+          {
+            "field": "total_distinct_titles",
+            "type": "quantitative",
+            "title": "Total Distinct Games",
+            "format": "d"
+          },
+          {
+            "field": "first_release_year",
+            "type": "quantitative",
+            "title": "First Recorded Release",
+            "format": "d"
+          },
+          {
+            "field": "last_release_year",
+            "type": "quantitative",
+            "title": "Last Recorded Release",
+            "format": "d"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "title": {
+      "fontSize": 18,
+      "subtitleFontSize": 12
+    }
+  }
+}
