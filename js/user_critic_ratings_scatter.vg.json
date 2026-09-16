@@ -27,28 +27,23 @@
     "subtitleColor": "#555",
     "subtitlePadding": 6
   },
-  "params": [
-    {
-      "name": "game_hover",
-      "select": {
-        "type": "point",
-        "on": "pointerover",
-        "clear": "pointerout",
-        "nearest": true
-      }
-    }
-  ],
   "layer": [
     {
       "data": {
         "values": [
-          {"rating": 0, "aggregated_rating": 0},
-          {"rating": 100, "aggregated_rating": 100}
+          {
+            "rating": 0,
+            "aggregated_rating": 0
+          },
+          {
+            "rating": 100,
+            "aggregated_rating": 100
+          }
         ]
       },
       "mark": {
         "type": "line",
-        "color": "#777",
+        "color": "#777777",
         "strokeDash": [6, 5],
         "strokeWidth": 1.5
       },
@@ -56,27 +51,9 @@
         "x": {
           "field": "rating",
           "type": "quantitative",
-          "scale": {"domain": [0, 100]}
-        },
-        "y": {
-          "field": "aggregated_rating",
-          "type": "quantitative",
-          "scale": {"domain": [0, 100]}
-        }
-      }
-    },
-    {
-      "mark": {
-        "type": "point",
-        "filled": true,
-        "color": "#4E79A7",
-        "size": 28
-      },
-      "encoding": {
-        "x": {
-          "field": "rating",
-          "type": "quantitative",
-          "scale": {"domain": [0, 100]},
+          "scale": {
+            "domain": [0, 100]
+          },
           "axis": {
             "title": "IGDB User Rating",
             "tickCount": 6,
@@ -87,7 +64,46 @@
         "y": {
           "field": "aggregated_rating",
           "type": "quantitative",
-          "scale": {"domain": [0, 100]},
+          "scale": {
+            "domain": [0, 100]
+          },
+          "axis": {
+            "title": "Aggregated External-Review Rating",
+            "tickCount": 6,
+            "grid": true,
+            "gridColor": "#eeeeee"
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "color": "#4E79A7",
+        "size": 28,
+        "opacity": 0.16
+      },
+      "encoding": {
+        "x": {
+          "field": "rating",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 100]
+          },
+          "axis": {
+            "title": "IGDB User Rating",
+            "tickCount": 6,
+            "grid": true,
+            "gridColor": "#eeeeee"
+          }
+        },
+        "y": {
+          "field": "aggregated_rating",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 100]
+          },
           "axis": {
             "title": "Aggregated External-Review Rating",
             "tickCount": 6,
@@ -95,23 +111,46 @@
             "gridColor": "#eeeeee"
           }
         },
-        "opacity": {
-          "condition": {"param": "game_hover", "empty": false, "value": 1},
-          "value": 0.15
-        },
-        "stroke": {"value": "#111"},
-        "strokeWidth": {
-          "condition": {"param": "game_hover", "empty": false, "value": 1.5},
-          "value": 0
-        },
         "tooltip": [
-          {"field": "name", "type": "nominal", "title": "Game"},
-          {"field": "release_year", "type": "quantitative", "title": "Release year", "format": "d"},
-          {"field": "primary_genre", "type": "nominal", "title": "Primary genre"},
-          {"field": "rating", "type": "quantitative", "title": "IGDB user rating", "format": ".1f"},
-          {"field": "aggregated_rating", "type": "quantitative", "title": "External-review rating", "format": ".1f"},
-          {"field": "critic_user_gap", "type": "quantitative", "title": "Critic − user difference", "format": "+.1f"},
-          {"field": "agreement", "type": "nominal", "title": "Comparison"}
+          {
+            "field": "name",
+            "type": "nominal",
+            "title": "Game"
+          },
+          {
+            "field": "release_year",
+            "type": "quantitative",
+            "title": "Release year",
+            "format": "d"
+          },
+          {
+            "field": "primary_genre",
+            "type": "nominal",
+            "title": "Primary genre"
+          },
+          {
+            "field": "rating",
+            "type": "quantitative",
+            "title": "IGDB user rating",
+            "format": ".1f"
+          },
+          {
+            "field": "aggregated_rating",
+            "type": "quantitative",
+            "title": "External-review rating",
+            "format": ".1f"
+          },
+          {
+            "field": "critic_user_gap",
+            "type": "quantitative",
+            "title": "Critic − user difference",
+            "format": "+.1f"
+          },
+          {
+            "field": "agreement",
+            "type": "nominal",
+            "title": "Comparison"
+          }
         ]
       }
     },
@@ -132,19 +171,27 @@
         "x": {
           "field": "rating",
           "type": "quantitative",
-          "scale": {"domain": [0, 100]}
+          "scale": {
+            "domain": [0, 100]
+          }
         },
         "y": {
           "field": "aggregated_rating",
           "type": "quantitative",
-          "scale": {"domain": [0, 100]}
+          "scale": {
+            "domain": [0, 100]
+          }
         }
       }
     },
     {
       "data": {
         "values": [
-          {"rating": 78, "aggregated_rating": 82, "label": "Equal ratings"}
+          {
+            "rating": 76,
+            "aggregated_rating": 81,
+            "label": "Equal ratings"
+          }
         ]
       },
       "mark": {
@@ -152,7 +199,7 @@
         "angle": 315,
         "align": "left",
         "baseline": "bottom",
-        "color": "#666",
+        "color": "#666666",
         "fontSize": 11,
         "dx": 4,
         "dy": -2
@@ -161,20 +208,28 @@
         "x": {
           "field": "rating",
           "type": "quantitative",
-          "scale": {"domain": [0, 100]}
+          "scale": {
+            "domain": [0, 100]
+          }
         },
         "y": {
           "field": "aggregated_rating",
           "type": "quantitative",
-          "scale": {"domain": [0, 100]}
+          "scale": {
+            "domain": [0, 100]
+          }
         },
-        "text": {"field": "label"}
+        "text": {
+          "field": "label"
+        }
       }
     }
   ],
   "config": {
     "font": "Arial",
-    "view": {"stroke": null},
+    "view": {
+      "stroke": null
+    },
     "axis": {
       "labelFontSize": 12,
       "titleFontSize": 13,

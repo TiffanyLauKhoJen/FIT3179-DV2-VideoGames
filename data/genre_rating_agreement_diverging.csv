@@ -1,0 +1,31 @@
+genre,sort_order,category,count,percentage,x_start,x_end,x_mid,sample_size,median_gap,mean_gap,net_critic_advantage
+Indie,1,Users higher,366,11.99,-43.46,-31.47,-37.47,3052,3.56,3.09,13.07
+Indie,1,Broad agreement,1921,62.94,-31.47,31.47,0.00,3052,3.56,3.09,13.07
+Indie,1,Critics higher,765,25.07,31.47,56.54,44.00,3052,3.56,3.09,13.07
+Strategy,2,Users higher,222,12.49,-43.61,-31.12,-37.37,1777,3.33,3.06,12.77
+Strategy,2,Broad agreement,1106,62.24,-31.12,31.12,0.00,1777,3.33,3.06,12.77
+Strategy,2,Critics higher,449,25.27,31.12,56.39,43.75,1777,3.33,3.06,12.77
+Simulator,3,Users higher,219,13.47,-44.19,-30.72,-37.45,1626,2.96,2.43,11.62
+Simulator,3,Broad agreement,999,61.44,-30.72,30.72,0.00,1626,2.96,2.43,11.62
+Simulator,3,Critics higher,408,25.09,30.72,55.81,43.27,1626,2.96,2.43,11.62
+Puzzle,4,Users higher,201,12.42,-45.71,-33.29,-39.50,1619,2.61,2.14,8.59
+Puzzle,4,Broad agreement,1078,66.58,-33.29,33.29,0.00,1619,2.61,2.14,8.59
+Puzzle,4,Critics higher,340,21.00,33.29,54.29,43.79,1619,2.61,2.14,8.59
+Role-playing (RPG),5,Users higher,275,13.66,-46.20,-32.54,-39.37,2013,1.88,1.52,7.60
+Role-playing (RPG),5,Broad agreement,1310,65.08,-32.54,32.54,0.00,2013,1.88,1.52,7.60
+Role-playing (RPG),5,Critics higher,428,21.26,32.54,53.80,43.17,2013,1.88,1.52,7.60
+Sport,6,Users higher,148,16.95,-47.02,-30.07,-38.55,873,2.56,0.92,5.96
+Sport,6,Broad agreement,525,60.14,-30.07,30.07,0.00,873,2.56,0.92,5.96
+Sport,6,Critics higher,200,22.91,30.07,52.98,41.52,873,2.56,0.92,5.96
+Adventure,7,Users higher,574,14.38,-47.33,-32.96,-40.15,3993,2.00,1.21,5.33
+Adventure,7,Broad agreement,2632,65.92,-32.96,32.96,0.00,3993,2.00,1.21,5.33
+Adventure,7,Critics higher,787,19.71,32.96,52.67,42.81,3993,2.00,1.21,5.33
+Arcade,8,Users higher,149,15.10,-47.47,-32.37,-39.92,987,2.00,1.13,5.07
+Arcade,8,Broad agreement,639,64.74,-32.37,32.37,0.00,987,2.00,1.13,5.07
+Arcade,8,Critics higher,199,20.16,32.37,52.53,42.45,987,2.00,1.13,5.07
+Shooter,9,Users higher,252,14.95,-47.57,-32.62,-40.09,1686,1.99,0.95,4.86
+Shooter,9,Broad agreement,1100,65.24,-32.62,32.62,0.00,1686,1.99,0.95,4.86
+Shooter,9,Critics higher,334,19.81,32.62,52.43,42.53,1686,1.99,0.95,4.86
+Platform,10,Users higher,182,13.73,-47.66,-33.94,-40.80,1326,2.00,1.44,4.68
+Platform,10,Broad agreement,900,67.87,-33.94,33.94,0.00,1326,2.00,1.44,4.68
+Platform,10,Critics higher,244,18.40,33.94,52.34,43.14,1326,2.00,1.44,4.68
