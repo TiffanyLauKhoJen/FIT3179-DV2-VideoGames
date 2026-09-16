@@ -1,8 +1,9 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Horizontal lollipop chart of the top 12 game titles by summed recorded platform-level sales in the Video Games Sales 1980-2024 dataset.",
   "width": 660,
   "height": 430,
+
   "data": {
     "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/top12_games_recorded_sales_lollipop.csv",
     "format": {
@@ -16,19 +17,21 @@
       }
     }
   },
+
   "title": {
     "text": "Which Games Have the Highest Recorded Sales?",
     "subtitle": [
-      "Top 12 individual game titles by summed reported sales across platform records.",
-      "Missing sales values are excluded; the same title is combined across platforms."
+      "Top 12 individual game titles by summed reported sales across platform records."
     ],
     "anchor": "start"
   },
+
   "layer": [
     {
       "mark": {
         "type": "rule",
-        "strokeWidth": 2
+        "strokeWidth": 2,
+        "color": "#B8B8B8"
       },
       "encoding": {
         "y": {
@@ -45,25 +48,22 @@
             "labelFontSize": 11
           }
         },
+
         "x": {
-          "datum": 0,
+          "field": "recorded_total_sales_millions",
           "type": "quantitative",
           "scale": {
-            "domain": [
-              0,
-              70
-            ]
+            "domain": [0, 70]
           },
           "title": "Recorded Total Sales (Millions)"
         },
+
         "x2": {
-          "field": "recorded_total_sales_millions"
-        },
-        "color": {
-          "value": "#B8B8B8"
+          "datum": 0
         }
       }
     },
+
     {
       "mark": {
         "type": "circle",
@@ -79,16 +79,15 @@
             "order": "descending"
           }
         },
+
         "x": {
           "field": "recorded_total_sales_millions",
           "type": "quantitative",
           "scale": {
-            "domain": [
-              0,
-              70
-            ]
+            "domain": [0, 70]
           }
         },
+
         "tooltip": [
           {
             "field": "rank",
@@ -132,6 +131,7 @@
         ]
       }
     },
+
     {
       "mark": {
         "type": "text",
@@ -150,16 +150,15 @@
             "order": "descending"
           }
         },
+
         "x": {
           "field": "recorded_total_sales_millions",
           "type": "quantitative",
           "scale": {
-            "domain": [
-              0,
-              70
-            ]
+            "domain": [0, 70]
           }
         },
+
         "text": {
           "field": "recorded_total_sales_millions",
           "type": "quantitative",
@@ -168,15 +167,18 @@
       }
     }
   ],
+
   "config": {
     "view": {
       "stroke": null
     },
+
     "axis": {
       "labelFontSize": 11,
       "titleFontSize": 12,
       "grid": true
     },
+
     "title": {
       "fontSize": 18,
       "subtitleFontSize": 12

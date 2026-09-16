@@ -1,0 +1,382 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Alluvial chart connecting the six publishers with the largest distinct-title catalogues to the six most common interpretable genres among those publishers.",
+  "width": 760,
+  "height": 460,
+  "padding": {
+    "left": 190,
+    "right": 115,
+    "top": 10,
+    "bottom": 10
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/publisher_genre_alluvial_top6.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "title_count": "number",
+        "publisher_selected_total": "number",
+        "genre_selected_total": "number",
+        "publisher_share_pct": "number",
+        "x": "number",
+        "y0": "number",
+        "y1": "number",
+        "x1": "number",
+        "x2": "number",
+        "node_count": "number",
+        "label_x": "number",
+        "label_y": "number"
+      }
+    }
+  },
+  "title": {
+    "text": "Which Genres Connect the Most Prolific Publishers?",
+    "subtitle": [
+      "Ribbon width shows distinct titles across six major genres; multiplatform titles are counted once.",
+      "Publishers are the top six by distinct-title catalogue size; Misc and Unknown are excluded."
+    ],
+    "anchor": "start",
+    "fontSize": 20,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#555555",
+    "subtitlePadding": 6
+  },
+  "layer": [
+    {
+      "transform": [
+        {
+          "filter": "datum.row_type === 'link'"
+        }
+      ],
+      "mark": {
+        "type": "area",
+        "opacity": 0.62,
+        "interpolate": "monotone",
+        "stroke": "#ffffff",
+        "strokeWidth": 0.25
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              1
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              100,
+              0
+            ]
+          },
+          "axis": null
+        },
+        "y2": {
+          "field": "y1"
+        },
+        "order": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "detail": {
+          "field": "link_id",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "genre",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Sports",
+              "Action",
+              "Shooter",
+              "Platform",
+              "Puzzle",
+              "Role-Playing"
+            ],
+            "range": [
+              "#4E79A7",
+              "#F28E2B",
+              "#E15759",
+              "#59A14F",
+              "#B07AA1",
+              "#EDC948"
+            ]
+          },
+          "legend": {
+            "title": "Genre",
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": 3,
+            "symbolType": "square",
+            "labelFontSize": 11
+          }
+        },
+        "tooltip": [
+          {
+            "field": "publisher",
+            "type": "nominal",
+            "title": "Publisher"
+          },
+          {
+            "field": "genre",
+            "type": "nominal",
+            "title": "Genre"
+          },
+          {
+            "field": "title_count",
+            "type": "quantitative",
+            "title": "Distinct titles",
+            "format": ",.0f"
+          },
+          {
+            "field": "publisher_share_pct",
+            "type": "quantitative",
+            "title": "Share of six-genre total",
+            "format": ".1f"
+          },
+          {
+            "field": "publisher_selected_total",
+            "type": "quantitative",
+            "title": "Publisher six-genre total",
+            "format": ",.0f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.row_type === 'publisher_node'"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "color": "#374151",
+        "cornerRadius": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "x1",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              1
+            ]
+          },
+          "axis": null
+        },
+        "x2": {
+          "field": "x2"
+        },
+        "y": {
+          "field": "y0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              100,
+              0
+            ]
+          },
+          "axis": null
+        },
+        "y2": {
+          "field": "y1"
+        },
+        "tooltip": [
+          {
+            "field": "publisher",
+            "type": "nominal",
+            "title": "Publisher"
+          },
+          {
+            "field": "node_count",
+            "type": "quantitative",
+            "title": "Titles in six genres",
+            "format": ",.0f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.row_type === 'genre_node'"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "cornerRadius": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "x1",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              1
+            ]
+          },
+          "axis": null
+        },
+        "x2": {
+          "field": "x2"
+        },
+        "y": {
+          "field": "y0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              100,
+              0
+            ]
+          },
+          "axis": null
+        },
+        "y2": {
+          "field": "y1"
+        },
+        "color": {
+          "field": "genre",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Sports",
+              "Action",
+              "Shooter",
+              "Platform",
+              "Puzzle",
+              "Role-Playing"
+            ],
+            "range": [
+              "#4E79A7",
+              "#F28E2B",
+              "#E15759",
+              "#59A14F",
+              "#B07AA1",
+              "#EDC948"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "genre",
+            "type": "nominal",
+            "title": "Genre"
+          },
+          {
+            "field": "node_count",
+            "type": "quantitative",
+            "title": "Distinct titles",
+            "format": ",.0f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.row_type === 'publisher_node'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -7,
+        "fontSize": 12,
+        "color": "#222222"
+      },
+      "encoding": {
+        "x": {
+          "field": "label_x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              1
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "label_y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              100,
+              0
+            ]
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "node_label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.row_type === 'genre_node'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 7,
+        "fontSize": 12,
+        "color": "#222222"
+      },
+      "encoding": {
+        "x": {
+          "field": "label_x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              1
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "label_y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              100,
+              0
+            ]
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "node_label"
+        }
+      }
+    }
+  ],
+  "config": {
+    "font": "Arial",
+    "view": {
+      "stroke": null
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "padding": 10
+    }
+  }
+}
