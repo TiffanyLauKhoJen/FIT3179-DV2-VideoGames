@@ -1,0 +1,255 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Parallel-coordinates comparison of regional sales shares for eight publishers with at least 80 complete regional-sales records.",
+  "width": 720,
+  "height": 420,
+  "data": {
+    "url": "data/publisher_regional_sales_parallel.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "complete_records": "number",
+        "total_regional_sales": "number",
+        "na_sales": "number",
+        "pal_sales": "number",
+        "jp_sales": "number",
+        "other_sales": "number",
+        "na_share_pct": "number",
+        "pal_share_pct": "number",
+        "jp_share_pct": "number",
+        "other_share_pct": "number"
+      }
+    }
+  },
+  "title": {
+    "text": "How Do Major Publishers' Recorded Sales Profiles Differ by Region?",
+    "subtitle": [
+      "Regional shares among game-platform records with complete NA, PAL, Japan and Other sales values.",
+      "Publishers shown have at least 80 complete records and are ranked by total recorded regional sales."
+    ],
+    "anchor": "start",
+    "fontSize": 20,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#555",
+    "subtitlePadding": 6
+  },
+  "params": [
+    {
+      "name": "hover",
+      "select": {
+        "type": "point",
+        "fields": ["publisher"],
+        "on": "pointerover",
+        "clear": "pointerout"
+      }
+    }
+  ],
+  "transform": [
+    {
+      "fold": [
+        "na_share_pct",
+        "pal_share_pct",
+        "jp_share_pct",
+        "other_share_pct"
+      ],
+      "as": ["region_code", "share_pct"]
+    },
+    {
+      "calculate": "datum.region_code === 'na_share_pct' ? 'North America' : datum.region_code === 'pal_share_pct' ? 'PAL / Europe' : datum.region_code === 'jp_share_pct' ? 'Japan' : 'Other'",
+      "as": "region"
+    },
+    {
+      "calculate": "datum.region_code === 'na_share_pct' ? 1 : datum.region_code === 'pal_share_pct' ? 2 : datum.region_code === 'jp_share_pct' ? 3 : 4",
+      "as": "region_order"
+    },
+    {
+      "calculate": "datum.region_code === 'na_share_pct' ? datum.na_sales : datum.region_code === 'pal_share_pct' ? datum.pal_sales : datum.region_code === 'jp_share_pct' ? datum.jp_sales : datum.other_sales",
+      "as": "regional_sales"
+    }
+  ],
+  "layer": [
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {"op": "count", "as": "records"}
+          ],
+          "groupby": ["region", "region_order"]
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "#d2d2d2",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "region",
+          "type": "ordinal",
+          "sort": ["North America", "PAL / Europe", "Japan", "Other"],
+          "axis": {
+            "title": "Regional Market",
+            "labelAngle": 0,
+            "labelPadding": 8,
+            "tickSize": 0,
+            "domain": false
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "region",
+          "type": "ordinal",
+          "sort": ["North America", "PAL / Europe", "Japan", "Other"],
+          "axis": {
+            "title": "Regional Market",
+            "labelAngle": 0,
+            "labelPadding": 8,
+            "tickSize": 0,
+            "domain": false
+          }
+        },
+        "y": {
+          "field": "share_pct",
+          "type": "quantitative",
+          "scale": {"domain": [0, 60]},
+          "axis": {
+            "title": "Share of Publisher's Recorded Regional Sales (%)",
+            "format": ".0f",
+            "tickCount": 7,
+            "grid": true,
+            "gridColor": "#eeeeee"
+          }
+        },
+        "order": {"field": "region_order", "type": "quantitative"},
+        "detail": {"field": "publisher", "type": "nominal"},
+        "color": {
+          "field": "publisher",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Activision",
+              "Electronic Arts",
+              "Ubisoft",
+              "Sony Computer Entertainment",
+              "Konami",
+              "Capcom",
+              "Sega",
+              "Nintendo"
+            ],
+            "range": [
+              "#4E79A7",
+              "#F28E2B",
+              "#E15759",
+              "#76B7B2",
+              "#59A14F",
+              "#EDC948",
+              "#B07AA1",
+              "#FF9DA7"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": 4,
+            "symbolStrokeWidth": 3,
+            "labelLimit": 210
+          }
+        },
+        "opacity": {
+          "condition": {"param": "hover", "value": 1},
+          "value": 0.4
+        },
+        "strokeWidth": {
+          "condition": {"param": "hover", "value": 4},
+          "value": 2
+        },
+        "tooltip": [
+          {"field": "publisher", "type": "nominal", "title": "Publisher"},
+          {"field": "region", "type": "nominal", "title": "Region"},
+          {"field": "share_pct", "type": "quantitative", "title": "Regional share (%)", "format": ".1f"},
+          {"field": "regional_sales", "type": "quantitative", "title": "Recorded sales (m)", "format": ".2f"},
+          {"field": "total_regional_sales", "type": "quantitative", "title": "Four-region total (m)", "format": ".2f"},
+          {"field": "complete_records", "type": "quantitative", "title": "Complete records", "format": ",.0f"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 65,
+        "stroke": "white",
+        "strokeWidth": 0.8
+      },
+      "encoding": {
+        "x": {
+          "field": "region",
+          "type": "ordinal",
+          "sort": ["North America", "PAL / Europe", "Japan", "Other"]
+        },
+        "y": {
+          "field": "share_pct",
+          "type": "quantitative",
+          "scale": {"domain": [0, 60]}
+        },
+        "color": {
+          "field": "publisher",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Activision",
+              "Electronic Arts",
+              "Ubisoft",
+              "Sony Computer Entertainment",
+              "Konami",
+              "Capcom",
+              "Sega",
+              "Nintendo"
+            ],
+            "range": [
+              "#4E79A7",
+              "#F28E2B",
+              "#E15759",
+              "#76B7B2",
+              "#59A14F",
+              "#EDC948",
+              "#B07AA1",
+              "#FF9DA7"
+            ]
+          },
+          "legend": null
+        },
+        "opacity": {
+          "condition": {"param": "hover", "value": 1},
+          "value": 0.65
+        },
+        "tooltip": [
+          {"field": "publisher", "type": "nominal", "title": "Publisher"},
+          {"field": "region", "type": "nominal", "title": "Region"},
+          {"field": "share_pct", "type": "quantitative", "title": "Regional share (%)", "format": ".1f"},
+          {"field": "regional_sales", "type": "quantitative", "title": "Recorded sales (m)", "format": ".2f"},
+          {"field": "total_regional_sales", "type": "quantitative", "title": "Four-region total (m)", "format": ".2f"},
+          {"field": "complete_records", "type": "quantitative", "title": "Complete records", "format": ",.0f"}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "font": "Arial",
+    "view": {"stroke": null},
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "titlePadding": 12
+    },
+    "legend": {"labelFontSize": 11}
+  }
+}
