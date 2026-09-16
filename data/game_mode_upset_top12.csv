@@ -1,0 +1,73 @@
+combination_id,combination_label,combination_order,intersection_count,intersection_share_pct,mode,mode_order,included,connector_start,connector_end,mode_total,eligible_games,top12_coverage_pct
+C01,Single player + Multiplayer,1,11010,40.06,Single player,1,1,Single player,Multiplayer,22057,27482,95.45
+C01,Single player + Multiplayer,1,11010,40.06,Multiplayer,2,1,Single player,Multiplayer,24694,27482,95.45
+C01,Single player + Multiplayer,1,11010,40.06,Co-operative,3,0,Single player,Multiplayer,9929,27482,95.45
+C01,Single player + Multiplayer,1,11010,40.06,Split screen,4,0,Single player,Multiplayer,3053,27482,95.45
+C01,Single player + Multiplayer,1,11010,40.06,Massively Multiplayer Online (MMO),5,0,Single player,Multiplayer,2706,27482,95.45
+C01,Single player + Multiplayer,1,11010,40.06,Battle Royale,6,0,Single player,Multiplayer,402,27482,95.45
+C02,Single player + Multiplayer + Co-operative,2,6189,22.52,Single player,1,1,Single player,Co-operative,22057,27482,95.45
+C02,Single player + Multiplayer + Co-operative,2,6189,22.52,Multiplayer,2,1,Single player,Co-operative,24694,27482,95.45
+C02,Single player + Multiplayer + Co-operative,2,6189,22.52,Co-operative,3,1,Single player,Co-operative,9929,27482,95.45
+C02,Single player + Multiplayer + Co-operative,2,6189,22.52,Split screen,4,0,Single player,Co-operative,3053,27482,95.45
+C02,Single player + Multiplayer + Co-operative,2,6189,22.52,Massively Multiplayer Online (MMO),5,0,Single player,Co-operative,2706,27482,95.45
+C02,Single player + Multiplayer + Co-operative,2,6189,22.52,Battle Royale,6,0,Single player,Co-operative,402,27482,95.45
+C03,Multiplayer,3,2400,8.73,Single player,1,0,Multiplayer,Multiplayer,22057,27482,95.45
+C03,Multiplayer,3,2400,8.73,Multiplayer,2,1,Multiplayer,Multiplayer,24694,27482,95.45
+C03,Multiplayer,3,2400,8.73,Co-operative,3,0,Multiplayer,Multiplayer,9929,27482,95.45
+C03,Multiplayer,3,2400,8.73,Split screen,4,0,Multiplayer,Multiplayer,3053,27482,95.45
+C03,Multiplayer,3,2400,8.73,Massively Multiplayer Online (MMO),5,0,Multiplayer,Multiplayer,2706,27482,95.45
+C03,Multiplayer,3,2400,8.73,Battle Royale,6,0,Multiplayer,Multiplayer,402,27482,95.45
+C04,Single player + Multiplayer + Split screen,4,1306,4.75,Single player,1,1,Single player,Split screen,22057,27482,95.45
+C04,Single player + Multiplayer + Split screen,4,1306,4.75,Multiplayer,2,1,Single player,Split screen,24694,27482,95.45
+C04,Single player + Multiplayer + Split screen,4,1306,4.75,Co-operative,3,0,Single player,Split screen,9929,27482,95.45
+C04,Single player + Multiplayer + Split screen,4,1306,4.75,Split screen,4,1,Single player,Split screen,3053,27482,95.45
+C04,Single player + Multiplayer + Split screen,4,1306,4.75,Massively Multiplayer Online (MMO),5,0,Single player,Split screen,2706,27482,95.45
+C04,Single player + Multiplayer + Split screen,4,1306,4.75,Battle Royale,6,0,Single player,Split screen,402,27482,95.45
+C05,Multiplayer + Co-operative,5,884,3.22,Single player,1,0,Multiplayer,Co-operative,22057,27482,95.45
+C05,Multiplayer + Co-operative,5,884,3.22,Multiplayer,2,1,Multiplayer,Co-operative,24694,27482,95.45
+C05,Multiplayer + Co-operative,5,884,3.22,Co-operative,3,1,Multiplayer,Co-operative,9929,27482,95.45
+C05,Multiplayer + Co-operative,5,884,3.22,Split screen,4,0,Multiplayer,Co-operative,3053,27482,95.45
+C05,Multiplayer + Co-operative,5,884,3.22,Massively Multiplayer Online (MMO),5,0,Multiplayer,Co-operative,2706,27482,95.45
+C05,Multiplayer + Co-operative,5,884,3.22,Battle Royale,6,0,Multiplayer,Co-operative,402,27482,95.45
+C06,Single player + Split screen,6,848,3.09,Single player,1,1,Single player,Split screen,22057,27482,95.45
+C06,Single player + Split screen,6,848,3.09,Multiplayer,2,0,Single player,Split screen,24694,27482,95.45
+C06,Single player + Split screen,6,848,3.09,Co-operative,3,0,Single player,Split screen,9929,27482,95.45
+C06,Single player + Split screen,6,848,3.09,Split screen,4,1,Single player,Split screen,3053,27482,95.45
+C06,Single player + Split screen,6,848,3.09,Massively Multiplayer Online (MMO),5,0,Single player,Split screen,2706,27482,95.45
+C06,Single player + Split screen,6,848,3.09,Battle Royale,6,0,Single player,Split screen,402,27482,95.45
+C07,Single player + Co-operative,7,838,3.05,Single player,1,1,Single player,Co-operative,22057,27482,95.45
+C07,Single player + Co-operative,7,838,3.05,Multiplayer,2,0,Single player,Co-operative,24694,27482,95.45
+C07,Single player + Co-operative,7,838,3.05,Co-operative,3,1,Single player,Co-operative,9929,27482,95.45
+C07,Single player + Co-operative,7,838,3.05,Split screen,4,0,Single player,Co-operative,3053,27482,95.45
+C07,Single player + Co-operative,7,838,3.05,Massively Multiplayer Online (MMO),5,0,Single player,Co-operative,2706,27482,95.45
+C07,Single player + Co-operative,7,838,3.05,Battle Royale,6,0,Single player,Co-operative,402,27482,95.45
+C08,Multiplayer + Massively Multiplayer Online (MMO),8,624,2.27,Single player,1,0,Multiplayer,Massively Multiplayer Online (MMO),22057,27482,95.45
+C08,Multiplayer + Massively Multiplayer Online (MMO),8,624,2.27,Multiplayer,2,1,Multiplayer,Massively Multiplayer Online (MMO),24694,27482,95.45
+C08,Multiplayer + Massively Multiplayer Online (MMO),8,624,2.27,Co-operative,3,0,Multiplayer,Massively Multiplayer Online (MMO),9929,27482,95.45
+C08,Multiplayer + Massively Multiplayer Online (MMO),8,624,2.27,Split screen,4,0,Multiplayer,Massively Multiplayer Online (MMO),3053,27482,95.45
+C08,Multiplayer + Massively Multiplayer Online (MMO),8,624,2.27,Massively Multiplayer Online (MMO),5,1,Multiplayer,Massively Multiplayer Online (MMO),2706,27482,95.45
+C08,Multiplayer + Massively Multiplayer Online (MMO),8,624,2.27,Battle Royale,6,0,Multiplayer,Massively Multiplayer Online (MMO),402,27482,95.45
+C09,Single player + Multiplayer + Co-operative + Split screen,9,611,2.22,Single player,1,1,Single player,Split screen,22057,27482,95.45
+C09,Single player + Multiplayer + Co-operative + Split screen,9,611,2.22,Multiplayer,2,1,Single player,Split screen,24694,27482,95.45
+C09,Single player + Multiplayer + Co-operative + Split screen,9,611,2.22,Co-operative,3,1,Single player,Split screen,9929,27482,95.45
+C09,Single player + Multiplayer + Co-operative + Split screen,9,611,2.22,Split screen,4,1,Single player,Split screen,3053,27482,95.45
+C09,Single player + Multiplayer + Co-operative + Split screen,9,611,2.22,Massively Multiplayer Online (MMO),5,0,Single player,Split screen,2706,27482,95.45
+C09,Single player + Multiplayer + Co-operative + Split screen,9,611,2.22,Battle Royale,6,0,Single player,Split screen,402,27482,95.45
+C10,Massively Multiplayer Online (MMO),10,592,2.15,Single player,1,0,Massively Multiplayer Online (MMO),Massively Multiplayer Online (MMO),22057,27482,95.45
+C10,Massively Multiplayer Online (MMO),10,592,2.15,Multiplayer,2,0,Massively Multiplayer Online (MMO),Massively Multiplayer Online (MMO),24694,27482,95.45
+C10,Massively Multiplayer Online (MMO),10,592,2.15,Co-operative,3,0,Massively Multiplayer Online (MMO),Massively Multiplayer Online (MMO),9929,27482,95.45
+C10,Massively Multiplayer Online (MMO),10,592,2.15,Split screen,4,0,Massively Multiplayer Online (MMO),Massively Multiplayer Online (MMO),3053,27482,95.45
+C10,Massively Multiplayer Online (MMO),10,592,2.15,Massively Multiplayer Online (MMO),5,1,Massively Multiplayer Online (MMO),Massively Multiplayer Online (MMO),2706,27482,95.45
+C10,Massively Multiplayer Online (MMO),10,592,2.15,Battle Royale,6,0,Massively Multiplayer Online (MMO),Massively Multiplayer Online (MMO),402,27482,95.45
+C11,Single player + Multiplayer + Co-operative + Massively Multiplayer Online (MMO),11,498,1.81,Single player,1,1,Single player,Massively Multiplayer Online (MMO),22057,27482,95.45
+C11,Single player + Multiplayer + Co-operative + Massively Multiplayer Online (MMO),11,498,1.81,Multiplayer,2,1,Single player,Massively Multiplayer Online (MMO),24694,27482,95.45
+C11,Single player + Multiplayer + Co-operative + Massively Multiplayer Online (MMO),11,498,1.81,Co-operative,3,1,Single player,Massively Multiplayer Online (MMO),9929,27482,95.45
+C11,Single player + Multiplayer + Co-operative + Massively Multiplayer Online (MMO),11,498,1.81,Split screen,4,0,Single player,Massively Multiplayer Online (MMO),3053,27482,95.45
+C11,Single player + Multiplayer + Co-operative + Massively Multiplayer Online (MMO),11,498,1.81,Massively Multiplayer Online (MMO),5,1,Single player,Massively Multiplayer Online (MMO),2706,27482,95.45
+C11,Single player + Multiplayer + Co-operative + Massively Multiplayer Online (MMO),11,498,1.81,Battle Royale,6,0,Single player,Massively Multiplayer Online (MMO),402,27482,95.45
+C12,Multiplayer + Co-operative + Massively Multiplayer Online (MMO),12,431,1.57,Single player,1,0,Multiplayer,Massively Multiplayer Online (MMO),22057,27482,95.45
+C12,Multiplayer + Co-operative + Massively Multiplayer Online (MMO),12,431,1.57,Multiplayer,2,1,Multiplayer,Massively Multiplayer Online (MMO),24694,27482,95.45
+C12,Multiplayer + Co-operative + Massively Multiplayer Online (MMO),12,431,1.57,Co-operative,3,1,Multiplayer,Massively Multiplayer Online (MMO),9929,27482,95.45
+C12,Multiplayer + Co-operative + Massively Multiplayer Online (MMO),12,431,1.57,Split screen,4,0,Multiplayer,Massively Multiplayer Online (MMO),3053,27482,95.45
+C12,Multiplayer + Co-operative + Massively Multiplayer Online (MMO),12,431,1.57,Massively Multiplayer Online (MMO),5,1,Multiplayer,Massively Multiplayer Online (MMO),2706,27482,95.45
+C12,Multiplayer + Co-operative + Massively Multiplayer Online (MMO),12,431,1.57,Battle Royale,6,0,Multiplayer,Massively Multiplayer Online (MMO),402,27482,95.45
