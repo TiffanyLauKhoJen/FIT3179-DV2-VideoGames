@@ -22,10 +22,9 @@
     }
   },
   "title": {
-    "text": "Which Long-Running Game Series Were Most Prolific Across Gaming Eras?",
+    "text": "Which Long-Running Game Series Released the Most Games Across Gaming Eras?",
     "subtitle": [
-      "Ranked by distinct game releases within each five-year era.",
-      "Ties are broken by total series title count, then alphabetically."
+      "Ranked by distinct game releases within each five-year era."
     ],
     "anchor": "start"
   },
