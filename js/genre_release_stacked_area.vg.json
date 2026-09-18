@@ -1,0 +1,228 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Stacked area chart showing annual distinct-title releases by major genre, after collapsing multiplatform title records.",
+  "width": 820,
+  "height": 420,
+  "background": "white",
+  "title": {
+    "text": "How Have Video Game Releases and Genre Composition Changed Over Time?",
+    "subtitle": [
+      "Annual distinct-title counts across eight major genres plus Other, based on earliest recorded release year.",
+      "'Misc' is excluded; multiplatform records are collapsed to one title. Coverage becomes sparse after 2020."
+    ],
+    "anchor": "start",
+    "fontSize": 21,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#666666",
+    "offset": 12
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/genre_release_stacked_area.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Year": "number",
+        "Genre_order": "number",
+        "Distinct_title_count": "number",
+        "Year_distinct_titles": "number",
+        "Genre_share_pct": "number"
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "opacity": 0.9,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "quantitative",
+          "title": "Earliest Recorded Release Year",
+          "scale": {
+            "domain": [
+              1980,
+              2024
+            ]
+          },
+          "axis": {
+            "values": [
+              1980,
+              1985,
+              1990,
+              1995,
+              2000,
+              2005,
+              2010,
+              2015,
+              2020,
+              2024
+            ],
+            "format": "d",
+            "labelAngle": 0,
+            "grid": false
+          }
+        },
+        "y": {
+          "field": "Distinct_title_count",
+          "type": "quantitative",
+          "aggregate": "sum",
+          "stack": "zero",
+          "title": "Number of Distinct Titles",
+          "axis": {
+            "grid": true,
+            "gridColor": "#E5E7EB",
+            "domain": false
+          }
+        },
+        "color": {
+          "field": "Genre",
+          "type": "nominal",
+          "sort": [
+            "Action",
+            "Adventure",
+            "Role-Playing (RPG)",
+            "Sports",
+            "Shooter",
+            "Strategy",
+            "Puzzle",
+            "Simulation",
+            "Other"
+          ],
+          "title": "Genre",
+          "scale": {
+            "domain": [
+              "Action",
+              "Adventure",
+              "Role-Playing (RPG)",
+              "Sports",
+              "Shooter",
+              "Strategy",
+              "Puzzle",
+              "Simulation",
+              "Other"
+            ],
+            "scheme": "tableau10"
+          },
+          "legend": {
+            "orient": "bottom",
+            "columns": 3,
+            "labelFontSize": 11,
+            "titleFontSize": 11
+          }
+        },
+        "order": {
+          "field": "Genre_order",
+          "type": "quantitative",
+          "sort": "ascending"
+        },
+        "tooltip": [
+          {
+            "field": "Year",
+            "type": "quantitative",
+            "title": "Release year",
+            "format": "d"
+          },
+          {
+            "field": "Genre",
+            "type": "nominal",
+            "title": "Genre"
+          },
+          {
+            "field": "Distinct_title_count",
+            "type": "quantitative",
+            "title": "Distinct titles",
+            "format": ",d"
+          },
+          {
+            "field": "Year_distinct_titles",
+            "type": "quantitative",
+            "title": "All selected titles that year",
+            "format": ",d"
+          },
+          {
+            "field": "Genre_share_pct",
+            "type": "quantitative",
+            "title": "Share of selected releases",
+            "format": ".1f"
+          },
+          {
+            "field": "Coverage_note",
+            "type": "nominal",
+            "title": "Coverage note"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Year": 2020
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "strokeDash": [
+          5,
+          4
+        ],
+        "strokeWidth": 1.2,
+        "color": "#666666"
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Year": 2020.4,
+            "y": 2380,
+            "label": "Sparse recent coverage →"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "fontSize": 11,
+        "color": "#666666"
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial",
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "symbolType": "square"
+    }
+  }
+}

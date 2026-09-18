@@ -1,0 +1,406 @@
+Year,Genre,Genre_order,Distinct_title_count,Year_distinct_titles,Genre_share_pct,Coverage_note
+1980,Action,1,3,28,10.71,Lower coverage
+1980,Adventure,2,3,28,10.71,Lower coverage
+1980,Role-Playing (RPG),3,0,28,0.0,Lower coverage
+1980,Sports,4,12,28,42.86,Lower coverage
+1980,Shooter,5,1,28,3.57,Lower coverage
+1980,Strategy,6,3,28,10.71,Lower coverage
+1980,Puzzle,7,1,28,3.57,Lower coverage
+1980,Simulation,8,1,28,3.57,Lower coverage
+1980,Other,9,4,28,14.29,Lower coverage
+1981,Action,1,11,43,25.58,Lower coverage
+1981,Adventure,2,3,43,6.98,Lower coverage
+1981,Role-Playing (RPG),3,3,43,6.98,Lower coverage
+1981,Sports,4,6,43,13.95,Lower coverage
+1981,Shooter,5,13,43,30.23,Lower coverage
+1981,Strategy,6,1,43,2.33,Lower coverage
+1981,Puzzle,7,1,43,2.33,Lower coverage
+1981,Simulation,8,1,43,2.33,Lower coverage
+1981,Other,9,4,43,9.3,Lower coverage
+1982,Action,1,99,183,54.1,Lower coverage
+1982,Adventure,2,6,183,3.28,Lower coverage
+1982,Role-Playing (RPG),3,6,183,3.28,Lower coverage
+1982,Sports,4,6,183,3.28,Lower coverage
+1982,Shooter,5,37,183,20.22,Lower coverage
+1982,Strategy,6,6,183,3.28,Lower coverage
+1982,Puzzle,7,7,183,3.83,Lower coverage
+1982,Simulation,8,6,183,3.28,Lower coverage
+1982,Other,9,10,183,5.46,Lower coverage
+1983,Action,1,144,228,63.16,Higher coverage
+1983,Adventure,2,8,228,3.51,Higher coverage
+1983,Role-Playing (RPG),3,2,228,0.88,Higher coverage
+1983,Sports,4,8,228,3.51,Higher coverage
+1983,Shooter,5,27,228,11.84,Higher coverage
+1983,Strategy,6,3,228,1.32,Higher coverage
+1983,Puzzle,7,11,228,4.82,Higher coverage
+1983,Simulation,8,0,228,0.0,Higher coverage
+1983,Other,9,25,228,10.96,Higher coverage
+1984,Action,1,23,61,37.7,Lower coverage
+1984,Adventure,2,11,61,18.03,Lower coverage
+1984,Role-Playing (RPG),3,1,61,1.64,Lower coverage
+1984,Sports,4,2,61,3.28,Lower coverage
+1984,Shooter,5,6,61,9.84,Lower coverage
+1984,Strategy,6,2,61,3.28,Lower coverage
+1984,Puzzle,7,3,61,4.92,Lower coverage
+1984,Simulation,8,2,61,3.28,Lower coverage
+1984,Other,9,11,61,18.03,Lower coverage
+1985,Action,1,9,62,14.52,Lower coverage
+1985,Adventure,2,7,62,11.29,Lower coverage
+1985,Role-Playing (RPG),3,8,62,12.9,Lower coverage
+1985,Sports,4,7,62,11.29,Lower coverage
+1985,Shooter,5,10,62,16.13,Lower coverage
+1985,Strategy,6,2,62,3.23,Lower coverage
+1985,Puzzle,7,5,62,8.06,Lower coverage
+1985,Simulation,8,2,62,3.23,Lower coverage
+1985,Other,9,12,62,19.35,Lower coverage
+1986,Action,1,15,129,11.63,Lower coverage
+1986,Adventure,2,18,129,13.95,Lower coverage
+1986,Role-Playing (RPG),3,15,129,11.63,Lower coverage
+1986,Sports,4,10,129,7.75,Lower coverage
+1986,Shooter,5,18,129,13.95,Lower coverage
+1986,Strategy,6,6,129,4.65,Lower coverage
+1986,Puzzle,7,6,129,4.65,Lower coverage
+1986,Simulation,8,12,129,9.3,Lower coverage
+1986,Other,9,29,129,22.48,Lower coverage
+1987,Action,1,26,196,13.27,Lower coverage
+1987,Adventure,2,30,196,15.31,Lower coverage
+1987,Role-Playing (RPG),3,18,196,9.18,Lower coverage
+1987,Sports,4,33,196,16.84,Lower coverage
+1987,Shooter,5,27,196,13.78,Lower coverage
+1987,Strategy,6,5,196,2.55,Lower coverage
+1987,Puzzle,7,10,196,5.1,Lower coverage
+1987,Simulation,8,3,196,1.53,Lower coverage
+1987,Other,9,44,196,22.45,Lower coverage
+1988,Action,1,41,216,18.98,Higher coverage
+1988,Adventure,2,28,216,12.96,Higher coverage
+1988,Role-Playing (RPG),3,28,216,12.96,Higher coverage
+1988,Sports,4,33,216,15.28,Higher coverage
+1988,Shooter,5,33,216,15.28,Higher coverage
+1988,Strategy,6,9,216,4.17,Higher coverage
+1988,Puzzle,7,4,216,1.85,Higher coverage
+1988,Simulation,8,4,216,1.85,Higher coverage
+1988,Other,9,36,216,16.67,Higher coverage
+1989,Action,1,61,320,19.06,Higher coverage
+1989,Adventure,2,32,320,10.0,Higher coverage
+1989,Role-Playing (RPG),3,50,320,15.62,Higher coverage
+1989,Sports,4,35,320,10.94,Higher coverage
+1989,Shooter,5,45,320,14.06,Higher coverage
+1989,Strategy,6,13,320,4.06,Higher coverage
+1989,Puzzle,7,12,320,3.75,Higher coverage
+1989,Simulation,8,12,320,3.75,Higher coverage
+1989,Other,9,60,320,18.75,Higher coverage
+1990,Action,1,99,502,19.72,Higher coverage
+1990,Adventure,2,22,502,4.38,Higher coverage
+1990,Role-Playing (RPG),3,61,502,12.15,Higher coverage
+1990,Sports,4,61,502,12.15,Higher coverage
+1990,Shooter,5,68,502,13.55,Higher coverage
+1990,Strategy,6,29,502,5.78,Higher coverage
+1990,Puzzle,7,60,502,11.95,Higher coverage
+1990,Simulation,8,14,502,2.79,Higher coverage
+1990,Other,9,88,502,17.53,Higher coverage
+1991,Action,1,101,567,17.81,Higher coverage
+1991,Adventure,2,33,567,5.82,Higher coverage
+1991,Role-Playing (RPG),3,60,567,10.58,Higher coverage
+1991,Sports,4,69,567,12.17,Higher coverage
+1991,Shooter,5,80,567,14.11,Higher coverage
+1991,Strategy,6,32,567,5.64,Higher coverage
+1991,Puzzle,7,35,567,6.17,Higher coverage
+1991,Simulation,8,17,567,3.0,Higher coverage
+1991,Other,9,140,567,24.69,Higher coverage
+1992,Action,1,91,600,15.17,Higher coverage
+1992,Adventure,2,35,600,5.83,Higher coverage
+1992,Role-Playing (RPG),3,86,600,14.33,Higher coverage
+1992,Sports,4,85,600,14.17,Higher coverage
+1992,Shooter,5,68,600,11.33,Higher coverage
+1992,Strategy,6,33,600,5.5,Higher coverage
+1992,Puzzle,7,27,600,4.5,Higher coverage
+1992,Simulation,8,20,600,3.33,Higher coverage
+1992,Other,9,155,600,25.83,Higher coverage
+1993,Action,1,84,633,13.27,Higher coverage
+1993,Adventure,2,49,633,7.74,Higher coverage
+1993,Role-Playing (RPG),3,68,633,10.74,Higher coverage
+1993,Sports,4,102,633,16.11,Higher coverage
+1993,Shooter,5,48,633,7.58,Higher coverage
+1993,Strategy,6,42,633,6.64,Higher coverage
+1993,Puzzle,7,31,633,4.9,Higher coverage
+1993,Simulation,8,25,633,3.95,Higher coverage
+1993,Other,9,184,633,29.07,Higher coverage
+1994,Action,1,91,726,12.53,Higher coverage
+1994,Adventure,2,51,726,7.02,Higher coverage
+1994,Role-Playing (RPG),3,78,726,10.74,Higher coverage
+1994,Sports,4,125,726,17.22,Higher coverage
+1994,Shooter,5,51,726,7.02,Higher coverage
+1994,Strategy,6,38,726,5.23,Higher coverage
+1994,Puzzle,7,34,726,4.68,Higher coverage
+1994,Simulation,8,33,726,4.55,Higher coverage
+1994,Other,9,225,726,30.99,Higher coverage
+1995,Action,1,65,705,9.22,Higher coverage
+1995,Adventure,2,85,705,12.06,Higher coverage
+1995,Role-Playing (RPG),3,75,705,10.64,Higher coverage
+1995,Sports,4,109,705,15.46,Higher coverage
+1995,Shooter,5,67,705,9.5,Higher coverage
+1995,Strategy,6,41,705,5.82,Higher coverage
+1995,Puzzle,7,51,705,7.23,Higher coverage
+1995,Simulation,8,48,705,6.81,Higher coverage
+1995,Other,9,164,705,23.26,Higher coverage
+1996,Action,1,42,732,5.74,Higher coverage
+1996,Adventure,2,97,732,13.25,Higher coverage
+1996,Role-Playing (RPG),3,69,732,9.43,Higher coverage
+1996,Sports,4,95,732,12.98,Higher coverage
+1996,Shooter,5,101,732,13.8,Higher coverage
+1996,Strategy,6,67,732,9.15,Higher coverage
+1996,Puzzle,7,40,732,5.46,Higher coverage
+1996,Simulation,8,50,732,6.83,Higher coverage
+1996,Other,9,171,732,23.36,Higher coverage
+1997,Action,1,52,675,7.7,Higher coverage
+1997,Adventure,2,79,675,11.7,Higher coverage
+1997,Role-Playing (RPG),3,66,675,9.78,Higher coverage
+1997,Sports,4,83,675,12.3,Higher coverage
+1997,Shooter,5,79,675,11.7,Higher coverage
+1997,Strategy,6,86,675,12.74,Higher coverage
+1997,Puzzle,7,39,675,5.78,Higher coverage
+1997,Simulation,8,59,675,8.74,Higher coverage
+1997,Other,9,132,675,19.56,Higher coverage
+1998,Action,1,64,770,8.31,Higher coverage
+1998,Adventure,2,99,770,12.86,Higher coverage
+1998,Role-Playing (RPG),3,78,770,10.13,Higher coverage
+1998,Sports,4,105,770,13.64,Higher coverage
+1998,Shooter,5,62,770,8.05,Higher coverage
+1998,Strategy,6,114,770,14.81,Higher coverage
+1998,Puzzle,7,24,770,3.12,Higher coverage
+1998,Simulation,8,65,770,8.44,Higher coverage
+1998,Other,9,159,770,20.65,Higher coverage
+1999,Action,1,86,896,9.6,Higher coverage
+1999,Adventure,2,89,896,9.93,Higher coverage
+1999,Role-Playing (RPG),3,100,896,11.16,Higher coverage
+1999,Sports,4,122,896,13.62,Higher coverage
+1999,Shooter,5,55,896,6.14,Higher coverage
+1999,Strategy,6,118,896,13.17,Higher coverage
+1999,Puzzle,7,56,896,6.25,Higher coverage
+1999,Simulation,8,81,896,9.04,Higher coverage
+1999,Other,9,189,896,21.09,Higher coverage
+2000,Action,1,113,1069,10.57,Higher coverage
+2000,Adventure,2,142,1069,13.28,Higher coverage
+2000,Role-Playing (RPG),3,118,1069,11.04,Higher coverage
+2000,Sports,4,163,1069,15.25,Higher coverage
+2000,Shooter,5,50,1069,4.68,Higher coverage
+2000,Strategy,6,117,1069,10.94,Higher coverage
+2000,Puzzle,7,59,1069,5.52,Higher coverage
+2000,Simulation,8,88,1069,8.23,Higher coverage
+2000,Other,9,219,1069,20.49,Higher coverage
+2001,Action,1,140,1041,13.45,Higher coverage
+2001,Adventure,2,120,1041,11.53,Higher coverage
+2001,Role-Playing (RPG),3,124,1041,11.91,Higher coverage
+2001,Sports,4,141,1041,13.54,Higher coverage
+2001,Shooter,5,72,1041,6.92,Higher coverage
+2001,Strategy,6,121,1041,11.62,Higher coverage
+2001,Puzzle,7,52,1041,5.0,Higher coverage
+2001,Simulation,8,75,1041,7.2,Higher coverage
+2001,Other,9,196,1041,18.83,Higher coverage
+2002,Action,1,133,1052,12.64,Higher coverage
+2002,Adventure,2,125,1052,11.88,Higher coverage
+2002,Role-Playing (RPG),3,104,1052,9.89,Higher coverage
+2002,Sports,4,171,1052,16.25,Higher coverage
+2002,Shooter,5,102,1052,9.7,Higher coverage
+2002,Strategy,6,112,1052,10.65,Higher coverage
+2002,Puzzle,7,42,1052,3.99,Higher coverage
+2002,Simulation,8,67,1052,6.37,Higher coverage
+2002,Other,9,196,1052,18.63,Higher coverage
+2003,Action,1,116,1017,11.41,Higher coverage
+2003,Adventure,2,132,1017,12.98,Higher coverage
+2003,Role-Playing (RPG),3,123,1017,12.09,Higher coverage
+2003,Sports,4,130,1017,12.78,Higher coverage
+2003,Shooter,5,84,1017,8.26,Higher coverage
+2003,Strategy,6,114,1017,11.21,Higher coverage
+2003,Puzzle,7,39,1017,3.83,Higher coverage
+2003,Simulation,8,69,1017,6.78,Higher coverage
+2003,Other,9,210,1017,20.65,Higher coverage
+2004,Action,1,120,970,12.37,Higher coverage
+2004,Adventure,2,164,970,16.91,Higher coverage
+2004,Role-Playing (RPG),3,100,970,10.31,Higher coverage
+2004,Sports,4,102,970,10.52,Higher coverage
+2004,Shooter,5,117,970,12.06,Higher coverage
+2004,Strategy,6,112,970,11.55,Higher coverage
+2004,Puzzle,7,35,970,3.61,Higher coverage
+2004,Simulation,8,59,970,6.08,Higher coverage
+2004,Other,9,161,970,16.6,Higher coverage
+2005,Action,1,178,1048,16.98,Higher coverage
+2005,Adventure,2,107,1048,10.21,Higher coverage
+2005,Role-Playing (RPG),3,123,1048,11.74,Higher coverage
+2005,Sports,4,109,1048,10.4,Higher coverage
+2005,Shooter,5,116,1048,11.07,Higher coverage
+2005,Strategy,6,105,1048,10.02,Higher coverage
+2005,Puzzle,7,52,1048,4.96,Higher coverage
+2005,Simulation,8,54,1048,5.15,Higher coverage
+2005,Other,9,204,1048,19.47,Higher coverage
+2006,Action,1,186,1230,15.12,Higher coverage
+2006,Adventure,2,167,1230,13.58,Higher coverage
+2006,Role-Playing (RPG),3,137,1230,11.14,Higher coverage
+2006,Sports,4,121,1230,9.84,Higher coverage
+2006,Shooter,5,95,1230,7.72,Higher coverage
+2006,Strategy,6,112,1230,9.11,Higher coverage
+2006,Puzzle,7,99,1230,8.05,Higher coverage
+2006,Simulation,8,104,1230,8.46,Higher coverage
+2006,Other,9,209,1230,16.99,Higher coverage
+2007,Action,1,159,1318,12.06,Higher coverage
+2007,Adventure,2,178,1318,13.51,Higher coverage
+2007,Role-Playing (RPG),3,152,1318,11.53,Higher coverage
+2007,Sports,4,121,1318,9.18,Higher coverage
+2007,Shooter,5,131,1318,9.94,Higher coverage
+2007,Strategy,6,133,1318,10.09,Higher coverage
+2007,Puzzle,7,132,1318,10.02,Higher coverage
+2007,Simulation,8,131,1318,9.94,Higher coverage
+2007,Other,9,181,1318,13.73,Higher coverage
+2008,Action,1,155,1568,9.89,Higher coverage
+2008,Adventure,2,287,1568,18.3,Higher coverage
+2008,Role-Playing (RPG),3,139,1568,8.86,Higher coverage
+2008,Sports,4,179,1568,11.42,Higher coverage
+2008,Shooter,5,124,1568,7.91,Higher coverage
+2008,Strategy,6,126,1568,8.04,Higher coverage
+2008,Puzzle,7,183,1568,11.67,Higher coverage
+2008,Simulation,8,182,1568,11.61,Higher coverage
+2008,Other,9,193,1568,12.31,Higher coverage
+2009,Action,1,319,2326,13.71,Higher coverage
+2009,Adventure,2,337,2326,14.49,Higher coverage
+2009,Role-Playing (RPG),3,200,2326,8.6,Higher coverage
+2009,Sports,4,199,2326,8.56,Higher coverage
+2009,Shooter,5,270,2326,11.61,Higher coverage
+2009,Strategy,6,167,2326,7.18,Higher coverage
+2009,Puzzle,7,357,2326,15.35,Higher coverage
+2009,Simulation,8,199,2326,8.56,Higher coverage
+2009,Other,9,278,2326,11.95,Higher coverage
+2010,Action,1,249,1779,14.0,Higher coverage
+2010,Adventure,2,266,1779,14.95,Higher coverage
+2010,Role-Playing (RPG),3,172,1779,9.67,Higher coverage
+2010,Sports,4,161,1779,9.05,Higher coverage
+2010,Shooter,5,182,1779,10.23,Higher coverage
+2010,Strategy,6,143,1779,8.04,Higher coverage
+2010,Puzzle,7,212,1779,11.92,Higher coverage
+2010,Simulation,8,162,1779,9.11,Higher coverage
+2010,Other,9,232,1779,13.04,Higher coverage
+2011,Action,1,255,1654,15.42,Higher coverage
+2011,Adventure,2,253,1654,15.3,Higher coverage
+2011,Role-Playing (RPG),3,176,1654,10.64,Higher coverage
+2011,Sports,4,113,1654,6.83,Higher coverage
+2011,Shooter,5,180,1654,10.88,Higher coverage
+2011,Strategy,6,125,1654,7.56,Higher coverage
+2011,Puzzle,7,190,1654,11.49,Higher coverage
+2011,Simulation,8,102,1654,6.17,Higher coverage
+2011,Other,9,260,1654,15.72,Higher coverage
+2012,Action,1,95,552,17.21,Higher coverage
+2012,Adventure,2,53,552,9.6,Higher coverage
+2012,Role-Playing (RPG),3,71,552,12.86,Higher coverage
+2012,Sports,4,38,552,6.88,Higher coverage
+2012,Shooter,5,40,552,7.25,Higher coverage
+2012,Strategy,6,30,552,5.43,Higher coverage
+2012,Puzzle,7,25,552,4.53,Higher coverage
+2012,Simulation,8,38,552,6.88,Higher coverage
+2012,Other,9,162,552,29.35,Higher coverage
+2013,Action,1,108,476,22.69,Higher coverage
+2013,Adventure,2,31,476,6.51,Higher coverage
+2013,Role-Playing (RPG),3,60,476,12.61,Higher coverage
+2013,Sports,4,24,476,5.04,Higher coverage
+2013,Shooter,5,33,476,6.93,Higher coverage
+2013,Strategy,6,36,476,7.56,Higher coverage
+2013,Puzzle,7,18,476,3.78,Higher coverage
+2013,Simulation,8,32,476,6.72,Higher coverage
+2013,Other,9,134,476,28.15,Higher coverage
+2014,Action,1,272,913,29.79,Higher coverage
+2014,Adventure,2,123,913,13.47,Higher coverage
+2014,Role-Playing (RPG),3,97,913,10.62,Higher coverage
+2014,Sports,4,33,913,3.61,Higher coverage
+2014,Shooter,5,41,913,4.49,Higher coverage
+2014,Strategy,6,61,913,6.68,Higher coverage
+2014,Puzzle,7,78,913,8.54,Higher coverage
+2014,Simulation,8,52,913,5.7,Higher coverage
+2014,Other,9,156,913,17.09,Higher coverage
+2015,Action,1,195,694,28.1,Higher coverage
+2015,Adventure,2,77,694,11.1,Higher coverage
+2015,Role-Playing (RPG),3,85,694,12.25,Higher coverage
+2015,Sports,4,32,694,4.61,Higher coverage
+2015,Shooter,5,40,694,5.76,Higher coverage
+2015,Strategy,6,48,694,6.92,Higher coverage
+2015,Puzzle,7,40,694,5.76,Higher coverage
+2015,Simulation,8,50,694,7.2,Higher coverage
+2015,Other,9,127,694,18.3,Higher coverage
+2016,Action,1,144,655,21.98,Higher coverage
+2016,Adventure,2,109,655,16.64,Higher coverage
+2016,Role-Playing (RPG),3,92,655,14.05,Higher coverage
+2016,Sports,4,29,655,4.43,Higher coverage
+2016,Shooter,5,45,655,6.87,Higher coverage
+2016,Strategy,6,38,655,5.8,Higher coverage
+2016,Puzzle,7,36,655,5.5,Higher coverage
+2016,Simulation,8,38,655,5.8,Higher coverage
+2016,Other,9,124,655,18.93,Higher coverage
+2017,Action,1,155,789,19.65,Higher coverage
+2017,Adventure,2,130,789,16.48,Higher coverage
+2017,Role-Playing (RPG),3,94,789,11.91,Higher coverage
+2017,Sports,4,26,789,3.3,Higher coverage
+2017,Shooter,5,55,789,6.97,Higher coverage
+2017,Strategy,6,38,789,4.82,Higher coverage
+2017,Puzzle,7,54,789,6.84,Higher coverage
+2017,Simulation,8,46,789,5.83,Higher coverage
+2017,Other,9,191,789,24.21,Higher coverage
+2018,Action,1,123,746,16.49,Higher coverage
+2018,Adventure,2,81,746,10.86,Higher coverage
+2018,Role-Playing (RPG),3,77,746,10.32,Higher coverage
+2018,Sports,4,42,746,5.63,Higher coverage
+2018,Shooter,5,34,746,4.56,Higher coverage
+2018,Strategy,6,39,746,5.23,Higher coverage
+2018,Puzzle,7,49,746,6.57,Higher coverage
+2018,Simulation,8,45,746,6.03,Higher coverage
+2018,Other,9,256,746,34.32,Higher coverage
+2019,Action,1,62,493,12.58,Higher coverage
+2019,Adventure,2,40,493,8.11,Higher coverage
+2019,Role-Playing (RPG),3,79,493,16.02,Higher coverage
+2019,Sports,4,22,493,4.46,Higher coverage
+2019,Shooter,5,49,493,9.94,Higher coverage
+2019,Strategy,6,32,493,6.49,Higher coverage
+2019,Puzzle,7,25,493,5.07,Higher coverage
+2019,Simulation,8,24,493,4.87,Higher coverage
+2019,Other,9,160,493,32.45,Higher coverage
+2020,Action,1,69,497,13.88,Higher coverage
+2020,Adventure,2,47,497,9.46,Higher coverage
+2020,Role-Playing (RPG),3,82,497,16.5,Higher coverage
+2020,Sports,4,32,497,6.44,Higher coverage
+2020,Shooter,5,44,497,8.85,Higher coverage
+2020,Strategy,6,36,497,7.24,Higher coverage
+2020,Puzzle,7,18,497,3.62,Higher coverage
+2020,Simulation,8,21,497,4.23,Higher coverage
+2020,Other,9,148,497,29.78,Higher coverage
+2021,Action,1,10,162,6.17,Sparse recent coverage
+2021,Adventure,2,11,162,6.79,Sparse recent coverage
+2021,Role-Playing (RPG),3,27,162,16.67,Sparse recent coverage
+2021,Sports,4,8,162,4.94,Sparse recent coverage
+2021,Shooter,5,15,162,9.26,Sparse recent coverage
+2021,Strategy,6,4,162,2.47,Sparse recent coverage
+2021,Puzzle,7,5,162,3.09,Sparse recent coverage
+2021,Simulation,8,13,162,8.02,Sparse recent coverage
+2021,Other,9,69,162,42.59,Sparse recent coverage
+2022,Action,1,8,84,9.52,Sparse recent coverage
+2022,Adventure,2,7,84,8.33,Sparse recent coverage
+2022,Role-Playing (RPG),3,20,84,23.81,Sparse recent coverage
+2022,Sports,4,5,84,5.95,Sparse recent coverage
+2022,Shooter,5,5,84,5.95,Sparse recent coverage
+2022,Strategy,6,8,84,9.52,Sparse recent coverage
+2022,Puzzle,7,2,84,2.38,Sparse recent coverage
+2022,Simulation,8,4,84,4.76,Sparse recent coverage
+2022,Other,9,25,84,29.76,Sparse recent coverage
+2023,Action,1,1,55,1.82,Sparse recent coverage
+2023,Adventure,2,5,55,9.09,Sparse recent coverage
+2023,Role-Playing (RPG),3,16,55,29.09,Sparse recent coverage
+2023,Sports,4,0,55,0.0,Sparse recent coverage
+2023,Shooter,5,6,55,10.91,Sparse recent coverage
+2023,Strategy,6,6,55,10.91,Sparse recent coverage
+2023,Puzzle,7,2,55,3.64,Sparse recent coverage
+2023,Simulation,8,4,55,7.27,Sparse recent coverage
+2023,Other,9,15,55,27.27,Sparse recent coverage
+2024,Action,1,0,7,0.0,Sparse recent coverage
+2024,Adventure,2,0,7,0.0,Sparse recent coverage
+2024,Role-Playing (RPG),3,2,7,28.57,Sparse recent coverage
+2024,Sports,4,0,7,0.0,Sparse recent coverage
+2024,Shooter,5,2,7,28.57,Sparse recent coverage
+2024,Strategy,6,0,7,0.0,Sparse recent coverage
+2024,Puzzle,7,0,7,0.0,Sparse recent coverage
+2024,Simulation,8,0,7,0.0,Sparse recent coverage
+2024,Other,9,3,7,42.86,Sparse recent coverage
