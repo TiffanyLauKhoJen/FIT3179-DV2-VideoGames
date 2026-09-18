@@ -1,0 +1,384 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Alluvial chart showing distinct title-rating associations between six major video game genres and four standard ESRB age classifications.",
+  "width": 820,
+  "height": 500,
+  "padding": {
+    "left": 150,
+    "right": 175,
+    "top": 8,
+    "bottom": 8
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/genre_age_rating_sankey.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "count": "number",
+        "within_genre_pct": "number",
+        "within_rating_pct": "number",
+        "x": "number",
+        "y": "number",
+        "point_order": "number",
+        "thickness_px": "number",
+        "node_total": "number",
+        "x0": "number",
+        "x1": "number",
+        "y0": "number",
+        "y1": "number",
+        "label_x": "number",
+        "label_y": "number"
+      }
+    }
+  },
+  "title": {
+    "text": "Which Age Ratings Are Most Associated with Major Video Game Genres?",
+    "subtitle": [
+      "Among records with a listed ESRB rating, ribbon width shows distinct title-rating associations.",
+      "Platform duplicates with the same rating are collapsed; titles with different platform ratings may connect more than once."
+    ],
+    "anchor": "start",
+    "fontSize": 21,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#555555",
+    "subtitlePadding": 6
+  },
+  "layer": [
+    {
+      "transform": [
+        {
+          "filter": "datum.record_type === 'link_point'"
+        }
+      ],
+      "mark": {
+        "type": "trail",
+        "interpolate": "monotone",
+        "opacity": 0.58,
+        "strokeCap": "butt"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              1
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              4272
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "detail": {
+          "field": "link_id",
+          "type": "nominal"
+        },
+        "order": {
+          "field": "point_order",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "thickness_px",
+          "type": "quantitative",
+          "scale": null,
+          "legend": null
+        },
+        "color": {
+          "field": "rating",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "E",
+              "E10+",
+              "T",
+              "M"
+            ],
+            "range": [
+              "#4E79A7",
+              "#F2CF5B",
+              "#F28E2B",
+              "#D9534F"
+            ]
+          },
+          "legend": {
+            "title": "ESRB rating",
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": 4
+          }
+        },
+        "tooltip": [
+          {
+            "field": "genre",
+            "type": "nominal",
+            "title": "Genre"
+          },
+          {
+            "field": "rating",
+            "type": "nominal",
+            "title": "ESRB rating"
+          },
+          {
+            "field": "count",
+            "type": "quantitative",
+            "title": "Distinct title-rating links",
+            "format": ",.0f"
+          },
+          {
+            "field": "within_genre_pct",
+            "type": "quantitative",
+            "title": "Share within genre",
+            "format": ".1f"
+          },
+          {
+            "field": "within_rating_pct",
+            "type": "quantitative",
+            "title": "Share of rating",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.record_type === 'node' && datum.node_side === 'genre'"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "color": "#374151",
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "x0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              1
+            ]
+          },
+          "axis": null
+        },
+        "x2": {
+          "field": "x1"
+        },
+        "y": {
+          "field": "y0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              4272
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "y2": {
+          "field": "y1"
+        },
+        "tooltip": [
+          {
+            "field": "node_label",
+            "type": "nominal",
+            "title": "Genre"
+          },
+          {
+            "field": "node_total",
+            "type": "quantitative",
+            "title": "Title-rating associations",
+            "format": ",.0f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.record_type === 'node' && datum.node_side === 'rating'"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "x0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              1
+            ]
+          },
+          "axis": null
+        },
+        "x2": {
+          "field": "x1"
+        },
+        "y": {
+          "field": "y0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              4272
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "y2": {
+          "field": "y1"
+        },
+        "color": {
+          "field": "rating",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "E",
+              "E10+",
+              "T",
+              "M"
+            ],
+            "range": [
+              "#4E79A7",
+              "#F2CF5B",
+              "#F28E2B",
+              "#D9534F"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "node_label",
+            "type": "nominal",
+            "title": "ESRB rating"
+          },
+          {
+            "field": "node_total",
+            "type": "quantitative",
+            "title": "Title-rating associations",
+            "format": ",.0f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.record_type === 'node' && datum.node_side === 'genre'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -7,
+        "fontSize": 12,
+        "color": "#222222"
+      },
+      "encoding": {
+        "x": {
+          "field": "label_x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              1
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "label_y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              4272
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "node_display"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.record_type === 'node' && datum.node_side === 'rating'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 7,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#222222"
+      },
+      "encoding": {
+        "x": {
+          "field": "label_x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              1
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "label_y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              4272
+            ],
+            "reverse": true
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "node_display"
+        }
+      }
+    }
+  ],
+  "config": {
+    "font": "Arial",
+    "view": {
+      "stroke": null
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "symbolType": "square"
+    }
+  }
+}
