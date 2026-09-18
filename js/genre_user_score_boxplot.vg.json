@@ -1,0 +1,100 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Horizontal box plots comparing user score distributions across major video game genres.",
+  "width": 650,
+  "height": 430,
+  "background": "white",
+  "title": {
+    "text": "How Do User Score Distributions Differ Across Video Game Genres?",
+    "subtitle": [
+      "User-score distributions for major genres in the Video_Games dataset.",
+      "Missing and 'tbd' scores are excluded; 'Misc' is excluded."
+    ],
+    "anchor": "start",
+    "fontSize": 21,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#666666",
+    "offset": 12
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/genre_user_score_boxplot.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "User_Score": "number",
+        "Year_of_Release": "number",
+        "User_Count": "number"
+      }
+    }
+  },
+  "mark": {
+    "type": "boxplot",
+    "extent": 1.5,
+    "size": 24,
+    "color": "#4C78A8"
+  },
+  "encoding": {
+    "y": {
+      "field": "Genre",
+      "type": "nominal",
+      "sort": [
+        "Role-Playing",
+        "Strategy",
+        "Fighting",
+        "Platform",
+        "Adventure",
+        "Puzzle",
+        "Simulation",
+        "Action",
+        "Racing",
+        "Shooter",
+        "Sports"
+      ],
+      "title": "Genre",
+      "axis": {
+        "labelFontSize": 11,
+        "titleFontSize": 12,
+        "ticks": false,
+        "domain": false,
+        "labelPadding": 6
+      }
+    },
+    "x": {
+      "field": "User_Score",
+      "type": "quantitative",
+      "title": "User Score",
+      "scale": {
+        "domain": [
+          0,
+          10
+        ]
+      },
+      "axis": {
+        "values": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "labelFontSize": 11,
+        "titleFontSize": 12,
+        "grid": true,
+        "gridColor": "#E5E7EB",
+        "domain": false
+      }
+    }
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial"
+  }
+}
