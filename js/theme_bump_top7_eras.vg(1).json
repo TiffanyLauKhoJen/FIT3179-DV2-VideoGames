@@ -34,10 +34,6 @@
   },
   "transform": [
     {
-      "calculate": "indexof([\"1980–1984\", \"1985–1989\", \"1990–1994\", \"1995–1999\", \"2000–2004\", \"2005–2009\", \"2010–2014\", \"2015–2019\", \"2020–2024\"], datum.era) + 1",
-      "as": "era_order"
-    },
-    {
       "calculate": "datum.themed_games_in_era > 0 ? datum.distinct_game_count / datum.themed_games_in_era : 0",
       "as": "theme_share"
     },
@@ -59,6 +55,84 @@
       ]
     }
   ],
+  "encoding": {
+    "x": {
+      "field": "era",
+      "type": "ordinal",
+      "sort": [
+        "1980–1984",
+        "1985–1989",
+        "1990–1994",
+        "1995–1999",
+        "2000–2004",
+        "2005–2009",
+        "2010–2014",
+        "2015–2019",
+        "2020–2024"
+      ],
+      "title": "Five-Year Release Period",
+      "axis": {
+        "labelAngle": 0,
+        "labelPadding": 8,
+        "labelFontSize": 10,
+        "grid": false
+      }
+    },
+    "y": {
+      "field": "rank",
+      "type": "ordinal",
+      "sort": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "title": "Rank Among the Seven Selected Themes",
+      "axis": {
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "labelOverlap": false,
+        "grid": true,
+        "gridColor": "#E5E7EB",
+        "domain": false
+      }
+    },
+    "color": {
+      "field": "theme",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Action",
+          "Fantasy",
+          "Science fiction",
+          "Horror",
+          "Comedy",
+          "Erotic",
+          "Mystery"
+        ],
+        "range": [
+          "#1B9E77",
+          "#D95F02",
+          "#7570B3",
+          "#00A6D6",
+          "#E6AB02",
+          "#A6761D",
+          "#666666"
+        ]
+      },
+      "legend": null
+    }
+  },
   "layer": [
     {
       "mark": {
@@ -66,91 +140,6 @@
         "strokeWidth": 3,
         "interpolate": "linear",
         "opacity": 0.82
-      },
-      "encoding": {
-        "x": {
-          "field": "era",
-          "type": "ordinal",
-          "sort": [
-            "1980–1984",
-            "1985–1989",
-            "1990–1994",
-            "1995–1999",
-            "2000–2004",
-            "2005–2009",
-            "2010–2014",
-            "2015–2019",
-            "2020–2024"
-          ],
-          "title": "Five-Year Release Period",
-          "axis": {
-            "labelAngle": 0,
-            "labelPadding": 8,
-            "labelFontSize": 10,
-            "grid": false
-          }
-        },
-        "y": {
-          "field": "rank",
-          "type": "ordinal",
-          "sort": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7
-          ],
-          "title": "Rank Among the Seven Selected Themes",
-          "axis": {
-            "values": [
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7
-            ],
-            "labelOverlap": false,
-            "grid": true,
-            "gridColor": "#E5E7EB",
-            "domain": false
-          }
-        },
-        "color": {
-          "field": "theme",
-          "type": "nominal",
-          "scale": {
-            "domain": [
-              "Action",
-              "Fantasy",
-              "Science fiction",
-              "Horror",
-              "Comedy",
-              "Erotic",
-              "Mystery"
-            ],
-            "range": [
-              "#1B9E77",
-              "#D95F02",
-              "#7570B3",
-              "#00A6D6",
-              "#E6AB02",
-              "#A6761D",
-              "#666666"
-            ]
-          },
-          "legend": null
-        },
-        "detail": {
-          "field": "theme"
-        },
-        "order": {
-          "field": "era_order",
-          "type": "quantitative"
-        }
       }
     },
     {
@@ -162,59 +151,6 @@
         "opacity": 0.98
       },
       "encoding": {
-        "x": {
-          "field": "era",
-          "type": "ordinal",
-          "sort": [
-            "1980–1984",
-            "1985–1989",
-            "1990–1994",
-            "1995–1999",
-            "2000–2004",
-            "2005–2009",
-            "2010–2014",
-            "2015–2019",
-            "2020–2024"
-          ]
-        },
-        "y": {
-          "field": "rank",
-          "type": "ordinal",
-          "sort": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7
-          ]
-        },
-        "color": {
-          "field": "theme",
-          "type": "nominal",
-          "scale": {
-            "domain": [
-              "Action",
-              "Fantasy",
-              "Science fiction",
-              "Horror",
-              "Comedy",
-              "Erotic",
-              "Mystery"
-            ],
-            "range": [
-              "#1B9E77",
-              "#D95F02",
-              "#7570B3",
-              "#00A6D6",
-              "#E6AB02",
-              "#A6761D",
-              "#666666"
-            ]
-          },
-          "legend": null
-        },
         "tooltip": [
           {
             "field": "theme",
@@ -267,61 +203,8 @@
         "fontWeight": "bold"
       },
       "encoding": {
-        "x": {
-          "field": "era",
-          "type": "ordinal",
-          "sort": [
-            "1980–1984",
-            "1985–1989",
-            "1990–1994",
-            "1995–1999",
-            "2000–2004",
-            "2005–2009",
-            "2010–2014",
-            "2015–2019",
-            "2020–2024"
-          ]
-        },
-        "y": {
-          "field": "rank",
-          "type": "ordinal",
-          "sort": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7
-          ]
-        },
         "text": {
           "field": "theme"
-        },
-        "color": {
-          "field": "theme",
-          "type": "nominal",
-          "scale": {
-            "domain": [
-              "Action",
-              "Fantasy",
-              "Science fiction",
-              "Horror",
-              "Comedy",
-              "Erotic",
-              "Mystery"
-            ],
-            "range": [
-              "#1B9E77",
-              "#D95F02",
-              "#7570B3",
-              "#00A6D6",
-              "#E6AB02",
-              "#A6761D",
-              "#666666"
-            ]
-          },
-          "legend": null
         }
       }
     }
