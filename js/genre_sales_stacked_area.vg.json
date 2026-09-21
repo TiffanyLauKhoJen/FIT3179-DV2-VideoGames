@@ -5,11 +5,7 @@
   "height": 420,
   "background": "white",
   "title": {
-    "text": "How Did Recorded Sales of Eight Major Video Game Genres Change Over Time?",
-    "subtitle": [
-      "Annual recorded global sales across eight selected genres, 1995–2018.",
-      "Misc is excluded; figures reflect available sales records and coverage varies by year."
-    ],
+    "text": "How Did Recorded Sales Shift Across Eight Major Video Game Genres?",
     "anchor": "start",
     "fontSize": 21,
     "subtitleFontSize": 12,
@@ -35,9 +31,7 @@
           "as": "Selected_genres_total"
         }
       ],
-      "groupby": [
-        "Year"
-      ]
+      "groupby": ["Year"]
     },
     {
       "calculate": "indexof(['Sports', 'Action', 'Shooter', 'Racing', 'Role-Playing', 'Fighting', 'Adventure', 'Platform'], datum.Genre) + 1",
@@ -56,21 +50,11 @@
       "type": "quantitative",
       "title": "Release Year",
       "scale": {
-        "domain": [
-          1995,
-          2018
-        ],
+        "domain": [1995, 2018],
         "nice": false
       },
       "axis": {
-        "values": [
-          1995,
-          2000,
-          2005,
-          2010,
-          2015,
-          2018
-        ],
+        "values": [1995, 2000, 2005, 2010, 2015, 2018],
         "format": "d",
         "labelAngle": 0,
         "grid": false
@@ -120,7 +104,7 @@
           "#F4A261",
           "#8338EC",
           "#E9C46A",
-          "#D1495B",
+          "#5C677D",
           "#6A994E"
         ]
       },

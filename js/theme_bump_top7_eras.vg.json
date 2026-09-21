@@ -1,5 +1,5 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Bump chart showing how the relative ranking of the seven most common game themes changed across five-year gaming eras from 1980 to 2024.",
   "width": 760,
   "height": 430,
