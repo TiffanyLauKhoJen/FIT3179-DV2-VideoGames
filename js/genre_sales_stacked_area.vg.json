@@ -8,8 +8,6 @@
     "text": "How Did Recorded Sales Shift Across Eight Major Video Game Genres?",
     "anchor": "start",
     "fontSize": 21,
-    "subtitleFontSize": 12,
-    "subtitleColor": "#666666",
     "offset": 12
   },
   "data": {
@@ -54,7 +52,7 @@
         "nice": false
       },
       "axis": {
-        "values": [1995, 2000, 2005, 2010, 2015, 2018],
+        "values": [1995, 2000, 2005, 2010, 2015],
         "format": "d",
         "labelAngle": 0,
         "grid": false

@@ -92,15 +92,17 @@
         },
         "y": {
           "field": "rank",
-          "type": "quantitative",
+          "type": "ordinal",
+          "sort": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
           "title": "Rank Among the Seven Selected Themes",
-          "scale": {
-            "domain": [
-              1,
-              7
-            ],
-            "reverse": true
-          },
           "axis": {
             "values": [
               1,
@@ -111,7 +113,7 @@
               6,
               7
             ],
-            "tickMinStep": 1,
+            "labelOverlap": false,
             "grid": true,
             "gridColor": "#E5E7EB",
             "domain": false
@@ -131,13 +133,13 @@
               "Mystery"
             ],
             "range": [
-              "#3A86FF",
-              "#F4A261",
-              "#6C5CE7",
-              "#D45087",
-              "#E0B000",
-              "#8D6E63",
-              "#5C677D"
+              "#1B9E77",
+              "#D95F02",
+              "#7570B3",
+              "#00A6D6",
+              "#E6AB02",
+              "#A6761D",
+              "#666666"
             ]
           },
           "legend": null
@@ -177,14 +179,16 @@
         },
         "y": {
           "field": "rank",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              1,
-              7
-            ],
-            "reverse": true
-          }
+          "type": "ordinal",
+          "sort": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
         },
         "color": {
           "field": "theme",
@@ -200,13 +204,13 @@
               "Mystery"
             ],
             "range": [
-              "#3A86FF",
-              "#F4A261",
-              "#6C5CE7",
-              "#D45087",
-              "#E0B000",
-              "#8D6E63",
-              "#5C677D"
+              "#1B9E77",
+              "#D95F02",
+              "#7570B3",
+              "#00A6D6",
+              "#E6AB02",
+              "#A6761D",
+              "#666666"
             ]
           },
           "legend": null
@@ -224,9 +228,8 @@
           },
           {
             "field": "rank",
-            "type": "quantitative",
-            "title": "Rank among selected themes",
-            "format": "d"
+            "type": "ordinal",
+            "title": "Rank among selected themes"
           },
           {
             "field": "distinct_game_count",
@@ -281,14 +284,16 @@
         },
         "y": {
           "field": "rank",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              1,
-              7
-            ],
-            "reverse": true
-          }
+          "type": "ordinal",
+          "sort": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
         },
         "text": {
           "field": "theme"
@@ -307,13 +312,13 @@
               "Mystery"
             ],
             "range": [
-              "#3A86FF",
-              "#F4A261",
-              "#6C5CE7",
-              "#D45087",
-              "#E0B000",
-              "#8D6E63",
-              "#5C677D"
+              "#1B9E77",
+              "#D95F02",
+              "#7570B3",
+              "#00A6D6",
+              "#E6AB02",
+              "#A6761D",
+              "#666666"
             ]
           },
           "legend": null
