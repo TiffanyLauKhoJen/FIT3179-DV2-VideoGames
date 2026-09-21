@@ -4,6 +4,16 @@
   "width": 700,
   "height": 350,
 
+  "title": {
+    "text": "How Has the Recorded Video Game Catalogue Expanded Over Time?",
+    "subtitle": "Annual number of main-game releases recorded in the IGDB dataset.",
+    "anchor": "start",
+    "fontSize": 21,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#666666",
+    "offset": 12
+  },
+
   "data": {
     "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/dataset_g1.csv",
     "format": {
@@ -33,20 +43,20 @@
     "y": {
       "field": "Main_game_count",
       "type": "quantitative",
-      "title": "Number of Main Games"
+      "title": "Recorded Main-Game Releases"
     },
 
     "tooltip": [
       {
         "field": "Year",
         "type": "quantitative",
-        "title": "Year",
+        "title": "Release Year",
         "format": "d"
       },
       {
         "field": "Main_game_count",
         "type": "quantitative",
-        "title": "Main Games",
+        "title": "Recorded Main Games",
         "format": ",d"
       }
     ]

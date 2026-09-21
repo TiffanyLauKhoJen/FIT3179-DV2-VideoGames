@@ -1,5 +1,5 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Stacked area chart showing annual distinct-title releases by major genre, after collapsing multiplatform title records.",
   "width": 820,
   "height": 420,
