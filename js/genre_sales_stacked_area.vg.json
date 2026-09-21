@@ -1,0 +1,178 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Stacked area chart of annual recorded global video game sales across eight selected genres.",
+  "width": 820,
+  "height": 420,
+  "background": "white",
+  "title": {
+    "text": "How Did Recorded Sales of Eight Major Video Game Genres Change Over Time?",
+    "subtitle": [
+      "Annual recorded global sales across eight selected genres, 1995–2018.",
+      "Misc is excluded; figures reflect available sales records and coverage varies by year."
+    ],
+    "anchor": "start",
+    "fontSize": 21,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#666666",
+    "offset": 12
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/genre_sales_stacked_area.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Year": "number",
+        "Recorded_sales_millions": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "joinaggregate": [
+        {
+          "op": "sum",
+          "field": "Recorded_sales_millions",
+          "as": "Selected_genres_total"
+        }
+      ],
+      "groupby": [
+        "Year"
+      ]
+    },
+    {
+      "calculate": "indexof(['Sports', 'Action', 'Shooter', 'Racing', 'Role-Playing', 'Fighting', 'Adventure', 'Platform'], datum.Genre) + 1",
+      "as": "Genre_order"
+    }
+  ],
+  "mark": {
+    "type": "area",
+    "opacity": 0.92,
+    "interpolate": "linear",
+    "clip": true
+  },
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "quantitative",
+      "title": "Release Year",
+      "scale": {
+        "domain": [
+          1995,
+          2018
+        ],
+        "nice": false
+      },
+      "axis": {
+        "values": [
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018
+        ],
+        "format": "d",
+        "labelAngle": 0,
+        "grid": false
+      }
+    },
+    "y": {
+      "field": "Recorded_sales_millions",
+      "type": "quantitative",
+      "stack": "zero",
+      "title": "Recorded Global Sales (Millions of Copies)",
+      "axis": {
+        "format": ",.0f",
+        "grid": true,
+        "gridColor": "#E5E7EB",
+        "domain": false
+      }
+    },
+    "color": {
+      "field": "Genre",
+      "type": "nominal",
+      "title": "Genre",
+      "sort": [
+        "Sports",
+        "Action",
+        "Shooter",
+        "Racing",
+        "Role-Playing",
+        "Fighting",
+        "Adventure",
+        "Platform"
+      ],
+      "scale": {
+        "domain": [
+          "Sports",
+          "Action",
+          "Shooter",
+          "Racing",
+          "Role-Playing",
+          "Fighting",
+          "Adventure",
+          "Platform"
+        ],
+        "range": [
+          "#2A9D8F",
+          "#E76F51",
+          "#3A86FF",
+          "#F4A261",
+          "#8338EC",
+          "#E9C46A",
+          "#D1495B",
+          "#6A994E"
+        ]
+      },
+      "legend": {
+        "orient": "bottom",
+        "columns": 4,
+        "labelFontSize": 11,
+        "titleFontSize": 11
+      }
+    },
+    "order": {
+      "field": "Genre_order",
+      "type": "quantitative",
+      "sort": "ascending"
+    },
+    "tooltip": [
+      {
+        "field": "Year",
+        "type": "quantitative",
+        "title": "Release year",
+        "format": "d"
+      },
+      {
+        "field": "Genre",
+        "type": "nominal",
+        "title": "Genre"
+      },
+      {
+        "field": "Recorded_sales_millions",
+        "type": "quantitative",
+        "title": "Recorded sales (millions)",
+        "format": ",.2f"
+      },
+      {
+        "field": "Selected_genres_total",
+        "type": "quantitative",
+        "title": "Eight-genre total (millions)",
+        "format": ",.2f"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial",
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "symbolType": "square"
+    }
+  }
+}
