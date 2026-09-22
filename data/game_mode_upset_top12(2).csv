@@ -1,0 +1,61 @@
+combination_id,combination_label,combination_order,intersection_count,mode,mode_order,included,connector_start,connector_end,mode_total
+C01,Single player + Multiplayer,1,11010,Single player,1,1,Single player,Multiplayer,22057
+C01,Single player + Multiplayer,1,11010,Multiplayer,2,1,Single player,Multiplayer,24694
+C01,Single player + Multiplayer,1,11010,Co-operative,3,0,Single player,Multiplayer,9929
+C01,Single player + Multiplayer,1,11010,Split screen,4,0,Single player,Multiplayer,3053
+C01,Single player + Multiplayer,1,11010,Massively Multiplayer Online (MMO),5,0,Single player,Multiplayer,2706
+C02,Single player + Multiplayer + Co-operative,2,6189,Single player,1,1,Single player,Co-operative,22057
+C02,Single player + Multiplayer + Co-operative,2,6189,Multiplayer,2,1,Single player,Co-operative,24694
+C02,Single player + Multiplayer + Co-operative,2,6189,Co-operative,3,1,Single player,Co-operative,9929
+C02,Single player + Multiplayer + Co-operative,2,6189,Split screen,4,0,Single player,Co-operative,3053
+C02,Single player + Multiplayer + Co-operative,2,6189,Massively Multiplayer Online (MMO),5,0,Single player,Co-operative,2706
+C03,Multiplayer,3,2400,Single player,1,0,Multiplayer,Multiplayer,22057
+C03,Multiplayer,3,2400,Multiplayer,2,1,Multiplayer,Multiplayer,24694
+C03,Multiplayer,3,2400,Co-operative,3,0,Multiplayer,Multiplayer,9929
+C03,Multiplayer,3,2400,Split screen,4,0,Multiplayer,Multiplayer,3053
+C03,Multiplayer,3,2400,Massively Multiplayer Online (MMO),5,0,Multiplayer,Multiplayer,2706
+C04,Single player + Multiplayer + Split screen,4,1306,Single player,1,1,Single player,Split screen,22057
+C04,Single player + Multiplayer + Split screen,4,1306,Multiplayer,2,1,Single player,Split screen,24694
+C04,Single player + Multiplayer + Split screen,4,1306,Co-operative,3,0,Single player,Split screen,9929
+C04,Single player + Multiplayer + Split screen,4,1306,Split screen,4,1,Single player,Split screen,3053
+C04,Single player + Multiplayer + Split screen,4,1306,Massively Multiplayer Online (MMO),5,0,Single player,Split screen,2706
+C05,Multiplayer + Co-operative,5,884,Single player,1,0,Multiplayer,Co-operative,22057
+C05,Multiplayer + Co-operative,5,884,Multiplayer,2,1,Multiplayer,Co-operative,24694
+C05,Multiplayer + Co-operative,5,884,Co-operative,3,1,Multiplayer,Co-operative,9929
+C05,Multiplayer + Co-operative,5,884,Split screen,4,0,Multiplayer,Co-operative,3053
+C05,Multiplayer + Co-operative,5,884,Massively Multiplayer Online (MMO),5,0,Multiplayer,Co-operative,2706
+C06,Single player + Split screen,6,848,Single player,1,1,Single player,Split screen,22057
+C06,Single player + Split screen,6,848,Multiplayer,2,0,Single player,Split screen,24694
+C06,Single player + Split screen,6,848,Co-operative,3,0,Single player,Split screen,9929
+C06,Single player + Split screen,6,848,Split screen,4,1,Single player,Split screen,3053
+C06,Single player + Split screen,6,848,Massively Multiplayer Online (MMO),5,0,Single player,Split screen,2706
+C07,Single player + Co-operative,7,838,Single player,1,1,Single player,Co-operative,22057
+C07,Single player + Co-operative,7,838,Multiplayer,2,0,Single player,Co-operative,24694
+C07,Single player + Co-operative,7,838,Co-operative,3,1,Single player,Co-operative,9929
+C07,Single player + Co-operative,7,838,Split screen,4,0,Single player,Co-operative,3053
+C07,Single player + Co-operative,7,838,Massively Multiplayer Online (MMO),5,0,Single player,Co-operative,2706
+C08,Multiplayer + Massively Multiplayer Online (MMO),8,624,Single player,1,0,Multiplayer,Massively Multiplayer Online (MMO),22057
+C08,Multiplayer + Massively Multiplayer Online (MMO),8,624,Multiplayer,2,1,Multiplayer,Massively Multiplayer Online (MMO),24694
+C08,Multiplayer + Massively Multiplayer Online (MMO),8,624,Co-operative,3,0,Multiplayer,Massively Multiplayer Online (MMO),9929
+C08,Multiplayer + Massively Multiplayer Online (MMO),8,624,Split screen,4,0,Multiplayer,Massively Multiplayer Online (MMO),3053
+C08,Multiplayer + Massively Multiplayer Online (MMO),8,624,Massively Multiplayer Online (MMO),5,1,Multiplayer,Massively Multiplayer Online (MMO),2706
+C09,Single player + Multiplayer + Co-operative + Split screen,9,611,Single player,1,1,Single player,Split screen,22057
+C09,Single player + Multiplayer + Co-operative + Split screen,9,611,Multiplayer,2,1,Single player,Split screen,24694
+C09,Single player + Multiplayer + Co-operative + Split screen,9,611,Co-operative,3,1,Single player,Split screen,9929
+C09,Single player + Multiplayer + Co-operative + Split screen,9,611,Split screen,4,1,Single player,Split screen,3053
+C09,Single player + Multiplayer + Co-operative + Split screen,9,611,Massively Multiplayer Online (MMO),5,0,Single player,Split screen,2706
+C10,Massively Multiplayer Online (MMO),10,592,Single player,1,0,Massively Multiplayer Online (MMO),Massively Multiplayer Online (MMO),22057
+C10,Massively Multiplayer Online (MMO),10,592,Multiplayer,2,0,Massively Multiplayer Online (MMO),Massively Multiplayer Online (MMO),24694
+C10,Massively Multiplayer Online (MMO),10,592,Co-operative,3,0,Massively Multiplayer Online (MMO),Massively Multiplayer Online (MMO),9929
+C10,Massively Multiplayer Online (MMO),10,592,Split screen,4,0,Massively Multiplayer Online (MMO),Massively Multiplayer Online (MMO),3053
+C10,Massively Multiplayer Online (MMO),10,592,Massively Multiplayer Online (MMO),5,1,Massively Multiplayer Online (MMO),Massively Multiplayer Online (MMO),2706
+C11,Single player + Multiplayer + Co-operative + Massively Multiplayer Online (MMO),11,498,Single player,1,1,Single player,Massively Multiplayer Online (MMO),22057
+C11,Single player + Multiplayer + Co-operative + Massively Multiplayer Online (MMO),11,498,Multiplayer,2,1,Single player,Massively Multiplayer Online (MMO),24694
+C11,Single player + Multiplayer + Co-operative + Massively Multiplayer Online (MMO),11,498,Co-operative,3,1,Single player,Massively Multiplayer Online (MMO),9929
+C11,Single player + Multiplayer + Co-operative + Massively Multiplayer Online (MMO),11,498,Split screen,4,0,Single player,Massively Multiplayer Online (MMO),3053
+C11,Single player + Multiplayer + Co-operative + Massively Multiplayer Online (MMO),11,498,Massively Multiplayer Online (MMO),5,1,Single player,Massively Multiplayer Online (MMO),2706
+C12,Multiplayer + Co-operative + Massively Multiplayer Online (MMO),12,431,Single player,1,0,Multiplayer,Massively Multiplayer Online (MMO),22057
+C12,Multiplayer + Co-operative + Massively Multiplayer Online (MMO),12,431,Multiplayer,2,1,Multiplayer,Massively Multiplayer Online (MMO),24694
+C12,Multiplayer + Co-operative + Massively Multiplayer Online (MMO),12,431,Co-operative,3,1,Multiplayer,Massively Multiplayer Online (MMO),9929
+C12,Multiplayer + Co-operative + Massively Multiplayer Online (MMO),12,431,Split screen,4,0,Multiplayer,Massively Multiplayer Online (MMO),3053
+C12,Multiplayer + Co-operative + Massively Multiplayer Online (MMO),12,431,Massively Multiplayer Online (MMO),5,1,Multiplayer,Massively Multiplayer Online (MMO),2706
