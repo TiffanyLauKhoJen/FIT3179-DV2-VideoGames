@@ -4,8 +4,8 @@
   "width": 620,
   "height": 430,
   "padding": {
-    "left": 10,
-    "right": 180,
+    "left": 55,
+    "right": 55,
     "top": 10,
     "bottom": 10
   },
@@ -36,8 +36,12 @@
   },
   "transform": [
     {
-      "calculate": "format(datum.share_pct, '.1f') + '%  ' + datum.perspective",
-      "as": "endpoint_label"
+      "calculate": "format(datum.share_pct, '.1f') + '%'",
+      "as": "percentage_label"
+    },
+    {
+      "calculate": "datum.period === '1980-1984' && datum.perspective === 'First person' ? datum.share_pct + 0.8 : datum.period === '1980-1984' && datum.perspective === 'Third person' ? datum.share_pct - 0.8 : datum.share_pct",
+      "as": "left_label_y"
     }
   ],
   "encoding": {
@@ -63,10 +67,7 @@
       "type": "quantitative",
       "title": "Share of Games with Perspective (%)",
       "scale": {
-        "domain": [
-          0,
-          50
-        ]
+        "domain": [0, 50]
       },
       "axis": {
         "titleFontSize": 12,
@@ -80,6 +81,7 @@
     "color": {
       "field": "perspective",
       "type": "nominal",
+      "title": "Player Perspective",
       "scale": {
         "domain": [
           "Side view",
@@ -96,10 +98,44 @@
           "#FFA600"
         ]
       },
-      "legend": null
+      "legend": {
+        "orient": "bottom",
+        "direction": "horizontal",
+        "columns": 3,
+        "labelFontSize": 11,
+        "titleFontSize": 11
+      }
     }
   },
   "layer": [
+    {
+      "transform": [
+        {
+          "filter": "datum.perspective === 'Side view'"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "#B8BEC7",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "y": {
+          "datum": 0,
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 50]
+          },
+          "axis": null
+        },
+        "y2": {
+          "datum": 50
+        },
+        "color": {
+          "value": "#B8BEC7"
+        }
+      }
+    },
     {
       "mark": {
         "type": "line",
@@ -129,7 +165,7 @@
           {
             "field": "share_pct",
             "type": "quantitative",
-            "title": "Share of tagged games",
+            "title": "Share (%)",
             "format": ".1f"
           },
           {
@@ -156,6 +192,34 @@
     {
       "transform": [
         {
+          "filter": "datum.period === '1980-1984'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -10,
+        "fontSize": 11.5,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "y": {
+          "field": "left_label_y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 50]
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "percentage_label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
           "filter": "datum.period === '2020-2024'"
         }
       ],
@@ -169,7 +233,7 @@
       },
       "encoding": {
         "text": {
-          "field": "endpoint_label"
+          "field": "percentage_label"
         }
       }
     }
