@@ -1,0 +1,183 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Slope chart comparing five visual player perspectives among IGDB main games with visual perspective metadata in 1980-1984 and 2020-2024.",
+  "width": 620,
+  "height": 430,
+  "padding": {
+    "left": 10,
+    "right": 180,
+    "top": 10,
+    "bottom": 10
+  },
+  "background": "white",
+  "title": {
+    "text": "How Did Visual Player Perspectives Shift from Early to Modern Gaming?",
+    "subtitle": [
+      "Share among IGDB-recorded main games tagged with at least one of five selected visual perspectives.",
+      "Comparison covers 1980-1984 and 2020-2024; games may have multiple perspectives."
+    ],
+    "anchor": "start",
+    "fontSize": 21,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#666666",
+    "offset": 12
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/player_perspective_slope_1980_1984_2020_2024.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "games_with_perspective": "number",
+        "denominator_games": "number",
+        "share_pct": "number",
+        "change_pp": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "format(datum.share_pct, '.1f') + '%  ' + datum.perspective",
+      "as": "endpoint_label"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "period",
+      "type": "ordinal",
+      "sort": [
+        "1980-1984",
+        "2020-2024"
+      ],
+      "title": null,
+      "axis": {
+        "labelAngle": 0,
+        "labelFontSize": 13,
+        "labelFontWeight": "bold",
+        "labelPadding": 10,
+        "ticks": false,
+        "domain": false
+      }
+    },
+    "y": {
+      "field": "share_pct",
+      "type": "quantitative",
+      "title": "Share of Games with Perspective (%)",
+      "scale": {
+        "domain": [
+          0,
+          50
+        ]
+      },
+      "axis": {
+        "titleFontSize": 12,
+        "labelFontSize": 11,
+        "grid": true,
+        "gridColor": "#E5E7EB",
+        "domain": false,
+        "tickColor": "#D1D5DB"
+      }
+    },
+    "color": {
+      "field": "perspective",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Side view",
+          "First person",
+          "Bird view / Isometric",
+          "Third person",
+          "Virtual Reality"
+        ],
+        "range": [
+          "#003F5C",
+          "#58508D",
+          "#BC5090",
+          "#EF5675",
+          "#FFA600"
+        ]
+      },
+      "legend": null
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 125,
+        "stroke": "white",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "perspective",
+            "type": "nominal",
+            "title": "Perspective"
+          },
+          {
+            "field": "period",
+            "type": "ordinal",
+            "title": "Period"
+          },
+          {
+            "field": "share_pct",
+            "type": "quantitative",
+            "title": "Share of tagged games",
+            "format": ".1f"
+          },
+          {
+            "field": "games_with_perspective",
+            "type": "quantitative",
+            "title": "Games with perspective",
+            "format": ",d"
+          },
+          {
+            "field": "denominator_games",
+            "type": "quantitative",
+            "title": "Games with selected metadata",
+            "format": ",d"
+          },
+          {
+            "field": "change_pp",
+            "type": "quantitative",
+            "title": "Change (percentage points)",
+            "format": "+.1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.period === '2020-2024'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 10,
+        "fontSize": 11.5,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {
+          "field": "endpoint_label"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial"
+  }
+}
