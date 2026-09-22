@@ -63,10 +63,13 @@
             "y": {
               "field": "mode",
               "type": "ordinal",
-              "sort": {
-                "field": "mode_order",
-                "order": "ascending"
-              },
+              "sort": [
+                "Single player",
+                "Multiplayer",
+                "Co-operative",
+                "Split screen",
+                "Massively Multiplayer Online (MMO)"
+              ],
               "axis": {
                 "orient": "right",
                 "title": null,
@@ -127,9 +130,14 @@
                     "zero": true
                   },
                   "axis": {
+                    "orient": "left",
                     "title": null,
-                    "labels": false,
-                    "ticks": false,
+                    "labels": true,
+                    "ticks": true,
+                    "format": "~s",
+                    "labelPadding": 5,
+                    "minExtent": 35,
+                    "maxExtent": 35,
                     "domain": false,
                     "grid": true,
                     "gridColor": "#E8E8E8",
@@ -188,13 +196,32 @@
                   "format": ",d"
                 }
               }
+            },
+            {
+              "mark": {
+                "type": "text",
+                "angle": -90,
+                "fontSize": 13,
+                "color": "#000000"
+              },
+              "encoding": {
+                "x": {
+                  "value": -40
+                },
+                "y": {
+                  "value": 120
+                },
+                "text": {
+                  "value": "Intersection Size"
+                }
+              }
             }
           ]
         }
       ]
     },
     {
-      "spacing": 12,
+      "spacing": 57,
       "hconcat": [
         {
           "width": 110,
@@ -237,16 +264,19 @@
               }
             },
             "y": {
-              "field": "mode",
+              "field": "mode_order",
               "type": "ordinal",
-              "sort": {
-                "field": "mode_order",
-                "order": "ascending"
-              },
+              "sort": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
               "axis": {
                 "orient": "right",
                 "title": null,
-                "labelExpr": "datum.label === 'Massively Multiplayer Online (MMO)' ? 'MMO' : datum.label",
+                "labelExpr": "datum.value === 1 ? 'Single player' : datum.value === 2 ? 'Multiplayer' : datum.value === 3 ? 'Co-operative' : datum.value === 4 ? 'Split screen' : 'MMO'",
                 "labelPadding": 8,
                 "ticks": false,
                 "domain": false
@@ -274,7 +304,25 @@
             {
               "transform": [
                 {
-                  "filter": "datum.mode === datum.connector_start"
+                  "filter": "datum.included === 1"
+                },
+                {
+                  "aggregate": [
+                    {
+                      "op": "min",
+                      "field": "mode_order",
+                      "as": "connector_start_order"
+                    },
+                    {
+                      "op": "max",
+                      "field": "mode_order",
+                      "as": "connector_end_order"
+                    }
+                  ],
+                  "groupby": [
+                    "combination_id",
+                    "combination_order"
+                  ]
                 }
               ],
               "mark": {
@@ -297,16 +345,19 @@
                   "axis": null
                 },
                 "y": {
-                  "field": "connector_start",
+                  "field": "connector_start_order",
                   "type": "ordinal",
-                  "sort": {
-                    "field": "mode_order",
-                    "order": "ascending"
-                  },
+                  "sort": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
                   "axis": null
                 },
                 "y2": {
-                  "field": "connector_end"
+                  "field": "connector_end_order"
                 }
               }
             },
@@ -337,12 +388,15 @@
                   }
                 },
                 "y": {
-                  "field": "mode",
+                  "field": "mode_order",
                   "type": "ordinal",
-                  "sort": {
-                    "field": "mode_order",
-                    "order": "ascending"
-                  },
+                  "sort": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
                   "axis": null
                 },
                 "size": {
