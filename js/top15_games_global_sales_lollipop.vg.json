@@ -1,0 +1,124 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Horizontal lollipop chart of games ranked 1 to 15 in videogame.csv by recorded global sales.",
+  "width": 680,
+  "height": 480,
+  "background": "white",
+  "title": {
+    "text": "Which Top-Ranked Games Recorded the Highest Global Sales?",
+    "subtitle": "Games ranked 1–15 in videogame.csv; global sales are reported in millions of copies.",
+    "anchor": "start",
+    "fontSize": 20,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#666666",
+    "offset": 12
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/top15_games_global_sales_lollipop.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "rank": "number",
+        "global_sales_millions": "number"
+      }
+    }
+  },
+  "encoding": {
+    "y": {
+      "field": "title",
+      "type": "nominal",
+      "sort": {
+        "field": "rank",
+        "order": "ascending"
+      },
+      "title": null,
+      "axis": {
+        "labelLimit": 260,
+        "labelFontSize": 11
+      }
+    },
+    "x": {
+      "field": "global_sales_millions",
+      "type": "quantitative",
+      "title": "Recorded Global Sales (Millions of Copies)",
+      "scale": {
+        "zero": true
+      },
+      "axis": {
+        "format": ",.0f",
+        "grid": true,
+        "gridColor": "#E5E7EB",
+        "domain": false
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 2,
+        "color": "#B8B8B8"
+      },
+      "encoding": {
+        "x2": {
+          "datum": 0
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 135,
+        "color": "#4E79A7"
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "rank",
+            "type": "quantitative",
+            "title": "Rank",
+            "format": "d"
+          },
+          {
+            "field": "title",
+            "type": "nominal",
+            "title": "Game"
+          },
+          {
+            "field": "global_sales_millions",
+            "type": "quantitative",
+            "title": "Global Sales (Millions)",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 8,
+        "fontSize": 11,
+        "color": "#333333"
+      },
+      "encoding": {
+        "text": {
+          "field": "global_sales_millions",
+          "type": "quantitative",
+          "format": ".2f"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial",
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  }
+}
