@@ -1,16 +1,16 @@
-rank,title,global_sales_millions
-1,Wii Sports,82.74
-2,Super Mario Bros.,40.24
-3,Mario Kart Wii,35.82
-4,Wii Sports Resort,33
-5,Pokemon Red/Pokemon Blue,31.37
-6,Tetris,30.26
-7,New Super Mario Bros.,30.01
-8,Wii Play,29.02
-9,New Super Mario Bros. Wii,28.62
-10,Duck Hunt,28.31
-11,Nintendogs,24.76
-12,Mario Kart DS,23.42
-13,Pokemon Gold/Pokemon Silver,23.1
-14,Wii Fit,22.72
-15,Wii Fit Plus,22
+rank,title,global_sales_millions,year,genre
+1,Wii Sports,82.74,2006,Sports
+2,Super Mario Bros.,40.24,1985,Platform
+3,Mario Kart Wii,35.82,2008,Racing
+4,Wii Sports Resort,33,2009,Sports
+5,Pokemon Red/Pokemon Blue,31.37,1996,Role-Playing
+6,Tetris,30.26,1989,Puzzle
+7,New Super Mario Bros.,30.01,2006,Platform
+8,Wii Play,29.02,2006,Misc
+9,New Super Mario Bros. Wii,28.62,2009,Platform
+10,Duck Hunt,28.31,1984,Shooter
+11,Nintendogs,24.76,2005,Simulation
+12,Mario Kart DS,23.42,2005,Racing
+13,Pokemon Gold/Pokemon Silver,23.1,1999,Role-Playing
+14,Wii Fit,22.72,2007,Sports
+15,Wii Fit Plus,22,2009,Sports

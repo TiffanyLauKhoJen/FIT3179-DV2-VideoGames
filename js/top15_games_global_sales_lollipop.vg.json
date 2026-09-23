@@ -19,7 +19,8 @@
       "type": "csv",
       "parse": {
         "rank": "number",
-        "global_sales_millions": "number"
+        "global_sales_millions": "number",
+        "year": "number"
       }
     }
   },
@@ -40,7 +41,7 @@
     "x": {
       "field": "global_sales_millions",
       "type": "quantitative",
-      "title": "Recorded Global Sales (Millions of Copies)",
+      "title": "Recorded Global Sales (Millions)",
       "scale": {
         "zero": true
       },
@@ -89,6 +90,17 @@
             "type": "quantitative",
             "title": "Global Sales (Millions)",
             "format": ".2f"
+          },
+          {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Release Year",
+            "format": "d"
+          },
+          {
+            "field": "genre",
+            "type": "nominal",
+            "title": "Genre"
           }
         ]
       }
