@@ -1,5 +1,5 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Marimekko chart comparing the six leading publishers by their genre mix across six selected genres in the video game sales dataset.",
   "width": 820,
   "height": 440,
