@@ -1,9 +1,10 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Parallel-coordinates comparison of regional recorded-sales shares for eight publishers with at least 80 complete regional-sales records.",
   "width": 720,
   "height": 420,
   "background": "white",
+
   "data": {
     "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/publisher_regional_sales_parallel2.csv",
     "format": {
@@ -17,6 +18,7 @@
       }
     }
   },
+
   "title": {
     "text": "How Do Major Publishers' Recorded Sales Profiles Differ by Region?",
     "subtitle": [
@@ -29,6 +31,7 @@
     "subtitleColor": "#555555",
     "subtitlePadding": 6
   },
+
   "transform": [
     {
       "calculate": "datum.na_sales + datum.pal_sales + datum.jp_sales + datum.other_sales",
@@ -41,7 +44,10 @@
         "jp_sales",
         "other_sales"
       ],
-      "as": ["region_code", "regional_sales"]
+      "as": [
+        "region_code",
+        "regional_sales"
+      ]
     },
     {
       "calculate": "datum.region_code === 'na_sales' ? 'North America' : datum.region_code === 'pal_sales' ? 'PAL / Europe' : datum.region_code === 'jp_sales' ? 'Japan' : 'Other'",
@@ -56,6 +62,7 @@
       "as": "share_pct"
     }
   ],
+
   "encoding": {
     "x": {
       "field": "region",
@@ -74,6 +81,7 @@
         "domain": false
       }
     },
+
     "color": {
       "field": "publisher",
       "type": "nominal",
@@ -111,6 +119,7 @@
       }
     }
   },
+
   "layer": [
     {
       "transform": [
@@ -121,52 +130,73 @@
               "as": "records"
             }
           ],
-          "groupby": ["region", "region_order"]
+          "groupby": [
+            "region",
+            "region_order"
+          ]
         }
       ],
+
       "mark": {
         "type": "rule",
         "strokeWidth": 1
       },
+
       "encoding": {
         "color": {
           "value": "#D1D5DB"
         }
       }
     },
+
     {
       "mark": {
         "type": "line",
         "strokeWidth": 2.2,
         "opacity": 0.78
       },
+
       "encoding": {
         "y": {
           "field": "share_pct",
           "type": "quantitative",
           "scale": {
-            "zero": true,
-            "nice": true
+            "domain": [
+              0,
+              60
+            ],
+            "nice": false
           },
           "axis": {
             "title": "Share of Publisher's Recorded Regional Sales (%)",
-            "format": ".0f",
-            "tickCount": 7,
+            "values": [
+              0,
+              10,
+              20,
+              30,
+              40,
+              50,
+              60
+            ],
+            "labelExpr": "datum.value + '%'",
             "grid": true,
             "gridColor": "#E5E7EB",
             "domain": false
           }
         },
+
         "order": {
           "field": "region_order",
           "type": "quantitative"
         },
+
         "detail": {
           "field": "publisher",
           "type": "nominal"
         }
       }
     },
+
     {
       "mark": {
         "type": "point",
@@ -176,15 +206,20 @@
         "stroke": "white",
         "strokeWidth": 1
       },
+
       "encoding": {
         "y": {
           "field": "share_pct",
           "type": "quantitative",
           "scale": {
-            "zero": true,
-            "nice": true
+            "domain": [
+              0,
+              60
+            ],
+            "nice": false
           }
         },
+
         "tooltip": [
           {
             "field": "publisher",
@@ -199,31 +234,32 @@
           {
             "field": "share_pct",
             "type": "quantitative",
-            "title": "Regional Share (%)",
+            "title": "Share of Publisher Sales (%)",
             "format": ".1f"
           },
           {
             "field": "regional_sales",
             "type": "quantitative",
-            "title": "Recorded Sales (Millions)",
+            "title": "Regional Sales (Millions)",
             "format": ".2f"
           },
           {
             "field": "total_regional_sales",
             "type": "quantitative",
-            "title": "Four-Region Total (Millions)",
+            "title": "Total Recorded Sales (Millions)",
             "format": ".2f"
           },
           {
             "field": "complete_records",
             "type": "quantitative",
-            "title": "Complete Game-Platform Records",
+            "title": "Complete Records",
             "format": ",d"
           }
         ]
       }
     }
   ],
+
   "config": {
     "view": {
       "stroke": null
