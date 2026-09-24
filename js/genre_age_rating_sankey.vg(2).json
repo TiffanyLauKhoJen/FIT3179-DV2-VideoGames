@@ -1,5 +1,5 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
 
   "description": "Sankey-style diagram linking six major video game genres to standard ESRB age ratings.",
 
@@ -353,6 +353,7 @@
 
         {
           "stack": "node_total",
+          "groupby": [],
           "sort": [
             {
               "field": "genre_order",
@@ -464,6 +465,7 @@
 
         {
           "stack": "node_total",
+          "groupby": [],
           "sort": [
             {
               "field": "rating_order",
@@ -571,6 +573,7 @@
 
         {
           "stack": "node_total",
+          "groupby": [],
           "sort": [
             {
               "field": "genre_order",
@@ -672,6 +675,7 @@
 
         {
           "stack": "node_total",
+          "groupby": [],
           "sort": [
             {
               "field": "rating_order",
