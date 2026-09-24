@@ -53,6 +53,7 @@
 
     {
       "transform": [
+
         {
           "joinaggregate": [
             {
@@ -61,6 +62,42 @@
               "as": "all_associations"
             }
           ]
+        },
+
+        {
+          "joinaggregate": [
+            {
+              "op": "sum",
+              "field": "game_count",
+              "as": "genre_total"
+            }
+          ],
+          "groupby": [
+            "genre"
+          ]
+        },
+
+        {
+          "joinaggregate": [
+            {
+              "op": "sum",
+              "field": "game_count",
+              "as": "rating_total"
+            }
+          ],
+          "groupby": [
+            "rating"
+          ]
+        },
+
+        {
+          "calculate": "datum.game_count / datum.genre_total",
+          "as": "genre_share"
+        },
+
+        {
+          "calculate": "datum.game_count / datum.rating_total",
+          "as": "rating_share"
         },
 
         {
@@ -276,9 +313,21 @@
             "format": ",d"
           },
           {
+            "field": "genre_share",
+            "type": "quantitative",
+            "title": "Share Within Genre",
+            "format": ".1%"
+          },
+          {
+            "field": "rating_share",
+            "type": "quantitative",
+            "title": "Share Within Rating",
+            "format": ".1%"
+          },
+          {
             "field": "association_share",
             "type": "quantitative",
-            "title": "Share of Displayed Links",
+            "title": "Share of All Associations",
             "format": ".1%"
           }
         ]
@@ -287,6 +336,7 @@
 
     {
       "transform": [
+
         {
           "aggregate": [
             {
@@ -388,7 +438,7 @@
           {
             "field": "node_total",
             "type": "quantitative",
-            "title": "Distinct Title-Rating Links",
+            "title": "Total Associations",
             "format": ",d"
           }
         ]
@@ -397,6 +447,7 @@
 
     {
       "transform": [
+
         {
           "aggregate": [
             {
@@ -476,10 +527,10 @@
               "M"
             ],
             "range": [
-              "#43AA8B",
-              "#F9C74F",
-              "#F8961E",
-              "#D1495B"
+              "#56B4E9",
+              "#E6AB02",
+              "#E67E22",
+              "#CC79A7"
             ]
           },
           "legend": null
@@ -494,7 +545,7 @@
           {
             "field": "node_total",
             "type": "quantitative",
-            "title": "Distinct Title-Rating Links",
+            "title": "Total Associations",
             "format": ",d"
           }
         ]
@@ -503,6 +554,7 @@
 
     {
       "transform": [
+
         {
           "aggregate": [
             {
@@ -534,11 +586,6 @@
         {
           "calculate": "(datum.y0 + datum.y1) / 2",
           "as": "node_mid"
-        },
-
-        {
-          "calculate": "datum.genre + '  ' + format(datum.node_total, ',d')",
-          "as": "node_label"
         }
       ],
 
@@ -577,7 +624,7 @@
         },
 
         "text": {
-          "field": "node_label"
+          "field": "genre"
         },
 
         "color": {
@@ -608,6 +655,7 @@
 
     {
       "transform": [
+
         {
           "aggregate": [
             {
@@ -639,11 +687,6 @@
         {
           "calculate": "(datum.y0 + datum.y1) / 2",
           "as": "node_mid"
-        },
-
-        {
-          "calculate": "datum.rating + '  ' + format(datum.node_total, ',d')",
-          "as": "node_label"
         }
       ],
 
@@ -682,7 +725,7 @@
         },
 
         "text": {
-          "field": "node_label"
+          "field": "rating"
         },
 
         "color": {
@@ -696,10 +739,10 @@
               "M"
             ],
             "range": [
-              "#43AA8B",
-              "#F9C74F",
-              "#F8961E",
-              "#D1495B"
+              "#56B4E9",
+              "#E6AB02",
+              "#E67E22",
+              "#CC79A7"
             ]
           },
           "legend": null
