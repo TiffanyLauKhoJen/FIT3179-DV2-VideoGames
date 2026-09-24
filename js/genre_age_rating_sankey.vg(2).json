@@ -1,15 +1,20 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "description": "Sankey-style alluvial diagram linking six major video game genres to standard ESRB age ratings. Flow widths represent distinct title-genre-rating associations.",
+
+  "description": "Sankey-style diagram linking six major video game genres to standard ESRB age ratings.",
+
   "width": 720,
   "height": 480,
+
   "padding": {
     "left": 150,
     "right": 125,
     "top": 10,
     "bottom": 10
   },
+
   "background": "white",
+
   "title": {
     "text": "How Do Major Video Game Genres Connect to ESRB Age Ratings?",
     "subtitle": [
@@ -22,6 +27,7 @@
     "subtitleColor": "#666666",
     "offset": 14
   },
+
   "data": {
     "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/genre_age_rating_sankey_clean.csv",
     "format": {
@@ -31,17 +37,20 @@
       }
     }
   },
+
   "transform": [
     {
-      "calculate": "indexof([\"Sports\",\"Action\",\"Shooter\",\"Racing\",\"Role-Playing\",\"Platform\"], datum.genre)",
+      "calculate": "indexof(['Sports','Action','Shooter','Racing','Role-Playing','Platform'], datum.genre)",
       "as": "genre_order"
     },
     {
-      "calculate": "indexof([\"E\",\"E10+\",\"T\",\"M\"], datum.rating)",
+      "calculate": "indexof(['E','E10+','T','M'], datum.rating)",
       "as": "rating_order"
     }
   ],
+
   "layer": [
+
     {
       "transform": [
         {
@@ -53,22 +62,27 @@
             }
           ]
         },
+
         {
           "calculate": "datum.game_count / datum.all_associations",
           "as": "association_share"
         },
+
         {
           "calculate": "datum.genre + ' → ' + datum.rating",
           "as": "link_id"
         },
+
         {
           "calculate": "0",
           "as": "source_x"
         },
+
         {
           "calculate": "1",
           "as": "target_x"
         },
+
         {
           "fold": [
             "source_x",
@@ -79,10 +93,12 @@
             "x"
           ]
         },
+
         {
           "calculate": "datum.side === 'source_x' ? datum.genre_order * 10 + datum.rating_order : datum.rating_order * 10 + datum.genre_order",
           "as": "stack_order"
         },
+
         {
           "stack": "game_count",
           "groupby": [
@@ -99,18 +115,22 @@
             "y1"
           ]
         },
+
         {
           "calculate": "(datum.y0 + datum.y1) / 2",
           "as": "endpoint_y"
         },
+
         {
           "calculate": "datum.side === 'source_x' ? datum.endpoint_y : null",
           "as": "source_y_value"
         },
+
         {
           "calculate": "datum.side === 'target_x' ? datum.endpoint_y : null",
           "as": "target_y_value"
         },
+
         {
           "joinaggregate": [
             {
@@ -128,13 +148,16 @@
             "link_id"
           ]
         },
+
         {
           "filter": "datum.side === 'source_x'"
         },
+
         {
-          "calculate": "[0, 0.2, 0.4, 0.6, 0.8, 1]",
+          "calculate": "[0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1]",
           "as": "path_positions"
         },
+
         {
           "flatten": [
             "path_positions"
@@ -143,25 +166,33 @@
             "path_x"
           ]
         },
+
         {
           "calculate": "datum.path_x * datum.path_x * (3 - 2 * datum.path_x)",
           "as": "smooth_step"
         },
+
         {
           "calculate": "datum.source_y + (datum.target_y - datum.source_y) * datum.smooth_step",
           "as": "path_y"
         },
+
         {
           "calculate": "datum.game_count / datum.all_associations * 480",
           "as": "flow_width_px"
         }
       ],
+
       "mark": {
-        "type": "trail",
+        "type": "line",
         "opacity": 0.62,
-        "strokeCap": "butt"
+        "strokeCap": "butt",
+        "strokeJoin": "round",
+        "interpolate": "monotone"
       },
+
       "encoding": {
+
         "x": {
           "field": "path_x",
           "type": "quantitative",
@@ -173,6 +204,7 @@
           },
           "axis": null
         },
+
         "y": {
           "field": "path_y",
           "type": "quantitative",
@@ -183,14 +215,25 @@
           },
           "axis": null
         },
-        "order": {
-          "field": "path_x",
-          "type": "quantitative"
-        },
+
         "detail": {
           "field": "link_id",
           "type": "nominal"
         },
+
+        "order": {
+          "field": "path_x",
+          "type": "quantitative",
+          "sort": "ascending"
+        },
+
+        "strokeWidth": {
+          "field": "flow_width_px",
+          "type": "quantitative",
+          "scale": null,
+          "legend": null
+        },
+
         "color": {
           "field": "genre",
           "type": "nominal",
@@ -214,12 +257,7 @@
           },
           "legend": null
         },
-        "size": {
-          "field": "flow_width_px",
-          "type": "quantitative",
-          "scale": null,
-          "legend": null
-        },
+
         "tooltip": [
           {
             "field": "genre",
@@ -229,23 +267,24 @@
           {
             "field": "rating",
             "type": "nominal",
-            "title": "ESRB rating"
+            "title": "ESRB Rating"
           },
           {
             "field": "game_count",
             "type": "quantitative",
-            "title": "Distinct titles",
+            "title": "Distinct Titles",
             "format": ",d"
           },
           {
             "field": "association_share",
             "type": "quantitative",
-            "title": "Share of displayed links",
+            "title": "Share of Displayed Links",
             "format": ".1%"
           }
         ]
       }
     },
+
     {
       "transform": [
         {
@@ -261,6 +300,7 @@
             "genre_order"
           ]
         },
+
         {
           "stack": "node_total",
           "sort": [
@@ -275,12 +315,15 @@
           ]
         }
       ],
+
       "mark": {
         "type": "rect",
         "stroke": "white",
         "strokeWidth": 1.2
       },
+
       "encoding": {
+
         "x": {
           "datum": -0.012,
           "type": "quantitative",
@@ -292,9 +335,11 @@
           },
           "axis": null
         },
+
         "x2": {
           "datum": 0.012
         },
+
         "y": {
           "field": "y0",
           "type": "quantitative",
@@ -305,9 +350,11 @@
           },
           "axis": null
         },
+
         "y2": {
           "field": "y1"
         },
+
         "color": {
           "field": "genre",
           "type": "nominal",
@@ -331,6 +378,7 @@
           },
           "legend": null
         },
+
         "tooltip": [
           {
             "field": "genre",
@@ -340,12 +388,13 @@
           {
             "field": "node_total",
             "type": "quantitative",
-            "title": "Distinct title-rating links",
+            "title": "Distinct Title-Rating Links",
             "format": ",d"
           }
         ]
       }
     },
+
     {
       "transform": [
         {
@@ -361,6 +410,7 @@
             "rating_order"
           ]
         },
+
         {
           "stack": "node_total",
           "sort": [
@@ -375,13 +425,15 @@
           ]
         }
       ],
+
       "mark": {
         "type": "rect",
-        "color": "#5B6470",
         "stroke": "white",
         "strokeWidth": 1.2
       },
+
       "encoding": {
+
         "x": {
           "datum": 0.988,
           "type": "quantitative",
@@ -393,9 +445,11 @@
           },
           "axis": null
         },
+
         "x2": {
           "datum": 1.012
         },
+
         "y": {
           "field": "y0",
           "type": "quantitative",
@@ -406,24 +460,47 @@
           },
           "axis": null
         },
+
         "y2": {
           "field": "y1"
         },
+
+        "color": {
+          "field": "rating",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "E",
+              "E10+",
+              "T",
+              "M"
+            ],
+            "range": [
+              "#43AA8B",
+              "#F9C74F",
+              "#F8961E",
+              "#D1495B"
+            ]
+          },
+          "legend": null
+        },
+
         "tooltip": [
           {
             "field": "rating",
             "type": "nominal",
-            "title": "ESRB rating"
+            "title": "ESRB Rating"
           },
           {
             "field": "node_total",
             "type": "quantitative",
-            "title": "Distinct title-rating links",
+            "title": "Distinct Title-Rating Links",
             "format": ",d"
           }
         ]
       }
     },
+
     {
       "transform": [
         {
@@ -439,6 +516,7 @@
             "genre_order"
           ]
         },
+
         {
           "stack": "node_total",
           "sort": [
@@ -452,15 +530,18 @@
             "y1"
           ]
         },
+
         {
           "calculate": "(datum.y0 + datum.y1) / 2",
           "as": "node_mid"
         },
+
         {
           "calculate": "datum.genre + '  ' + format(datum.node_total, ',d')",
           "as": "node_label"
         }
       ],
+
       "mark": {
         "type": "text",
         "align": "right",
@@ -469,7 +550,9 @@
         "fontSize": 11.5,
         "fontWeight": "bold"
       },
+
       "encoding": {
+
         "x": {
           "datum": 0,
           "type": "quantitative",
@@ -481,6 +564,7 @@
           },
           "axis": null
         },
+
         "y": {
           "field": "node_mid",
           "type": "quantitative",
@@ -491,9 +575,11 @@
           },
           "axis": null
         },
+
         "text": {
           "field": "node_label"
         },
+
         "color": {
           "field": "genre",
           "type": "nominal",
@@ -519,6 +605,7 @@
         }
       }
     },
+
     {
       "transform": [
         {
@@ -534,6 +621,7 @@
             "rating_order"
           ]
         },
+
         {
           "stack": "node_total",
           "sort": [
@@ -547,25 +635,29 @@
             "y1"
           ]
         },
+
         {
           "calculate": "(datum.y0 + datum.y1) / 2",
           "as": "node_mid"
         },
+
         {
           "calculate": "datum.rating + '  ' + format(datum.node_total, ',d')",
           "as": "node_label"
         }
       ],
+
       "mark": {
         "type": "text",
         "align": "left",
         "baseline": "middle",
         "dx": 13,
         "fontSize": 11.5,
-        "fontWeight": "bold",
-        "color": "#3F4650"
+        "fontWeight": "bold"
       },
+
       "encoding": {
+
         "x": {
           "datum": 1,
           "type": "quantitative",
@@ -577,6 +669,7 @@
           },
           "axis": null
         },
+
         "y": {
           "field": "node_mid",
           "type": "quantitative",
@@ -587,12 +680,40 @@
           },
           "axis": null
         },
+
         "text": {
           "field": "node_label"
+        },
+
+        "color": {
+          "field": "rating",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "E",
+              "E10+",
+              "T",
+              "M"
+            ],
+            "range": [
+              "#43AA8B",
+              "#F9C74F",
+              "#F8961E",
+              "#D1495B"
+            ]
+          },
+          "legend": null
         }
       }
     }
   ],
+
+  "resolve": {
+    "scale": {
+      "color": "independent"
+    }
+  },
+
   "config": {
     "view": {
       "stroke": null
