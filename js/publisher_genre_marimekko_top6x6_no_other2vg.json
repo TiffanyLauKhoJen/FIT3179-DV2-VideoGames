@@ -1,5 +1,5 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "description": "Marimekko chart comparing the six leading publishers by their genre mix across six selected genres in the video game sales dataset.",
   "width": 820,
   "height": 440,
@@ -11,7 +11,7 @@
   },
   "background": "white",
   "data": {
-    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/publisher_genre_marimekko_top6x6_no_other2.csv",
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/publisher_genre_marimekko_top6x6_no_other2.csv?v=2",
     "format": {
       "type": "csv",
       "parse": {
