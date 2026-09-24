@@ -11,7 +11,7 @@
   },
   "background": "white",
   "data": {
-    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/publisher_genre_marimekko_top6x6_no_other2.csv?v=2",
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/publisher_genre_marimekko_top6x6_no_other2.csv?",
     "format": {
       "type": "csv",
       "parse": {
