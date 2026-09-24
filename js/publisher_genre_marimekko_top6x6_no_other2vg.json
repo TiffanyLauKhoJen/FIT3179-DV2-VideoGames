@@ -1,0 +1,317 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Marimekko chart comparing the six leading publishers by their genre mix across six selected genres in the video game sales dataset.",
+  "width": 820,
+  "height": 440,
+  "padding": {
+    "left": 10,
+    "right": 20,
+    "top": 10,
+    "bottom": 90
+  },
+  "background": "white",
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/publisher_genre_marimekko_top6x6_no_other2.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "distinct_title_count": "number"
+      }
+    }
+  },
+  "title": {
+    "text": "How Do Leading Video Game Publishers Differ in Their Genre Mix?",
+    "subtitle": [
+      "Column width represents each publisher's total across the six selected genres.",
+      "Segment height represents each genre's share within that publisher; repeated platform records are counted once per title–genre pair."
+    ],
+    "anchor": "start",
+    "fontSize": 20,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#666666",
+    "offset": 12
+  },
+  "transform": [
+    {
+      "calculate": "datum.publisher === 'Sony Computer Entertainment' ? 'Sony Computer Ent.' : datum.publisher",
+      "as": "publisher_label"
+    },
+    {
+      "calculate": "indexof(['Sports','Action','Shooter','Racing','Role-Playing','Platform'], datum.genre)",
+      "as": "genre_order"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "sum",
+          "field": "distinct_title_count",
+          "as": "publisher_total"
+        }
+      ],
+      "groupby": ["publisher"]
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "sum",
+          "field": "distinct_title_count",
+          "as": "displayed_total"
+        }
+      ]
+    },
+    {
+      "calculate": "datum.distinct_title_count / datum.publisher_total",
+      "as": "genre_share_within_publisher"
+    },
+    {
+      "calculate": "datum.publisher_total / datum.displayed_total",
+      "as": "publisher_share_of_displayed"
+    },
+    {
+      "stack": "distinct_title_count",
+      "groupby": [],
+      "as": ["x_stack_start", "x_stack_end"],
+      "offset": "normalize",
+      "sort": [
+        {
+          "field": "publisher_total",
+          "order": "descending"
+        },
+        {
+          "field": "publisher",
+          "order": "ascending"
+        },
+        {
+          "field": "genre_order",
+          "order": "ascending"
+        }
+      ]
+    },
+    {
+      "window": [
+        {
+          "op": "min",
+          "field": "x_stack_start",
+          "as": "x0"
+        },
+        {
+          "op": "max",
+          "field": "x_stack_end",
+          "as": "x1"
+        }
+      ],
+      "groupby": ["publisher"],
+      "frame": [null, null]
+    },
+    {
+      "stack": "distinct_title_count",
+      "groupby": ["publisher"],
+      "as": ["y0", "y1"],
+      "offset": "normalize",
+      "sort": [
+        {
+          "field": "genre_order",
+          "order": "ascending"
+        }
+      ]
+    },
+    {
+      "calculate": "(datum.x0 + datum.x1) / 2",
+      "as": "x_mid"
+    },
+    {
+      "calculate": "(datum.y0 + datum.y1) / 2",
+      "as": "y_mid"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "white",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {
+          "field": "x0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 1]
+          },
+          "axis": null
+        },
+        "x2": {
+          "field": "x1"
+        },
+        "y": {
+          "field": "y0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 1]
+          },
+          "axis": {
+            "title": "Share Within Each Publisher",
+            "format": ".0%",
+            "values": [0, 0.2, 0.4, 0.6, 0.8, 1],
+            "grid": true,
+            "gridColor": "#E5E7EB",
+            "domain": false
+          }
+        },
+        "y2": {
+          "field": "y1"
+        },
+        "color": {
+          "field": "genre",
+          "type": "nominal",
+          "title": "Genre",
+          "scale": {
+            "domain": [
+              "Sports",
+              "Action",
+              "Shooter",
+              "Racing",
+              "Role-Playing",
+              "Platform"
+            ],
+            "range": [
+              "#2A9D8F",
+              "#E76F51",
+              "#3A86FF",
+              "#F4A261",
+              "#8338EC",
+              "#6A994E"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": 3,
+            "offset": 62,
+            "labelFontSize": 11,
+            "titleFontSize": 11
+          }
+        },
+        "tooltip": [
+          {
+            "field": "publisher",
+            "type": "nominal",
+            "title": "Publisher"
+          },
+          {
+            "field": "publisher_total",
+            "type": "quantitative",
+            "title": "Selected Title–Genre Pairs",
+            "format": ",d"
+          },
+          {
+            "field": "publisher_share_of_displayed",
+            "type": "quantitative",
+            "title": "Publisher Share of Displayed Total",
+            "format": ".1%"
+          },
+          {
+            "field": "genre",
+            "type": "nominal",
+            "title": "Genre"
+          },
+          {
+            "field": "distinct_title_count",
+            "type": "quantitative",
+            "title": "Distinct Titles",
+            "format": ",d"
+          },
+          {
+            "field": "genre_share_within_publisher",
+            "type": "quantitative",
+            "title": "Genre Share Within Publisher",
+            "format": ".1%"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.genre_order === 0"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "baseline": "top",
+        "align": "center",
+        "dy": 12,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "clip": false
+      },
+      "encoding": {
+        "x": {
+          "field": "x_mid",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 1]
+          }
+        },
+        "y": {
+          "datum": 0,
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 1]
+          }
+        },
+        "text": {
+          "field": "publisher_label",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.genre_order === 0"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "baseline": "top",
+        "align": "center",
+        "dy": 29,
+        "fontSize": 10,
+        "color": "#444444",
+        "clip": false
+      },
+      "encoding": {
+        "x": {
+          "field": "x_mid",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 1]
+          }
+        },
+        "y": {
+          "datum": 0,
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 1]
+          }
+        },
+        "text": {
+          "field": "publisher_total",
+          "type": "quantitative",
+          "format": ",d"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial",
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  }
+}

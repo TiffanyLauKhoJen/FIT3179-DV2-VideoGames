@@ -1,0 +1,37 @@
+publisher,genre,distinct_title_count
+Sega,Sports,238
+Sega,Action,173
+Sega,Shooter,142
+Sega,Racing,81
+Sega,Role-Playing,140
+Sega,Platform,178
+Konami,Sports,283
+Konami,Action,138
+Konami,Shooter,87
+Konami,Racing,21
+Konami,Role-Playing,77
+Konami,Platform,84
+Microsoft,Sports,47
+Microsoft,Action,188
+Microsoft,Shooter,186
+Microsoft,Racing,60
+Microsoft,Role-Playing,52
+Microsoft,Platform,90
+Sony Computer Entertainment,Sports,126
+Sony Computer Entertainment,Action,124
+Sony Computer Entertainment,Shooter,103
+Sony Computer Entertainment,Racing,101
+Sony Computer Entertainment,Role-Playing,76
+Sony Computer Entertainment,Platform,89
+Nintendo,Sports,89
+Nintendo,Action,92
+Nintendo,Shooter,48
+Nintendo,Racing,54
+Nintendo,Role-Playing,145
+Nintendo,Platform,155
+Electronic Arts,Sports,103
+Electronic Arts,Action,75
+Electronic Arts,Shooter,128
+Electronic Arts,Racing,94
+Electronic Arts,Role-Playing,76
+Electronic Arts,Platform,30
