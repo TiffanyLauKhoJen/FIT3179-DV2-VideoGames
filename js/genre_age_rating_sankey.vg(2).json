@@ -439,7 +439,7 @@
           {
             "field": "node_total",
             "type": "quantitative",
-            "title": "Total Associations",
+            "title": "Distinct Titles",
             "format": ",d"
           }
         ]
@@ -547,7 +547,7 @@
           {
             "field": "node_total",
             "type": "quantitative",
-            "title": "Total Associations",
+            "title": "Title-Genre Links",
             "format": ",d"
           }
         ]
