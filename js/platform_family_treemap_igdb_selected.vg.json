@@ -1,5 +1,5 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Hierarchical treemap of distinct IGDB main-game platform associations for selected major platform ecosystems, 1980-2024.",
   "width": 900,
   "height": 500,
