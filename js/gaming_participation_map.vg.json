@@ -56,6 +56,7 @@
           "field": "ParticipationPct",
           "type": "quantitative",
           "title": "Play video games (%)",
+          "legend": {"orient": "right"},
           "scale": {
             "type": "threshold",
             "domain": [78.55, 81.2, 85.65, 90.4],
@@ -111,5 +112,6 @@
       }
     }
   ],
+  "resolve": {"scale": {"color": "independent"}},
   "config": {"view": {"stroke": null}}
 }
