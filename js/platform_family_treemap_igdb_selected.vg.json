@@ -24,7 +24,7 @@
     "offset": 12
   },
   "data": {
-    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/platform_family_treemap_igdb_selected.csv?v=2",
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/platform_family_treemap_igdb_selected.csv?v=3",
     "format": {
       "type": "csv",
       "parse": {
@@ -535,18 +535,6 @@
             "field": "platform_share_selected_pct",
             "type": "quantitative",
             "title": "Share of selected ecosystems (%)",
-            "format": ".1f"
-          },
-          {
-            "field": "family_total",
-            "type": "quantitative",
-            "title": "Ecosystem associations",
-            "format": ",d"
-          },
-          {
-            "field": "family_share_selected_pct",
-            "type": "quantitative",
-            "title": "Ecosystem share (%)",
             "format": ".1f"
           }
         ]
