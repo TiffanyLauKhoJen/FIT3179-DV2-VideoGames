@@ -54,9 +54,7 @@
           "as": "family_total"
         }
       ],
-      "groupby": [
-        "family"
-      ]
+      "groupby": ["family"]
     },
     {
       "calculate": "datum.game_platform_count / datum.selected_total * 100",
@@ -145,10 +143,7 @@
           "field": "x0",
           "type": "quantitative",
           "scale": {
-            "domain": [
-              0,
-              900
-            ]
+            "domain": [0, 900]
           },
           "axis": null
         },
@@ -159,10 +154,354 @@
           "field": "y0",
           "type": "quantitative",
           "scale": {
-            "domain": [
-              500,
-              0
-            ]
+            "domain": [500, 0]
+          },
+          "axis": null
+        },
+        "y2": {
+          "field": "y1"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "min",
+              "field": "x0",
+              "as": "child_x0"
+            },
+            {
+              "op": "max",
+              "field": "x1",
+              "as": "child_x1"
+            },
+            {
+              "op": "min",
+              "field": "y0",
+              "as": "child_y0"
+            },
+            {
+              "op": "max",
+              "field": "y1",
+              "as": "child_y1"
+            }
+          ],
+          "groupby": ["family"]
+        },
+        {
+          "calculate": "datum.child_x0 - 2",
+          "as": "fx0"
+        },
+        {
+          "calculate": "datum.child_x1 + 2",
+          "as": "fx1"
+        },
+        {
+          "calculate": "datum.child_y0 - 2",
+          "as": "fy0"
+        },
+        {
+          "calculate": "datum.child_y1 + 2",
+          "as": "fy1"
+        },
+        {
+          "calculate": "min(datum.fy0 + 24, datum.fy1)",
+          "as": "header_y1"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "opacity": 0.94
+      },
+      "encoding": {
+        "x": {
+          "field": "fx0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 900]
+          },
+          "axis": null
+        },
+        "x2": {
+          "field": "fx1"
+        },
+        "y": {
+          "field": "fy0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [500, 0]
+          },
+          "axis": null
+        },
+        "y2": {
+          "field": "header_y1"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "min",
+              "field": "x0",
+              "as": "child_x0"
+            },
+            {
+              "op": "max",
+              "field": "x1",
+              "as": "child_x1"
+            },
+            {
+              "op": "min",
+              "field": "y0",
+              "as": "child_y0"
+            },
+            {
+              "op": "max",
+              "field": "y1",
+              "as": "child_y1"
+            }
+          ],
+          "groupby": ["family"]
+        },
+        {
+          "calculate": "datum.child_x0 - 2",
+          "as": "fx0"
+        },
+        {
+          "calculate": "datum.child_x1 + 2",
+          "as": "fx1"
+        },
+        {
+          "calculate": "datum.child_y0 - 2",
+          "as": "fy0"
+        },
+        {
+          "calculate": "datum.child_y1 + 2",
+          "as": "fy1"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "fillOpacity": 0,
+        "stroke": "#30343B",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "fx0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 900]
+          },
+          "axis": null
+        },
+        "x2": {
+          "field": "fx1"
+        },
+        "y": {
+          "field": "fy0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [500, 0]
+          },
+          "axis": null
+        },
+        "y2": {
+          "field": "fy1"
+        },
+        "color": {
+          "value": "#30343B"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "min",
+              "field": "x0",
+              "as": "child_x0"
+            },
+            {
+              "op": "min",
+              "field": "y0",
+              "as": "child_y0"
+            },
+            {
+              "op": "max",
+              "field": "family_total",
+              "as": "family_total"
+            },
+            {
+              "op": "max",
+              "field": "selected_total",
+              "as": "selected_total"
+            }
+          ],
+          "groupby": ["family"]
+        },
+        {
+          "calculate": "datum.child_x0 - 2",
+          "as": "fx0"
+        },
+        {
+          "calculate": "datum.child_y0 - 2",
+          "as": "fy0"
+        },
+        {
+          "calculate": "datum.fx0 + 7",
+          "as": "label_x"
+        },
+        {
+          "calculate": "datum.fy0 + 12",
+          "as": "label_y"
+        },
+        {
+          "calculate": "datum.family + '  ' + format(datum.family_total / datum.selected_total, '.1%')",
+          "as": "family_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#111111",
+        "limit": 210
+      },
+      "encoding": {
+        "x": {
+          "field": "label_x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 900]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "label_y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [500, 0]
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "family_label"
+        },
+        "color": {
+          "value": "#111111"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.rect_width >= 85 && datum.rect_height >= 48 && datum.rect_area >= 5200"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "fontSize": 11.5,
+        "fontWeight": "bold",
+        "color": "#111111",
+        "limit": 160
+      },
+      "encoding": {
+        "x": {
+          "field": "rect_cx",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 900]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "rect_cy",
+          "type": "quantitative",
+          "scale": {
+            "domain": [500, 0]
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "platform"
+        },
+        "color": {
+          "value": "#111111"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.rect_width >= 85 && datum.rect_height >= 62 && datum.rect_area >= 6500"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "dy": 15,
+        "fontSize": 10.5,
+        "color": "#222222"
+      },
+      "encoding": {
+        "x": {
+          "field": "rect_cx",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 900]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "rect_cy",
+          "type": "quantitative",
+          "scale": {
+            "domain": [500, 0]
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "count_label"
+        },
+        "color": {
+          "value": "#222222"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rect",
+        "fillOpacity": 0,
+        "strokeOpacity": 0
+      },
+      "encoding": {
+        "x": {
+          "field": "x0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 900]
+          },
+          "axis": null
+        },
+        "x2": {
+          "field": "x1"
+        },
+        "y": {
+          "field": "y0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [500, 0]
           },
           "axis": null
         },
@@ -211,358 +550,6 @@
             "format": ".1f"
           }
         ]
-      }
-    },
-    {
-      "transform": [
-        {
-          "aggregate": [
-            {
-              "op": "min",
-              "field": "x0",
-              "as": "child_x0"
-            },
-            {
-              "op": "max",
-              "field": "x1",
-              "as": "child_x1"
-            },
-            {
-              "op": "min",
-              "field": "y0",
-              "as": "child_y0"
-            },
-            {
-              "op": "max",
-              "field": "y1",
-              "as": "child_y1"
-            }
-          ],
-          "groupby": [
-            "family"
-          ]
-        },
-        {
-          "calculate": "datum.child_x0 - 2",
-          "as": "fx0"
-        },
-        {
-          "calculate": "datum.child_x1 + 2",
-          "as": "fx1"
-        },
-        {
-          "calculate": "datum.child_y0 - 2",
-          "as": "fy0"
-        },
-        {
-          "calculate": "datum.child_y1 + 2",
-          "as": "fy1"
-        },
-        {
-          "calculate": "min(datum.fy0 + 24, datum.fy1)",
-          "as": "header_y1"
-        }
-      ],
-      "mark": {
-        "type": "rect",
-        "opacity": 0.94
-      },
-      "encoding": {
-        "x": {
-          "field": "fx0",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              0,
-              900
-            ]
-          },
-          "axis": null
-        },
-        "x2": {
-          "field": "fx1"
-        },
-        "y": {
-          "field": "fy0",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              500,
-              0
-            ]
-          },
-          "axis": null
-        },
-        "y2": {
-          "field": "header_y1"
-        }
-      }
-    },
-    {
-      "transform": [
-        {
-          "aggregate": [
-            {
-              "op": "min",
-              "field": "x0",
-              "as": "child_x0"
-            },
-            {
-              "op": "max",
-              "field": "x1",
-              "as": "child_x1"
-            },
-            {
-              "op": "min",
-              "field": "y0",
-              "as": "child_y0"
-            },
-            {
-              "op": "max",
-              "field": "y1",
-              "as": "child_y1"
-            }
-          ],
-          "groupby": [
-            "family"
-          ]
-        },
-        {
-          "calculate": "datum.child_x0 - 2",
-          "as": "fx0"
-        },
-        {
-          "calculate": "datum.child_x1 + 2",
-          "as": "fx1"
-        },
-        {
-          "calculate": "datum.child_y0 - 2",
-          "as": "fy0"
-        },
-        {
-          "calculate": "datum.child_y1 + 2",
-          "as": "fy1"
-        }
-      ],
-      "mark": {
-        "type": "rect",
-        "fillOpacity": 0,
-        "stroke": "#30343B",
-        "strokeWidth": 2
-      },
-      "encoding": {
-        "x": {
-          "field": "fx0",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              0,
-              900
-            ]
-          },
-          "axis": null
-        },
-        "x2": {
-          "field": "fx1"
-        },
-        "y": {
-          "field": "fy0",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              500,
-              0
-            ]
-          },
-          "axis": null
-        },
-        "y2": {
-          "field": "fy1"
-        },
-        "color": {
-          "value": "#30343B"
-        }
-      }
-    },
-    {
-      "transform": [
-        {
-          "aggregate": [
-            {
-              "op": "min",
-              "field": "x0",
-              "as": "child_x0"
-            },
-            {
-              "op": "min",
-              "field": "y0",
-              "as": "child_y0"
-            },
-            {
-              "op": "max",
-              "field": "family_total",
-              "as": "family_total"
-            },
-            {
-              "op": "max",
-              "field": "selected_total",
-              "as": "selected_total"
-            }
-          ],
-          "groupby": [
-            "family"
-          ]
-        },
-        {
-          "calculate": "datum.child_x0 - 2",
-          "as": "fx0"
-        },
-        {
-          "calculate": "datum.child_y0 - 2",
-          "as": "fy0"
-        },
-        {
-          "calculate": "datum.fx0 + 7",
-          "as": "label_x"
-        },
-        {
-          "calculate": "datum.fy0 + 12",
-          "as": "label_y"
-        },
-        {
-          "calculate": "datum.family + '  ' + format(datum.family_total / datum.selected_total, '.1%')",
-          "as": "family_label"
-        }
-      ],
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "baseline": "middle",
-        "fontSize": 12,
-        "fontWeight": "bold",
-        "color": "#111111",
-        "limit": 210
-      },
-      "encoding": {
-        "x": {
-          "field": "label_x",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              0,
-              900
-            ]
-          },
-          "axis": null
-        },
-        "y": {
-          "field": "label_y",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              500,
-              0
-            ]
-          },
-          "axis": null
-        },
-        "text": {
-          "field": "family_label"
-        },
-        "color": {
-          "value": "#111111"
-        }
-      }
-    },
-    {
-      "transform": [
-        {
-          "filter": "datum.rect_width >= 85 && datum.rect_height >= 48 && datum.rect_area >= 5200"
-        }
-      ],
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "baseline": "middle",
-        "fontSize": 11.5,
-        "fontWeight": "bold",
-        "color": "#111111",
-        "limit": 160
-      },
-      "encoding": {
-        "x": {
-          "field": "rect_cx",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              0,
-              900
-            ]
-          },
-          "axis": null
-        },
-        "y": {
-          "field": "rect_cy",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              500,
-              0
-            ]
-          },
-          "axis": null
-        },
-        "text": {
-          "field": "platform"
-        },
-        "color": {
-          "value": "#111111"
-        }
-      }
-    },
-    {
-      "transform": [
-        {
-          "filter": "datum.rect_width >= 85 && datum.rect_height >= 62 && datum.rect_area >= 6500"
-        }
-      ],
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "baseline": "middle",
-        "dy": 15,
-        "fontSize": 10.5,
-        "color": "#222222"
-      },
-      "encoding": {
-        "x": {
-          "field": "rect_cx",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              0,
-              900
-            ]
-          },
-          "axis": null
-        },
-        "y": {
-          "field": "rect_cy",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              500,
-              0
-            ]
-          },
-          "axis": null
-        },
-        "text": {
-          "field": "count_label"
-        },
-        "color": {
-          "value": "#222222"
-        }
       }
     }
   ],
