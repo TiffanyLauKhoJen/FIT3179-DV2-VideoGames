@@ -13,8 +13,8 @@
   "title": {
     "text": "How Are Games Distributed Across Major Platform Ecosystems?",
     "subtitle": [
-      "IGDB-recorded main games first released from 1980–2024; area represents distinct game–platform associations.",
-      "Multiplatform games are counted once per listed platform; minor ecosystems are excluded."
+      "IGDB-recorded main games first released from 1980–2025; area represents the number of games listed for each platform.",
+      "Multiplatform games are counted once on each listed platform; minor ecosystems are excluded."
     ],
     "anchor": "start",
     "fontSize": 20,
@@ -89,7 +89,7 @@
       "as": "rect_cy"
     },
     {
-      "calculate": "format(datum.game_platform_count, ',d') + ' associations'",
+      "calculate": "format(datum.game_platform_count, ',d') + ' games'",
       "as": "count_label"
     }
   ],
@@ -109,13 +109,13 @@
           "Sega"
         ],
         "range": [
-          "#7E57C2",
-          "#F2994A",
-          "#2F80ED",
-          "#F2C94C",
-          "#00A6A6",
-          "#D45087",
-          "#8D6E63"
+          "#4E79A7",
+          "#F28E2B",
+          "#76B7B2",
+          "#EDC948",
+          "#59A14F",
+          "#B07AA1",
+          "#9C755F"
         ]
       },
       "legend": {
@@ -522,7 +522,7 @@
           {
             "field": "game_platform_count",
             "type": "quantitative",
-            "title": "Distinct game–platform associations",
+            "title": "Games on Platform",
             "format": ",d"
           },
           {
