@@ -1,0 +1,115 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Where is video-game participation most widespread?",
+    "subtitle": "Share of internet users aged 16–64 who play video games on any device · Selected markets · April 2024"
+  },
+  "width": 800,
+  "height": 500,
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/ne_110m_admin_0_countries.topojson",
+    "format": {
+      "type": "topojson",
+      "feature": "ne_110m_admin_0_countries"
+    }
+  },
+  "projection": {"type": "equalEarth"},
+  "layer": [
+    {
+      "transform": [
+        {
+          "calculate": "'No survey data for ' + datum.properties.NAME",
+          "as": "note"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#E6E6E6",
+        "stroke": "white",
+        "strokeWidth": 0.4
+      },
+      "encoding": {
+        "tooltip": {"field": "note", "type": "nominal"}
+      }
+    },
+    {
+      "transform": [
+        {
+          "lookup": "properties.NAME",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/gaming_participation_apr2024.csv"
+            },
+            "key": "Country",
+            "fields": ["ParticipationPct"]
+          }
+        },
+        {"filter": "isValid(datum.ParticipationPct)"}
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "white",
+        "strokeWidth": 0.4
+      },
+      "encoding": {
+        "color": {
+          "field": "ParticipationPct",
+          "type": "quantitative",
+          "title": "Play video games (%)",
+          "scale": {
+            "type": "threshold",
+            "domain": [78.55, 81.2, 85.65, 90.4],
+            "range": ["#EFF3FF", "#BDD7E7", "#6BAED6", "#3182BD", "#08519C"]
+          }
+        },
+        "tooltip": [
+          {"field": "properties.NAME", "type": "nominal", "title": "Country"},
+          {
+            "field": "ParticipationPct",
+            "type": "quantitative",
+            "title": "Play video games (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"Country": "Hong Kong", "longitude": 114.17, "latitude": 22.32, "ParticipationPct": 88.3},
+          {"Country": "Singapore", "longitude": 103.82, "latitude": 1.35, "ParticipationPct": 82.9}
+        ]
+      },
+      "mark": {
+        "type": "circle",
+        "size": 110,
+        "stroke": "#202020",
+        "strokeWidth": 0.8
+      },
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"},
+        "color": {
+          "field": "ParticipationPct",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [78.55, 81.2, 85.65, 90.4],
+            "range": ["#EFF3FF", "#BDD7E7", "#6BAED6", "#3182BD", "#08519C"]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {"field": "Country", "type": "nominal", "title": "Market (point marker)"},
+          {
+            "field": "ParticipationPct",
+            "type": "quantitative",
+            "title": "Play video games (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {"view": {"stroke": null}}
+}
