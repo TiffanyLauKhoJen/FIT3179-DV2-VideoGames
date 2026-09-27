@@ -12,7 +12,7 @@
   "layer": [
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/ne_50m_admin_0_countries.json",
+        "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/ne_50m_admin_0_countries.json?v=2",
         "format": {
           "type": "topojson",
           "feature": "ne_50m_admin_0_countries"
