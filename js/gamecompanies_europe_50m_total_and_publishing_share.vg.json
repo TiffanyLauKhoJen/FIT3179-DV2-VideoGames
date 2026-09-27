@@ -1,35 +1,15 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Where are recorded game development and publishing listings concentrated?",
-    "subtitle": "GameCompanies by location · Blue: development · Gold: publishing · Circle area: listings"
+    "text": "Where is listed game activity concentrated across Europe?",
+    "subtitle": "GameCompanies · Circle area: combined listings · Colour: publishing share"
   },
-  "width": 900,
-  "height": 500,
+  "width": 800,
+  "height": 540,
   "projection": {
-    "type": "equalEarth"
+    "type": "mercator"
   },
   "layer": [
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/ne_110m_admin_0_countries.topojson",
-        "format": {
-          "type": "topojson",
-          "feature": "ne_110m_admin_0_countries"
-        }
-      },
-      "transform": [
-        {
-          "filter": "datum.properties.NAME !== 'Antarctica'"
-        }
-      ],
-      "mark": {
-        "type": "geoshape",
-        "fill": "#E8EDF0",
-        "stroke": "#FFFFFF",
-        "strokeWidth": 0.5
-      }
-    },
     {
       "data": {
         "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/ne_50m_admin_0_countries.json?v=2",
@@ -38,16 +18,11 @@
           "feature": "ne_50m_admin_0_countries"
         }
       },
-      "transform": [
-        {
-          "filter": "datum.properties.NAME !== 'Antarctica'"
-        }
-      ],
       "mark": {
         "type": "geoshape",
         "fill": "#E8EDF0",
         "stroke": "#FFFFFF",
-        "strokeWidth": 0.35
+        "strokeWidth": 0.7
       }
     },
     {
@@ -65,28 +40,25 @@
       },
       "transform": [
         {
-          "fold": [
-            "developed_games",
-            "published_games"
-          ],
-          "as": [
-            "activity_key",
-            "game_count"
-          ]
+          "filter": "datum.longitude >= -12 && datum.longitude <= 46 && datum.latitude >= 34 && datum.latitude <= 72"
         },
         {
-          "calculate": "datum.activity_key === 'developed_games' ? 'Development' : 'Publishing'",
-          "as": "activity"
+          "calculate": "datum.developed_games + datum.published_games",
+          "as": "total_listings"
         },
         {
-          "filter": "isValid(datum.game_count) && datum.game_count > 0"
+          "filter": "isValid(datum.total_listings) && datum.total_listings > 0"
+        },
+        {
+          "calculate": "datum.published_games / datum.total_listings",
+          "as": "publishing_share"
         }
       ],
       "mark": {
         "type": "circle",
-        "opacity": 0.72,
+        "opacity": 0.88,
         "stroke": "#FFFFFF",
-        "strokeWidth": 0.5
+        "strokeWidth": 0.7
       },
       "encoding": {
         "longitude": {
@@ -97,33 +69,28 @@
           "field": "latitude",
           "type": "quantitative"
         },
-        "order": {
-          "field": "game_count",
-          "type": "quantitative",
-          "sort": "descending"
-        },
         "size": {
-          "field": "game_count",
+          "field": "total_listings",
           "type": "quantitative",
-          "title": "GameCompanies listings",
+          "title": "Combined listings",
           "scale": {
             "type": "linear",
             "domain": [
               0,
-              11344
+              6625
             ],
             "range": [
-              16,
-              2200
+              18,
+              1900
             ]
           },
           "legend": {
             "orient": "right",
             "values": [
-              50,
+              100,
               500,
               2000,
-              10000
+              6500
             ],
             "format": ",.0f",
             "symbolFillColor": "#D8E2E7",
@@ -131,21 +98,32 @@
           }
         },
         "color": {
-          "field": "activity",
-          "type": "nominal",
-          "title": "Activity",
+          "field": "publishing_share",
+          "type": "quantitative",
+          "title": "Publishing share",
           "scale": {
+            "type": "linear",
             "domain": [
-              "Development",
-              "Publishing"
+              0,
+              0.5,
+              1
             ],
             "range": [
               "#0072B2",
-              "#E69F00"
+              "#E9ECEF",
+              "#C77800"
             ]
           },
           "legend": {
-            "orient": "right"
+            "orient": "right",
+            "format": ".0%",
+            "values": [
+              0,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ]
           }
         },
         "tooltip": [
@@ -153,17 +131,6 @@
             "field": "country",
             "type": "nominal",
             "title": "Location"
-          },
-          {
-            "field": "activity",
-            "type": "nominal",
-            "title": "Circle"
-          },
-          {
-            "field": "game_count",
-            "type": "quantitative",
-            "title": "This circle's listings",
-            "format": ",.0f"
           },
           {
             "field": "developed_games",
@@ -176,6 +143,18 @@
             "type": "quantitative",
             "title": "Publishing listings",
             "format": ",.0f"
+          },
+          {
+            "field": "total_listings",
+            "type": "quantitative",
+            "title": "Combined listings",
+            "format": ",.0f"
+          },
+          {
+            "field": "publishing_share",
+            "type": "quantitative",
+            "title": "Publishing share",
+            "format": ".0%"
           }
         ]
       }
