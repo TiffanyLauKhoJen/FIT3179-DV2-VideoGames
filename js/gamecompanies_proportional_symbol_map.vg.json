@@ -46,8 +46,8 @@
           "as": "activity"
         },
         {
-          "calculate": "datum.activity_key === 'developed_games' ? -7 : 7",
-          "as": "offset_px"
+          "calculate": "datum.longitude + (datum.activity_key === 'developed_games' ? -2 : 2)",
+          "as": "display_longitude"
         },
         {"filter": "isValid(datum.game_count) && datum.game_count > 0"}
       ],
@@ -58,13 +58,11 @@
         "strokeWidth": 0.6
       },
       "encoding": {
-        "longitude": {"field": "longitude", "type": "quantitative"},
-        "latitude": {"field": "latitude", "type": "quantitative"},
-        "xOffset": {
-          "field": "offset_px",
-          "type": "quantitative",
-          "scale": null
+        "longitude": {
+          "field": "display_longitude",
+          "type": "quantitative"
         },
+        "latitude": {"field": "latitude", "type": "quantitative"},
         "size": {
           "field": "game_count",
           "type": "quantitative",
