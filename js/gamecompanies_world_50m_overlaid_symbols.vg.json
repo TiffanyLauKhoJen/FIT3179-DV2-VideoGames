@@ -6,9 +6,7 @@
   },
   "width": 900,
   "height": 500,
-  "projection": {
-    "type": "equalEarth"
-  },
+  "projection": { "type": "equalEarth" },
   "layer": [
     {
       "data": {
@@ -18,11 +16,7 @@
           "feature": "ne_50m_admin_0_countries"
         }
       },
-      "transform": [
-        {
-          "filter": "datum.properties.NAME !== 'Antarctica'"
-        }
-      ],
+      "transform": [{ "filter": "datum.properties.name !== 'Antarctica'" }],
       "mark": {
         "type": "geoshape",
         "fill": "#E8EDF0",
@@ -45,22 +39,14 @@
       },
       "transform": [
         {
-          "fold": [
-            "developed_games",
-            "published_games"
-          ],
-          "as": [
-            "activity_key",
-            "game_count"
-          ]
+          "fold": ["developed_games", "published_games"],
+          "as": ["activity_key", "game_count"]
         },
         {
           "calculate": "datum.activity_key === 'developed_games' ? 'Development' : 'Publishing'",
           "as": "activity"
         },
-        {
-          "filter": "isValid(datum.game_count) && datum.game_count > 0"
-        }
+        { "filter": "isValid(datum.game_count) && datum.game_count > 0" }
       ],
       "mark": {
         "type": "circle",
@@ -69,14 +55,8 @@
         "strokeWidth": 0.5
       },
       "encoding": {
-        "longitude": {
-          "field": "longitude",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "latitude",
-          "type": "quantitative"
-        },
+        "longitude": { "field": "longitude", "type": "quantitative" },
+        "latitude": { "field": "latitude", "type": "quantitative" },
         "order": {
           "field": "game_count",
           "type": "quantitative",
@@ -88,23 +68,12 @@
           "title": "GameCompanies listings",
           "scale": {
             "type": "linear",
-            "domain": [
-              0,
-              11344
-            ],
-            "range": [
-              16,
-              2200
-            ]
+            "domain": [0, 11344],
+            "range": [16, 2200]
           },
           "legend": {
             "orient": "right",
-            "values": [
-              50,
-              500,
-              2000,
-              10000
-            ],
+            "values": [50, 500, 2000, 10000],
             "format": ",.0f",
             "symbolFillColor": "#D8E2E7",
             "symbolStrokeColor": "#415867"
@@ -115,30 +84,14 @@
           "type": "nominal",
           "title": "Activity",
           "scale": {
-            "domain": [
-              "Development",
-              "Publishing"
-            ],
-            "range": [
-              "#0072B2",
-              "#E69F00"
-            ]
+            "domain": ["Development", "Publishing"],
+            "range": ["#0072B2", "#E69F00"]
           },
-          "legend": {
-            "orient": "right"
-          }
+          "legend": { "orient": "right" }
         },
         "tooltip": [
-          {
-            "field": "country",
-            "type": "nominal",
-            "title": "Location"
-          },
-          {
-            "field": "activity",
-            "type": "nominal",
-            "title": "Circle"
-          },
+          { "field": "country", "type": "nominal", "title": "Location" },
+          { "field": "activity", "type": "nominal", "title": "Circle" },
           {
             "field": "game_count",
             "type": "quantitative",
@@ -161,9 +114,5 @@
       }
     }
   ],
-  "config": {
-    "view": {
-      "stroke": null
-    }
-  }
+  "config": { "view": { "stroke": null } }
 }
