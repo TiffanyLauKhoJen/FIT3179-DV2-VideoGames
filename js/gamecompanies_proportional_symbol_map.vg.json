@@ -1,26 +1,26 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Where are game development and publishing recorded?",
-    "subtitle": "Games listed by country in GameCompanies · Circle size shows recorded game count"
+    "text": "How do game development and publishing compare across Europe?",
+    "subtitle": "Europe and nearby markets · Counts of games listed by GameCompanies"
   },
-  "width": 900,
-  "height": 500,
-  "projection": {"type": "equalEarth"},
+  "width": 800,
+  "height": 540,
+  "projection": {"type": "mercator"},
   "layer": [
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/ne_110m_admin_0_countries.topojson",
+        "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/ne_50m_admin_0_countries.json",
         "format": {
           "type": "topojson",
-          "feature": "ne_110m_admin_0_countries"
+          "feature": "ne_50m_admin_0_countries"
         }
       },
       "mark": {
         "type": "geoshape",
         "fill": "#E8EDF0",
         "stroke": "#FFFFFF",
-        "strokeWidth": 0.5
+        "strokeWidth": 0.7
       }
     },
     {
@@ -38,6 +38,9 @@
       },
       "transform": [
         {
+          "filter": "datum.longitude >= -12 && datum.longitude <= 46 && datum.latitude >= 34 && datum.latitude <= 72"
+        },
+        {
           "fold": ["developed_games", "published_games"],
           "as": ["activity_key", "game_count"]
         },
@@ -45,32 +48,30 @@
           "calculate": "datum.activity_key === 'developed_games' ? 'Development' : 'Publishing'",
           "as": "activity"
         },
-        {
-          "calculate": "datum.longitude + (datum.activity_key === 'developed_games' ? -2 : 2)",
-          "as": "display_longitude"
-        },
         {"filter": "isValid(datum.game_count) && datum.game_count > 0"}
       ],
       "mark": {
         "type": "circle",
         "opacity": 0.68,
-        "stroke": "#263238",
-        "strokeWidth": 0.6
+        "stroke": "#27343C",
+        "strokeWidth": 0.7
       },
       "encoding": {
-        "longitude": {
-          "field": "display_longitude",
-          "type": "quantitative"
-        },
+        "longitude": {"field": "longitude", "type": "quantitative"},
         "latitude": {"field": "latitude", "type": "quantitative"},
+        "order": {
+          "field": "game_count",
+          "type": "quantitative",
+          "sort": "descending"
+        },
         "size": {
           "field": "game_count",
           "type": "quantitative",
-          "title": "Recorded games",
+          "title": "Games listed",
           "scale": {
             "type": "linear",
-            "domain": [0, 11344],
-            "range": [16, 2200]
+            "domain": [0, 4000],
+            "range": [20, 1200]
           },
           "legend": {"orient": "right", "format": ",.0f"}
         },
@@ -86,23 +87,17 @@
         },
         "tooltip": [
           {"field": "country", "type": "nominal", "title": "Location"},
-          {"field": "activity", "type": "nominal", "title": "Activity"},
-          {
-            "field": "game_count",
-            "type": "quantitative",
-            "title": "Recorded games",
-            "format": ",.0f"
-          },
+          {"field": "activity", "type": "nominal", "title": "Circle"},
           {
             "field": "developed_games",
             "type": "quantitative",
-            "title": "Development count",
+            "title": "Development games listed",
             "format": ",.0f"
           },
           {
             "field": "published_games",
             "type": "quantitative",
-            "title": "Publishing count",
+            "title": "Publishing games listed",
             "format": ",.0f"
           }
         ]
