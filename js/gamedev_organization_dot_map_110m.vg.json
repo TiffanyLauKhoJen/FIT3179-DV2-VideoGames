@@ -1,0 +1,127 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Where are listed game organizations concentrated?",
+    "subtitle": "1 dot = 1 GameDevMap listing (10,417). Dots are spread around city centres, not street addresses."
+  },
+  "width": 1000,
+  "height": 560,
+  "projection": {
+    "type": "equalEarth"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/ne_110m_admin_0_countries.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "ne_110m_admin_0_countries"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#E6EAED",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 0.4
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/gamedev_dots.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "lat": "number",
+            "lon": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "isValid(datum.lat) && isValid(datum.lon)"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 12,
+        "opacity": 0.72
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "Type",
+          "type": "nominal",
+          "title": "Type of organization",
+          "scale": {
+            "domain": [
+              "Developer",
+              "Publisher",
+              "Mobile",
+              "XR (VR/AR)",
+              "Other"
+            ],
+            "range": [
+              "#0072B2",
+              "#E69F00",
+              "#008C95",
+              "#8A4FA3",
+              "#565D66"
+            ]
+          },
+          "legend": {
+            "orient": "right",
+            "symbolSize": 110,
+            "symbolOpacity": 1,
+            "labelFontSize": 12,
+            "titleFontSize": 13,
+            "labelLimit": 180
+          }
+        },
+        "tooltip": [
+          {
+            "field": "Organization",
+            "type": "nominal",
+            "title": "Organization"
+          },
+          {
+            "field": "City",
+            "type": "nominal",
+            "title": "City"
+          },
+          {
+            "field": "Country",
+            "type": "nominal",
+            "title": "Location"
+          },
+          {
+            "field": "Type",
+            "type": "nominal",
+            "title": "Type"
+          },
+          {
+            "field": "Category",
+            "type": "nominal",
+            "title": "Detailed category"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "title": {
+      "anchor": "start",
+      "fontSize": 17,
+      "subtitleFontSize": 12
+    }
+  }
+}
