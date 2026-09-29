@@ -24,7 +24,7 @@
     "offset": 12
   },
   "data": {
-    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/platform_family_treemap_igdb_selected.csv?v=3",
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/platform_family_treemap_igdb_selected.csv",
     "format": {
       "type": "csv",
       "parse": {

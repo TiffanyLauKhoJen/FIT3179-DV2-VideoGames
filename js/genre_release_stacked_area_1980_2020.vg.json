@@ -1,0 +1,162 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Counts of distinct title names assigned to eight genres, by earliest dated release in the supplied sales listing.",
+  "width": 820,
+  "height": 420,
+  "background": "white",
+  "title": {
+    "text": "How did recorded game releases vary across eight genres?",
+    "subtitle": [
+      "Distinct title names by earliest dated release · Selected genres · 1980–2020",
+      "Recorded counts drop sharply in 2012 and 2019–20; suspect 2020 dates were excluded."
+    ],
+    "anchor": "start",
+    "fontSize": 21,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#596579",
+    "offset": 12
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/genre_release_stacked_area_1980_2020.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Year": "number",
+        "Recorded_titles": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "indexof(['Sports','Action','Shooter','Racing','Role-Playing','Fighting','Adventure','Platform'], datum.Genre)",
+      "as": "Genre_order"
+    }
+  ],
+  "mark": {
+    "type": "area",
+    "opacity": 0.92,
+    "interpolate": "linear"
+  },
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "quantitative",
+      "title": "Earliest recorded release year",
+      "scale": {
+        "domain": [
+          1980,
+          2020
+        ],
+        "nice": false
+      },
+      "axis": {
+        "values": [
+          1980,
+          1985,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2020
+        ],
+        "format": "d",
+        "labelAngle": 0,
+        "grid": false
+      }
+    },
+    "y": {
+      "field": "Recorded_titles",
+      "type": "quantitative",
+      "stack": "zero",
+      "title": "Recorded distinct titles",
+      "axis": {
+        "format": ",.0f",
+        "grid": true,
+        "gridColor": "#E5E7EB",
+        "domain": false
+      }
+    },
+    "color": {
+      "field": "Genre",
+      "type": "nominal",
+      "title": "Genre",
+      "sort": [
+        "Sports",
+        "Action",
+        "Shooter",
+        "Racing",
+        "Role-Playing",
+        "Fighting",
+        "Adventure",
+        "Platform"
+      ],
+      "scale": {
+        "domain": [
+          "Sports",
+          "Action",
+          "Shooter",
+          "Racing",
+          "Role-Playing",
+          "Fighting",
+          "Adventure",
+          "Platform"
+        ],
+        "range": [
+          "#2A9D8F",
+          "#E76F51",
+          "#3A86FF",
+          "#F4A261",
+          "#8338EC",
+          "#E9C46A",
+          "#5C677D",
+          "#6A994E"
+        ]
+      },
+      "legend": {
+        "orient": "bottom",
+        "columns": 4,
+        "labelFontSize": 11,
+        "titleFontSize": 11
+      }
+    },
+    "order": {
+      "field": "Genre_order",
+      "type": "quantitative",
+      "sort": "ascending"
+    },
+    "tooltip": [
+      {
+        "field": "Year",
+        "type": "quantitative",
+        "title": "Earliest release year",
+        "format": "d"
+      },
+      {
+        "field": "Genre",
+        "type": "nominal",
+        "title": "Genre"
+      },
+      {
+        "field": "Recorded_titles",
+        "type": "quantitative",
+        "title": "Recorded distinct titles",
+        "format": ",.0f"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial",
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "symbolType": "square"
+    }
+  }
+}
