@@ -1,0 +1,222 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bump chart comparing ranks of seven selected IGDB themes in nine five-year release periods.",
+  "width": 710,
+  "height": 430,
+  "padding": {
+    "left": 5,
+    "top": 5,
+    "right": 135,
+    "bottom": 5
+  },
+  "background": "white",
+  "title": {
+    "text": "How Did Major Video Game Theme Rankings Change Across Eras?",
+    "subtitle": [
+      "Seven selected themes among IGDB-recorded main games, ranked against one another in each five-year period.",
+      "Games may have multiple themes; each game is counted once per theme."
+    ],
+    "anchor": "start",
+    "fontSize": 20,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#666666",
+    "offset": 12
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/theme_bump_educational_eras.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "distinct_game_count": "number",
+        "themed_games_in_era": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "datum.themed_games_in_era > 0 ? datum.distinct_game_count / datum.themed_games_in_era : 0",
+      "as": "theme_share"
+    },
+    {
+      "window": [
+        {
+          "op": "row_number",
+          "as": "rank"
+        }
+      ],
+      "sort": [
+        {
+          "field": "distinct_game_count",
+          "order": "descending"
+        }
+      ],
+      "groupby": [
+        "era"
+      ]
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "era",
+      "type": "ordinal",
+      "sort": [
+        "1980–1984",
+        "1985–1989",
+        "1990–1994",
+        "1995–1999",
+        "2000–2004",
+        "2005–2009",
+        "2010–2014",
+        "2015–2019",
+        "2020–2024"
+      ],
+      "title": "Five-Year Release Period",
+      "axis": {
+        "labelAngle": 0,
+        "labelPadding": 8,
+        "labelFontSize": 10,
+        "grid": false
+      }
+    },
+    "y": {
+      "field": "rank",
+      "type": "ordinal",
+      "sort": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "title": "Rank Among the Seven Selected Themes",
+      "axis": {
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "labelOverlap": false,
+        "grid": true,
+        "gridColor": "#E5E7EB",
+        "domain": false
+      }
+    },
+    "color": {
+      "field": "theme",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Educational",
+          "Fantasy",
+          "Science fiction",
+          "Horror",
+          "Comedy",
+          "Erotic",
+          "Mystery"
+        ],
+        "range": [
+          "#1B9E77",
+          "#D95F02",
+          "#7570B3",
+          "#00A6D6",
+          "#E6AB02",
+          "#A6761D",
+          "#666666"
+        ]
+      },
+      "legend": null
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3,
+        "interpolate": "linear",
+        "opacity": 0.82
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 125,
+        "stroke": "white",
+        "strokeWidth": 1.3,
+        "opacity": 0.98
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "theme",
+            "type": "nominal",
+            "title": "Theme"
+          },
+          {
+            "field": "era",
+            "type": "ordinal",
+            "title": "Release period"
+          },
+          {
+            "field": "rank",
+            "type": "ordinal",
+            "title": "Rank among selected themes"
+          },
+          {
+            "field": "distinct_game_count",
+            "type": "quantitative",
+            "title": "Distinct main games",
+            "format": ",d"
+          },
+          {
+            "field": "theme_share",
+            "type": "quantitative",
+            "title": "Share of themed main games",
+            "format": ".1%"
+          },
+          {
+            "field": "themed_games_in_era",
+            "type": "quantitative",
+            "title": "Themed main games in period",
+            "format": ",d"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.era === '2020–2024'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 10,
+        "fontSize": 11,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {
+          "field": "theme"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial",
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  }
+}
