@@ -1,0 +1,276 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Dumbbell comparison of selected genre shares of reported global game sales in 2005 and 2017.",
+  "title": {
+    "text": "How did genre sales shares differ between 2005 and 2017 releases?",
+    "subtitle": [
+      "Share of reported global sales for game/console listings grouped by release year",
+      "Eight selected genres; all genres in denominator · Missing sales excluded",
+      "Sales present for 911/1,810 dated 2005 listings and 663/1,558 dated 2017 listings"
+    ],
+    "anchor": "start",
+    "fontSize": 20,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#526274",
+    "offset": 16
+  },
+  "width": 800,
+  "height": {
+    "step": 50
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/sales_genre_share_dumbbell_2005_2017.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Sales_2005_m": "number",
+        "Sales_2017_m": "number",
+        "Share_2005_pct": "number",
+        "Share_2017_pct": "number",
+        "Change_pp": "number",
+        "Genre_rows_2005": "number",
+        "Genre_rows_2017": "number",
+        "Total_sales_2005_m": "number",
+        "Total_sales_2017_m": "number"
+      }
+    }
+  },
+  "encoding": {
+    "y": {
+      "field": "Genre",
+      "type": "nominal",
+      "sort": [
+        "Shooter",
+        "Role-Playing",
+        "Sports",
+        "Platform",
+        "Adventure",
+        "Fighting",
+        "Action",
+        "Racing"
+      ],
+      "title": null,
+      "axis": {
+        "labelFontSize": 12,
+        "labelPadding": 11,
+        "labelLimit": 145,
+        "domain": false,
+        "ticks": false
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "stroke": "#AAB8C7",
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "x": {
+          "field": "Share_2005_pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              33
+            ],
+            "nice": false
+          },
+          "title": "Share of reported global sales (%)",
+          "axis": {
+            "values": [
+              0,
+              5,
+              10,
+              15,
+              20,
+              25,
+              30
+            ],
+            "grid": true,
+            "gridColor": "#E6EBF0",
+            "labelFontSize": 11,
+            "titleFontSize": 12
+          }
+        },
+        "x2": {
+          "field": "Share_2017_pct"
+        },
+        "tooltip": [
+          {
+            "field": "Genre",
+            "type": "nominal",
+            "title": "Genre"
+          },
+          {
+            "field": "Share_2005_pct",
+            "type": "quantitative",
+            "title": "2005 share (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "Sales_2005_m",
+            "type": "quantitative",
+            "title": "2005 recorded sales (m)",
+            "format": ",.2f"
+          },
+          {
+            "field": "Genre_rows_2005",
+            "type": "quantitative",
+            "title": "2005 listings with sales",
+            "format": ",d"
+          },
+          {
+            "field": "Share_2017_pct",
+            "type": "quantitative",
+            "title": "2017 share (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "Sales_2017_m",
+            "type": "quantitative",
+            "title": "2017 recorded sales (m)",
+            "format": ",.2f"
+          },
+          {
+            "field": "Genre_rows_2017",
+            "type": "quantitative",
+            "title": "2017 listings with sales",
+            "format": ",d"
+          },
+          {
+            "field": "Change_pp",
+            "type": "quantitative",
+            "title": "Change (percentage points)",
+            "format": "+.1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "fold": [
+            "Share_2005_pct",
+            "Share_2017_pct"
+          ],
+          "as": [
+            "Year_key",
+            "Share_pct"
+          ]
+        },
+        {
+          "calculate": "datum.Year_key === 'Share_2005_pct' ? '2005' : '2017'",
+          "as": "Year"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 170,
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {
+          "field": "Share_pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              33
+            ],
+            "nice": false
+          }
+        },
+        "color": {
+          "field": "Year",
+          "type": "nominal",
+          "title": "Release year",
+          "scale": {
+            "domain": [
+              "2005",
+              "2017"
+            ],
+            "range": [
+              "#7B8794",
+              "#0072B2"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "symbolSize": 160
+          }
+        },
+        "tooltip": [
+          {
+            "field": "Genre",
+            "type": "nominal",
+            "title": "Genre"
+          },
+          {
+            "field": "Year",
+            "type": "nominal",
+            "title": "Release year"
+          },
+          {
+            "field": "Share_pct",
+            "type": "quantitative",
+            "title": "Recorded sales share (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "Change_pp",
+            "type": "quantitative",
+            "title": "Change (pp)",
+            "format": "+.1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "calculate": "max(datum.Share_2005_pct, datum.Share_2017_pct) + 0.45",
+          "as": "Label_x"
+        },
+        {
+          "calculate": "(datum.Change_pp > 0 ? '+' : '') + format(datum.Change_pp, '.1f') + ' pp'",
+          "as": "Change_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#304455"
+      },
+      "encoding": {
+        "x": {
+          "field": "Label_x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              33
+            ],
+            "nice": false
+          }
+        },
+        "text": {
+          "field": "Change_label",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial"
+  }
+}
