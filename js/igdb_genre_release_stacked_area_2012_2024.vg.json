@@ -134,7 +134,7 @@
       {
         "field": "Genre",
         "type": "nominal",
-        "title": "Genre / theme"
+        "title": "Genre"
       },
       {
         "field": "Tagged_games",
