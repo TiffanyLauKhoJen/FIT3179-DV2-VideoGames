@@ -1,0 +1,274 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Dumbbell chart comparing prevalence of ten selected IGDB tags in 2009 and 2024.",
+  "title": {
+    "text": "How did recorded game tags change from 2009 to 2024?",
+    "subtitle": [
+      "Share of recorded IGDB main games with each selected tag",
+      "Games may have multiple tags · Endpoints only, not the intervening path"
+    ],
+    "anchor": "start",
+    "fontSize": 20,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#526274",
+    "offset": 16
+  },
+  "width": 740,
+  "height": {
+    "step": 44
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/igdb_genre_change_dumbbell_10_2009_2024.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Games_2009": "number",
+        "Main_games_2009": "number",
+        "Pct_2009": "number",
+        "Games_2024": "number",
+        "Main_games_2024": "number",
+        "Pct_2024": "number",
+        "Change_pp": "number"
+      }
+    }
+  },
+  "encoding": {
+    "y": {
+      "field": "Tag",
+      "type": "nominal",
+      "sort": [
+        "Adventure",
+        "Action",
+        "Role-Playing",
+        "Simulator",
+        "Strategy",
+        "Racing",
+        "Platform",
+        "Sports",
+        "Shooter",
+        "Puzzle"
+      ],
+      "title": null,
+      "axis": {
+        "labelFontSize": 12,
+        "labelPadding": 12,
+        "labelLimit": 155,
+        "domain": false,
+        "ticks": false
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "stroke": "#A5B2C2",
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "x": {
+          "field": "Pct_2009",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              50
+            ],
+            "nice": false
+          },
+          "title": "Recorded main games with tag (%)",
+          "axis": {
+            "values": [
+              0,
+              10,
+              20,
+              30,
+              40,
+              50
+            ],
+            "grid": true,
+            "gridColor": "#E6EBF0",
+            "labelFontSize": 11,
+            "titleFontSize": 12
+          }
+        },
+        "x2": {
+          "field": "Pct_2024"
+        },
+        "tooltip": [
+          {
+            "field": "Tag",
+            "type": "nominal",
+            "title": "Tag"
+          },
+          {
+            "field": "Pct_2009",
+            "type": "quantitative",
+            "title": "2009 share (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "Games_2009",
+            "type": "quantitative",
+            "title": "2009 tagged games",
+            "format": ",d"
+          },
+          {
+            "field": "Main_games_2009",
+            "type": "quantitative",
+            "title": "2009 main games",
+            "format": ",d"
+          },
+          {
+            "field": "Pct_2024",
+            "type": "quantitative",
+            "title": "2024 share (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "Games_2024",
+            "type": "quantitative",
+            "title": "2024 tagged games",
+            "format": ",d"
+          },
+          {
+            "field": "Main_games_2024",
+            "type": "quantitative",
+            "title": "2024 main games",
+            "format": ",d"
+          },
+          {
+            "field": "Change_pp",
+            "type": "quantitative",
+            "title": "Change (percentage points)",
+            "format": "+.1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "fold": [
+            "Pct_2009",
+            "Pct_2024"
+          ],
+          "as": [
+            "Year_field",
+            "Share_pct"
+          ]
+        },
+        {
+          "calculate": "datum.Year_field === 'Pct_2009' ? '2009' : '2024'",
+          "as": "Year"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 180,
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {
+          "field": "Share_pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              50
+            ],
+            "nice": false
+          }
+        },
+        "color": {
+          "field": "Year",
+          "type": "nominal",
+          "title": "Year",
+          "scale": {
+            "domain": [
+              "2009",
+              "2024"
+            ],
+            "range": [
+              "#7B8794",
+              "#0072B2"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "symbolSize": 150
+          }
+        },
+        "tooltip": [
+          {
+            "field": "Tag",
+            "type": "nominal",
+            "title": "Tag"
+          },
+          {
+            "field": "Year",
+            "type": "nominal",
+            "title": "Year"
+          },
+          {
+            "field": "Share_pct",
+            "type": "quantitative",
+            "title": "Tagged main games (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "Change_pp",
+            "type": "quantitative",
+            "title": "2009–2024 change (pp)",
+            "format": "+.1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "calculate": "max(datum.Pct_2009, datum.Pct_2024) + 0.9",
+          "as": "Label_x"
+        },
+        {
+          "calculate": "(datum.Change_pp > 0 ? '+' : '') + format(datum.Change_pp, '.1f') + ' pp'",
+          "as": "Change_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#304455"
+      },
+      "encoding": {
+        "x": {
+          "field": "Label_x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              50
+            ],
+            "nice": false
+          }
+        },
+        "text": {
+          "field": "Change_label",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial"
+  }
+}
