@@ -1,0 +1,160 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Yearly selected genre or Action-theme assignments among IGDB main games; games with multiple tags contribute to multiple areas.",
+  "width": 820,
+  "height": 420,
+  "background": "white",
+  "title": {
+    "text": "How did selected game tags change over time?",
+    "subtitle": [
+      "IGDB main games by release year · 2012–2024 · Seven genres plus the Action theme",
+      "Games can carry several tags; stacked height counts tag assignments, not unique releases."
+    ],
+    "anchor": "start",
+    "fontSize": 21,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#596579",
+    "offset": 12
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/igdb_genre_release_stacked_area_2012_2024.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Year": "number",
+        "Tagged_games": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "indexof(['Sports','Action','Shooter','Racing','Role-Playing','Fighting','Adventure','Platform'], datum.Genre)",
+      "as": "Genre_order"
+    }
+  ],
+  "mark": {
+    "type": "area",
+    "opacity": 0.92,
+    "interpolate": "linear"
+  },
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "quantitative",
+      "title": "Release year",
+      "scale": {
+        "domain": [
+          2012,
+          2024
+        ],
+        "nice": false
+      },
+      "axis": {
+        "values": [
+          2012,
+          2014,
+          2016,
+          2018,
+          2020,
+          2022,
+          2024
+        ],
+        "format": "d",
+        "labelAngle": 0,
+        "grid": false
+      }
+    },
+    "y": {
+      "field": "Tagged_games",
+      "type": "quantitative",
+      "stack": "zero",
+      "title": "Selected genre and Action tag assignments",
+      "axis": {
+        "format": ",.0f",
+        "grid": true,
+        "gridColor": "#E5E7EB",
+        "domain": false
+      }
+    },
+    "color": {
+      "field": "Genre",
+      "type": "nominal",
+      "title": "Genre / theme",
+      "sort": [
+        "Sports",
+        "Action",
+        "Shooter",
+        "Racing",
+        "Role-Playing",
+        "Fighting",
+        "Adventure",
+        "Platform"
+      ],
+      "scale": {
+        "domain": [
+          "Sports",
+          "Action",
+          "Shooter",
+          "Racing",
+          "Role-Playing",
+          "Fighting",
+          "Adventure",
+          "Platform"
+        ],
+        "range": [
+          "#2A9D8F",
+          "#E76F51",
+          "#3A86FF",
+          "#F4A261",
+          "#8338EC",
+          "#E9C46A",
+          "#5C677D",
+          "#6A994E"
+        ]
+      },
+      "legend": {
+        "orient": "bottom",
+        "columns": 4,
+        "labelFontSize": 11,
+        "titleFontSize": 11
+      }
+    },
+    "order": {
+      "field": "Genre_order",
+      "type": "quantitative",
+      "sort": "ascending"
+    },
+    "tooltip": [
+      {
+        "field": "Year",
+        "type": "quantitative",
+        "title": "Release year",
+        "format": "d"
+      },
+      {
+        "field": "Genre",
+        "type": "nominal",
+        "title": "Genre / theme"
+      },
+      {
+        "field": "Tagged_games",
+        "type": "quantitative",
+        "title": "Games with this tag",
+        "format": ",.0f"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial",
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "symbolType": "square"
+    }
+  }
+}
