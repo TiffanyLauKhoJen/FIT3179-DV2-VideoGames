@@ -1,0 +1,80 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Percentage of eligible IGDB main games tagged with seven genres and the Action theme, by earliest recorded release era.",
+  "width": 780,
+  "height": 400,
+  "background": "white",
+  "title": {
+    "text": "How Did Game Genre Tags Vary Across Release Eras?",
+    "subtitle": [
+      "Share of dated IGDB main games with both genre and theme data, 1980–2024",
+      "Action is a theme. Games may have multiple tags; percentages do not add to 100%."
+    ],
+    "anchor": "start",
+    "fontSize": 20,
+    "subtitleFontSize": 12
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/igdb_genre_theme_era_heatmap.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Game_count": "number",
+        "Eligible_games": "number",
+        "Share_pct": "number",
+        "All_dated_main_games": "number",
+        "Eligible_coverage_pct": "number"
+      }
+    }
+  },
+  "encoding": {
+    "x": {
+      "field": "Era",
+      "type": "ordinal",
+      "sort": ["1980s", "1990s", "2000s", "2010s", "2020–2024"],
+      "title": "Earliest Recorded Release Era",
+      "axis": {"labelAngle": 0, "labelFontSize": 12, "titleFontSize": 12}
+    },
+    "y": {
+      "field": "Tag",
+      "type": "nominal",
+      "sort": ["Sports", "Action (theme)", "Shooter", "Racing", "Role-Playing", "Fighting", "Adventure", "Platform"],
+      "title": null,
+      "axis": {"labelFontSize": 12, "labelLimit": 150, "ticks": false}
+    }
+  },
+  "layer": [
+    {
+      "mark": {"type": "rect", "stroke": "#FFFFFF", "strokeWidth": 2},
+      "encoding": {
+        "color": {
+          "field": "Share_pct",
+          "type": "quantitative",
+          "title": "Games with tag (%)",
+          "scale": {"domain": [0, 70], "range": ["#F4F8FC", "#124B72"]},
+          "legend": {"orient": "right", "format": ".0f", "titleFontSize": 12, "labelFontSize": 11}
+        },
+        "tooltip": [
+          {"field": "Era", "type": "nominal", "title": "Release era"},
+          {"field": "Tag", "type": "nominal", "title": "Tag"},
+          {"field": "Tag_kind", "type": "nominal", "title": "Tag type"},
+          {"field": "Share_pct", "type": "quantitative", "title": "Eligible games with tag (%)", "format": ".1f"},
+          {"field": "Game_count", "type": "quantitative", "title": "Games with tag", "format": ",.0f"},
+          {"field": "Eligible_games", "type": "quantitative", "title": "Games with both tag fields", "format": ",.0f"},
+          {"field": "Eligible_coverage_pct", "type": "quantitative", "title": "Era coverage (%)", "format": ".1f"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "fontSize": 12, "fontWeight": "bold"},
+      "encoding": {
+        "text": {"field": "Share_pct", "type": "quantitative", "format": ".1f"},
+        "color": {
+          "condition": {"test": "datum.Share_pct >= 35", "value": "#FFFFFF"},
+          "value": "#1F2937"
+        }
+      }
+    }
+  ],
+  "config": {"view": {"stroke": null}, "font": "Arial"}
+}
