@@ -16,7 +16,7 @@
   "width": 520,
   "height": {"step": 44},
   "data": {
-    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/igdb_genre_dumbbell_8_2010_2026.csv",
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/igdb_genre_dumbbell_8_2010_2026.csv?v=2",
     "format": {
       "type": "csv",
       "parse": {
