@@ -1,0 +1,338 @@
+/* ==========================================================
+   Video Game Collections – page styles
+   1. Colour and type tokens
+   2. Base typography
+   3. Page layout
+   4. Title and introduction
+   5. Sections ("levels")
+   6. Chart rows and text
+   7. Footer
+   8. Placeholders
+   9. Small screens
+   ========================================================== */
+
+
+/* ---------- 1. Colour and type tokens ---------- */
+:root {
+  --bg: #D9DCE3;            /* grey background outside the page */
+  --page: #FFFFFF;          /* the page itself */
+  --surface: #FFFFFF;       /* chart panels */
+  --ink: #1B1F2A;           /* main text: strong contrast */
+  --ink-muted: #4A5263;     /* secondary text */
+  --line: #DDE1EA;          /* thin borders */
+  --accent: #4338CA;        /* restrained indigo accent */
+  --accent-soft: #ECEBFD;   /* highlight background */
+  --font-heading: 'Zilla Slab', Georgia, serif;
+  --font-body: 'Open Sans', Arial, sans-serif;
+}
+
+
+/* ---------- 2. Base typography ---------- */
+html,
+button,
+input,
+select,
+textarea,
+.pure-g [class*="pure-u"] {
+  font-family: var(--font-body);
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  font-variant-numeric: lining-nums;  /* full-height numbers */
+  color: var(--ink);
+  line-height: 1.15;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 3.2rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+p {
+  margin: 0 0 14px;
+}
+
+a {
+  color: var(--accent);
+}
+
+/* Highlight only key numbers and phrases */
+.hl {
+  background-color: var(--accent-soft);
+  color: var(--ink);
+  font-weight: 700;
+  padding: 0 4px;
+  border-radius: 3px;
+}
+
+/* One key figure per paragraph: bold, slightly larger, in the chart purple */
+.key-figure {
+  color: #0072B2;   /* same blue as the release trend line */
+  font-size: 1.12em;
+  font-weight: 700;
+  white-space: nowrap;   /* keep "6.6-fold increase" on one line */
+}
+
+
+/* ---------- 3. Page layout ---------- */
+/* A centred white page on a grey background, as in the studio lab */
+.page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 32px;
+  box-sizing: border-box;
+  background-color: var(--page);
+  min-height: 100vh;
+}
+
+
+/* ---------- 4. Title and introduction ---------- */
+.intro {
+  padding: 40px 0 32px;
+}
+
+/* Subtitle under the main title */
+.intro .subtitle {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  margin: -4px 0 24px;
+}
+
+.intro .lead {
+  font-size: 16px;   /* same size as the body text */
+  max-width: 44ch;   /* no more than about 10 words per line */
+}
+
+
+/* Two short introduction columns with a gap between them */
+.intro-col-left {
+  padding-right: 32px;
+}
+
+.intro-col-right {
+  padding-left: 32px;
+}
+
+
+/* ---------- 5. Sections ("levels") ---------- */
+/* Each section starts directly with its purple banner (no divider line or gap above) */
+.level {
+  padding: 0 0 24px;
+}
+
+.level-heading {
+  margin-bottom: 12px;
+}
+
+/* Section title banner: white text on the purple accent.
+   Negative side margins cancel the page padding so the banner runs edge to edge. */
+.level-banner {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  background-color: var(--accent);
+  padding: 14px 32px;
+  margin: 0 -32px 16px;
+}
+
+.level-banner h2 {
+  color: #FFFFFF;
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.level-tag {
+  font-family: var(--font-heading);
+  font-variant-numeric: lining-nums;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #E0E0FF;
+  border-right: 2px solid rgba(255, 255, 255, 0.45);
+  padding-right: 16px;
+  margin: 0;
+  white-space: nowrap;
+}
+
+
+
+/* ---------- 6. Chart rows and text ---------- */
+.chart-row {
+  margin-bottom: 32px;
+}
+
+/* Chart panel: white card with generous space around the chart */
+.vis-container {
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* vegaEmbed adds the .vega-embed class (inline-block) to the container itself;
+   keep the card full width so card edges line up along the same sight-lines */
+.vis-container.vega-embed {
+  display: block;
+  width: 100%;
+}
+
+/* Charts keep their designed size, but shrink (never overflow) on narrow screens */
+.vis-container svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* One chart per row, with its explanation beside it (alternating left and right) */
+.text-side {
+  padding-top: 4px;    /* lines up with the chart title */
+}
+
+.text-side p {
+  max-width: 46ch;
+}
+
+.text-side-left {
+  padding-right: 28px;
+}
+
+.text-side-right {
+  padding-left: 28px;
+}
+
+/* Rows where the text is centred beside the chart rather than top-aligned */
+.chart-row-center {
+  align-items: center;
+}
+
+.chart-row-center .text-side {
+  padding-top: 0;
+}
+
+.chart-row-center .text-side-right {
+  padding-left: 22px;   /* plus the chart's centring slack, about a 26 px gap */
+}
+
+/* Body-size reading text, allowed to fill the wider text column */
+.chart-row-center .text-side p {
+  max-width: none;
+}
+
+/* Conclusion text */
+.text-block {
+  max-width: 70ch;
+  margin-bottom: 16px;
+}
+
+.outro {
+  padding: 32px 0 48px;
+  border-top: 1px solid var(--line);
+}
+
+
+/* ---------- 7. Footer ---------- */
+.footer {
+  padding: 40px 0 56px;
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+}
+
+.footer-col {
+  padding-right: 32px;
+}
+
+.footer ul {
+  margin: 0 0 20px;
+  padding-left: 18px;
+}
+
+.footer li {
+  margin-bottom: 6px;
+}
+
+.ai-note {
+  max-width: 60ch;
+}
+
+
+/* ---------- 8. Placeholders (remove once content is added) ---------- */
+.placeholder {
+  background-color: #FFF4D6;
+  outline: 1px dashed #B45309;
+  color: #7C2D12;
+  padding: 2px 6px;
+}
+
+
+/* ---------- 9. Small screens ---------- */
+@media (max-width: 1023px) {
+  .page {
+    padding: 0 16px;
+  }
+
+  .level-banner {
+    padding: 14px 16px;
+    margin: 0 -16px 16px;
+  }
+
+  h1 {
+    font-size: 2.4rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  /* Stacked layout: text sits above or below its chart */
+  .text-side-left {
+    padding: 0 0 8px;
+  }
+
+  .text-side-right {
+    padding: 16px 0 0;
+  }
+
+  .chart-row-center .text-side-right {
+    padding-top: 16px;
+  }
+
+  .text-side p {
+    max-width: 70ch;
+  }
+
+}
+
+
+/* Introduction columns stack on phones (pure.css md breakpoint) */
+@media (max-width: 767px) {
+  .intro-col-left,
+  .intro-col-right {
+    padding: 0;
+  }
+}

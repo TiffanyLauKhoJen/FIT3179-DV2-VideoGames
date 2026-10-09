@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Parallel-coordinates comparison of regional recorded-sales shares for eight publishers with at least 80 complete regional-sales records.",
-  "width": 720,
+  "width": 590,
   "height": 420,
   "background": "white",
 
@@ -20,9 +20,13 @@
   },
 
   "title": {
-    "text": "How Do Major Publishers' Recorded Sales Profiles Differ by Region?",
+    "text": [
+      "How Do Major Publishers' Recorded Sales",
+      "Profiles Differ by Region?"
+    ],
     "subtitle": [
-      "Regional shares among game-platform records with complete North America, PAL/Europe, Japan and Other sales values.",
+      "Regional shares among game-platform records with complete North America,",
+      "PAL/Europe, Japan and Other sales values.",
       "The eight publishers shown each have at least 80 complete records."
     ],
     "anchor": "start",
@@ -98,14 +102,14 @@
           "Nintendo"
         ],
         "range": [
-          "#1B263B",
-          "#4361EE",
-          "#00B4D8",
-          "#5A189A",
-          "#9D4EDD",
-          "#FFB703",
-          "#FB8500",
-          "#7F5539"
+          "#332288",
+          "#88CCEE",
+          "#44AA99",
+          "#117733",
+          "#999933",
+          "#DDCC77",
+          "#CC6677",
+          "#882255"
         ]
       },
       "legend": {
@@ -150,13 +154,33 @@
     },
 
     {
+      "params": [
+        {
+          "name": "publisher_pick",
+          "select": {
+            "type": "point",
+            "fields": [
+              "publisher"
+            ]
+          },
+          "bind": "legend"
+        }
+      ],
+
       "mark": {
         "type": "line",
-        "strokeWidth": 2.2,
-        "opacity": 0.78
+        "strokeWidth": 2.2
       },
 
       "encoding": {
+        "opacity": {
+          "condition": {
+            "param": "publisher_pick",
+            "value": 0.85
+          },
+          "value": 0.12
+        },
+
         "y": {
           "field": "share_pct",
           "type": "quantitative",
@@ -202,12 +226,19 @@
         "type": "point",
         "filled": true,
         "size": 75,
-        "opacity": 0.95,
         "stroke": "white",
         "strokeWidth": 1
       },
 
       "encoding": {
+        "opacity": {
+          "condition": {
+            "param": "publisher_pick",
+            "value": 0.95
+          },
+          "value": 0.12
+        },
+
         "y": {
           "field": "share_pct",
           "type": "quantitative",

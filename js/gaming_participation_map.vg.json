@@ -2,10 +2,13 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Where is video-game participation most widespread?",
-    "subtitle": "Share of internet users aged 16–64 who play video games on any device · Selected countries · April 2024 · Grey: no mapped survey data"
+    "subtitle": [
+      "Share of internet users aged 16–64 who play video games on any device",
+      "Selected countries · April 2024 · Grey: no mapped survey data"
+    ]
   },
-  "width": 800,
-  "height": 500,
+  "width": 490,
+  "height": 272,
   "data": {
     "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/ne_110m_admin_0_countries.topojson",
     "format": {
@@ -19,6 +22,9 @@
   "layer": [
     {
       "transform": [
+        {
+          "filter": "datum.properties.NAME !== 'Antarctica'"
+        },
         {
           "calculate": "'No mapped survey data for ' + datum.properties.NAME",
           "as": "note"
@@ -91,6 +97,13 @@
   "config": {
     "view": {
       "stroke": null
+    },
+    "font": "Arial",
+    "title": {
+      "anchor": "start",
+      "fontSize": 17,
+      "subtitleFontSize": 12,
+      "subtitleColor": "#526274"
     }
   }
 }

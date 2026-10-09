@@ -2,18 +2,21 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Dumbbell chart comparing the share of IGDB main games in ten selected genres in 2009 and 2024.",
   "title": {
-    "text": "How did recorded game genres change from 2009 to 2024?",
+    "text": [
+      "How did recorded game genres",
+      "change from 2009 to 2024?"
+    ],
     "subtitle": [
       "Share of IGDB main games in each selected genre",
       "A game may belong to more than one genre · Only 2009 and 2024 are shown"
     ],
     "anchor": "start",
-    "fontSize": 20,
+    "fontSize": 17,
     "subtitleFontSize": 12,
     "subtitleColor": "#526274",
     "offset": 16
   },
-  "width": 740,
+  "width": 520,
   "height": {
     "step": 44
   },

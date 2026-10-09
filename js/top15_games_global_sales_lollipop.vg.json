@@ -1,12 +1,18 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Horizontal lollipop chart of games ranked 1 to 15 in videogame.csv by recorded global sales.",
-  "width": 680,
+  "width": 470,
   "height": 480,
   "background": "white",
   "title": {
-    "text": "Which Top-Ranked Games Recorded the Highest Global Sales?",
-    "subtitle": "Games ranked 1–15 in videogame.csv; global sales are reported in millions of copies.",
+    "text": [
+      "Which Top-Ranked Games Recorded",
+      "the Highest Global Sales?"
+    ],
+    "subtitle": [
+      "Games ranked 1–15 in videogame.csv;",
+      "global sales are reported in millions of copies."
+    ],
     "anchor": "start",
     "fontSize": 20,
     "subtitleFontSize": 12,

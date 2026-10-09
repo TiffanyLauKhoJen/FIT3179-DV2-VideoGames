@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Hierarchical treemap of distinct IGDB main-game platform associations for selected major platform ecosystems, 1980-2024.",
-  "width": 900,
-  "height": 500,
+  "width": 630,
+  "height": 350,
   "background": "white",
   "padding": {
     "left": 5,
@@ -11,10 +11,14 @@
     "bottom": 5
   },
   "title": {
-    "text": "How Are Games Distributed Across Major Platform Ecosystems?",
+    "text": [
+      "How Are Games Distributed Across",
+      "Major Platform Ecosystems?"
+    ],
     "subtitle": [
-      "IGDB-recorded main games first released from 1980–2025; area represents the number of games listed for each platform.",
-      "Multiplatform games are counted once on each listed platform; minor ecosystems are excluded."
+      "IGDB-recorded main games first released from 1980–2025; area represents",
+      "the number of games listed for each platform. Multiplatform games are",
+      "counted once on each listed platform; minor ecosystems are excluded."
     ],
     "anchor": "start",
     "fontSize": 20,
@@ -334,6 +338,11 @@
             },
             {
               "op": "max",
+              "field": "x1",
+              "as": "child_x1"
+            },
+            {
+              "op": "max",
               "field": "family_total",
               "as": "family_total"
             },
@@ -362,7 +371,7 @@
           "as": "label_y"
         },
         {
-          "calculate": "datum.family + '  ' + format(datum.family_total / datum.selected_total, '.1%')",
+          "calculate": "datum.child_x1 - datum.child_x0 < 110 ? datum.family : datum.family + '  ' + format(datum.family_total / datum.selected_total, '.1%')",
           "as": "family_label"
         }
       ],
@@ -403,7 +412,7 @@
     {
       "transform": [
         {
-          "filter": "datum.rect_width >= 85 && datum.rect_height >= 48 && datum.rect_area >= 5200"
+          "filter": "datum.rect_width >= 121 && datum.rect_height >= 69 && datum.rect_area >= 10600"
         }
       ],
       "mark": {
@@ -443,7 +452,7 @@
     {
       "transform": [
         {
-          "filter": "datum.rect_width >= 85 && datum.rect_height >= 62 && datum.rect_area >= 6500"
+          "filter": "datum.rect_width >= 121 && datum.rect_height >= 89 && datum.rect_area >= 13300"
         }
       ],
       "mark": {

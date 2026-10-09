@@ -1,8 +1,14 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 700,
-  "height": 350,
-  "title": "Recorded Video Game Releases (2010–2025)",
+  "description": "Line chart of recorded IGDB main-game releases per year, annotated with industry developments in 2015, 2017 and 2024.",
+  "width": 545,
+  "height": 310,
+  "title": {
+    "text": "Recorded Video Game Releases (2010–2025)",
+    "anchor": "start",
+    "fontSize": 17,
+    "offset": 12
+  },
 
   "data": {
     "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/dataset_g1.csv",
@@ -15,44 +21,168 @@
     }
   },
 
-  "mark": {
-    "type": "line",
-    "point": true
-  },
-
   "encoding": {
     "x": {
       "field": "Year",
       "type": "quantitative",
       "title": "Release Year",
       "scale": {
-        "zero": false,
+        "domain": [2010, 2025],
         "nice": false
       },
       "axis": {
-        "format": "d"
+        "format": "d",
+        "grid": false,
+        "tickCount": 8
       }
     },
-
     "y": {
       "field": "Main_game_count",
       "type": "quantitative",
-      "title": "Recorded Main-Game Releases"
+      "title": "Recorded Main-Game Releases",
+      "scale": {
+        "domain": [0, 20000]
+      },
+      "axis": {
+        "grid": false
+      }
+    }
+  },
+
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "color": "#0072B2",
+        "strokeWidth": 2.5,
+        "point": {
+          "filled": true,
+          "color": "#0072B2",
+          "size": 40
+        }
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "Year",
+            "type": "quantitative",
+            "title": "Year",
+            "format": "d"
+          },
+          {
+            "field": "Main_game_count",
+            "type": "quantitative",
+            "title": "Releases",
+            "format": ",d"
+          }
+        ]
+      }
     },
 
-    "tooltip": [
-      {
-        "field": "Year",
-        "type": "quantitative",
-        "title": "Release Year",
-        "format": "d"
-      },
-      {
-        "field": "Main_game_count",
-        "type": "quantitative",
-        "title": "Recorded Main-Game Releases",
-        "format": ",d"
+    {
+      "transform": [
+        {
+          "filter": "datum.Year === 2015 || datum.Year === 2017 || datum.Year === 2024"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": false,
+        "color": "#0072B2",
+        "strokeWidth": 1.5,
+        "size": 160
       }
-    ]
+    },
+
+    {
+      "data": {
+        "values": [
+          {"x": 2015.12, "y": 4700, "x2": 2015.42, "y2": 4250},
+          {"x": 2017.12, "y": 9050, "x2": 2017.42, "y2": 8350},
+          {"x": 2023.75, "y": 18300, "x2": 2023.35, "y2": 18850}
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#9AA1AD",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative"},
+        "y": {"field": "y", "type": "quantitative"},
+        "x2": {"field": "x2"},
+        "y2": {"field": "y2"}
+      }
+    },
+
+    {
+      "data": {
+        "values": [
+          {
+            "x": 2015.5,
+            "y": 4400,
+            "year": "2015",
+            "body": "· Unity 5 introduced a free Personal|edition; Unreal Engine 4 removed|its subscription fee."
+          },
+          {
+            "x": 2017.5,
+            "y": 8500,
+            "year": "2017",
+            "body": "· Steam Direct replaced|Greenlight voting with|submission and review."
+          },
+          {
+            "x": 2017.0,
+            "y": 19900,
+            "year": "2024",
+            "body": "· Developers' first Steam games|accounted for around 25% of Steam's|monthly top new releases."
+          }
+        ]
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "top",
+            "fontSize": 11.5,
+            "fontWeight": "bold",
+            "color": "#1F2937"
+          },
+          "encoding": {
+            "x": {"field": "x", "type": "quantitative"},
+            "y": {"field": "y", "type": "quantitative"},
+            "text": {"field": "year"}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "top",
+            "dx": 31,
+            "fontSize": 11,
+            "lineHeight": 14,
+            "lineBreak": "|",
+            "color": "#3F4756"
+          },
+          "encoding": {
+            "x": {"field": "x", "type": "quantitative"},
+            "y": {"field": "y", "type": "quantitative"},
+            "text": {"field": "body"}
+          }
+        }
+      ]
+    }
+  ],
+
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial",
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
   }
 }

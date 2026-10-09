@@ -3,12 +3,12 @@
 
   "description": "Sankey-style diagram linking six major video game genres to standard ESRB age ratings.",
 
-  "width": 720,
+  "width": 350,
   "height": 480,
 
   "padding": {
-    "left": 150,
-    "right": 125,
+    "left": 100,
+    "right": 70,
     "top": 10,
     "bottom": 10
   },
@@ -16,13 +16,17 @@
   "background": "white",
 
   "title": {
-    "text": "How Do Major Video Game Genres Connect to ESRB Age Ratings?",
+    "text": [
+      "How Do Major Video Game Genres",
+      "Connect to ESRB Age Ratings?"
+    ],
     "subtitle": [
-      "Distinct title–genre–rating associations in Video_Games.csv for six genres used in the sales chart.",
-      "Repeated platform records are counted once; missing and non-standard ESRB ratings are excluded."
+      "Distinct title–genre–rating associations in Video_Games.csv",
+      "for six genres used in the sales chart. Repeated platform records are",
+      "counted once; missing and non-standard ESRB ratings are excluded."
     ],
     "anchor": "start",
-    "fontSize": 21,
+    "fontSize": 20,
     "subtitleFontSize": 12,
     "subtitleColor": "#666666",
     "offset": 14
@@ -284,12 +288,12 @@
               "Platform"
             ],
             "range": [
-              "#2A9D8F",
-              "#E76F51",
-              "#3A86FF",
-              "#F4A261",
-              "#8338EC",
-              "#6A994E"
+              "#009E73",
+              "#D55E00",
+              "#0072B2",
+              "#E69F00",
+              "#CC79A7",
+              "#56B4E9"
             ]
           },
           "legend": null
@@ -419,12 +423,12 @@
               "Platform"
             ],
             "range": [
-              "#2A9D8F",
-              "#E76F51",
-              "#3A86FF",
-              "#F4A261",
-              "#8338EC",
-              "#6A994E"
+              "#009E73",
+              "#D55E00",
+              "#0072B2",
+              "#E69F00",
+              "#CC79A7",
+              "#56B4E9"
             ]
           },
           "legend": null
@@ -529,10 +533,10 @@
               "M"
             ],
             "range": [
-              "#56B4E9",
-              "#E6AB02",
-              "#E67E22",
-              "#CC79A7"
+              "#C9CFD8",
+              "#98A2B0",
+              "#5F6B7B",
+              "#2B3340"
             ]
           },
           "legend": null
@@ -598,7 +602,8 @@
         "baseline": "middle",
         "dx": -13,
         "fontSize": 11.5,
-        "fontWeight": "bold"
+        "fontWeight": "bold",
+        "color": "#1F2937"
       },
 
       "encoding": {
@@ -628,30 +633,6 @@
 
         "text": {
           "field": "genre"
-        },
-
-        "color": {
-          "field": "genre",
-          "type": "nominal",
-          "scale": {
-            "domain": [
-              "Sports",
-              "Action",
-              "Shooter",
-              "Racing",
-              "Role-Playing",
-              "Platform"
-            ],
-            "range": [
-              "#2A9D8F",
-              "#E76F51",
-              "#3A86FF",
-              "#F4A261",
-              "#8338EC",
-              "#6A994E"
-            ]
-          },
-          "legend": null
         }
       }
     },
@@ -700,7 +681,8 @@
         "baseline": "middle",
         "dx": 13,
         "fontSize": 11.5,
-        "fontWeight": "bold"
+        "fontWeight": "bold",
+        "color": "#1F2937"
       },
 
       "encoding": {
@@ -730,26 +712,6 @@
 
         "text": {
           "field": "rating"
-        },
-
-        "color": {
-          "field": "rating",
-          "type": "nominal",
-          "scale": {
-            "domain": [
-              "E",
-              "E10+",
-              "T",
-              "M"
-            ],
-            "range": [
-              "#56B4E9",
-              "#E6AB02",
-              "#E67E22",
-              "#CC79A7"
-            ]
-          },
-          "legend": null
         }
       }
     }

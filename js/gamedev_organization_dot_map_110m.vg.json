@@ -4,8 +4,8 @@
     "text": "Where are listed game organizations concentrated?",
     "subtitle": "1 dot = 1 GameDevMap listing (10,417)"
   },
-  "width": 1000,
-  "height": 560,
+  "width": 490,
+  "height": 275,
   "projection": {
     "type": "equalEarth"
   },
@@ -67,7 +67,7 @@
               "XR (VR/AR)",
               "Other"
             ],
-            "range": ["#24476B", "#C46616", "#008B95", "#B59A00", "#4B5563"]
+            "range": ["#0072B2", "#E69F00", "#009E73", "#CC79A7", "#7A7F87"]
           },
           "legend": {
             "orient": "right",

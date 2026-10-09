@@ -1,11 +1,17 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Where are recorded game development and publishing listings concentrated?",
-    "subtitle": "GameCompanies by location \u00b7 Blue: development \u00b7 Gold: publishing \u00b7 Circle area: listings"
+    "text": [
+      "Where are recorded game development and",
+      "publishing listings concentrated?"
+    ],
+    "subtitle": [
+      "GameCompanies by location \u00b7 Blue: development \u00b7 Orange: publishing",
+      "Circle area: listings \u00b7 Click the legend to filter"
+    ]
   },
-  "width": 900,
-  "height": 500,
+  "width": 490,
+  "height": 272,
   "projection": {
     "type": "equalEarth"
   },
@@ -62,9 +68,20 @@
           "filter": "isValid(datum.game_count) && datum.game_count > 0"
         }
       ],
+      "params": [
+        {
+          "name": "activity_pick",
+          "select": {
+            "type": "point",
+            "fields": [
+              "activity"
+            ]
+          },
+          "bind": "legend"
+        }
+      ],
       "mark": {
         "type": "circle",
-        "opacity": 0.72,
         "stroke": "#FFFFFF",
         "strokeWidth": 0.5
       },
@@ -76,6 +93,13 @@
         "latitude": {
           "field": "latitude",
           "type": "quantitative"
+        },
+        "opacity": {
+          "condition": {
+            "param": "activity_pick",
+            "value": 0.72
+          },
+          "value": 0.06
         },
         "order": {
           "field": "game_count",
@@ -164,6 +188,13 @@
   "config": {
     "view": {
       "stroke": null
+    },
+    "font": "Arial",
+    "title": {
+      "anchor": "start",
+      "fontSize": 17,
+      "subtitleFontSize": 12,
+      "subtitleColor": "#526274"
     }
   }
 }

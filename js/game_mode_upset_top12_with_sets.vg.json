@@ -16,10 +16,14 @@
     }
   },
   "title": {
-    "text": "How Are Multiplayer-Capable Games Commonly Structured?",
+    "text": [
+      "How Are Multiplayer-Capable Games",
+      "Commonly Structured?"
+    ],
     "subtitle": [
-      "Top 12 exact mode combinations among IGDB-recorded main games released from 1980 to 2024.",
-      "Single-player-only games are excluded; horizontal bars show totals for each displayed mode."
+      "Top 12 exact mode combinations among IGDB-recorded main games",
+      "released from 1980 to 2024. Single-player-only games are excluded;",
+      "horizontal bars show totals for each displayed mode."
     ],
     "anchor": "start",
     "fontSize": 21,
@@ -83,7 +87,7 @@
           }
         },
         {
-          "width": 560,
+          "width": 390,
           "height": 240,
           "transform": [
             {
@@ -298,7 +302,7 @@
           }
         },
         {
-          "width": 560,
+          "width": 390,
           "height": 175,
           "layer": [
             {

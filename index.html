@@ -2,33 +2,435 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Game Collections</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Video Game Collections | FIT3179 Data Visualisation 2</title>
+  <meta name="author" content="Tiffany Lau">
+  <meta name="description" content="A visual story about how recorded video game collections, players and the games industry have changed over time.">
 
-    <!-- Vega libraries: same versions as the lab -->
-    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+  <!-- Import Vega & Vega-Lite -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
 
-    <!-- CSS file -->
-    <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+  <!-- Import pure.css and its responsive grid -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/grids-responsive-min.css">
+
+  <!-- Google fonts: Zilla Slab for headings, Open Sans for body text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,500;0,600;0,700;1,500&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- CSS file -->
+  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
 </head>
 
 <body>
-    <h1>Video Game Collections</h1>
 
-    <!-- Container for the release trend line chart -->
-    <div id="release_trend"></div>
+  <div class="page">
 
-    <!-- Load the Vega-Lite chart -->
-    <script type="text/javascript">
-        var vg_1 = "js/release_trend.vg.json";
+    <!-- ===================== Title and introduction ===================== -->
+    <header class="intro">
+      <h1>Video Game Collections</h1>
+      <p class="subtitle">Exploring platforms, genres, publishers and release years across gaming eras</p>
+      <div class="pure-g intro-text">
+        <div class="pure-u-1 pure-u-md-1-2">
+          <div class="intro-col intro-col-left">
+            <p class="lead">
+              Video games are a popular form of entertainment played on computers, consoles and mobile devices.
+              They cover many genres, including adventure, sports, racing and role-playing, and can be played
+              alone or with others.
+            </p>
+          </div>
+        </div>
+        <div class="pure-u-1 pure-u-md-1-2">
+          <div class="intro-col intro-col-right">
+            <p class="lead">
+              Over time, advances in technology have changed how games are developed, distributed and played.
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
 
-        vegaEmbed("#release_trend", vg_1).then(function(result) {
-            // Access the Vega view through result.view.
-        }).catch(console.error);
-    </script>
+
+    <!-- ===================== Section 1 ===================== -->
+    <section id="level-1" class="level">
+      <div class="level-heading">
+        <div class="level-banner">
+          <p class="level-tag">Section 1</p>
+          <h2>How Have Video Games Changed Over Time?</h2>
+        </div>
+      </div>
+
+      <!-- Chart 1: Recorded releases per year (chart on the left 2/3, text on the right 1/3, text centred vertically) -->
+      <div class="pure-g chart-row chart-row-center">
+        <div class="pure-u-1 pure-u-lg-2-3">
+          <div id="release_trend" class="vis-container"></div>
+        </div>
+        <div class="pure-u-1 pure-u-lg-1-3">
+          <div class="text-side text-side-right">
+            <p>
+              Digital stores gave <strong>smaller developers</strong> more ways to publish games without relying on
+              shop shelves. Affordable development tools and growing mobile audiences also opened opportunities for
+              new creators.
+            </p>
+            <p>
+              During this period, recorded releases in the IGDB dataset grew from
+              <strong>2,750&nbsp;in&nbsp;2010</strong> to <strong>18,108&nbsp;in&nbsp;2024</strong>—a
+              <strong class="key-figure">6.6-fold increase</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chart 2: Genre shares, 2009 vs 2024 (text on the right) -->
+      <div class="pure-g chart-row">
+        <div class="pure-u-1 pure-u-lg-17-24">
+          <div id="genre_dumbbell" class="vis-container"></div>
+        </div>
+        <div class="pure-u-1 pure-u-lg-7-24">
+          <div class="text-side text-side-right">
+            <p>
+              Because a game can carry several genres, these shares add up to more than 100%.
+            </p>
+            <p>
+              The striking change is in <strong class="hl">Adventure</strong>: from about one game in five in 2009 to
+              <strong class="hl">38%</strong> in 2024. Puzzle and Shooter now make up a smaller part of a much larger
+              catalogue, even though more of them are recorded than before.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chart 3: Theme ranks across eras (text on the left) -->
+      <div class="pure-g chart-row">
+        <div class="pure-u-1 pure-u-lg-7-24">
+          <div class="text-side text-side-left">
+            <p>
+              Themes describe what a game is about rather than how it plays. In the early 1980s,
+              <strong class="hl">science fiction</strong> led the seven themes, reflecting the space shooters of the arcade
+              era. Fantasy took the lead from 2005–2009, and horror climbed to second place in 2020–2024.
+            </p>
+            <p>
+              Educational games dropped from 3rd to 7th, even though their recorded number grew from 94 to 1,249. A falling
+              rank here means the other themes grew faster.
+            </p>
+          </div>
+        </div>
+        <div class="pure-u-1 pure-u-lg-17-24">
+          <div id="theme_bump" class="vis-container"></div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ===================== Section 2 ===================== -->
+    <section id="level-2" class="level">
+      <div class="level-heading">
+        <div class="level-banner">
+          <p class="level-tag">Section 2</p>
+          <h2>How Do Different Games Let Us Play?</h2>
+        </div>
+      </div>
+
+      <!-- Chart 4: Player perspectives (text on the right) -->
+      <div class="pure-g chart-row">
+        <div class="pure-u-1 pure-u-lg-17-24">
+          <div id="perspective_slope" class="vis-container"></div>
+        </div>
+        <div class="pure-u-1 pure-u-lg-7-24">
+          <div class="text-side text-side-right">
+            <p>
+              Early games were mostly flat: in 1980–1984, <strong class="hl">43.7%</strong> of games with a
+              recorded perspective used a side view. By 2020–2024, first-person games had more than doubled their
+              share, and virtual reality appeared at 5%.
+            </p>
+            <p>
+              The two periods are very different in size (2,294 games compared with 24,142), so the chart compares
+              shares rather than counts.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chart 5: Game-mode combinations (text on the left) -->
+      <div class="pure-g chart-row">
+        <div class="pure-u-1 pure-u-lg-7-24">
+          <div class="text-side text-side-left">
+            <p>
+              Most multiplayer games do not ask players to choose between playing alone and with others. The most common
+              combination, by a wide margin, is <strong class="hl">single-player plus multiplayer</strong>, recorded for
+              11,010 games.
+            </p>
+            <p>
+              Games that offer <em>only</em> multiplayer are far less common. Single-player-only games are left out so that
+              the different ways of playing together stay visible.
+            </p>
+          </div>
+        </div>
+        <div class="pure-u-1 pure-u-lg-17-24">
+          <div id="game_mode_upset" class="vis-container"></div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ===================== Section 3 ===================== -->
+    <section id="level-3" class="level">
+      <div class="level-heading">
+        <div class="level-banner">
+          <p class="level-tag">Section 3</p>
+          <h2>How Do Game Libraries Differ Across Platforms?</h2>
+        </div>
+      </div>
+
+      <!-- Chart 6: Platform listings (text on the right) -->
+      <div class="pure-g chart-row">
+        <div class="pure-u-1 pure-u-lg-17-24">
+          <div id="platform_treemap" class="vis-container"></div>
+        </div>
+        <div class="pure-u-1 pure-u-lg-7-24">
+          <div class="text-side text-side-right">
+            <p>
+              Each rectangle counts the <strong>recorded games listed on a platform</strong>, not sales. A game released
+              on several platforms is counted once for each.
+            </p>
+            <p>
+              PC dominates: Windows, Mac and Linux together hold <strong class="hl">about 60%</strong> of the selected
+              platform listings, partly because computers are open to small studios and solo developers. Nintendo Switch
+              has the most listings of any console.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chart 7: Genres and age ratings (text on the left) -->
+      <div class="pure-g chart-row">
+        <div class="pure-u-1 pure-u-lg-7-24">
+          <div class="text-side text-side-left">
+            <p>
+              Age ratings show who a game is made for. Under the North American ESRB system, E is for everyone, T for
+              ages 13 and over, and M for ages 17 and over.
+            </p>
+            <p>
+              <strong class="hl">Sports</strong> and Racing games flow mostly to E, Role-Playing mostly to T, and Shooter is
+              the only genre where <strong class="hl">M</strong> is the largest rating. Action spreads across all four
+              ratings.
+            </p>
+          </div>
+        </div>
+        <div class="pure-u-1 pure-u-lg-17-24">
+          <div id="genre_rating_sankey" class="vis-container"></div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ===================== Section 4 ===================== -->
+    <section id="level-4" class="level">
+      <div class="level-heading">
+        <div class="level-banner">
+          <p class="level-tag">Section 4</p>
+          <h2>Who Creates and Publishes Our Games?</h2>
+        </div>
+      </div>
+
+      <!-- Chart 8: Publisher genre mix (text on the right) -->
+      <div class="pure-g chart-row">
+        <div class="pure-u-1 pure-u-lg-17-24">
+          <div id="publisher_marimekko" class="vis-container"></div>
+        </div>
+        <div class="pure-u-1 pure-u-lg-7-24">
+          <div class="text-side text-side-right">
+            <p>
+              Wider columns mean larger catalogues across the six genres. Sega has the biggest.
+            </p>
+            <p>
+              Each publisher has its own speciality: <strong class="hl">Konami</strong> leans heavily on Sports,
+              <strong class="hl">Microsoft</strong> on Action and Shooter, and <strong class="hl">Nintendo</strong>
+              on Platform and Role-Playing games such as Mario and Pokémon.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chart 9: Game organisations (text on the left) -->
+      <div class="pure-g chart-row">
+        <div class="pure-u-1 pure-u-lg-7-24">
+          <div class="text-side text-side-left">
+            <p>
+              Each dot is one of <strong class="hl">10,417</strong> organisations listed on GameDevMap. Dots are placed
+              near city centres, so their positions are approximate.
+            </p>
+            <p>
+              A quarter are in the United States, and the busiest cities are London, Tokyo and Stockholm. Malaysia has 32
+              listings, centred on the Klang Valley, where MDEC runs <em>Level Up KL</em>, Southeast Asia's largest game
+              developer conference.
+            </p>
+          </div>
+        </div>
+        <div class="pure-u-1 pure-u-lg-17-24">
+          <div id="organisation_dot_map" class="vis-container"></div>
+        </div>
+      </div>
+
+      <!-- Chart 10: Development and publishing (text on the right) -->
+      <div class="pure-g chart-row">
+        <div class="pure-u-1 pure-u-lg-17-24">
+          <div id="company_symbol_map" class="vis-container"></div>
+        </div>
+        <div class="pure-u-1 pure-u-lg-7-24">
+          <div class="text-side text-side-right">
+            <p>
+              The dot map counts organisations. This map counts the games they produce, as listed on GameCompanies.
+              The <strong class="hl">USA</strong> and <strong class="hl">Japan</strong> lead in both development and
+              publishing.
+            </p>
+            <p>
+              In most leading countries, publishing listings outnumber development listings, but Canada and Sweden are
+              exceptions, with more development than publishing. Click an activity in the legend to show it on its own.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chart 11: Regional sales profiles (text on the left) -->
+      <div class="pure-g chart-row">
+        <div class="pure-u-1 pure-u-lg-7-24">
+          <div class="text-side text-side-left">
+            <p>
+              Where publishers sell their games differs just as much. North America is the largest market for every
+              publisher except Konami.
+            </p>
+            <p>
+              Western publishers such as Activision sell almost nothing in Japan (<strong class="hl">2.2%</strong>), while
+              Nintendo, Capcom and Konami earn around a quarter of their recorded sales there. Click a publisher in the
+              legend to follow its line.
+            </p>
+          </div>
+        </div>
+        <div class="pure-u-1 pure-u-lg-17-24">
+          <div id="publisher_parallel" class="vis-container"></div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ===================== Section 5 ===================== -->
+    <section id="level-5" class="level">
+      <div class="level-heading">
+        <div class="level-banner">
+          <p class="level-tag">Section 5</p>
+          <h2>Where Is Gaming Most Widespread?</h2>
+        </div>
+      </div>
+
+      <!-- Chart 12: Gaming participation (text on the right) -->
+      <div class="pure-g chart-row">
+        <div class="pure-u-1 pure-u-lg-17-24">
+          <div id="participation_map" class="vis-container"></div>
+        </div>
+        <div class="pure-u-1 pure-u-lg-7-24">
+          <div class="text-side text-side-right">
+            <p>
+              In every surveyed market, roughly three in four internet users aged 16–64, or more, play video games.
+            </p>
+            <p>
+              Southeast Asia stands out: the Philippines leads at <strong class="hl">96.5%</strong>, and
+              <strong class="hl">Malaysia</strong> reaches 88.6%, above the United States and much of Europe. Japan, home to
+              many famous publishers, has the lowest share in the survey. Countries in grey were not surveyed; this does not
+              mean nobody plays there.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chart 13: Best-selling titles (text on the left) -->
+      <div class="pure-g chart-row">
+        <div class="pure-u-1 pure-u-lg-7-24">
+          <div class="text-side text-side-left">
+            <p>
+              <strong class="hl">Wii Sports</strong> recorded more than twice the sales of the next title. It came
+              bundled with the Wii console, so most buyers received it with the machine.
+            </p>
+            <p>
+              All 15 titles were released between 1984 and 2009. This reflects the period the sales dataset covers,
+              not the market today.
+            </p>
+          </div>
+        </div>
+        <div class="pure-u-1 pure-u-lg-17-24">
+          <div id="top_sales_lollipop" class="vis-container"></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ===================== Conclusion ===================== -->
+    <section class="level outro">
+      <div class="text-block">
+        <h2>Game over? Far from it</h2>
+        <p>
+          The recorded catalogue has grown several times over, adventure and fantasy have moved to the centre, and
+          players see and share game worlds in new ways. Behind the screen, the industry is concentrated in a few
+          countries and publishers, yet the audience is truly global, and Malaysia is among the most engaged markets.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ===================== Footer: metadata ===================== -->
+    <footer class="pure-g footer">
+      <div class="pure-u-1 pure-u-md-1-2">
+        <div class="footer-col">
+          <h3>Data sources</h3>
+          <ul>
+            <li><a href="https://www.igdb.com/" target="_blank" rel="noopener">IGDB (Internet Game Database)</a>: releases, genres, themes, perspectives, game modes and platforms. <span class="placeholder">[Add download/API date]</span></li>
+            <li><span class="placeholder">[Name and URL of the video game sales dataset (Video_Games.csv / videogame.csv)]</span>: age ratings, publisher catalogues, regional sales and top-selling titles.</li>
+            <li><a href="https://gamedevmap.com/" target="_blank" rel="noopener">GameDevMap</a>: game organisation locations.</li>
+            <li><a href="https://gamecompanies.com/" target="_blank" rel="noopener">GameCompanies</a>: development and publishing listings by country.</li>
+            <li><a href="https://datareportal.com/reports/digital-2024-april-global-statshot" target="_blank" rel="noopener">DataReportal, Digital 2024 April Global Statshot</a> (GWI survey data): gaming participation.</li>
+            <li><a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a>: 1:110m country boundaries.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pure-u-1 pure-u-md-1-2">
+        <div class="footer-col">
+          <h3>Research references</h3>
+          <ul>
+            <li>ESRB. <a href="https://www.esrb.org/ratings-guide/" target="_blank" rel="noopener">Ratings guide</a>: definitions of the E, E10+, T and M ratings.</li>
+            <li>MDEC. <a href="https://www.mdec.my/levelupkl2025" target="_blank" rel="noopener">Level Up KL</a>: Southeast Asia game developer conference.</li>
+            <li>2015: KitGuru. <a href="https://www.kitguru.net/channel/generaltech/matthew-wilson/unreal-engine-4-has-dropped-its-subscription-will-now-be-free-for-all/" target="_blank" rel="noopener">Unreal Engine 4 has dropped its subscription</a>; PCWorld. <a href="https://www.pcworld.com/article/432212/unity-5s-new-full-featured-personal-edition-is-completely-utterly-free-to-use.html" target="_blank" rel="noopener">Unity 5's Personal Edition is free to use</a>.</li>
+            <li>2017: MCV/DEVELOP. <a href="https://mcvuk.com/development-news/steam-direct-launches-replacing-greenlight-submission-programme/" target="_blank" rel="noopener">Steam Direct launches, replacing Greenlight</a>.</li>
+            <li>2024: Game World Observer. <a href="https://gameworldobserver.com/2025/03/14/steam-first-time-devs-games-revenue-2024-recap" target="_blank" rel="noopener">How Steam creates opportunities for first-time devs</a> (Valve's 2024 Steam Year in Review data).</li>
+            <li><span class="placeholder">[Reference for Wii Sports being bundled with the Wii console]</span></li>
+          </ul>
+          <h3>About</h3>
+          <p>
+            Created by <strong>Tiffany Lau</strong> for FIT3179 Data Visualisation, Monash University,
+            <span class="placeholder">[publication date, e.g. 25 October 2026]</span>. Built with
+            <a href="https://vega.github.io/vega-lite/" target="_blank" rel="noopener">Vega-Lite</a>.
+          </p>
+          <p class="ai-note">
+            <strong>AI acknowledgement:</strong>
+            <span class="placeholder">[Describe which AI tools you used, what for (e.g. page layout, CSS and draft
+              text), and confirm that you checked and edited the output.]</span>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+  </div> <!-- end page -->
+
+  <!-- Embed the Vega-Lite charts -->
+  <script type="text/javascript" src="js/vega_lite_vis.js"></script>
 </body>
 
 </html>
