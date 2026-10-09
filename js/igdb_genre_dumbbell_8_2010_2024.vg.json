@@ -11,8 +11,8 @@
     "subtitleColor": "#526274",
     "offset": 16
   },
-  "width": 520,
-  "height": {"step": 44},
+  "width": 460,
+  "height": {"step": 50},
   "data": {
     "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/igdb_genre_dumbbell_8_2010_2024.csv",
     "format": {
@@ -139,6 +139,7 @@
       "mark": {
         "type": "circle",
         "size": 180,
+        "opacity": 1,
         "stroke": "#FFFFFF",
         "strokeWidth": 1.5
       },
@@ -154,12 +155,13 @@
           "title": "Year",
           "scale": {
             "domain": ["2010", "2024"],
-            "range": ["#7B8794", "#0072B2"]
+            "range": ["#7B8794", "#882255"]
           },
           "legend": {
-            "orient": "bottom",
-            "direction": "horizontal",
-            "symbolSize": 150
+            "orient": "right",
+            "symbolSize": 150,
+            "titleFontSize": 12,
+            "labelFontSize": 12
           }
         },
         "tooltip": [
@@ -187,6 +189,47 @@
           }
         ]
       }
+    },
+    {
+      "description": "Annotations and leader lines, placed in pixels in clear space: one above the plot for Adventure, one between the Role-Playing and Shooter rows for Simulator.",
+      "data": {"values": [{}]},
+      "mark": {"type": "rule", "color": "#9AA1AD", "strokeWidth": 1},
+      "encoding": {"x": {"value": 300}, "y": {"value": -9}, "x2": {"value": 300}, "y2": {"value": 16}}
+    },
+    {
+      "data": {"values": [{}]},
+      "mark": {"type": "rule", "color": "#9AA1AD", "strokeWidth": 1},
+      "encoding": {"x": {"value": 201}, "y": {"value": 133}, "x2": {"value": 208}, "y2": {"value": 231}}
+    },
+    {
+      "data": {"values": [{}]},
+      "mark": {"type": "text", "text": "Players helped fund new adventure games through crowdfunding.", "align": "left", "baseline": "top", "fontSize": 11, "color": "#3F4756"},
+      "encoding": {"x": {"value": 150}, "y": {"value": -40}}
+    },
+    {
+      "data": {"values": [{}]},
+      "mark": {"type": "text", "text": "Double Fine Adventure raised", "align": "left", "baseline": "top", "fontSize": 11, "color": "#3F4756"},
+      "encoding": {"x": {"value": 150}, "y": {"value": -26}}
+    },
+    {
+      "data": {"values": [{}]},
+      "mark": {"type": "text", "text": "$3.3 million", "align": "left", "baseline": "top", "fontSize": 11, "fontWeight": "bold", "color": "#1F2937"},
+      "encoding": {"x": {"value": 298.6}, "y": {"value": -26}}
+    },
+    {
+      "data": {"values": [{}]},
+      "mark": {"type": "text", "text": "from backers.", "align": "left", "baseline": "top", "fontSize": 11, "color": "#3F4756"},
+      "encoding": {"x": {"value": 361.6}, "y": {"value": -26}}
+    },
+    {
+      "data": {"values": [{}]},
+      "mark": {"type": "text", "text": "Farming and life simulation games gained attention during the pandemic,", "align": "left", "baseline": "top", "fontSize": 11, "color": "#3F4756"},
+      "encoding": {"x": {"value": 174}, "y": {"value": 236}}
+    },
+    {
+      "data": {"values": [{}]},
+      "mark": {"type": "text", "text": "offering relaxation and an escape from stress.", "align": "left", "baseline": "top", "fontSize": 11, "color": "#3F4756"},
+      "encoding": {"x": {"value": 174}, "y": {"value": 250}}
     }
   ],
   "config": {

@@ -4,7 +4,7 @@ var embedOptions = { "actions": false, "renderer": "svg" };
 
 // Level 1: the catalogue keeps growing
 var vg_release_trend = "js/release_trend.vg.json";
-var vg_genre_dumbbell = "js/igdb_genres_dumbbell_2009_2024.vg.json";
+var vg_genre_dumbbell = "js/igdb_genre_dumbbell_8_2010_2024.vg.json";
 var vg_theme_bump = "js/theme_bump_educational_eras.vg.json";
 
 // Level 2: new ways to see and play

@@ -209,6 +209,18 @@ a {
   height: auto;
 }
 
+/* Chart tooltips: slightly smaller than the vega-embed default (12px).
+   The extra class outranks the style vega-tooltip injects at run time. */
+#vg-tooltip-element.vg-tooltip {
+  font-size: 11px;
+  padding: 6px 8px;
+}
+
+#vg-tooltip-element.vg-tooltip table tr td {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
 /* One chart per row, with its explanation beside it (alternating left and right) */
 .text-side {
   padding-top: 4px;    /* lines up with the chart title */
@@ -235,13 +247,18 @@ a {
   padding-top: 0;
 }
 
-.chart-row-center .text-side-right {
+/* Rows with the chart in 2/3 of the width and the text in 1/3 */
+.chart-row-wide .text-side-right {
   padding-left: 22px;   /* plus the chart's centring slack, about a 26 px gap */
 }
 
-/* Body-size reading text, allowed to fill the wider text column */
-.chart-row-center .text-side p {
+.chart-row-wide .text-side p {
   max-width: none;
+}
+
+/* Text starts level with the top of the plotting area (below the chart title and top note) */
+.text-side-plot-top {
+  padding-top: 79px;
 }
 
 /* Conclusion text */
@@ -318,8 +335,9 @@ a {
     padding: 16px 0 0;
   }
 
-  .chart-row-center .text-side-right {
-    padding-top: 16px;
+  .chart-row-wide .text-side-right,
+  .chart-row-wide .text-side-plot-top {
+    padding: 16px 0 0;
   }
 
   .text-side p {
