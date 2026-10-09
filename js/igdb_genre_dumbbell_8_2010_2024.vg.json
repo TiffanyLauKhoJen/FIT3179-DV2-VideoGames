@@ -1,0 +1,279 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Dumbbell chart comparing eight selected genres across recorded IGDB main games released in 2010 and 2024.",
+  "title": {
+    "text": [
+      "Differences in Video Game Genre Shares",
+      "2010 vs 2024"
+    ],
+    "subtitle": [
+      "Share of recorded IGDB main games in each selected genre",
+      "Games can have multiple genres \u00b7 Only the two endpoint years are shown"
+    ],
+    "anchor": "start",
+    "fontSize": 17,
+    "subtitleFontSize": 11,
+    "subtitleColor": "#526274",
+    "offset": 16
+  },
+  "width": 520,
+  "height": {
+    "step": 44
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/igdb_genre_dumbbell_8_2010_2024.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Games_2010": "number",
+        "Main_games_2010": "number",
+        "Pct_2010": "number",
+        "Games_2024": "number",
+        "Main_games_2024": "number",
+        "Pct_2024": "number",
+        "Change_pp": "number"
+      }
+    }
+  },
+  "encoding": {
+    "y": {
+      "field": "Genre",
+      "type": "nominal",
+      "sort": [
+        "Adventure",
+        "Action",
+        "Simulator",
+        "Strategy",
+        "Role-Playing",
+        "Shooter",
+        "Sports",
+        "Puzzle"
+      ],
+      "title": null,
+      "axis": {
+        "labelFontSize": 12,
+        "labelPadding": 12,
+        "labelLimit": 155,
+        "domain": false,
+        "ticks": false
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "stroke": "#A5B2C2",
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "x": {
+          "field": "Pct_2010",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              50
+            ],
+            "nice": false
+          },
+          "title": "Share of recorded main games (%)",
+          "axis": {
+            "values": [
+              0,
+              10,
+              20,
+              30,
+              40,
+              50
+            ],
+            "grid": true,
+            "gridColor": "#E6EBF0",
+            "labelFontSize": 11,
+            "titleFontSize": 12
+          }
+        },
+        "x2": {
+          "field": "Pct_2024"
+        },
+        "tooltip": [
+          {
+            "field": "Genre",
+            "type": "nominal",
+            "title": "Genre"
+          },
+          {
+            "field": "Pct_2010",
+            "type": "quantitative",
+            "title": "2010 share (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "Games_2010",
+            "type": "quantitative",
+            "title": "2010 games in genre",
+            "format": ",d"
+          },
+          {
+            "field": "Main_games_2010",
+            "type": "quantitative",
+            "title": "2010 total main games",
+            "format": ",d"
+          },
+          {
+            "field": "Pct_2024",
+            "type": "quantitative",
+            "title": "2024 share (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "Games_2024",
+            "type": "quantitative",
+            "title": "2024 games in genre",
+            "format": ",d"
+          },
+          {
+            "field": "Main_games_2024",
+            "type": "quantitative",
+            "title": "2024 total main games",
+            "format": ",d"
+          },
+          {
+            "field": "Change_pp",
+            "type": "quantitative",
+            "title": "Change (percentage points)",
+            "format": "+.1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "fold": [
+            "Pct_2010",
+            "Pct_2024"
+          ],
+          "as": [
+            "Year_field",
+            "Share_pct"
+          ]
+        },
+        {
+          "calculate": "datum.Year_field === 'Pct_2010' ? '2010' : '2024'",
+          "as": "Year"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 180,
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {
+          "field": "Share_pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              50
+            ],
+            "nice": false
+          }
+        },
+        "color": {
+          "field": "Year",
+          "type": "nominal",
+          "title": "Year",
+          "scale": {
+            "domain": [
+              "2010",
+              "2024"
+            ],
+            "range": [
+              "#7B8794",
+              "#0072B2"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "symbolSize": 150
+          }
+        },
+        "tooltip": [
+          {
+            "field": "Genre",
+            "type": "nominal",
+            "title": "Genre"
+          },
+          {
+            "field": "Year",
+            "type": "nominal",
+            "title": "Year"
+          },
+          {
+            "field": "Share_pct",
+            "type": "quantitative",
+            "title": "Games in genre (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "Change_pp",
+            "type": "quantitative",
+            "title": "Change (percentage points)",
+            "format": "+.1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "indexof(['Adventure', 'Action', 'Simulator', 'Puzzle'], datum.Genre) >= 0"
+        },
+        {
+          "calculate": "max(datum.Pct_2010, datum.Pct_2024)",
+          "as": "Label_x"
+        },
+        {
+          "calculate": "format(datum.Change_pp, '+.1f') + ' pp'",
+          "as": "Change_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 10,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#304455"
+      },
+      "encoding": {
+        "x": {
+          "field": "Label_x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              50
+            ],
+            "nice": false
+          }
+        },
+        "text": {
+          "field": "Change_label",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial"
+  }
+}
