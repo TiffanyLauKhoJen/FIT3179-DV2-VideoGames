@@ -3,12 +3,7 @@
   "description": "Dumbbell chart comparing eight selected genres across recorded IGDB main games released in 2010 and 2024.",
   "title": {
     "text": [
-      "Differences in Video Game Genre Shares",
-      "2010 vs 2024"
-    ],
-    "subtitle": [
-      "Share of recorded IGDB main games in each selected genre",
-      "Games can have multiple genres \u00b7 Only the two endpoint years are shown"
+      "Differences in Video Game Genre Shares (2010 - 2024)"
     ],
     "anchor": "start",
     "fontSize": 17,
@@ -17,9 +12,7 @@
     "offset": 16
   },
   "width": 520,
-  "height": {
-    "step": 44
-  },
+  "height": {"step": 44},
   "data": {
     "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/igdb_genre_dumbbell_8_2010_2024.csv",
     "format": {
@@ -70,32 +63,17 @@
         "x": {
           "field": "Pct_2010",
           "type": "quantitative",
-          "scale": {
-            "domain": [
-              0,
-              50
-            ],
-            "nice": false
-          },
+          "scale": {"domain": [0, 50], "nice": false},
           "title": "Share of recorded main games (%)",
           "axis": {
-            "values": [
-              0,
-              10,
-              20,
-              30,
-              40,
-              50
-            ],
+            "values": [0, 10, 20, 30, 40, 50],
             "grid": true,
             "gridColor": "#E6EBF0",
             "labelFontSize": 11,
             "titleFontSize": 12
           }
         },
-        "x2": {
-          "field": "Pct_2024"
-        },
+        "x2": {"field": "Pct_2024"},
         "tooltip": [
           {
             "field": "Genre",
@@ -150,14 +128,8 @@
     {
       "transform": [
         {
-          "fold": [
-            "Pct_2010",
-            "Pct_2024"
-          ],
-          "as": [
-            "Year_field",
-            "Share_pct"
-          ]
+          "fold": ["Pct_2010", "Pct_2024"],
+          "as": ["Year_field", "Share_pct"]
         },
         {
           "calculate": "datum.Year_field === 'Pct_2010' ? '2010' : '2024'",
@@ -174,27 +146,15 @@
         "x": {
           "field": "Share_pct",
           "type": "quantitative",
-          "scale": {
-            "domain": [
-              0,
-              50
-            ],
-            "nice": false
-          }
+          "scale": {"domain": [0, 50], "nice": false}
         },
         "color": {
           "field": "Year",
           "type": "nominal",
           "title": "Year",
           "scale": {
-            "domain": [
-              "2010",
-              "2024"
-            ],
-            "range": [
-              "#7B8794",
-              "#0072B2"
-            ]
+            "domain": ["2010", "2024"],
+            "range": ["#7B8794", "#0072B2"]
           },
           "legend": {
             "orient": "bottom",
@@ -227,53 +187,10 @@
           }
         ]
       }
-    },
-    {
-      "transform": [
-        {
-          "filter": "indexof(['Adventure', 'Action', 'Simulator', 'Puzzle'], datum.Genre) >= 0"
-        },
-        {
-          "calculate": "max(datum.Pct_2010, datum.Pct_2024)",
-          "as": "Label_x"
-        },
-        {
-          "calculate": "format(datum.Change_pp, '+.1f') + ' pp'",
-          "as": "Change_label"
-        }
-      ],
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "baseline": "middle",
-        "dx": 10,
-        "fontSize": 11,
-        "fontWeight": "bold",
-        "color": "#304455"
-      },
-      "encoding": {
-        "x": {
-          "field": "Label_x",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              0,
-              50
-            ],
-            "nice": false
-          }
-        },
-        "text": {
-          "field": "Change_label",
-          "type": "nominal"
-        }
-      }
     }
   ],
   "config": {
-    "view": {
-      "stroke": null
-    },
+    "view": {"stroke": null},
     "font": "Arial"
   }
 }
