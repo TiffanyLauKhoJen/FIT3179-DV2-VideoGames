@@ -21,6 +21,8 @@
       "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/platform_family_treemap_igdb_selected.csv",
       "format": {"type": "csv", "parse": {"game_platform_count": "number"}},
       "transform": [
+        {"type": "formula", "as": "family", "expr": "datum.family === 'PC / Computer' ? 'Computer' : datum.family"},
+        {"type": "formula", "as": "platform", "expr": "datum.platform === 'PC (Microsoft Windows)' ? 'Microsoft Windows' : datum.platform"},
         {"type": "joinaggregate", "ops": ["sum"], "fields": ["game_platform_count"], "as": ["selected_total"]},
         {"type": "joinaggregate", "groupby": ["family"], "ops": ["sum"], "fields": ["game_platform_count"], "as": ["family_total"]},
         {"type": "formula", "as": "platform_share_selected_pct", "expr": "datum.game_platform_count / datum.selected_total * 100"},
@@ -64,8 +66,8 @@
     {
       "name": "color",
       "type": "ordinal",
-      "domain": ["PC / Computer", "Mobile / Web", "Nintendo", "PlayStation", "Xbox", "VR", "Sega"],
-      "range": ["#4E79A7", "#F28E2B", "#76B7B2", "#EDC948", "#59A14F", "#B07AA1", "#9C755F"]
+      "domain": ["Computer", "Mobile / Web", "Nintendo", "PlayStation", "Xbox", "VR", "Sega"],
+      "range": ["#4269D0", "#F28E2B", "#76B7B2", "#59A14F", "#F2CF5B", "#BF8CF2", "#D5A06F"]
     }
   ],
 

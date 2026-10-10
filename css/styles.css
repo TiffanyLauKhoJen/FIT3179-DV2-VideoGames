@@ -320,6 +320,25 @@ a {
   color: #8F9FBD;   /* Virtual Reality line (same as legend) */
 }
 
+/* Platform figures beside the treemap, in the treemap's ecosystem colours
+   (darkened where needed so they are readable as text on white) */
+.plat-pc {
+  color: #4269D0;   /* PC / Computer, same as the chart */
+}
+
+.plat-nintendo {
+  color: #437F7A;   /* Nintendo #76B7B2, darkened */
+}
+
+.plat-playstation {
+  color: #488240;   /* PlayStation #59A14F, darkened */
+}
+
+/* Long enlarged phrases beside the treemap may wrap instead of overflowing the narrow text column */
+#level-3 .text-side .key-figure {
+  white-space: normal;
+}
+
 /* Game-mode figures beside the radial chart, in darker versions of the chart's ring colours
    (darkened so they are readable as text on white) */
 .mode-multi {

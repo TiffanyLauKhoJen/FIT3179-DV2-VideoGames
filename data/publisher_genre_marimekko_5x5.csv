@@ -1,0 +1,26 @@
+publisher,genre,distinct_title_count
+Sega,Sports,238
+Sega,Action,173
+Sega,Shooter,142
+Sega,Role-Playing,140
+Sega,Simulator,42
+Konami,Sports,283
+Konami,Action,138
+Konami,Shooter,87
+Konami,Role-Playing,77
+Konami,Simulator,149
+Electronic Arts,Sports,103
+Electronic Arts,Action,75
+Electronic Arts,Shooter,128
+Electronic Arts,Role-Playing,76
+Electronic Arts,Simulator,146
+Microsoft,Sports,47
+Microsoft,Action,188
+Microsoft,Shooter,186
+Microsoft,Role-Playing,52
+Microsoft,Simulator,27
+Nintendo,Sports,89
+Nintendo,Action,92
+Nintendo,Shooter,48
+Nintendo,Role-Playing,145
+Nintendo,Simulator,43
