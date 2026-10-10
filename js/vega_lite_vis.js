@@ -18,7 +18,7 @@ var vg_platform_treemap = "js/platform_family_treemap.vg.json";   // Vega spec (
 var vg_publisher_marimekko = "js/publisher_genre_marimekko_top6x6_no_other2.vg.json";
 var vg_organisation_dot_map = "js/gamedev_organization_dot_map_110m.vg.json";
 var vg_company_symbol_map = "js/gamecompanies_world_overlaid_symbols.vg.json";
-var vg_publisher_parallel = "js/publisher_regional_sales_parallel2.vg.json";
+var vg_publisher_heatmap = "js/publisher_regional_share_heatmap_12.vg.json";
 
 // Level 5: a global audience, a few giant hits
 var vg_participation_map = "js/gaming_participation_map.vg.json";
@@ -37,7 +37,7 @@ vegaEmbed("#platform_treemap", vg_platform_treemap, embedOptions).catch(console.
 vegaEmbed("#publisher_marimekko", vg_publisher_marimekko, embedOptions).catch(console.error);
 vegaEmbed("#organisation_dot_map", vg_organisation_dot_map, embedOptions).catch(console.error);
 vegaEmbed("#company_symbol_map", vg_company_symbol_map, embedOptions).catch(console.error);
-vegaEmbed("#publisher_parallel", vg_publisher_parallel, embedOptions).catch(console.error);
+vegaEmbed("#publisher_heatmap", vg_publisher_heatmap, embedOptions).catch(console.error);
 
 vegaEmbed("#participation_map", vg_participation_map, embedOptions).catch(console.error);
 vegaEmbed("#top_sales_lollipop", vg_top_sales_lollipop, embedOptions).catch(console.error);
