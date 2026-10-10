@@ -99,9 +99,9 @@ a {
 }
 
 /* Figures coloured to match the dumbbell chart's years
-   (2010 grey darkened slightly from the chart's #7B8794 so it is readable as text) */
+   (2010 coral, same as the chart legend) */
 .year-2010 {
-  color: #5E6A78;
+  color: #EE6677;
 }
 
 .year-2024 {
@@ -278,6 +278,10 @@ a {
   padding-left: 22px;   /* plus the chart's centring slack, about a 26 px gap */
 }
 
+.chart-row-wide .text-side-left {
+  padding-right: 22px;  /* same 290 px text width as the right-hand texts */
+}
+
 .chart-row-wide .text-side p {
   max-width: none;
 }
@@ -386,7 +390,8 @@ a {
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
     "c1 c2"
-    "t1 t2";
+    "t1 t2"
+    "t1 t2";   /* two text rows: first and second paragraphs */
   column-gap: 32px;
   row-gap: 12px;
   margin-bottom: 32px;
@@ -413,6 +418,11 @@ a {
   width: 100%;
   max-width: 48ch;
   justify-self: center;
+  /* Share the pair's paragraph rows, so both second paragraphs start at the same height */
+  display: grid;
+  grid-row: span 2;
+  grid-template-rows: subgrid;
+  row-gap: 0;
 }
 
 .chart-pair-text p {
@@ -504,6 +514,10 @@ a {
     padding: 16px 0 0;
   }
 
+  .chart-row-wide .text-side-left {
+    padding: 0 0 8px;
+  }
+
   .text-side p {
     max-width: 70ch;
   }
@@ -515,7 +529,7 @@ a {
 @media (max-width: 1023px) {
   .chart-pair {
     grid-template-columns: 1fr;
-    grid-template-areas: "c1" "t1" "c2" "t2";
+    grid-template-areas: "c1" "t1" "t1" "c2" "t2" "t2";
     row-gap: 16px;
   }
 }

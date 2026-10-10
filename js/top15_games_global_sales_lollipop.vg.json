@@ -1,22 +1,13 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Horizontal lollipop chart of games ranked 1 to 15 in videogame.csv by recorded global sales.",
-  "width": 470,
-  "height": 480,
+  "width": 468,
+  "height": 287,
   "background": "white",
   "title": {
-    "text": [
-      "Which Top-Ranked Games Recorded",
-      "the Highest Global Sales?"
-    ],
-    "subtitle": [
-      "Games ranked 1–15 in videogame.csv;",
-      "global sales are reported in millions of copies."
-    ],
+    "text": "Top 15 Games by Recorded Global Sales",
     "anchor": "start",
-    "fontSize": 20,
-    "subtitleFontSize": 12,
-    "subtitleColor": "#666666",
+    "fontSize": 17,
     "offset": 12
   },
   "data": {
@@ -41,7 +32,27 @@
       "title": null,
       "axis": {
         "labelLimit": 260,
-        "labelFontSize": 11
+        "labelFontSize": 11,
+        "labelColor": {
+          "condition": [
+            {
+              "test": "datum.value === 'Tetris'",
+              "value": "#54541C"
+            },
+            {
+              "test": "datum.value === 'Mario Kart DS'",
+              "value": "#A9048E"
+            }
+          ],
+          "value": "#000000"
+        },
+        "labelFontWeight": {
+          "condition": {
+            "test": "datum.value === 'Tetris' || datum.value === 'Mario Kart DS'",
+            "value": "bold"
+          },
+          "value": "normal"
+        }
       }
     },
     "x": {
@@ -53,8 +64,7 @@
       },
       "axis": {
         "format": ",.0f",
-        "grid": true,
-        "gridColor": "#E5E7EB",
+        "grid": false,
         "domain": false
       }
     }
@@ -63,20 +73,23 @@
     {
       "mark": {
         "type": "rule",
-        "strokeWidth": 2,
-        "color": "#B8B8B8"
+        "strokeWidth": 2
       },
       "encoding": {
         "x2": {
           "datum": 0
+        },
+        "color": {
+          "field": "highlight_color",
+          "type": "nominal",
+          "scale": null
         }
       }
     },
     {
       "mark": {
         "type": "circle",
-        "size": 135,
-        "color": "#4E79A7"
+        "size": 90
       },
       "encoding": {
         "tooltip": [
@@ -108,7 +121,15 @@
             "type": "nominal",
             "title": "Genre"
           }
-        ]
+        ],
+        "color": {
+          "field": "highlight_color",
+          "type": "nominal",
+          "scale": null
+        },
+        "opacity": {
+          "value": 1
+        }
       }
     },
     {
@@ -127,6 +148,152 @@
           "format": ".2f"
         }
       }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "title": "Tetris",
+            "x": 44,
+            "note": "Bundled with Game Boy in major markets,|its sales also benefited from console purchases."
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "lineBreak": "|",
+        "fontSize": 11,
+        "lineHeight": 14,
+        "dy": -7,
+        "color": "#54541C"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "title",
+          "type": "nominal",
+          "sort": {
+            "field": "rank",
+            "order": "ascending"
+          }
+        },
+        "text": {
+          "field": "note"
+        },
+        "tooltip": null
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "title": "Mario Kart DS",
+            "x": 44,
+            "note": "Online racing attracted early interest:|45% of first-week United States buyers|tried the feature."
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "lineBreak": "|",
+        "fontSize": 11,
+        "lineHeight": 14,
+        "dy": -14,
+        "color": "#A9048E"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "title",
+          "type": "nominal",
+          "sort": {
+            "field": "rank",
+            "order": "ascending"
+          }
+        },
+        "text": {
+          "field": "note"
+        },
+        "tooltip": null
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "title": "Tetris",
+            "x": 38.6,
+            "x2": 43.2
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 1,
+        "color": "#54541C"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "x2": {
+          "field": "x2"
+        },
+        "y": {
+          "field": "title",
+          "type": "nominal",
+          "sort": {
+            "field": "rank",
+            "order": "ascending"
+          }
+        },
+        "tooltip": null
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "title": "Mario Kart DS",
+            "x": 31.8,
+            "x2": 43.2
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 1,
+        "color": "#A9048E"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "x2": {
+          "field": "x2"
+        },
+        "y": {
+          "field": "title",
+          "type": "nominal",
+          "sort": {
+            "field": "rank",
+            "order": "ascending"
+          }
+        },
+        "tooltip": null
+      }
     }
   ],
   "config": {
@@ -138,5 +305,15 @@
       "labelFontSize": 11,
       "titleFontSize": 12
     }
-  }
+  },
+  "transform": [
+    {
+      "calculate": "datum.title === 'Pokemon Red/Pokemon Blue' ? 'Pokémon Red/Blue' : datum.title === 'Pokemon Gold/Pokemon Silver' ? 'Pokémon Gold/Silver' : datum.title",
+      "as": "title"
+    },
+    {
+      "calculate": "datum.title === 'Tetris' ? '#54541C' : datum.title === 'Mario Kart DS' ? '#A9048E' : '#A3ACB8'",
+      "as": "highlight_color"
+    }
+  ]
 }

@@ -135,7 +135,7 @@
           "title": "Year",
           "scale": {
             "domain": ["2010", "2024"],
-            "range": ["#7B8794", "#882255"]
+            "range": ["#EE6677", "#882255"]
           },
           "legend": {
             "orient": "right",

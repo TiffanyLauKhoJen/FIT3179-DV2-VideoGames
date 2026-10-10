@@ -1,40 +1,51 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Regional sales shares for 12 selected publisher labels with at least 30 complete distinct title-platform releases. Sega and Nintendo replace Rockstar Games and Sony Computer Entertainment to connect this chart with the publisher-genre Marimekko. Electronic Arts and Konami appear in both charts. Microsoft is excluded because its exact publisher label has only five complete regional-sales records. Each regional share is the publisher regional sales sum divided by its sum across all four regions, multiplied by 100. Rows total 100% before rounding and are grouped by highest-share region, then ordered by that share. Publisher labels remain as recorded without corporate consolidation. No year filter is applied; dated included releases extend through 2020. Missing regional values are excluded rather than treated as zero. Exact redundant records are removed and conflicting complete title-platform records are omitted, including Konami International Superstar Soccer 98 on N64. Values are recorded sales in million copies, not revenue. Colour uses a common continuous linear 0-70% scale.",
+  "description": "Regional sales shares for 12 selected publishers using complete regional-sales records. Each publisher's four regional shares total 100% before rounding. Selected labels highlight regional concentrations and NIS America's nearly equal North American and Japanese shares.",
   "title": {
-    "text": "Regional Sales Mix of Selected Publishers",
-    "subtitle": "Each row shows the regional shares of one publisher’s included sales",
+    "text": "Regional Sales Distribution by Publisher",
     "anchor": "start",
-    "fontSize": 19,
-    "subtitleFontSize": 12,
-    "subtitleColor": "#526274",
+    "fontSize": 17,
     "offset": 14
   },
-  "width": 560,
+  "width": 474,
   "height": {
-    "step": 32
+    "step": 27
   },
   "background": "white",
   "padding": 12,
   "data": {
-    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/publisher_regional_share_heatmap_12.csv?v=2",
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/publisher_regional_share_heatmap_12.csv",
     "format": {
       "type": "csv",
       "parse": {
         "Recorded_sales_millions": "number",
+        "Share_pct": "number",
         "Complete_records": "number",
-        "Total_regional_sales_millions": "number",
-        "Share_pct": "number"
+        "Total_regional_sales_millions": "number"
       }
     }
   },
+  "transform": [
+    {
+      "calculate": "datum.Region === 'PAL / Europe' ? 'Europe' : datum.Region",
+      "as": "Region"
+    },
+    {
+      "calculate": "datum.Publisher === 'EA Sports' ? 'Electronic Arts Sports' : datum.Publisher",
+      "as": "Publisher"
+    },
+    {
+      "calculate": "format(datum.Share_pct, '.1f') + '%'",
+      "as": "Share_label"
+    }
+  ],
   "encoding": {
     "x": {
       "field": "Region",
       "type": "nominal",
       "sort": [
         "North America",
-        "PAL / Europe",
+        "Europe",
         "Japan",
         "Other"
       ],
@@ -64,7 +75,7 @@
         "Capcom",
         "NIS America",
         "Codemasters",
-        "EA Sports",
+        "Electronic Arts Sports",
         "Konami",
         "KOEI",
         "Tecmo Koei"
@@ -156,19 +167,25 @@
               70
             ],
             "format": ".0f",
+            "labelExpr": "datum.value + '%'",
             "titleFontSize": 12,
             "labelFontSize": 11,
             "titleLimit": 400,
-            "offset": 18,
-            "labelExpr": "datum.value + '%'"
+            "offset": 18
           }
         }
       }
     },
     {
+      "transform": [
+        {
+          "filter": "datum.Share_pct >= 50 || (datum.Publisher === 'NIS America' && (datum.Region === 'North America' || datum.Region === 'Japan'))"
+        }
+      ],
       "mark": {
         "type": "text",
-        "fontSize": 12
+        "fontSize": 12,
+        "fontWeight": "bold"
       },
       "encoding": {
         "text": {
@@ -193,11 +210,5 @@
     "axis": {
       "grid": false
     }
-  },
-  "transform": [
-    {
-      "calculate": "format(datum.Share_pct, '.1f') + '%'",
-      "as": "Share_label"
-    }
-  ]
+  }
 }
