@@ -1,13 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Distribution of the four selected ESRB age ratings across all genres in Video_Games(1).csv. Each distinct Name\u2013Platform release is counted once. Missing ratings and EC, K-A, RP and AO are excluded. No year filter is applied. Denominator: 9,931 included releases. The 100 waffle cells are apportioned using largest remainders (E:40, E10+:14, T:30, M:16); exact percentages remain in the CSV, legend and tooltips. This is a distribution of platform releases, not unique cross-platform titles or players. Rating names follow the ESRB Ratings Guide: https://www.esrb.org/ratings-guide/.",
+  "description": "Four selected ESRB age ratings across 9,931 distinct title–platform releases. Missing ratings and other rating categories are excluded. The 100 squares represent rounded percentages; exact percentages appear in the tooltips.",
   "title": {
     "text": "Age Ratings of Video Game Releases",
-    "subtitle": "Each square represents approximately 1%",
     "anchor": "start",
     "fontSize": 18,
-    "subtitleFontSize": 12,
-    "subtitleColor": "#526274",
     "offset": 16
   },
   "width": 400,
@@ -36,10 +33,6 @@
       ]
     },
     {
-      "calculate": "indexof(['E','E10+','T','M'], datum.Rating)",
-      "as": "Rating_order"
-    },
-    {
       "window": [
         {
           "op": "sum",
@@ -49,8 +42,8 @@
       ],
       "sort": [
         {
-          "field": "Rating_order",
-          "order": "ascending"
+          "field": "Share_pct",
+          "order": "descending"
         }
       ],
       "frame": [
@@ -113,16 +106,16 @@
       "field": "Row",
       "type": "ordinal",
       "sort": [
-        9,
-        8,
-        7,
-        6,
-        5,
-        4,
-        3,
-        2,
+        0,
         1,
-        0
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
       ],
       "axis": null,
       "scale": {
@@ -137,22 +130,21 @@
       "scale": {
         "domain": [
           "Everyone (E)",
-          "Everyone 10+ (E10+)",
           "Teen (T)",
-          "Mature 17+ (M)"
+          "Mature 17+ (M)",
+          "Everyone 10+ (E10+)"
         ],
         "range": [
           "#6A3D9A",
-          "#FFFF99",
           "#B15928",
-          "#A6CEE3"
+          "#80B1D3",
+          "#F2CF5B"
         ]
       },
       "legend": {
         "orient": "bottom",
         "columns": 1,
         "direction": "vertical",
-        "labelExpr": "datum.label === \"Everyone (E)\" ? \"Everyone (E) \u2014 40.2%\" : datum.label === \"Everyone 10+ (E10+)\" ? \"Everyone 10+ (E10+) \u2014 14.3%\" : datum.label === \"Teen (T)\" ? \"Teen (T) \u2014 29.8%\" : datum.label === \"Mature 17+ (M)\" ? \"Mature 17+ (M) \u2014 15.7%\" : datum.label",
         "labelLimit": 400,
         "labelFontSize": 13,
         "titleFontSize": 13,
@@ -171,7 +163,7 @@
       {
         "field": "Release_count",
         "type": "quantitative",
-        "title": "Distinct title\u2013platform releases",
+        "title": "Distinct title–platform releases",
         "format": ",d"
       },
       {

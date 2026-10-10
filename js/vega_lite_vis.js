@@ -11,9 +11,8 @@ var vg_theme_bump = "js/theme_bump_2016_2024.vg.json";
 var vg_perspective_slope = "js/player_perspective_slope_2010_2024.vg.json";
 var vg_game_mode_radial = "js/game_mode_radial_counts_1980_2024.vg.json";
 
-// Level 3: where games are released, and for whom
-var vg_platform_treemap = "js/platform_family_treemap_igdb_selected.vg.json";
-var vg_genre_rating_sankey = "js/genre_age_rating_sankey.vg(2).json";
+// Level 3: where games are released
+var vg_platform_treemap = "js/platform_family_treemap.vg.json";   // Vega spec (treemap transform)
 
 // Level 4: who makes games, and where
 var vg_publisher_marimekko = "js/publisher_genre_marimekko_top6x6_no_other2.vg.json";
@@ -34,7 +33,6 @@ vegaEmbed("#perspective_slope", vg_perspective_slope, embedOptions).catch(consol
 vegaEmbed("#game_mode_radial", vg_game_mode_radial, embedOptions).catch(console.error);
 
 vegaEmbed("#platform_treemap", vg_platform_treemap, embedOptions).catch(console.error);
-vegaEmbed("#genre_rating_sankey", vg_genre_rating_sankey, embedOptions).catch(console.error);
 
 vegaEmbed("#publisher_marimekko", vg_publisher_marimekko, embedOptions).catch(console.error);
 vegaEmbed("#organisation_dot_map", vg_organisation_dot_map, embedOptions).catch(console.error);

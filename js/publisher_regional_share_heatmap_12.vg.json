@@ -1,0 +1,203 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Percentage-share heatmap for 12 publisher labels selected from the 24 with at least 30 complete distinct title–console releases. Selection: the eight largest sums of available complete regional sales, plus Codemasters (highest PAL/Europe share) and the three highest Japan-share labels (KOEI, Tecmo Koei, NIS America). This is an illustrative selection, not the twelve biggest publishers worldwide. Each share is the publisher regional sum divided by the sum of its four recorded regions, multiplied by 100. Every row sums to 100% before display rounding. Rows are grouped by highest-share region and sorted within each group by that highest share. Publisher labels remain as recorded, without corporate consolidation. Source: Video Games Sales (1980-2024) - Raw.csv; no year filter, dated included releases extend through 2020. Missing regional values are excluded, not zero-filled. Conflicting complete Konami International Superstar Soccer 98 N64 records are omitted. Colour uses one common linear 0–70% scale.",
+  "title": {
+    "text": "Regional Sales Mix of Selected Publishers",
+    "subtitle": "Each row shows the regional shares of one publisher’s included sales",
+    "anchor": "start",
+    "fontSize": 19,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#526274",
+    "offset": 14
+  },
+  "width": 560,
+  "height": {
+    "step": 32
+  },
+  "background": "white",
+  "padding": 12,
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/publisher_regional_share_heatmap_12.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Recorded_sales_millions": "number",
+        "Complete_records": "number",
+        "Total_regional_sales_millions": "number",
+        "Share_pct": "number"
+      }
+    }
+  },
+  "encoding": {
+    "x": {
+      "field": "Region",
+      "type": "nominal",
+      "sort": [
+        "North America",
+        "PAL / Europe",
+        "Japan",
+        "Other"
+      ],
+      "title": null,
+      "axis": {
+        "orient": "top",
+        "labelAngle": 0,
+        "labelFontSize": 12,
+        "labelPadding": 10,
+        "domain": false,
+        "ticks": false
+      },
+      "scale": {
+        "paddingInner": 0.035,
+        "paddingOuter": 0
+      }
+    },
+    "y": {
+      "field": "Publisher",
+      "type": "nominal",
+      "sort": [
+        "Activision",
+        "Rockstar Games",
+        "Ubisoft",
+        "Electronic Arts",
+        "Capcom",
+        "Sony Computer Entertainment",
+        "NIS America",
+        "Codemasters",
+        "EA Sports",
+        "Konami",
+        "KOEI",
+        "Tecmo Koei"
+      ],
+      "title": null,
+      "axis": {
+        "labelFontSize": 12,
+        "labelLimit": 400,
+        "labelPadding": 10,
+        "domain": false,
+        "ticks": false
+      },
+      "scale": {
+        "paddingInner": 0.055,
+        "paddingOuter": 0
+      }
+    },
+    "tooltip": [
+      {
+        "field": "Publisher",
+        "type": "nominal",
+        "title": "Publisher"
+      },
+      {
+        "field": "Region",
+        "type": "nominal",
+        "title": "Region"
+      },
+      {
+        "field": "Share_pct",
+        "type": "quantitative",
+        "title": "Share of publisher’s included sales (%)",
+        "format": ".1f"
+      },
+      {
+        "field": "Recorded_sales_millions",
+        "type": "quantitative",
+        "title": "Recorded regional sales (million copies)",
+        "format": ",.2f"
+      },
+      {
+        "field": "Complete_records",
+        "type": "quantitative",
+        "title": "Included title–platform releases",
+        "format": ",d"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "cornerRadius": 1
+      },
+      "encoding": {
+        "color": {
+          "field": "Share_pct",
+          "type": "quantitative",
+          "title": "Share of publisher’s included sales (%)",
+          "scale": {
+            "type": "linear",
+            "domain": [
+              0,
+              70
+            ],
+            "range": [
+              "#F3EDF7",
+              "#D6C5E2",
+              "#AD88C6",
+              "#78459D",
+              "#42145F"
+            ],
+            "nice": false,
+            "clamp": true
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 300,
+            "gradientThickness": 12,
+            "values": [
+              0,
+              10,
+              20,
+              30,
+              40,
+              50,
+              60,
+              70
+            ],
+            "format": ".0f",
+            "titleFontSize": 12,
+            "labelFontSize": 11,
+            "titleLimit": 400,
+            "offset": 18,
+            "labelExpr": "datum.value + '%'"
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12
+      },
+      "encoding": {
+        "text": {
+          "field": "Share_label",
+          "type": "nominal"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.Share_pct >= 45",
+            "value": "#FFFFFF"
+          },
+          "value": "#000000"
+        }
+      }
+    }
+  ],
+  "config": {
+    "font": "Arial",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "grid": false
+    }
+  },
+  "transform": [
+    {
+      "calculate": "format(datum.Share_pct, '.1f') + '%'",
+      "as": "Share_label"
+    }
+  ]
+}

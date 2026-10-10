@@ -1,0 +1,175 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "Hierarchical treemap of distinct IGDB main-game platform associations for selected major platform ecosystems, 1980-2024",
+  "width": 610,
+  "height": 350,
+  "padding": 5,
+  "autosize": "pad",
+  "background": "white",
+
+  "title": {
+    "text": "Distribution of Games Across Major Platform Ecosystems",
+    "anchor": "start",
+    "frame": "group",
+    "fontSize": 20,
+    "offset": 12
+  },
+
+  "data": [
+    {
+      "name": "platforms",
+      "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/platform_family_treemap_igdb_selected.csv",
+      "format": {"type": "csv", "parse": {"game_platform_count": "number"}},
+      "transform": [
+        {"type": "joinaggregate", "ops": ["sum"], "fields": ["game_platform_count"], "as": ["selected_total"]},
+        {"type": "joinaggregate", "groupby": ["family"], "ops": ["sum"], "fields": ["game_platform_count"], "as": ["family_total"]},
+        {"type": "formula", "as": "platform_share_selected_pct", "expr": "datum.game_platform_count / datum.selected_total * 100"},
+        {"type": "formula", "as": "platform_share_family_pct", "expr": "datum.game_platform_count / datum.family_total * 100"}
+      ]
+    },
+    {
+      "name": "tree",
+      "source": "platforms",
+      "transform": [
+        {"type": "nest", "keys": ["family"], "generate": true},
+        {
+          "type": "treemap",
+          "field": "game_platform_count",
+          "sort": {"field": "value", "order": "descending"},
+          "round": true,
+          "method": "squarify",
+          "ratio": 1.618,
+          "paddingOuter": 3,
+          "size": [{"signal": "width"}, {"signal": "height"}]
+        }
+      ]
+    },
+    {
+      "name": "families",
+      "source": "tree",
+      "transform": [{"type": "filter", "expr": "datum.depth === 1"}]
+    },
+    {
+      "name": "leaves",
+      "source": "tree",
+      "transform": [
+        {"type": "filter", "expr": "datum.depth === 2"},
+        {"type": "formula", "as": "rect_width", "expr": "datum.x1 - datum.x0"},
+        {"type": "formula", "as": "rect_height", "expr": "datum.y1 - datum.y0"}
+      ]
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": ["PC / Computer", "Mobile / Web", "Nintendo", "PlayStation", "Xbox", "VR", "Sega"],
+      "range": ["#4E79A7", "#F28E2B", "#76B7B2", "#EDC948", "#59A14F", "#B07AA1", "#9C755F"]
+    }
+  ],
+
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Platform ecosystem",
+      "orient": "bottom",
+      "direction": "horizontal",
+      "columns": 4,
+      "titleFontSize": 11,
+      "labelFontSize": 11,
+      "symbolType": "square",
+      "symbolSize": 120,
+      "offset": 14,
+      "padding": 6,
+      "encode": {"symbols": {"update": {"opacity": {"value": 0.82}}}}
+    }
+  ],
+
+  "marks": [
+    {
+      "description": "One rectangle per platform, coloured by its ecosystem",
+      "type": "rect",
+      "from": {"data": "leaves"},
+      "encode": {
+        "enter": {
+          "fill": {"scale": "color", "field": "family"},
+          "opacity": {"value": 0.82},
+          "stroke": {"value": "white"},
+          "strokeWidth": {"value": 1.1}
+        },
+        "update": {
+          "x": {"field": "x0"}, "x2": {"field": "x1"},
+          "y": {"field": "y0"}, "y2": {"field": "y1"},
+          "tooltip": {"signal": "{'Platform ecosystem': datum.family, 'Platform': datum.platform, 'Games on platform': format(datum.game_platform_count, ',d'), 'Share within ecosystem (%)': format(datum.platform_share_family_pct, '.1f'), 'Share of selected ecosystems (%)': format(datum.platform_share_selected_pct, '.1f')}"}
+        }
+      }
+    },
+    {
+      "description": "Dark outline around each ecosystem",
+      "type": "rect",
+      "from": {"data": "families"},
+      "interactive": false,
+      "encode": {
+        "enter": {
+          "fillOpacity": {"value": 0},
+          "stroke": {"value": "#30343B"},
+          "strokeWidth": {"value": 2}
+        },
+        "update": {
+          "x": {"field": "x0"}, "x2": {"field": "x1"},
+          "y": {"field": "y0"}, "y2": {"field": "y1"}
+        }
+      }
+    },
+    {
+      "description": "Platform name, only where the rectangle is large enough",
+      "type": "text",
+      "from": {"data": "leaves"},
+      "interactive": false,
+      "encode": {
+        "enter": {
+          "align": {"value": "center"},
+          "baseline": {"value": "middle"},
+          "font": {"value": "Arial"},
+          "fontSize": {"value": 11.5},
+          "fontWeight": {"value": "bold"},
+          "fill": {"value": "#111111"}
+        },
+        "update": {
+          "x": {"signal": "(datum.x0 + datum.x1) / 2"},
+          "y": {"signal": "(datum.y0 + datum.y1) / 2"},
+          "text": {"signal": "datum.rect_height >= 30 && length(datum.platform) * 6.1 <= datum.rect_width - 6 ? datum.platform : ''"},
+          "limit": {"signal": "datum.rect_width - 4"}
+        }
+      }
+    },
+    {
+      "description": "Game count under the platform name, only in the largest rectangles",
+      "type": "text",
+      "from": {"data": "leaves"},
+      "interactive": false,
+      "encode": {
+        "enter": {
+          "align": {"value": "center"},
+          "baseline": {"value": "middle"},
+          "dy": {"value": 15},
+          "font": {"value": "Arial"},
+          "fontSize": {"value": 10.5},
+          "fill": {"value": "#222222"}
+        },
+        "update": {
+          "x": {"signal": "(datum.x0 + datum.x1) / 2"},
+          "y": {"signal": "(datum.y0 + datum.y1) / 2"},
+          "text": {"signal": "datum.rect_height >= 30 && length(datum.platform) * 6.1 <= datum.rect_width - 6 && datum.rect_height >= 48 && length(format(datum.game_platform_count, ',d') + ' games') * 5.6 <= datum.rect_width - 8 ? format(datum.game_platform_count, ',d') + ' games' : ''"},
+          "limit": {"signal": "datum.rect_width - 4"}
+        }
+      }
+    }
+  ],
+
+  "config": {
+    "title": {"font": "Arial"},
+    "legend": {"labelFont": "Arial", "titleFont": "Arial"}
+  }
+}
