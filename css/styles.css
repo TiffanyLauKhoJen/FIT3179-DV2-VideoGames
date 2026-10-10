@@ -143,7 +143,7 @@ a {
 
 .intro .lead {
   font-size: 16px;   /* same size as the body text */
-  max-width: 44ch;   /* no more than about 10 words per line */
+  max-width: 48ch;   /* no more than about 10 words per line */
 }
 
 
@@ -253,7 +253,7 @@ a {
 }
 
 .text-side p {
-  max-width: 46ch;
+  max-width: 48ch;
 }
 
 .text-side-left {
@@ -306,32 +306,36 @@ a {
   color: #7570B3;
 }
 
+/* Perspective figures beside the slope chart, in darker versions of its line colours
+   (darkened so they are readable as text on white) */
+.persp-first {
+  color: #C41FD6;   /* First person line (vivid purple) */
+}
+
+.persp-third {
+  color: #9B633E;   /* Third person line (copper) */
+}
+
+.persp-vr {
+  color: #8F9FBD;   /* Virtual Reality line (same as legend) */
+}
+
 /* Game-mode figures beside the radial chart, in darker versions of the chart's ring colours
    (darkened so they are readable as text on white) */
-.stat-lg {
-  font-size: 22px;
-  font-weight: 700;
-}
-
-.stat-md {
-  font-size: 18px;
-  font-weight: 700;
-}
-
 .mode-multi {
-  color: #BB10F9;   /* Multiplayer ring #D260FB, darkened */
+  color: #125D73;   /* Multiplayer ring (deep petrol), same colour */
 }
 
 .mode-single {
-  color: #CC4B24;   /* Single player ring #F08060, darkened for 16px text */
+  color: #946D00;   /* Single player ring #B88700 (gold), darkened for text */
 }
 
 .mode-split {
-  color: #C43C8C;   /* Split screen ring */
+  color: #966699;   /* Split screen ring (dusty mauve), same as the chart */
 }
 
 .mode-coop {
-  color: #0D594F;   /* Co-operative ring (same colour) */
+  color: #A6595E;   /* Co-operative ring (muted rose), same colour */
 }
 
 /* Two charts side by side, each with its text underneath (Section 2).
@@ -360,6 +364,24 @@ a {
 
 .chart-pair .vis-container {
   text-align: left;
+}
+
+/* Section 2 texts: the same width under each chart (about 8–10 words per line),
+   centred as a block with the text itself left-aligned */
+.chart-pair-text {
+  width: 100%;
+  max-width: 48ch;
+  justify-self: center;
+}
+
+.chart-pair-text p {
+  line-height: 1.5;
+  margin: 0 0 16px;
+}
+
+/* Let enlarged phrases wrap here instead of forcing a short line before them */
+.chart-pair-text .key-figure {
+  white-space: normal;
 }
 
 /* Conclusion text */

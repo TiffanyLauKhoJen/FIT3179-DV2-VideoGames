@@ -1,0 +1,197 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Distribution of the four selected ESRB age ratings across all genres in Video_Games(1).csv. Each distinct Name\u2013Platform release is counted once. Missing ratings and EC, K-A, RP and AO are excluded. No year filter is applied. Denominator: 9,931 included releases. The 100 waffle cells are apportioned using largest remainders (E:40, E10+:14, T:30, M:16); exact percentages remain in the CSV, legend and tooltips. This is a distribution of platform releases, not unique cross-platform titles or players. Rating names follow the ESRB Ratings Guide: https://www.esrb.org/ratings-guide/.",
+  "title": {
+    "text": "Age Ratings of Video Game Releases",
+    "subtitle": "Each square represents approximately 1%",
+    "anchor": "start",
+    "fontSize": 18,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#526274",
+    "offset": 16
+  },
+  "width": 400,
+  "height": 400,
+  "background": "white",
+  "padding": 8,
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/age_rating_waffle.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Release_count": "number",
+        "Share_pct": "number",
+        "Waffle_cells": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "joinaggregate": [
+        {
+          "op": "sum",
+          "field": "Release_count",
+          "as": "Total_releases"
+        }
+      ]
+    },
+    {
+      "calculate": "indexof(['E','E10+','T','M'], datum.Rating)",
+      "as": "Rating_order"
+    },
+    {
+      "window": [
+        {
+          "op": "sum",
+          "field": "Waffle_cells",
+          "as": "Cell_end"
+        }
+      ],
+      "sort": [
+        {
+          "field": "Rating_order",
+          "order": "ascending"
+        }
+      ],
+      "frame": [
+        null,
+        0
+      ]
+    },
+    {
+      "calculate": "datum.Cell_end - datum.Waffle_cells",
+      "as": "Cell_start"
+    },
+    {
+      "calculate": "sequence(datum.Cell_start, datum.Cell_end, 1)",
+      "as": "Cell_indices"
+    },
+    {
+      "flatten": [
+        "Cell_indices"
+      ],
+      "as": [
+        "Cell_index"
+      ]
+    },
+    {
+      "calculate": "datum.Cell_index % 10",
+      "as": "Column"
+    },
+    {
+      "calculate": "floor(datum.Cell_index / 10)",
+      "as": "Row"
+    }
+  ],
+  "mark": {
+    "type": "rect",
+    "cornerRadius": 2
+  },
+  "encoding": {
+    "x": {
+      "field": "Column",
+      "type": "ordinal",
+      "sort": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "axis": null,
+      "scale": {
+        "paddingInner": 0.1,
+        "paddingOuter": 0
+      }
+    },
+    "y": {
+      "field": "Row",
+      "type": "ordinal",
+      "sort": [
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "axis": null,
+      "scale": {
+        "paddingInner": 0.1,
+        "paddingOuter": 0
+      }
+    },
+    "color": {
+      "field": "Rating_label",
+      "type": "nominal",
+      "title": "ESRB age rating",
+      "scale": {
+        "domain": [
+          "Everyone (E)",
+          "Everyone 10+ (E10+)",
+          "Teen (T)",
+          "Mature 17+ (M)"
+        ],
+        "range": [
+          "#6A3D9A",
+          "#FFFF99",
+          "#B15928",
+          "#A6CEE3"
+        ]
+      },
+      "legend": {
+        "orient": "bottom",
+        "columns": 1,
+        "direction": "vertical",
+        "labelExpr": "datum.label === \"Everyone (E)\" ? \"Everyone (E) \u2014 40.2%\" : datum.label === \"Everyone 10+ (E10+)\" ? \"Everyone 10+ (E10+) \u2014 14.3%\" : datum.label === \"Teen (T)\" ? \"Teen (T) \u2014 29.8%\" : datum.label === \"Mature 17+ (M)\" ? \"Mature 17+ (M) \u2014 15.7%\" : datum.label",
+        "labelLimit": 400,
+        "labelFontSize": 13,
+        "titleFontSize": 13,
+        "symbolType": "square",
+        "symbolSize": 130,
+        "rowPadding": 8,
+        "offset": 18
+      }
+    },
+    "tooltip": [
+      {
+        "field": "Rating_label",
+        "type": "nominal",
+        "title": "Age rating"
+      },
+      {
+        "field": "Release_count",
+        "type": "quantitative",
+        "title": "Distinct title\u2013platform releases",
+        "format": ",d"
+      },
+      {
+        "field": "Share_pct",
+        "type": "quantitative",
+        "title": "Share of included releases (%)",
+        "format": ".1f"
+      },
+      {
+        "field": "Total_releases",
+        "type": "quantitative",
+        "title": "Total included releases",
+        "format": ",d"
+      }
+    ]
+  },
+  "config": {
+    "font": "Arial",
+    "view": {
+      "stroke": null
+    }
+  }
+}

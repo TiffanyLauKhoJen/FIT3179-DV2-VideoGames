@@ -8,7 +8,7 @@ var vg_genre_dumbbell = "js/igdb_genre_dumbbell_8_2010_2024.vg.json";
 var vg_theme_bump = "js/theme_bump_2016_2024.vg.json";
 
 // Level 2: new ways to see and play
-var vg_perspective_slope = "js/player_perspective_slope.vg.json";
+var vg_perspective_slope = "js/player_perspective_slope_2010_2024.vg.json";
 var vg_game_mode_radial = "js/game_mode_radial_counts_1980_2024.vg.json";
 
 // Level 3: where games are released, and for whom

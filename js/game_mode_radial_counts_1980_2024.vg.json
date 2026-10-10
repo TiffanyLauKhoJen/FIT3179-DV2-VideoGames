@@ -31,7 +31,7 @@
       "as": "Outer_radius"
     },
     {
-      "calculate": "datum.Outer_radius - 18.0",
+      "calculate": "datum.Outer_radius - 13",
       "as": "Inner_radius"
     },
     {
@@ -43,11 +43,7 @@
       "as": "End_angle"
     },
     {
-      "calculate": "4.71238898038469",
-      "as": "Track_end"
-    },
-    {
-      "calculate": "228 - datum.Outer_radius + 9.0",
+      "calculate": "228 - datum.Outer_radius + 6.5",
       "as": "Label_y"
     },
     {
@@ -57,43 +53,18 @@
     {
       "calculate": "datum.Mode === 'Massively Multiplayer Online (MMO)' ? 'Massively Multiplayer|Online  ' + format(datum.Games, ',d') : datum.Mode_display + '  ' + format(datum.Games, ',d')",
       "as": "Mode_label"
+    },
+    {
+      "calculate": "datum.Mode === 'Multiplayer' ? '#125D73' : datum.Mode === 'Single player' ? '#946D00' : '#000000'",
+      "as": "Label_color"
     }
   ],
   "layer": [
     {
       "mark": {
         "type": "arc",
-        "fill": "#EDF0F3"
-      },
-      "encoding": {
-        "x": {
-          "value": 217.0
-        },
-        "y": {
-          "value": 228.0
-        },
-        "radius": {
-          "field": "Outer_radius",
-          "type": "quantitative",
-          "scale": null
-        },
-        "radius2": {
-          "field": "Inner_radius"
-        },
-        "theta": {
-          "field": "Start_angle",
-          "type": "quantitative",
-          "scale": null
-        },
-        "theta2": {
-          "field": "Track_end"
-        }
-      }
-    },
-    {
-      "mark": {
-        "type": "arc",
-        "cornerRadius": 2
+        "cornerRadius": 2,
+        "opacity": 1
       },
       "encoding": {
         "x": {
@@ -130,11 +101,11 @@
               "Massively Multiplayer Online (MMO)"
             ],
             "range": [
-              "#D260FB",
-              "#F08060",
-              "#0D594F",
-              "#C43C8C",
-              "#880707"
+              "#125D73",
+              "#B88700",
+              "#A6595E",
+              "#966699",
+              "#B19A78"
             ]
           },
           "legend": null
@@ -161,7 +132,6 @@
         "baseline": "middle",
         "fontSize": 13,
         "fontWeight": "bold",
-        "color": "#304455",
         "lineBreak": "|",
         "lineHeight": 14
       },
@@ -191,188 +161,12 @@
             "title": "Games offering this mode",
             "format": ",d"
           }
-        ]
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {
-            "Value": 0,
-            "Label": "0",
-            "x": 217.0,
-            "y": 17.4,
-            "x1": 217.0,
-            "y1": 33.6,
-            "x2": 217.0,
-            "y2": 26.4
-          },
-          {
-            "Value": 5000,
-            "Label": "5k",
-            "x": 387.38,
-            "y": 104.21,
-            "x1": 374.28,
-            "y1": 113.73,
-            "x2": 380.1,
-            "y2": 109.51
-          },
-          {
-            "Value": 10000,
-            "Label": "10k",
-            "x": 417.29,
-            "y": 293.08,
-            "x1": 401.88,
-            "y1": 288.08,
-            "x2": 408.73,
-            "y2": 290.3
-          },
-          {
-            "Value": 15000,
-            "Label": "15k",
-            "x": 282.08,
-            "y": 428.3,
-            "x1": 277.08,
-            "y1": 412.88,
-            "x2": 279.3,
-            "y2": 419.73
-          },
-          {
-            "Value": 20000,
-            "Label": "20k",
-            "x": 93.21,
-            "y": 398.38,
-            "x1": 102.73,
-            "y1": 385.28,
-            "x2": 98.51,
-            "y2": 391.1
-          },
-          {
-            "Value": 25000,
-            "Label": "25k",
-            "x": 6.4,
-            "y": 228.0,
-            "x1": 22.6,
-            "y1": 228.0,
-            "x2": 15.4,
-            "y2": 228.0
-          }
-        ]
-      },
-      "transform": [],
-      "mark": {
-        "type": "rule",
-        "stroke": "#A5B2C2",
-        "strokeWidth": 1
-      },
-      "encoding": {
-        "x": {
-          "field": "x1",
-          "type": "quantitative",
+        ],
+        "color": {
+          "field": "Label_color",
+          "type": "nominal",
           "scale": null,
-          "axis": null
-        },
-        "x2": {
-          "field": "x2"
-        },
-        "y": {
-          "field": "y1",
-          "type": "quantitative",
-          "scale": null,
-          "axis": null
-        },
-        "y2": {
-          "field": "y2"
-        }
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {
-            "Value": 0,
-            "Label": "0",
-            "x": 217.0,
-            "y": 17.4,
-            "x1": 217.0,
-            "y1": 33.6,
-            "x2": 217.0,
-            "y2": 26.4
-          },
-          {
-            "Value": 5000,
-            "Label": "5k",
-            "x": 387.38,
-            "y": 104.21,
-            "x1": 374.28,
-            "y1": 113.73,
-            "x2": 380.1,
-            "y2": 109.51
-          },
-          {
-            "Value": 10000,
-            "Label": "10k",
-            "x": 417.29,
-            "y": 293.08,
-            "x1": 401.88,
-            "y1": 288.08,
-            "x2": 408.73,
-            "y2": 290.3
-          },
-          {
-            "Value": 15000,
-            "Label": "15k",
-            "x": 282.08,
-            "y": 428.3,
-            "x1": 277.08,
-            "y1": 412.88,
-            "x2": 279.3,
-            "y2": 419.73
-          },
-          {
-            "Value": 20000,
-            "Label": "20k",
-            "x": 93.21,
-            "y": 398.38,
-            "x1": 102.73,
-            "y1": 385.28,
-            "x2": 98.51,
-            "y2": 391.1
-          },
-          {
-            "Value": 25000,
-            "Label": "25k",
-            "x": 6.4,
-            "y": 228.0,
-            "x1": 22.6,
-            "y1": 228.0,
-            "x2": 15.4,
-            "y2": 228.0
-          }
-        ]
-      },
-      "transform": [],
-      "mark": {
-        "type": "text",
-        "fontSize": 12,
-        "color": "#697786"
-      },
-      "encoding": {
-        "x": {
-          "field": "x",
-          "type": "quantitative",
-          "scale": null,
-          "axis": null
-        },
-        "y": {
-          "field": "y",
-          "type": "quantitative",
-          "scale": null,
-          "axis": null
-        },
-        "text": {
-          "field": "Label",
-          "type": "nominal"
+          "legend": null
         }
       }
     },

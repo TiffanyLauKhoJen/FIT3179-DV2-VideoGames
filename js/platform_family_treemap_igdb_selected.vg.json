@@ -15,16 +15,8 @@
       "How Are Games Distributed Across",
       "Major Platform Ecosystems?"
     ],
-    "subtitle": [
-      "IGDB-recorded main games first released from 1980–2025; area represents",
-      "the number of games listed for each platform. Multiplatform games are",
-      "counted once on each listed platform; minor ecosystems are excluded."
-    ],
     "anchor": "start",
     "fontSize": 20,
-    "subtitleFontSize": 12,
-    "subtitleColor": "#5F6368",
-    "subtitlePadding": 5,
     "offset": 12
   },
   "data": {
