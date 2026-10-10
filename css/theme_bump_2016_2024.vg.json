@@ -72,22 +72,22 @@
       "title": "Theme",
       "scale": {
         "domain": [
-          "Educational",
           "Fantasy",
           "Science fiction",
           "Horror",
-          "Comedy",
           "Erotic",
-          "Mystery"
+          "Mystery",
+          "Comedy",
+          "Romance"
         ],
         "range": [
-          "#1B9E77",
           "#D95F02",
           "#7570B3",
           "#00A6D6",
-          "#E6AB02",
           "#A6761D",
-          "#666666"
+          "#666666",
+          "#1B9E77",
+          "#E6AB02"
         ]
       },
       "legend": {
