@@ -108,14 +108,9 @@ a {
   color: #882255;
 }
 
-/* Same emphasis for an increase, in dark teal */
-.key-figure-increase {
-  color: #007F7A;
-}
-
-/* Same emphasis for a decrease, in dark amber */
-.key-figure-decrease {
-  color: #B45309;
+/* Same enlarged emphasis, in the main text colour */
+.key-figure-ink {
+  color: var(--ink);
 }
 
 
@@ -284,6 +279,25 @@ a {
 /* Text starts level with the top of the chart (its title) */
 .text-side-plot-top {
   padding-top: 0;
+}
+
+/* Theme bump text: slightly tighter line spacing and 16 px between paragraphs */
+.text-side-bump p {
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+/* Theme names coloured to match their lines in the bump chart */
+.theme-horror {
+  color: #00A6D6;
+}
+
+.theme-erotic {
+  color: #A6761D;
+}
+
+.theme-scifi {
+  color: #7570B3;
 }
 
 /* Conclusion text */

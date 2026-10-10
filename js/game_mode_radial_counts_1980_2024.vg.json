@@ -1,0 +1,437 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Concentric radial bars showing distinct game counts per mode in 27,416 IGDB main games released in 1980–2024 with at least one retained shared-play mode. Battle Royale is removed before selecting the subset. Single-player-only games are excluded. Each ring maps 0–25,000 games to the same 270-degree sweep. Modes overlap. Reference: https://vega.github.io/vega-lite/docs/arc.html",
+  "title": {
+    "text": "Which modes do multiplayer-capable games offer?",
+    "subtitle": [
+      "IGDB main games · 1980–2024 · Games may support several modes",
+      "Battle Royale excluded · Each ring uses a 0–25,000-game scale"
+    ],
+    "anchor": "start",
+    "fontSize": 19,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#526274",
+    "offset": 14
+  },
+  "width": 640,
+  "height": 510,
+  "background": "white",
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/game_mode_radial_counts_1980_2024.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Games": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "indexof(['Multiplayer', 'Single player', 'Co-operative', 'Split screen', 'Massively Multiplayer Online (MMO)'], datum.Mode)",
+      "as": "Mode_order"
+    },
+    {
+      "calculate": "210 - datum.Mode_order * 29",
+      "as": "Outer_radius"
+    },
+    {
+      "calculate": "datum.Outer_radius - 20",
+      "as": "Inner_radius"
+    },
+    {
+      "calculate": "0",
+      "as": "Start_angle"
+    },
+    {
+      "calculate": "datum.Games / 25000 * 4.71238898038469",
+      "as": "End_angle"
+    },
+    {
+      "calculate": "4.71238898038469",
+      "as": "Track_end"
+    },
+    {
+      "calculate": "260 - datum.Outer_radius + 10",
+      "as": "Label_y"
+    },
+    {
+      "calculate": "(datum.Mode === 'Massively Multiplayer Online (MMO)' ? 'MMO' : datum.Mode) + '  ' + format(datum.Games, ',d')",
+      "as": "Mode_label"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "arc",
+        "fill": "#EDF0F3"
+      },
+      "encoding": {
+        "x": {
+          "value": 320
+        },
+        "y": {
+          "value": 260
+        },
+        "radius": {
+          "field": "Outer_radius",
+          "type": "quantitative",
+          "scale": null
+        },
+        "radius2": {
+          "field": "Inner_radius"
+        },
+        "theta": {
+          "field": "Start_angle",
+          "type": "quantitative",
+          "scale": null
+        },
+        "theta2": {
+          "field": "Track_end"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "arc",
+        "cornerRadius": 2
+      },
+      "encoding": {
+        "x": {
+          "value": 320
+        },
+        "y": {
+          "value": 260
+        },
+        "radius": {
+          "field": "Outer_radius",
+          "type": "quantitative",
+          "scale": null
+        },
+        "radius2": {
+          "field": "Inner_radius"
+        },
+        "theta": {
+          "field": "Start_angle",
+          "type": "quantitative",
+          "scale": null
+        },
+        "theta2": {
+          "field": "End_angle"
+        },
+        "color": {
+          "field": "Mode",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Multiplayer",
+              "Single player",
+              "Co-operative",
+              "Split screen",
+              "Massively Multiplayer Online (MMO)"
+            ],
+            "range": [
+              "#397CB9",
+              "#E4AE36",
+              "#64ADB5",
+              "#8B70AE",
+              "#986D43"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "Mode",
+            "type": "nominal",
+            "title": "Game mode"
+          },
+          {
+            "field": "Games",
+            "type": "quantitative",
+            "title": "Games offering this mode",
+            "format": ",d"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "fontSize": 13,
+        "fontWeight": "bold",
+        "color": "#304455"
+      },
+      "encoding": {
+        "x": {
+          "value": 308
+        },
+        "y": {
+          "field": "Label_y",
+          "type": "quantitative",
+          "scale": null,
+          "axis": null
+        },
+        "text": {
+          "field": "Mode_label",
+          "type": "nominal"
+        },
+        "tooltip": [
+          {
+            "field": "Mode",
+            "type": "nominal",
+            "title": "Game mode"
+          },
+          {
+            "field": "Games",
+            "type": "quantitative",
+            "title": "Games offering this mode",
+            "format": ",d"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Value": 0,
+            "Label": "0",
+            "x": 320,
+            "y": 26,
+            "x1": 320,
+            "y1": 44,
+            "x2": 320,
+            "y2": 36
+          },
+          {
+            "Value": 5000,
+            "Label": "5k",
+            "x": 509.3099766837377,
+            "y": 122.45825096356128,
+            "x1": 494.74767078498866,
+            "y1": 133.03838550482578,
+            "x2": 501.21980673998826,
+            "y2": 128.33610348648602
+          },
+          {
+            "Value": 10000,
+            "Label": "10k",
+            "x": 542.5472248130659,
+            "y": 332.30997668373766,
+            "x1": 525.4282075197532,
+            "y1": 326.7476707849886,
+            "x2": 533.0366596501144,
+            "y2": 329.2198067399882
+          },
+          {
+            "Value": 15000,
+            "Label": "15k",
+            "x": 392.3099766837377,
+            "y": 482.5472248130659,
+            "x1": 386.74767078498866,
+            "y1": 465.4282075197532,
+            "x2": 389.21980673998826,
+            "y2": 473.0366596501144
+          },
+          {
+            "Value": 20000,
+            "Label": "20k",
+            "x": 182.4582509635613,
+            "y": 449.3099766837377,
+            "x1": 193.03838550482584,
+            "y1": 434.74767078498866,
+            "x2": 188.33610348648605,
+            "y2": 441.21980673998826
+          },
+          {
+            "Value": 25000,
+            "Label": "25k",
+            "x": 86,
+            "y": 260.00000000000006,
+            "x1": 104,
+            "y1": 260.00000000000006,
+            "x2": 96,
+            "y2": 260.00000000000006
+          }
+        ]
+      },
+      "transform": [],
+      "mark": {
+        "type": "rule",
+        "stroke": "#A5B2C2",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "x1",
+          "type": "quantitative",
+          "scale": null,
+          "axis": null
+        },
+        "x2": {
+          "field": "x2"
+        },
+        "y": {
+          "field": "y1",
+          "type": "quantitative",
+          "scale": null,
+          "axis": null
+        },
+        "y2": {
+          "field": "y2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Value": 0,
+            "Label": "0",
+            "x": 320,
+            "y": 26,
+            "x1": 320,
+            "y1": 44,
+            "x2": 320,
+            "y2": 36
+          },
+          {
+            "Value": 5000,
+            "Label": "5k",
+            "x": 509.3099766837377,
+            "y": 122.45825096356128,
+            "x1": 494.74767078498866,
+            "y1": 133.03838550482578,
+            "x2": 501.21980673998826,
+            "y2": 128.33610348648602
+          },
+          {
+            "Value": 10000,
+            "Label": "10k",
+            "x": 542.5472248130659,
+            "y": 332.30997668373766,
+            "x1": 525.4282075197532,
+            "y1": 326.7476707849886,
+            "x2": 533.0366596501144,
+            "y2": 329.2198067399882
+          },
+          {
+            "Value": 15000,
+            "Label": "15k",
+            "x": 392.3099766837377,
+            "y": 482.5472248130659,
+            "x1": 386.74767078498866,
+            "y1": 465.4282075197532,
+            "x2": 389.21980673998826,
+            "y2": 473.0366596501144
+          },
+          {
+            "Value": 20000,
+            "Label": "20k",
+            "x": 182.4582509635613,
+            "y": 449.3099766837377,
+            "x1": 193.03838550482584,
+            "y1": 434.74767078498866,
+            "x2": 188.33610348648605,
+            "y2": 441.21980673998826
+          },
+          {
+            "Value": 25000,
+            "Label": "25k",
+            "x": 86,
+            "y": 260.00000000000006,
+            "x1": 104,
+            "y1": 260.00000000000006,
+            "x2": 96,
+            "y2": 260.00000000000006
+          }
+        ]
+      },
+      "transform": [],
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "color": "#697786"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": null,
+          "axis": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": null,
+          "axis": null
+        },
+        "text": {
+          "field": "Label",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "label": "27,416"
+          }
+        ]
+      },
+      "transform": [],
+      "mark": {
+        "type": "text",
+        "fontSize": 24,
+        "fontWeight": "bold",
+        "color": "#304455"
+      },
+      "encoding": {
+        "x": {
+          "value": 320
+        },
+        "y": {
+          "value": 252
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "label": "games with shared play"
+          }
+        ]
+      },
+      "transform": [],
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "color": "#697786"
+      },
+      "encoding": {
+        "x": {
+          "value": 320
+        },
+        "y": {
+          "value": 277
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    }
+  ],
+  "config": {
+    "font": "Arial",
+    "view": {
+      "stroke": null
+    }
+  }
+}

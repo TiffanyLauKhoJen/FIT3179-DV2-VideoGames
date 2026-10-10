@@ -3,15 +3,14 @@
   "description": "Annual ranks of seven selected IGDB themes, based on distinct main-game release counts. Rank 1 has the largest count. Games may have multiple themes; each game is counted once per theme. Tied counts share a rank.",
   "title": {
     "text": "Changes in Video Game Theme Rankings (2016–2024)",
-    "subtitle": "Seven selected themes ranked by recorded main-game releases each year",
     "anchor": "start",
     "fontSize": 17,
     "subtitleFontSize": 12,
     "subtitleColor": "#526274",
     "offset": 14
   },
-  "width": 640,
-  "height": 320,
+  "width": 525,
+  "height": 338,
   "background": "white",
   "data": {
     "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/theme_bump_2016_2024.csv",
@@ -46,6 +45,7 @@
           7
         ],
         "reverse": true,
+        "padding": 14,
         "nice": false,
         "zero": false
       },
@@ -90,16 +90,7 @@
           "#E6AB02"
         ]
       },
-      "legend": {
-        "orient": "bottom",
-        "columns": 4,
-        "direction": "horizontal",
-        "labelFontSize": 11,
-        "titleFontSize": 12,
-        "labelLimit": 160,
-        "symbolType": "stroke",
-        "symbolStrokeWidth": 3
-      }
+      "legend": null
     },
     "tooltip": [
       {
@@ -150,6 +141,21 @@
         "stroke": "white",
         "strokeWidth": 1.2,
         "opacity": 1
+      }
+    },
+    {
+      "description": "Theme names at the end of each line (2024), replacing the legend.",
+      "transform": [{"filter": "datum.Year === 2024"}],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 9,
+        "fontSize": 11,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {"field": "Theme"}
       }
     }
   ],
