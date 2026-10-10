@@ -12,7 +12,7 @@
     "offset": 16
   },
   "width": 460,
-  "height": {"step": 50},
+  "height": {"step": 40},
   "data": {
     "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/igdb_genre_dumbbell_8_2010_2024.csv",
     "format": {
@@ -42,6 +42,9 @@
         "Sports",
         "Puzzle"
       ],
+      "scale": {
+        "domain": ["Adventure", "Action", "Simulator", "Strategy", "Role-Playing", "Shooter", "Sports", "Puzzle"]
+      },
       "title": null,
       "axis": {
         "labelFontSize": 12,
@@ -54,6 +57,11 @@
   },
   "layer": [
     {
+      "transform": [
+        {"calculate": "format(datum.Pct_2010, '.1f') + '%'", "as": "Share_2010_label"},
+        {"calculate": "format(datum.Pct_2024, '.1f') + '%'", "as": "Share_2024_label"},
+        {"calculate": "format(datum.Change_pp, '+.1f') + ' percentage points'", "as": "Change_label"}
+      ],
       "mark": {
         "type": "rule",
         "stroke": "#A5B2C2",
@@ -75,54 +83,26 @@
         },
         "x2": {"field": "Pct_2024"},
         "tooltip": [
-          {
-            "field": "Genre",
-            "type": "nominal",
-            "title": "Genre"
-          },
-          {
-            "field": "Pct_2010",
-            "type": "quantitative",
-            "title": "2010 share (%)",
-            "format": ".1f"
-          },
-          {
-            "field": "Games_2010",
-            "type": "quantitative",
-            "title": "2010 games in genre",
-            "format": ",d"
-          },
-          {
-            "field": "Main_games_2010",
-            "type": "quantitative",
-            "title": "2010 total main games",
-            "format": ",d"
-          },
-          {
-            "field": "Pct_2024",
-            "type": "quantitative",
-            "title": "2024 share (%)",
-            "format": ".1f"
-          },
-          {
-            "field": "Games_2024",
-            "type": "quantitative",
-            "title": "2024 games in genre",
-            "format": ",d"
-          },
-          {
-            "field": "Main_games_2024",
-            "type": "quantitative",
-            "title": "2024 total main games",
-            "format": ",d"
-          },
-          {
-            "field": "Change_pp",
-            "type": "quantitative",
-            "title": "Change (percentage points)",
-            "format": "+.1f"
-          }
+          {"field": "Genre", "type": "nominal", "title": "Genre"},
+          {"field": "Share_2010_label", "type": "nominal", "title": "2010 share"},
+          {"field": "Share_2024_label", "type": "nominal", "title": "2024 share"},
+          {"field": "Change_label", "type": "nominal", "title": "Change"}
         ]
+      }
+    },
+    {
+      "description": "Leader lines from each 2024 circle to its note (drawn before the circles so the circles cover the line ends).",
+      "data": {
+        "values": [
+          {"x": 38.42, "x2": 46, "Genre": "Adventure", "Genre2": "Simulator"},
+          {"x": 21.47, "x2": 26, "Genre": "Simulator", "Genre2": "Role-Playing"}
+        ]
+      },
+      "mark": {"type": "rule", "color": "#9AA1AD", "strokeWidth": 1},
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative"},
+        "x2": {"field": "x2"},
+        "y2": {"field": "Genre2"}
       }
     },
     {
@@ -191,45 +171,35 @@
       }
     },
     {
-      "description": "Annotations and leader lines, placed in pixels in clear space: one above the plot for Adventure, one between the Role-Playing and Shooter rows for Simulator.",
-      "data": {"values": [{}]},
-      "mark": {"type": "rule", "color": "#9AA1AD", "strokeWidth": 1},
-      "encoding": {"x": {"value": 300}, "y": {"value": -9}, "x2": {"value": 300}, "y2": {"value": 16}}
-    },
-    {
-      "data": {"values": [{}]},
-      "mark": {"type": "rule", "color": "#9AA1AD", "strokeWidth": 1},
-      "encoding": {"x": {"value": 201}, "y": {"value": 133}, "x2": {"value": 208}, "y2": {"value": 231}}
-    },
-    {
-      "data": {"values": [{}]},
-      "mark": {"type": "text", "text": "Players helped fund new adventure games through crowdfunding.", "align": "left", "baseline": "top", "fontSize": 11, "color": "#3F4756"},
-      "encoding": {"x": {"value": 150}, "y": {"value": -40}}
-    },
-    {
-      "data": {"values": [{}]},
-      "mark": {"type": "text", "text": "Double Fine Adventure raised", "align": "left", "baseline": "top", "fontSize": 11, "color": "#3F4756"},
-      "encoding": {"x": {"value": 150}, "y": {"value": -26}}
-    },
-    {
-      "data": {"values": [{}]},
-      "mark": {"type": "text", "text": "$3.3 million", "align": "left", "baseline": "top", "fontSize": 11, "fontWeight": "bold", "color": "#1F2937"},
-      "encoding": {"x": {"value": 298.6}, "y": {"value": -26}}
-    },
-    {
-      "data": {"values": [{}]},
-      "mark": {"type": "text", "text": "from backers.", "align": "left", "baseline": "top", "fontSize": 11, "color": "#3F4756"},
-      "encoding": {"x": {"value": 361.6}, "y": {"value": -26}}
-    },
-    {
-      "data": {"values": [{}]},
-      "mark": {"type": "text", "text": "Farming and life simulation games gained attention during the pandemic,", "align": "left", "baseline": "top", "fontSize": 11, "color": "#3F4756"},
-      "encoding": {"x": {"value": 174}, "y": {"value": 236}}
-    },
-    {
-      "data": {"values": [{}]},
-      "mark": {"type": "text", "text": "offering relaxation and an escape from stress.", "align": "left", "baseline": "top", "fontSize": 11, "color": "#3F4756"},
-      "encoding": {"x": {"value": 174}, "y": {"value": 250}}
+      "description": "Annotation text, positioned by share (x) and genre row (y) like the release trend notes; | starts a new line.",
+      "data": {
+        "values": [
+          {
+            "x": 30,
+            "Genre": "Simulator",
+            "note": "Digital downloads and crowdfunding|helped smaller developers create and|release new adventure games."
+          },
+          {
+            "x": 24,
+            "Genre": "Role-Playing",
+            "note": "Supermarket Simulator’s success encouraged|similar shop-management games, including|TCG Card Shop Simulator."
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "dy": 2,
+        "fontSize": 11,
+        "lineHeight": 14,
+        "lineBreak": "|",
+        "color": "#3F4756"
+      },
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative"},
+        "text": {"field": "note"}
+      }
     }
   ],
   "config": {

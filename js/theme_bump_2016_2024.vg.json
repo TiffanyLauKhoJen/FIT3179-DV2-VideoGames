@@ -1,0 +1,169 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Annual ranks of seven selected IGDB themes, based on distinct main-game release counts. Rank 1 has the largest count. Games may have multiple themes; each game is counted once per theme. Tied counts share a rank.",
+  "title": {
+    "text": "Changes in Video Game Theme Rankings (2016–2024)",
+    "subtitle": "Seven selected themes ranked by recorded main-game releases each year",
+    "anchor": "start",
+    "fontSize": 17,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#526274",
+    "offset": 14
+  },
+  "width": 640,
+  "height": 320,
+  "background": "white",
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/theme_bump_2016_2024.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Year": "number",
+        "Games": "number",
+        "Rank": "number"
+      }
+    }
+  },
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "ordinal",
+      "sort": "ascending",
+      "title": "Release year",
+      "axis": {
+        "labelAngle": 0,
+        "labelPadding": 8,
+        "grid": false
+      }
+    },
+    "y": {
+      "field": "Rank",
+      "type": "quantitative",
+      "title": "Rank among selected themes",
+      "scale": {
+        "domain": [
+          1,
+          7
+        ],
+        "reverse": true,
+        "nice": false,
+        "zero": false
+      },
+      "axis": {
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "format": "d",
+        "grid": true,
+        "gridColor": "#E5E7EB",
+        "domain": false,
+        "ticks": false
+      }
+    },
+    "color": {
+      "field": "Theme",
+      "type": "nominal",
+      "title": "Theme",
+      "scale": {
+        "domain": [
+          "Educational",
+          "Fantasy",
+          "Science fiction",
+          "Horror",
+          "Comedy",
+          "Erotic",
+          "Mystery"
+        ],
+        "range": [
+          "#1B9E77",
+          "#D95F02",
+          "#7570B3",
+          "#00A6D6",
+          "#E6AB02",
+          "#A6761D",
+          "#666666"
+        ]
+      },
+      "legend": {
+        "orient": "bottom",
+        "columns": 4,
+        "direction": "horizontal",
+        "labelFontSize": 11,
+        "titleFontSize": 12,
+        "labelLimit": 160,
+        "symbolType": "stroke",
+        "symbolStrokeWidth": 3
+      }
+    },
+    "tooltip": [
+      {
+        "field": "Theme",
+        "type": "nominal",
+        "title": "Theme"
+      },
+      {
+        "field": "Year",
+        "type": "quantitative",
+        "title": "Release year",
+        "format": "d"
+      },
+      {
+        "field": "Rank",
+        "type": "quantitative",
+        "title": "Rank among selected themes",
+        "format": "d"
+      },
+      {
+        "field": "Games",
+        "type": "quantitative",
+        "title": "Recorded main games",
+        "format": ",d"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.8,
+        "interpolate": "linear",
+        "opacity": 0.9
+      },
+      "encoding": {
+        "order": {
+          "field": "Year",
+          "type": "quantitative",
+          "sort": "ascending"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 85,
+        "stroke": "white",
+        "strokeWidth": 1.2,
+        "opacity": 1
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial",
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "padding": 8
+    }
+  }
+}

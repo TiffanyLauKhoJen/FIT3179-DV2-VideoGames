@@ -98,6 +98,26 @@ a {
   white-space: nowrap;   /* keep "6.6-fold increase" on one line */
 }
 
+/* Figures coloured to match the dumbbell chart's years
+   (2010 grey darkened slightly from the chart's #7B8794 so it is readable as text) */
+.year-2010 {
+  color: #5E6A78;
+}
+
+.year-2024 {
+  color: #882255;
+}
+
+/* Same emphasis for an increase, in dark teal */
+.key-figure-increase {
+  color: #007F7A;
+}
+
+/* Same emphasis for a decrease, in dark amber */
+.key-figure-decrease {
+  color: #B45309;
+}
+
 
 /* ---------- 3. Page layout ---------- */
 /* A centred white page on a grey background, as in the studio lab */
@@ -221,6 +241,11 @@ a {
   padding-bottom: 1px;
 }
 
+/* Left-align the labels (vega-tooltip right-aligns them by default) */
+#vg-tooltip-element.vg-tooltip table tr td.key {
+  text-align: left;
+}
+
 /* One chart per row, with its explanation beside it (alternating left and right) */
 .text-side {
   padding-top: 4px;    /* lines up with the chart title */
@@ -256,9 +281,9 @@ a {
   max-width: none;
 }
 
-/* Text starts level with the top of the plotting area (below the chart title and top note) */
+/* Text starts level with the top of the chart (its title) */
 .text-side-plot-top {
-  padding-top: 79px;
+  padding-top: 0;
 }
 
 /* Conclusion text */

@@ -94,13 +94,14 @@
         <div class="pure-u-1 pure-u-lg-1-3">
           <div class="text-side text-side-right text-side-plot-top">
             <p>
-              <strong>Adventure&rsquo;s share nearly doubled</strong>, rising from
-              <strong>20.9%&nbsp;in&nbsp;2010 to 38.4%&nbsp;in&nbsp;2024</strong>&mdash;the largest increase among the
+              <strong>Adventure&rsquo;s share</strong> <strong class="key-figure key-figure-increase">nearly doubled</strong>, rising from
+              <strong>20.9%&nbsp;in&nbsp;<span class="year-2010">2010</span> to 38.4%&nbsp;in&nbsp;<span class="year-2024">2024</span></strong>&mdash;the largest increase among the
               selected genres. <strong>Action remained the most common</strong>, accounting for
-              <strong>40.2%</strong> of recorded main-game releases in 2024.
+              <strong>40.2%</strong> of recorded main-game releases in 2024. Action games range from
+              <em>Elden Ring&rsquo;s</em> open&#8209;world combat to <em>Hades&rsquo;</em> repeated escape challenges.
             </p>
             <p>
-              <strong>Puzzle showed the largest decrease in share</strong>, falling from
+              <strong>Puzzle showed the</strong> <strong class="key-figure key-figure-decrease">largest decrease</strong> <strong>in share</strong>, falling from
               <strong>16.8% to 9.8%</strong>. Its recorded game count still increased, but the overall collection grew
               faster.
             </p>
@@ -108,10 +109,13 @@
         </div>
       </div>
 
-      <!-- Chart 3: Theme ranks across eras (text on the left) -->
-      <div class="pure-g chart-row">
-        <div class="pure-u-1 pure-u-lg-7-24">
-          <div class="text-side text-side-left">
+      <!-- Chart 3: Theme ranks across eras (chart on the left 2/3, text on the right 1/3, aligned at the top) -->
+      <div class="pure-g chart-row chart-row-wide">
+        <div class="pure-u-1 pure-u-lg-2-3">
+          <div id="theme_bump" class="vis-container"></div>
+        </div>
+        <div class="pure-u-1 pure-u-lg-1-3">
+          <div class="text-side text-side-right text-side-plot-top">
             <p>
               Themes describe what a game is about rather than how it plays. In the early 1980s,
               <strong class="hl">science fiction</strong> led the seven themes, reflecting the space shooters of the arcade
@@ -122,9 +126,6 @@
               rank here means the other themes grew faster.
             </p>
           </div>
-        </div>
-        <div class="pure-u-1 pure-u-lg-17-24">
-          <div id="theme_bump" class="vis-container"></div>
         </div>
       </div>
 

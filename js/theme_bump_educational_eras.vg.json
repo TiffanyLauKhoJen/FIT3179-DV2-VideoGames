@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Bump chart comparing ranks of seven selected IGDB themes in nine five-year release periods.",
-  "width": 420,
+  "width": 384,
   "height": 430,
   "padding": {
     "left": 5,
