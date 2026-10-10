@@ -1,0 +1,289 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Annual comparison of five visual player perspectives in 2010 and 2024. Source: game_dataset_cleaned(1).csv. Distinct main_game IDs, valid release dates. Each year denominator is the union of games tagged with at least one selected visual perspective (2010: 1,211; 2024: 6,376). Text/Auditory-only and missing perspective records are excluded; games with a selected visual perspective are retained even if they also have a Text/Auditory tag. Games can have multiple perspectives, so percentages need not sum to 100. The 2010 baseline maximizes the sum of absolute percentage-point differences from 2024 across the five perspectives, among baseline years 2010–2023. Endpoint comparison only. Colour values avoid exact reuse of the supplied dashboard palette; families necessarily recur.",
+  "title": {
+    "text": "Player Perspectives: 2010 vs 2024",
+    "anchor": "start",
+    "fontSize": 17,
+    "offset": 16
+  },
+  "width": 440,
+  "height": 310,
+  "padding": 8,
+  "background": "white",
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/player_perspective_slope_2010_2024.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number",
+        "games_with_perspective": "number",
+        "denominator_games": "number",
+        "share_pct": "number",
+        "change_pp": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "format(datum.share_pct, '.1f') + '%'",
+      "as": "percentage_label"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "sort": [
+        2010,
+        2024
+      ],
+      "title": null,
+      "axis": {
+        "labelAngle": 0,
+        "labelFontSize": 13,
+        "labelFontWeight": "bold",
+        "labelPadding": 12,
+        "domain": false,
+        "ticks": false
+      }
+    },
+    "y": {
+      "field": "share_pct",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          0,
+          40
+        ],
+        "nice": false
+      },
+      "axis": null
+    },
+    "color": {
+      "field": "perspective",
+      "type": "nominal",
+      "title": "Player Perspective",
+      "scale": {
+        "domain": [
+          "Side view",
+          "First person",
+          "Bird view / Isometric",
+          "Third person",
+          "Virtual Reality"
+        ],
+        "range": [
+          "#829A16",
+          "#4339D1",
+          "#245E3E",
+          "#BD854D",
+          "#008E85"
+        ]
+      },
+      "legend": {
+        "orient": "bottom",
+        "direction": "horizontal",
+        "columns": 2,
+        "labelFontSize": 12,
+        "titleFontSize": 12,
+        "labelLimit": 230,
+        "symbolSize": 95,
+        "offset": 18
+      }
+    }
+  },
+  "layer": [
+    {
+      "transform": [
+        {
+          "filter": "datum.perspective === 'Side view'"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 1,
+        "color": "#C0C5CC"
+      },
+      "encoding": {
+        "y": {
+          "datum": 0,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              40
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "y2": {
+          "datum": 40
+        },
+        "color": {
+          "value": "#C0C5CC"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.8
+      },
+      "encoding": {
+        "detail": {
+          "field": "perspective"
+        },
+        "order": {
+          "field": "year",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "perspective",
+            "type": "nominal",
+            "title": "Player perspective"
+          },
+          {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Release year"
+          },
+          {
+            "field": "share_pct",
+            "type": "quantitative",
+            "title": "Share of games with visual perspective recorded (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "games_with_perspective",
+            "type": "quantitative",
+            "title": "Games with this perspective",
+            "format": ",d"
+          },
+          {
+            "field": "denominator_games",
+            "type": "quantitative",
+            "title": "Games with a selected visual perspective",
+            "format": ",d"
+          },
+          {
+            "field": "change_pp",
+            "type": "quantitative",
+            "title": "2010–2024 change (percentage points)",
+            "format": "+.1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 105,
+        "stroke": "white",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "perspective",
+            "type": "nominal",
+            "title": "Player perspective"
+          },
+          {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Release year"
+          },
+          {
+            "field": "share_pct",
+            "type": "quantitative",
+            "title": "Share of games with visual perspective recorded (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "games_with_perspective",
+            "type": "quantitative",
+            "title": "Games with this perspective",
+            "format": ",d"
+          },
+          {
+            "field": "denominator_games",
+            "type": "quantitative",
+            "title": "Games with a selected visual perspective",
+            "format": ",d"
+          },
+          {
+            "field": "change_pp",
+            "type": "quantitative",
+            "title": "2010–2024 change (percentage points)",
+            "format": "+.1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year === 2010"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -11,
+        "fontSize": 12,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {
+          "field": "percentage_label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year === 2024"
+        },
+        {
+          "calculate": "datum.perspective === 'Bird view / Isometric' ? datum.share_pct + 1.2 : datum.perspective === 'Side view' ? datum.share_pct - 0.8 : datum.perspective === 'First person' ? datum.share_pct - 0.1 : datum.share_pct",
+          "as": "label_y"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 11,
+        "fontSize": 12,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "y": {
+          "field": "label_y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              40
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "percentage_label"
+        }
+      }
+    }
+  ],
+  "config": {
+    "font": "Arial",
+    "view": {
+      "stroke": null
+    }
+  }
+}

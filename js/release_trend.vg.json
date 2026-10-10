@@ -91,6 +91,22 @@
         "color": "#0072B2",
         "strokeWidth": 1.5,
         "size": 160
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "Year",
+            "type": "quantitative",
+            "title": "Year",
+            "format": "d"
+          },
+          {
+            "field": "Main_game_count",
+            "type": "quantitative",
+            "title": "Releases",
+            "format": ",d"
+          }
+        ]
       }
     },
 

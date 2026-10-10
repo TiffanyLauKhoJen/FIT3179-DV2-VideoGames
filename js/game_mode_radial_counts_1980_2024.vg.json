@@ -4,13 +4,13 @@
   "title": {
     "text": "Which modes do multiplayer-capable games offer?",
     "anchor": "start",
-    "fontSize": 19,
+    "fontSize": 17,
     "subtitleFontSize": 12,
     "subtitleColor": "#526274",
     "offset": 14
   },
-  "width": 640,
-  "height": 510,
+  "width": 434,
+  "height": 445,
   "background": "white",
   "data": {
     "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/game_mode_radial_counts_1980_2024.csv",
@@ -27,11 +27,11 @@
       "as": "Mode_order"
     },
     {
-      "calculate": "210 - datum.Mode_order * 29",
+      "calculate": "189.0 - datum.Mode_order * 26.1",
       "as": "Outer_radius"
     },
     {
-      "calculate": "datum.Outer_radius - 20",
+      "calculate": "datum.Outer_radius - 18.0",
       "as": "Inner_radius"
     },
     {
@@ -47,11 +47,15 @@
       "as": "Track_end"
     },
     {
-      "calculate": "260 - datum.Outer_radius + 10",
+      "calculate": "228 - datum.Outer_radius + 9.0",
       "as": "Label_y"
     },
     {
-      "calculate": "(datum.Mode === 'Massively Multiplayer Online (MMO)' ? 'MMO' : datum.Mode) + '  ' + format(datum.Games, ',d')",
+      "calculate": "datum.Mode === 'Massively Multiplayer Online (MMO)' ? 'Massively Multiplayer Online' : datum.Mode",
+      "as": "Mode_display"
+    },
+    {
+      "calculate": "datum.Mode === 'Massively Multiplayer Online (MMO)' ? 'Massively Multiplayer|Online  ' + format(datum.Games, ',d') : datum.Mode_display + '  ' + format(datum.Games, ',d')",
       "as": "Mode_label"
     }
   ],
@@ -63,10 +67,10 @@
       },
       "encoding": {
         "x": {
-          "value": 320
+          "value": 217.0
         },
         "y": {
-          "value": 260
+          "value": 228.0
         },
         "radius": {
           "field": "Outer_radius",
@@ -93,10 +97,10 @@
       },
       "encoding": {
         "x": {
-          "value": 320
+          "value": 217.0
         },
         "y": {
-          "value": 260
+          "value": 228.0
         },
         "radius": {
           "field": "Outer_radius",
@@ -126,18 +130,18 @@
               "Massively Multiplayer Online (MMO)"
             ],
             "range": [
-              "#397CB9",
-              "#E4AE36",
-              "#64ADB5",
-              "#8B70AE",
-              "#986D43"
+              "#D260FB",
+              "#F08060",
+              "#0D594F",
+              "#C43C8C",
+              "#880707"
             ]
           },
           "legend": null
         },
         "tooltip": [
           {
-            "field": "Mode",
+            "field": "Mode_display",
             "type": "nominal",
             "title": "Game mode"
           },
@@ -157,11 +161,13 @@
         "baseline": "middle",
         "fontSize": 13,
         "fontWeight": "bold",
-        "color": "#304455"
+        "color": "#304455",
+        "lineBreak": "|",
+        "lineHeight": 14
       },
       "encoding": {
         "x": {
-          "value": 308
+          "value": 206.2
         },
         "y": {
           "field": "Label_y",
@@ -175,7 +181,7 @@
         },
         "tooltip": [
           {
-            "field": "Mode",
+            "field": "Mode_display",
             "type": "nominal",
             "title": "Game mode"
           },
@@ -194,62 +200,62 @@
           {
             "Value": 0,
             "Label": "0",
-            "x": 320,
-            "y": 26,
-            "x1": 320,
-            "y1": 44,
-            "x2": 320,
-            "y2": 36
+            "x": 217.0,
+            "y": 17.4,
+            "x1": 217.0,
+            "y1": 33.6,
+            "x2": 217.0,
+            "y2": 26.4
           },
           {
             "Value": 5000,
             "Label": "5k",
-            "x": 509.3099766837377,
-            "y": 122.45825096356128,
-            "x1": 494.74767078498866,
-            "y1": 133.03838550482578,
-            "x2": 501.21980673998826,
-            "y2": 128.33610348648602
+            "x": 387.38,
+            "y": 104.21,
+            "x1": 374.28,
+            "y1": 113.73,
+            "x2": 380.1,
+            "y2": 109.51
           },
           {
             "Value": 10000,
             "Label": "10k",
-            "x": 542.5472248130659,
-            "y": 332.30997668373766,
-            "x1": 525.4282075197532,
-            "y1": 326.7476707849886,
-            "x2": 533.0366596501144,
-            "y2": 329.2198067399882
+            "x": 417.29,
+            "y": 293.08,
+            "x1": 401.88,
+            "y1": 288.08,
+            "x2": 408.73,
+            "y2": 290.3
           },
           {
             "Value": 15000,
             "Label": "15k",
-            "x": 392.3099766837377,
-            "y": 482.5472248130659,
-            "x1": 386.74767078498866,
-            "y1": 465.4282075197532,
-            "x2": 389.21980673998826,
-            "y2": 473.0366596501144
+            "x": 282.08,
+            "y": 428.3,
+            "x1": 277.08,
+            "y1": 412.88,
+            "x2": 279.3,
+            "y2": 419.73
           },
           {
             "Value": 20000,
             "Label": "20k",
-            "x": 182.4582509635613,
-            "y": 449.3099766837377,
-            "x1": 193.03838550482584,
-            "y1": 434.74767078498866,
-            "x2": 188.33610348648605,
-            "y2": 441.21980673998826
+            "x": 93.21,
+            "y": 398.38,
+            "x1": 102.73,
+            "y1": 385.28,
+            "x2": 98.51,
+            "y2": 391.1
           },
           {
             "Value": 25000,
             "Label": "25k",
-            "x": 86,
-            "y": 260.00000000000006,
-            "x1": 104,
-            "y1": 260.00000000000006,
-            "x2": 96,
-            "y2": 260.00000000000006
+            "x": 6.4,
+            "y": 228.0,
+            "x1": 22.6,
+            "y1": 228.0,
+            "x2": 15.4,
+            "y2": 228.0
           }
         ]
       },
@@ -286,69 +292,69 @@
           {
             "Value": 0,
             "Label": "0",
-            "x": 320,
-            "y": 26,
-            "x1": 320,
-            "y1": 44,
-            "x2": 320,
-            "y2": 36
+            "x": 217.0,
+            "y": 17.4,
+            "x1": 217.0,
+            "y1": 33.6,
+            "x2": 217.0,
+            "y2": 26.4
           },
           {
             "Value": 5000,
             "Label": "5k",
-            "x": 509.3099766837377,
-            "y": 122.45825096356128,
-            "x1": 494.74767078498866,
-            "y1": 133.03838550482578,
-            "x2": 501.21980673998826,
-            "y2": 128.33610348648602
+            "x": 387.38,
+            "y": 104.21,
+            "x1": 374.28,
+            "y1": 113.73,
+            "x2": 380.1,
+            "y2": 109.51
           },
           {
             "Value": 10000,
             "Label": "10k",
-            "x": 542.5472248130659,
-            "y": 332.30997668373766,
-            "x1": 525.4282075197532,
-            "y1": 326.7476707849886,
-            "x2": 533.0366596501144,
-            "y2": 329.2198067399882
+            "x": 417.29,
+            "y": 293.08,
+            "x1": 401.88,
+            "y1": 288.08,
+            "x2": 408.73,
+            "y2": 290.3
           },
           {
             "Value": 15000,
             "Label": "15k",
-            "x": 392.3099766837377,
-            "y": 482.5472248130659,
-            "x1": 386.74767078498866,
-            "y1": 465.4282075197532,
-            "x2": 389.21980673998826,
-            "y2": 473.0366596501144
+            "x": 282.08,
+            "y": 428.3,
+            "x1": 277.08,
+            "y1": 412.88,
+            "x2": 279.3,
+            "y2": 419.73
           },
           {
             "Value": 20000,
             "Label": "20k",
-            "x": 182.4582509635613,
-            "y": 449.3099766837377,
-            "x1": 193.03838550482584,
-            "y1": 434.74767078498866,
-            "x2": 188.33610348648605,
-            "y2": 441.21980673998826
+            "x": 93.21,
+            "y": 398.38,
+            "x1": 102.73,
+            "y1": 385.28,
+            "x2": 98.51,
+            "y2": 391.1
           },
           {
             "Value": 25000,
             "Label": "25k",
-            "x": 86,
-            "y": 260.00000000000006,
-            "x1": 104,
-            "y1": 260.00000000000006,
-            "x2": 96,
-            "y2": 260.00000000000006
+            "x": 6.4,
+            "y": 228.0,
+            "x1": 22.6,
+            "y1": 228.0,
+            "x2": 15.4,
+            "y2": 228.0
           }
         ]
       },
       "transform": [],
       "mark": {
         "type": "text",
-        "fontSize": 11,
+        "fontSize": 12,
         "color": "#697786"
       },
       "encoding": {
@@ -381,16 +387,16 @@
       "transform": [],
       "mark": {
         "type": "text",
-        "fontSize": 24,
+        "fontSize": 21,
         "fontWeight": "bold",
         "color": "#304455"
       },
       "encoding": {
         "x": {
-          "value": 320
+          "value": 217.0
         },
         "y": {
-          "value": 252
+          "value": 220.8
         },
         "text": {
           "field": "label"
@@ -401,22 +407,24 @@
       "data": {
         "values": [
           {
-            "label": "games with shared play"
+            "label": "games with|shared play"
           }
         ]
       },
       "transform": [],
       "mark": {
         "type": "text",
-        "fontSize": 11,
-        "color": "#697786"
+        "fontSize": 12,
+        "color": "#697786",
+        "lineBreak": "|",
+        "lineHeight": 14
       },
       "encoding": {
         "x": {
-          "value": 320
+          "value": 217.0
         },
         "y": {
-          "value": 277
+          "value": 243.3
         },
         "text": {
           "field": "label"

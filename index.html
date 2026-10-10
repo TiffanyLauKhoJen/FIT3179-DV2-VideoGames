@@ -140,17 +140,20 @@
       <div class="level-heading">
         <div class="level-banner">
           <p class="level-tag">Section 2</p>
-          <h2>How Do Different Games Let Us Play?</h2>
+          <h2>How Are Video Games Designed to Be Played?</h2>
         </div>
       </div>
 
-      <!-- Chart 4: Player perspectives (text on the right) -->
-      <div class="pure-g chart-row">
-        <div class="pure-u-1 pure-u-lg-17-24">
+      <!-- Charts 4 and 5 side by side: each chart with its text underneath.
+           A two-row grid keeps both texts starting at the same level; on small screens it stacks chart, text, chart, text. -->
+      <div class="chart-pair">
+        <div class="chart-pair-chart chart-pair-c1">
           <div id="perspective_slope" class="vis-container"></div>
         </div>
-        <div class="pure-u-1 pure-u-lg-7-24">
-          <div class="text-side text-side-right">
+        <div class="chart-pair-chart chart-pair-c2">
+          <div id="game_mode_radial" class="vis-container"></div>
+        </div>
+        <div class="chart-pair-text chart-pair-t1">
             <p>
               Early games were mostly flat: in 1980–1984, <strong class="hl">43.7%</strong> of games with a
               recorded perspective used a side view. By 2020–2024, first-person games had more than doubled their
@@ -160,27 +163,21 @@
               The two periods are very different in size (2,294 games compared with 24,142), so the chart compares
               shares rather than counts.
             </p>
-          </div>
         </div>
-      </div>
-
-      <!-- Chart 5: Game-mode combinations (text on the left) -->
-      <div class="pure-g chart-row">
-        <div class="pure-u-1 pure-u-lg-7-24">
-          <div class="text-side text-side-left">
-            <p>
-              Most multiplayer games do not ask players to choose between playing alone and with others. The most common
-              combination, by a wide margin, is <strong class="hl">single-player plus multiplayer</strong>, recorded for
-              11,010 games.
-            </p>
-            <p>
-              Games that offer <em>only</em> multiplayer are far less common. Single-player-only games are left out so that
-              the different ways of playing together stay visible.
-            </p>
-          </div>
-        </div>
-        <div class="pure-u-1 pure-u-lg-17-24">
-          <div id="game_mode_upset" class="vis-container"></div>
+        <div class="chart-pair-text chart-pair-t2">
+          <p>
+            <strong class="stat-lg">80%</strong> <strong>of <span class="mode-multi">multiplayer</span>-capable games
+            also support <span class="mode-single">single player</span></strong>, giving players the choice to play alone
+            or with others. <em>Sackboy: A Big Adventure</em>, for example, offers solo adventures and co-operative play
+            with up to four players.
+          </p>
+          <p>
+            <strong class="mode-coop">Co-operative play</strong> <strong>appears in</strong>
+            <strong class="mode-coop">9,929</strong> <strong>games</strong>, compared with
+            <strong><span class="mode-split">3,053</span> offering <span class="mode-split">split screen</span></strong>.
+            Co-op focuses on working together towards shared goals. <em>It Takes Two</em> builds its adventure around two
+            players helping each other overcome challenges, either on the couch or online.
+          </p>
         </div>
       </div>
 

@@ -160,7 +160,13 @@ a {
 /* ---------- 5. Sections ("levels") ---------- */
 /* Each section starts directly with its purple banner (no divider line or gap above) */
 .level {
-  padding: 0 0 24px;
+  padding: 0;
+}
+
+/* Gap between a section's last chart and the next section's banner */
+.level > .chart-row:last-child,
+.level > .chart-pair:last-child {
+  margin-bottom: 28px;
 }
 
 .level-heading {
@@ -300,6 +306,62 @@ a {
   color: #7570B3;
 }
 
+/* Game-mode figures beside the radial chart, in darker versions of the chart's ring colours
+   (darkened so they are readable as text on white) */
+.stat-lg {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.stat-md {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.mode-multi {
+  color: #BB10F9;   /* Multiplayer ring #D260FB, darkened */
+}
+
+.mode-single {
+  color: #CC4B24;   /* Single player ring #F08060, darkened for 16px text */
+}
+
+.mode-split {
+  color: #C43C8C;   /* Split screen ring */
+}
+
+.mode-coop {
+  color: #0D594F;   /* Co-operative ring (same colour) */
+}
+
+/* Two charts side by side, each with its text underneath (Section 2).
+   Row 1 holds both charts and row 2 both texts, so the texts start at the same level. */
+.chart-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "c1 c2"
+    "t1 t2";
+  column-gap: 32px;
+  row-gap: 12px;
+  margin-bottom: 32px;
+}
+
+.chart-pair-c1 { grid-area: c1; }
+.chart-pair-c2 { grid-area: c2; }
+.chart-pair-t1 { grid-area: t1; }
+.chart-pair-t2 { grid-area: t2; }
+
+/* Chart titles line up at the top; charts sit at the left of their column */
+.chart-pair-chart {
+  align-self: start;
+  min-width: 0;
+}
+
+.chart-pair .vis-container {
+  text-align: left;
+}
+
 /* Conclusion text */
 .text-block {
   max-width: 70ch;
@@ -383,6 +445,16 @@ a {
     max-width: 70ch;
   }
 
+}
+
+
+/* The side-by-side charts stack (chart, text, chart, text) once two columns no longer fit */
+@media (max-width: 1023px) {
+  .chart-pair {
+    grid-template-columns: 1fr;
+    grid-template-areas: "c1" "t1" "c2" "t2";
+    row-gap: 16px;
+  }
 }
 
 
