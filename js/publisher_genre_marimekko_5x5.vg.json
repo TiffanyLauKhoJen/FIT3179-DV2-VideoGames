@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Genre mix of five selected publishers across five selected genres, from Video Games Sales (1980\u20132024) \u2013 Raw. Includes records with release dates in 1980\u20132024. Each distinct publisher\u2013title\u2013genre combination is counted once across platforms. Simulation is displayed as Simulator. Publishers are selected for contrasting profiles, not a top-five ranking. Width represents selected title\u2013genre pairs; height represents genre share within each publisher. Sales values are not used.",
-  "width": 560,
-  "height": 400,
+  "description": "Genre mix of five selected publishers across five selected genres, from Video Games Sales (1980–2024) – Raw. Includes records with release dates in 1980–2024. Each distinct publisher–title–genre combination is counted once across platforms. Simulation is displayed as Simulator. Publishers are selected for contrasting profiles, not a top-five ranking. Width represents selected title–genre pairs; height represents genre share within each publisher. Sales values are not used.",
+  "width": 539,
+  "height": 297,
   "padding": {
     "left": 10,
     "right": 20,
@@ -20,18 +20,9 @@
     }
   },
   "title": {
-    "text": [
-      "How Do Selected Video Game Publishers",
-      "Differ in Their Genre Mix?"
-    ],
-    "subtitle": [
-      "Column width: recorded titles across five selected genres, 1980\u20132024",
-      "Segment height: genre share within each publisher"
-    ],
+    "text": "Genre Mix of Selected Video Game Publishers",
     "anchor": "start",
-    "fontSize": 20,
-    "subtitleFontSize": 12,
-    "subtitleColor": "#666666",
+    "fontSize": 17,
     "offset": 12
   },
   "transform": [
@@ -207,16 +198,16 @@
             "range": [
               "#393B79",
               "#E78AC3",
-              "#9ECAE1",
+              "#790606",
               "#B15928",
-              "#FFED6F"
+              "#6A3D9A"
             ]
           },
           "legend": {
             "orient": "bottom",
             "direction": "horizontal",
             "columns": 3,
-            "offset": 62,
+            "offset": 45,
             "labelFontSize": 11,
             "titleFontSize": 11
           }
@@ -230,7 +221,7 @@
           {
             "field": "publisher_total",
             "type": "quantitative",
-            "title": "Selected Title\u2013Genre Pairs",
+            "title": "Selected Title–Genre Pairs",
             "format": ",d"
           },
           {
@@ -298,49 +289,6 @@
         "text": {
           "field": "publisher_label",
           "type": "nominal"
-        }
-      }
-    },
-    {
-      "transform": [
-        {
-          "filter": "datum.genre_order === 0"
-        }
-      ],
-      "mark": {
-        "type": "text",
-        "baseline": "top",
-        "align": "center",
-        "dy": 29,
-        "fontSize": 10,
-        "color": "#444444",
-        "clip": false
-      },
-      "encoding": {
-        "x": {
-          "field": "x_mid",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              0,
-              1
-            ]
-          }
-        },
-        "y": {
-          "datum": 0,
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              0,
-              1
-            ]
-          }
-        },
-        "text": {
-          "field": "publisher_total",
-          "type": "quantitative",
-          "format": ",d"
         }
       }
     }

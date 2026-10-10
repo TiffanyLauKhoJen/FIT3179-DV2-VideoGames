@@ -15,7 +15,7 @@ var vg_game_mode_radial = "js/game_mode_radial_counts_1980_2024.vg.json";
 var vg_platform_treemap = "js/platform_family_treemap.vg.json";   // Vega spec (treemap transform)
 
 // Level 4: who makes games, and where
-var vg_publisher_marimekko = "js/publisher_genre_marimekko_top6x6_no_other2.vg.json";
+var vg_publisher_marimekko = "js/publisher_genre_marimekko_5x5.vg.json";
 var vg_organisation_dot_map = "js/gamedev_organization_dot_map_110m.vg.json";
 var vg_company_symbol_map = "js/gamecompanies_world_overlaid_symbols.vg.json";
 var vg_publisher_heatmap = "js/publisher_regional_share_heatmap_12.vg.json";

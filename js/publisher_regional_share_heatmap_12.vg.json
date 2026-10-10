@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Percentage-share heatmap for 12 publisher labels selected from the 24 with at least 30 complete distinct title–console releases. Selection: the eight largest sums of available complete regional sales, plus Codemasters (highest PAL/Europe share) and the three highest Japan-share labels (KOEI, Tecmo Koei, NIS America). This is an illustrative selection, not the twelve biggest publishers worldwide. Each share is the publisher regional sum divided by the sum of its four recorded regions, multiplied by 100. Every row sums to 100% before display rounding. Rows are grouped by highest-share region and sorted within each group by that highest share. Publisher labels remain as recorded, without corporate consolidation. Source: Video Games Sales (1980-2024) - Raw.csv; no year filter, dated included releases extend through 2020. Missing regional values are excluded, not zero-filled. Conflicting complete Konami International Superstar Soccer 98 N64 records are omitted. Colour uses one common linear 0–70% scale.",
+  "description": "Regional sales shares for 12 selected publisher labels with at least 30 complete distinct title-platform releases. Sega and Nintendo replace Rockstar Games and Sony Computer Entertainment to connect this chart with the publisher-genre Marimekko. Electronic Arts and Konami appear in both charts. Microsoft is excluded because its exact publisher label has only five complete regional-sales records. Each regional share is the publisher regional sales sum divided by its sum across all four regions, multiplied by 100. Rows total 100% before rounding and are grouped by highest-share region, then ordered by that share. Publisher labels remain as recorded without corporate consolidation. No year filter is applied; dated included releases extend through 2020. Missing regional values are excluded rather than treated as zero. Exact redundant records are removed and conflicting complete title-platform records are omitted, including Konami International Superstar Soccer 98 on N64. Values are recorded sales in million copies, not revenue. Colour uses a common continuous linear 0-70% scale.",
   "title": {
     "text": "Regional Sales Mix of Selected Publishers",
     "subtitle": "Each row shows the regional shares of one publisher’s included sales",
@@ -10,7 +10,7 @@
     "subtitleColor": "#526274",
     "offset": 14
   },
-  "width": 460,
+  "width": 560,
   "height": {
     "step": 32
   },
@@ -57,11 +57,11 @@
       "type": "nominal",
       "sort": [
         "Activision",
-        "Rockstar Games",
+        "Nintendo",
         "Ubisoft",
         "Electronic Arts",
+        "Sega",
         "Capcom",
-        "Sony Computer Entertainment",
         "NIS America",
         "Codemasters",
         "EA Sports",

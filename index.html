@@ -235,22 +235,49 @@
         </div>
       </div>
 
-      <!-- Chart 8: Publisher genre mix (text on the right) -->
-      <div class="pure-g chart-row">
-        <div class="pure-u-1 pure-u-lg-17-24">
+      <!-- Chart 8: Publisher genre mix, 5 publishers x 5 genres (chart on the left 2/3, text on the right 1/3, aligned at the top) -->
+      <div class="pure-g chart-row chart-row-wide">
+        <div class="pure-u-1 pure-u-lg-2-3">
           <div id="publisher_marimekko" class="vis-container"></div>
         </div>
-        <div class="pure-u-1 pure-u-lg-7-24">
-          <div class="text-side text-side-right">
+        <div class="pure-u-1 pure-u-lg-1-3">
+          <div class="text-side text-side-right text-side-plot-top">
             <p>
-              Wider columns mean larger catalogues across the six genres. Sega has the biggest.
+              <strong>Microsoft&rsquo;s selected listings lean towards <span class="genre-action">Action</span> and
+              <span class="genre-shooter">Shooter</span></strong>, together making up
+              <strong class="key-figure key-figure-ink">74.8%</strong>, with series such as <em>Halo</em> and
+              <em>Gears of War</em>. <strong>Konami</strong> has a more sporting mix,
+              with <strong class="genre-sports">38.6% Sports</strong>, led by its <em>Pro Evolution Soccer</em> and
+              <em>Power Pros</em> football and baseball series, released since the 1990s.
             </p>
             <p>
-              Each publisher has its own speciality: <strong class="hl">Konami</strong> leans heavily on Sports,
-              <strong class="hl">Microsoft</strong> on Action and Shooter, and <strong class="hl">Nintendo</strong>
-              on Platform and Role-Playing games such as Mario and Pokémon.
+              For <strong>Nintendo</strong>, <strong class="genre-rpg">Role-Playing occupies 34.8%</strong>, including
+              <em>Pok&eacute;mon</em>, which has continued across console generations since 1996.
+              <strong>Electronic Arts has the strongest <span class="genre-sim">Simulator</span> share, at</strong>
+              <strong class="key-figure genre-sim">27.7%</strong>, rooted in Maxis, the <em>SimCity</em> developer it
+              acquired in 1997, which later created <em>The Sims</em>.
             </p>
           </div>
+        </div>
+      </div>
+
+      <!-- Chart 11: Regional sales mix, heatmap (text on the left) -->
+      <div class="pure-g chart-row">
+        <div class="pure-u-1 pure-u-lg-7-24">
+          <div class="text-side text-side-left">
+            <!-- DRAFT: written from publisher_regional_share_heatmap_12.csv; please review the wording -->
+            <p>
+              Where publishers sell their games differs widely. North America is the largest market for seven of these
+              12 publishers, while Codemasters and EA Sports sell most in Europe.
+            </p>
+            <p>
+              Western publishers such as Activision sell almost nothing in Japan (<strong>2.2%</strong>), while KOEI
+              earns <strong>57.5%</strong> of its recorded sales there.
+            </p>
+          </div>
+        </div>
+        <div class="pure-u-1 pure-u-lg-17-24">
+          <div id="publisher_heatmap" class="vis-container"></div>
         </div>
       </div>
 
@@ -291,26 +318,6 @@
               exceptions, with more development than publishing. Click an activity in the legend to show it on its own.
             </p>
           </div>
-        </div>
-      </div>
-
-      <!-- Chart 11: Regional sales mix, heatmap (text on the left) -->
-      <div class="pure-g chart-row">
-        <div class="pure-u-1 pure-u-lg-7-24">
-          <div class="text-side text-side-left">
-            <!-- DRAFT: written from publisher_regional_share_heatmap_12.csv; please review the wording -->
-            <p>
-              Where publishers sell their games differs widely. North America is the largest market for seven of these
-              12 publishers, while Codemasters and EA Sports sell most in Europe.
-            </p>
-            <p>
-              Western publishers such as Activision sell almost nothing in Japan (<strong>2.2%</strong>), while KOEI
-              earns <strong>57.5%</strong> of its recorded sales there.
-            </p>
-          </div>
-        </div>
-        <div class="pure-u-1 pure-u-lg-17-24">
-          <div id="publisher_heatmap" class="vis-container"></div>
         </div>
       </div>
 

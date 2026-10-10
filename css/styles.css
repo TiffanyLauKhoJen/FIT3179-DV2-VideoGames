@@ -339,6 +339,28 @@ a {
   white-space: normal;
 }
 
+/* Genre highlights beside the Marimekko chart, in its legend colours
+   (Action and Shooter darkened so they are readable as text on white) */
+.genre-sports {
+  color: #393B79;   /* Sports, same as the chart */
+}
+
+.genre-action {
+  color: #E78AC3;   /* Action, same as the chart legend */
+}
+
+.genre-shooter {
+  color: #790606;   /* Shooter, same as the chart legend */
+}
+
+.genre-rpg {
+  color: #B15928;   /* Role-Playing, same as the chart */
+}
+
+.genre-sim {
+  color: #6A3D9A;   /* Simulator, same as the chart */
+}
+
 /* Game-mode figures beside the radial chart, in darker versions of the chart's ring colours
    (darkened so they are readable as text on white) */
 .mode-multi {
