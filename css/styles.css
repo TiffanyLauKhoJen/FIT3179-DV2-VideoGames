@@ -224,6 +224,12 @@ a {
   width: 100%;
 }
 
+/* The "..." actions menu floats in the empty top-right corner beside the title,
+   so drop the 38px vega-embed reserves for it and keep charts at their designed size */
+.vis-container.vega-embed.has-actions {
+  padding-right: 0;
+}
+
 /* Charts keep their designed size, but shrink (never overflow) on narrow screens */
 .vis-container svg {
   max-width: 100%;
@@ -435,6 +441,24 @@ a {
   white-space: normal;
 }
 
+/* Maps: one map per row across the full width, with two paragraphs of text side by side underneath
+   (same column gap, line spacing and paragraph gap as the Section 2 texts) */
+.map-row .vis-container {
+  text-align: left;
+}
+
+.map-text {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 32px;
+  margin-top: 12px;
+}
+
+.map-text p {
+  line-height: 1.5;
+  margin: 0;
+}
+
 /* Conclusion text */
 .text-block {
   max-width: 70ch;
@@ -535,10 +559,15 @@ a {
 }
 
 
-/* Introduction columns stack on phones (pure.css md breakpoint) */
+/* Introduction columns and map texts stack on phones (pure.css md breakpoint) */
 @media (max-width: 767px) {
   .intro-col-left,
   .intro-col-right {
     padding: 0;
+  }
+
+  .map-text {
+    grid-template-columns: 1fr;
+    row-gap: 16px;
   }
 }

@@ -1,6 +1,6 @@
 // Embed every Vega-Lite chart on the page (one vegaEmbed call per chart, as in the studio lab).
 // "renderer: svg" lets the CSS shrink a chart on narrow screens without breaking tooltips.
-var embedOptions = { "actions": false, "renderer": "svg" };
+var embedOptions = { "renderer": "svg" };
 
 // Level 1: the catalogue keeps growing
 var vg_release_trend = "js/release_trend.vg.json";

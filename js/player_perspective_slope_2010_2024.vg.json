@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Annual comparison of five visual player perspectives in 2010 and 2024. Source: game_dataset_cleaned(1).csv. Distinct main_game IDs, valid release dates. Each year denominator is the union of games tagged with at least one selected visual perspective (2010: 1,211; 2024: 6,376). Text/Auditory-only and missing perspective records are excluded; games with a selected visual perspective are retained even if they also have a Text/Auditory tag. Games can have multiple perspectives, so percentages need not sum to 100. The 2010 baseline maximizes the sum of absolute percentage-point differences from 2024 across the five perspectives, among baseline years 2010–2023. Endpoint comparison only. Colour values avoid exact reuse of the supplied dashboard palette; families necessarily recur.",
   "title": {
-    "text": "Changes in Visual Game Perspectives, 2010–2024",
+    "text": "Changes in Visual Game Perspectives (2010–2024)",
     "anchor": "start",
     "fontSize": 17,
     "offset": 16

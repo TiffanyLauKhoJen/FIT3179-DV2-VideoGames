@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Concentric radial bars showing distinct game counts per mode in 27,416 IGDB main games released in 1980–2024 with at least one retained shared-play mode. Battle Royale is removed before selecting the subset. Single-player-only games are excluded. Each ring maps 0–25,000 games to the same 270-degree sweep. Modes overlap. Reference: https://vega.github.io/vega-lite/docs/arc.html",
   "title": {
-    "text": "Which modes do multiplayer-capable games offer?",
+    "text": "Game Modes in Multiplayer-Capable Games",
     "anchor": "start",
     "fontSize": 17,
     "subtitleFontSize": 12,

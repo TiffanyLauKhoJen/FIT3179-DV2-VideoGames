@@ -3,7 +3,7 @@
   "description": "Dumbbell chart comparing eight selected genres across recorded IGDB main games released in 2010 and 2024.",
   "title": {
     "text": [
-      "Differences in Video Game Genre Shares (2010 - 2024)"
+      "Differences in Video Game Genre Shares (2010–2024)"
     ],
     "anchor": "start",
     "fontSize": 17,
