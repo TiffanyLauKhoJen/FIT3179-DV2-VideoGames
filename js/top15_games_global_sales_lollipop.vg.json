@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Horizontal lollipop chart of games ranked 1 to 15 in videogame.csv by recorded global sales.",
-  "width": 468,
-  "height": 287,
+  "width": 781,
+  "height": 320,
   "background": "white",
   "title": {
     "text": "Top 15 Games by Recorded Global Sales",
@@ -65,7 +65,8 @@
       "axis": {
         "format": ",.0f",
         "grid": false,
-        "domain": false
+        "domain": false,
+        "tickMinStep": 10
       }
     }
   },
@@ -232,8 +233,8 @@
         "values": [
           {
             "title": "Tetris",
-            "x": 38.6,
-            "x2": 43.2
+            "x": 35.26,
+            "x2": 43.5
           }
         ]
       },
@@ -266,8 +267,8 @@
         "values": [
           {
             "title": "Mario Kart DS",
-            "x": 31.8,
-            "x2": 43.2
+            "x": 28.44,
+            "x2": 43.5
           }
         ]
       },

@@ -1,15 +1,28 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Where are listed game organizations concentrated?",
-    "subtitle": "1 dot = 1 GameDevMap listing (10,417)"
+    "text": "Geographic Distribution of Game Organisations"
   },
-  "width": 760,
-  "height": 400,
+  "width": 920,
+  "height": 450,
   "projection": {
     "type": "equalEarth"
   },
   "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/ne_110m_admin_0_countries.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "ne_110m_admin_0_countries"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "lightgray",
+        "stroke": "white"
+      }
+    },
     {
       "data": {
         "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/oceans.topojson",
@@ -40,21 +53,6 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/ne_110m_admin_0_countries.topojson",
-        "format": {
-          "type": "topojson",
-          "feature": "ne_110m_admin_0_countries"
-        }
-      },
-      "mark": {
-        "type": "geoshape",
-        "fill": "lightgray",
-        "stroke": "#FFFFFF",
-        "strokeWidth": 0.4
-      }
-    },
-    {
-      "data": {
         "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/gamedev_dots.csv",
         "format": {
           "type": "csv",
@@ -71,8 +69,11 @@
       ],
       "mark": {
         "type": "circle",
-        "size": 12,
-        "opacity": 0.6
+        "filled": true,
+        "size": 10,
+        "opacity": 0.7,
+        "stroke": "lightgrey",
+        "strokeWidth": 0.3
       },
       "encoding": {
         "longitude": {
@@ -84,32 +85,22 @@
           "type": "quantitative"
         },
         "color": {
-          "field": "Type",
+          "datum": "1 dot = 1 game organisation",
           "type": "nominal",
-          "title": "Type of organization",
           "scale": {
-            "domain": [
-              "Developer",
-              "Publisher",
-              "Mobile",
-              "XR (VR/AR)",
-              "Other"
-            ],
             "range": [
-              "#0072B2",
-              "#E69F00",
-              "#009E73",
-              "#CC79A7",
-              "#7A7F87"
+              "#B2182B"
             ]
           },
           "legend": {
-            "orient": "right",
-            "symbolSize": 110,
+            "orient": "bottom",
+            "title": null,
+            "symbolSize": 60,
             "symbolOpacity": 1,
+            "symbolStrokeColor": "lightgrey",
+            "symbolStrokeWidth": 0.5,
             "labelFontSize": 12,
-            "titleFontSize": 13,
-            "labelLimit": 180
+            "labelLimit": 250
           }
         },
         "tooltip": [

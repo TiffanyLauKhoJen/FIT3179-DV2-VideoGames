@@ -113,6 +113,12 @@ a {
   color: var(--ink);
 }
 
+/* Opening claim of a paragraph: about 20px, allowed to wrap */
+.key-figure-lead {
+  font-size: 1.25em;
+  white-space: normal;
+}
+
 
 /* ---------- 3. Page layout ---------- */
 /* A centred white page on a grey background, as in the studio lab */
@@ -459,6 +465,13 @@ a {
   margin: 0;
 }
 
+/* Dot map and participation map text: full-width equal columns (8-10 words per line), a little more space below the legend */
+.map-text-narrow {
+  column-gap: 32px;
+  padding: 0;
+  margin-top: 20px;
+}
+
 /* Conclusion text */
 .text-block {
   max-width: 70ch;
@@ -569,5 +582,9 @@ a {
   .map-text {
     grid-template-columns: 1fr;
     row-gap: 16px;
+  }
+
+  .map-text-narrow {
+    padding: 0;
   }
 }
