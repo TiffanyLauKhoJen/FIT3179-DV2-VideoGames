@@ -125,7 +125,7 @@ a {
 .page {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 24px 32px 0;
   box-sizing: border-box;
   background-color: var(--page);
   min-height: 100vh;
@@ -133,33 +133,186 @@ a {
 
 
 /* ---------- 4. Title and introduction ---------- */
-.intro {
-  padding: 40px 0 32px;
+/* Editorial opening on the white page. Everything shares one left edge with the
+   section banners and charts below; the section tabs close the introduction. */
+html {
+  scroll-behavior: smooth;
 }
 
-/* Subtitle under the main title */
+/* Section tabs jump to a section with a little breathing room above its banner */
+.level {
+  scroll-margin-top: 20px;
+}
+
+.intro {
+  margin: 0 0 32px;
+  padding: 0;
+}
+
+/* Title: a quiet italic lead-in, then the headline in heavy slab, both centred.
+   Letter and word spacing stay at the font's normal values. */
+.intro h1 {
+  margin: 0;
+  color: var(--ink);
+  text-align: center;
+}
+
+.title-lead {
+  display: block;
+  margin-bottom: 4px;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.1;
+  color: #514A78;
+}
+
+/* The headline stays on one line on laptops and tablets: it is about 11.3 times
+   its font size wide, so the size follows the page width (viewport minus 64px padding) */
+.title-main {
+  display: block;
+  font-size: min(4.25rem, calc((100vw - 64px) / 12));
+  font-weight: 700;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+.title-accent {
+  color: var(--accent);
+}
+
+/* Subtitle: centred under the title, quieter italic */
 .intro .subtitle {
+  max-width: 60ch;
+  margin: 14px auto 0;
+  text-align: center;
   font-family: var(--font-heading);
   font-style: italic;
-  font-size: 1.5rem;
+  font-size: clamp(1.15rem, 2vw, 1.375rem);
   font-weight: 500;
-  color: var(--ink-muted);
-  margin: -4px 0 24px;
+  line-height: 1.4;
+  color: #514A78;
+}
+
+/* Two equal columns whose first lines start at the same height */
+.intro-text {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  column-gap: 48px;
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
 }
 
 .intro .lead {
-  font-size: 16px;   /* same size as the body text */
-  max-width: 48ch;   /* no more than about 10 words per line */
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #3E4353;
 }
 
-
-/* Two short introduction columns with a gap between them */
-.intro-col-left {
-  padding-right: 32px;
+/* Section tabs: six equal tabs with an indigo bar that fills in on hover */
+.intro-nav {
+  margin-top: 28px;
 }
 
-.intro-col-right {
-  padding-left: 32px;
+.intro-nav ul {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.intro-nav a {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 12px 12px 14px;
+  border-top: 3px solid #D6D2EB;
+  background: #F7F6FC;
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.tab-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.tab-name {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.intro-nav a:hover,
+.intro-nav a:focus-visible {
+  border-top-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+  outline: none;
+}
+
+.intro-nav a:focus-visible {
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .intro-nav a {
+    transition: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .intro-nav ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .intro {
+    margin-bottom: 24px;
+  }
+
+  .title-main {
+    font-size: clamp(2.1rem, 9.5vw, 2.6rem);
+    white-space: normal;
+    text-wrap: balance;
+  }
+
+
+  .intro-text {
+    grid-template-columns: 1fr;
+    row-gap: 16px;
+    margin-top: 24px;
+    padding-top: 20px;
+  }
+
+  .intro .lead {
+    font-size: 16px;
+  }
+
+  .intro-nav {
+    margin-top: 24px;
+  }
+
+  .intro-nav ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 
@@ -179,16 +332,16 @@ a {
   margin-bottom: 12px;
 }
 
-/* Section title banner: white text on the purple accent.
-   Negative side margins cancel the page padding so the banner runs edge to edge. */
+/* Section title banner: white text on the purple accent,
+   the same width as the charts and text below it */
 .level-banner {
   display: flex;
   align-items: baseline;
   flex-wrap: wrap;
   gap: 6px 16px;
   background-color: var(--accent);
-  padding: 14px 32px;
-  margin: 0 -32px 16px;
+  padding: 14px 24px;
+  margin: 0 0 16px;
 }
 
 .level-banner h2 {
@@ -479,33 +632,46 @@ a {
 }
 
 .outro {
-  padding: 32px 0 48px;
+  padding: 20px 0 32px;
   border-top: 1px solid var(--line);
+}
+
+/* Conclusion: two equal columns under the heading, like the map explanations */
+.outro h2 {
+  margin-bottom: 0;
+}
+
+.outro-text {
+  margin-top: 16px;
 }
 
 
 /* ---------- 7. Footer ---------- */
+/* Same light grey divider as above the conclusion; details listed as bold labels */
 .footer {
-  padding: 40px 0 56px;
-  font-size: 0.9rem;
+  padding: 28px 0 56px;
+  border-top: 1px solid var(--line);
+  font-size: 0.95rem;
   color: var(--ink-muted);
 }
 
-.footer-col {
-  padding-right: 32px;
+.footer p {
+  margin: 0 0 14px;
+}
+
+.footer strong {
+  color: var(--ink);
 }
 
 .footer ul {
-  margin: 0 0 20px;
-  padding-left: 18px;
+  margin: 0;
+  padding-left: 22px;
 }
 
 .footer li {
-  margin-bottom: 6px;
-}
-
-.ai-note {
-  max-width: 60ch;
+  margin-bottom: 10px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;   /* long URLs wrap on phones */
 }
 
 
@@ -521,12 +687,12 @@ a {
 /* ---------- 9. Small screens ---------- */
 @media (max-width: 1023px) {
   .page {
-    padding: 0 16px;
+    padding: 16px 16px 0;
   }
 
   .level-banner {
-    padding: 14px 16px;
-    margin: 0 -16px 16px;
+    padding: 12px 16px;
+    margin: 0 0 16px;
   }
 
   h1 {
@@ -574,11 +740,6 @@ a {
 
 /* Introduction columns and map texts stack on phones (pure.css md breakpoint) */
 @media (max-width: 767px) {
-  .intro-col-left,
-  .intro-col-right {
-    padding: 0;
-  }
-
   .map-text {
     grid-template-columns: 1fr;
     row-gap: 16px;

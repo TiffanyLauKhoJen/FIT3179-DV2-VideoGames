@@ -207,7 +207,7 @@
             "orient": "bottom",
             "direction": "horizontal",
             "columns": 3,
-            "offset": 45,
+            "offset": 60,
             "labelFontSize": 11,
             "titleFontSize": 11
           }
@@ -290,6 +290,62 @@
           "field": "publisher_label",
           "type": "nominal"
         }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.genre_order === 0"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "baseline": "top",
+        "align": "center",
+        "dy": 27,
+        "fontSize": 11,
+        "color": "#4A5263",
+        "clip": false
+      },
+      "encoding": {
+        "x": {
+          "field": "x_mid",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              1
+            ]
+          }
+        },
+        "y": {
+          "datum": 0,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              1
+            ]
+          }
+        },
+        "text": {
+          "field": "publisher_total",
+          "type": "quantitative",
+          "format": ",d"
+        },
+        "tooltip": [
+          {
+            "field": "publisher",
+            "type": "nominal",
+            "title": "Publisher"
+          },
+          {
+            "field": "publisher_total",
+            "type": "quantitative",
+            "title": "Selected Title–Genre Pairs",
+            "format": ",d"
+          }
+        ]
       }
     }
   ],
