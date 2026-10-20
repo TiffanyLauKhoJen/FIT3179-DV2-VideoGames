@@ -1,0 +1,218 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Vertical bars, sorted from most to fewest (24,694 down to 2,706), showing distinct game counts per mode in 27,416 IGDB main games released in 1980–2024 with at least one retained shared-play mode. Battle Royale is removed before selecting the subset. Single-player-only games are excluded. Modes overlap, so the bars add up to more than 27,416.",
+  "title": {
+    "text": "Game Modes in Multiplayer-Capable Games",
+    "anchor": "start",
+    "fontSize": 17,
+    "offset": 14
+  },
+  "width": 388,
+  "height": 392,
+  "background": "white",
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/game_mode_bar_counts_1980_2024.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Games": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "datum.Mode === 'Massively Multiplayer Online (MMO)' ? 'Massively Multiplayer Online' : datum.Mode",
+      "as": "Mode_display"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Mode_display",
+      "type": "nominal",
+      "sort": [
+        "Multiplayer",
+        "Single player",
+        "Co-operative",
+        "Split screen",
+        "Massively Multiplayer Online"
+      ],
+      "title": null,
+      "axis": {
+        "labelAngle": 0,
+        "labelFontSize": 11,
+        "labelLineHeight": 13,
+        "labelPadding": 6,
+        "ticks": false,
+        "domainColor": "#9AA1AD",
+        "labelExpr": "split(datum.value, ' ')",
+        "labelColor": {
+          "expr": "datum.value === 'Multiplayer' ? '#125D73' : datum.value === 'Single player' ? '#946D00' : '#333333'"
+        },
+        "labelFontWeight": {
+          "condition": {
+            "test": "datum.value === 'Multiplayer' || datum.value === 'Single player'",
+            "value": "bold"
+          },
+          "value": "normal"
+        }
+      }
+    },
+    "y": {
+      "field": "Games",
+      "type": "quantitative",
+      "title": "Games offering this mode",
+      "scale": {
+        "domain": [
+          0,
+          28000
+        ]
+      },
+      "axis": {
+        "format": ",d",
+        "values": [
+          0,
+          5000,
+          10000,
+          15000,
+          20000,
+          25000
+        ],
+        "grid": true,
+        "gridColor": "#E5E7EB",
+        "domain": false,
+        "ticks": false,
+        "titleFontSize": 11,
+        "labelFontSize": 11
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusTopLeft": 2,
+        "cornerRadiusTopRight": 2,
+        "width": {
+          "band": 0.62
+        }
+      },
+      "encoding": {
+        "color": {
+          "field": "Mode_display",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Multiplayer",
+              "Single player",
+              "Co-operative",
+              "Split screen",
+              "Massively Multiplayer Online"
+            ],
+            "range": [
+              "#125D73",
+              "#B88700",
+              "#A6595E",
+              "#966699",
+              "#B19A78"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "Mode_display",
+            "type": "nominal",
+            "title": "Game mode"
+          },
+          {
+            "field": "Games",
+            "type": "quantitative",
+            "title": "Games offering this mode",
+            "format": ",d"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "baseline": "bottom",
+        "dy": -4,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#333333"
+      },
+      "encoding": {
+        "text": {
+          "field": "Games",
+          "type": "quantitative",
+          "format": ",d"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "a": "27,416",
+            "b": "games with shared play;|modes overlap"
+          }
+        ]
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "baseline": "top",
+            "fontSize": 20,
+            "fontWeight": "bold",
+            "color": "#304455"
+          },
+          "encoding": {
+            "x": {
+              "value": 388
+            },
+            "y": {
+              "value": 0
+            },
+            "text": {
+              "field": "a"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "baseline": "top",
+            "fontSize": 11,
+            "color": "#697786",
+            "lineBreak": "|",
+            "lineHeight": 14
+          },
+          "encoding": {
+            "x": {
+              "value": 388
+            },
+            "y": {
+              "value": 26
+            },
+            "text": {
+              "field": "b"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "font": "Arial",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "titleFontWeight": "bold"
+    }
+  }
+}

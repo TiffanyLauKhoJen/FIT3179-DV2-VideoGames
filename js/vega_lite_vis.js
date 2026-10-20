@@ -9,7 +9,7 @@ var vg_theme_bump = "js/theme_bump_2016_2024.vg.json";
 
 // Level 2: new ways to see and play
 var vg_perspective_slope = "js/player_perspective_slope_2010_2024.vg.json";
-var vg_game_mode_radial = "js/game_mode_radial_counts_1980_2024.vg.json";
+var vg_game_mode_bar = "js/game_mode_bar_counts_1980_2024.vg.json";
 
 // Level 3: where games are released
 var vg_platform_treemap = "js/platform_family_treemap.vg.json";   // Vega spec (treemap transform)
@@ -30,7 +30,7 @@ vegaEmbed("#genre_dumbbell", vg_genre_dumbbell, embedOptions).catch(console.erro
 vegaEmbed("#theme_bump", vg_theme_bump, embedOptions).catch(console.error);
 
 vegaEmbed("#perspective_slope", vg_perspective_slope, embedOptions).catch(console.error);
-vegaEmbed("#game_mode_radial", vg_game_mode_radial, embedOptions).catch(console.error);
+vegaEmbed("#game_mode_bar", vg_game_mode_bar, embedOptions).catch(console.error);
 
 vegaEmbed("#platform_treemap", vg_platform_treemap, embedOptions).catch(console.error);
 
