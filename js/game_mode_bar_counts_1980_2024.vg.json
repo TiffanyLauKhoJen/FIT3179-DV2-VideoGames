@@ -149,61 +149,6 @@
           "format": ",d"
         }
       }
-    },
-    {
-      "data": {
-        "values": [
-          {
-            "a": "27,416",
-            "b": "games with shared play;|modes overlap"
-          }
-        ]
-      },
-      "layer": [
-        {
-          "mark": {
-            "type": "text",
-            "align": "right",
-            "baseline": "top",
-            "fontSize": 20,
-            "fontWeight": "bold",
-            "color": "#304455"
-          },
-          "encoding": {
-            "x": {
-              "value": 388
-            },
-            "y": {
-              "value": 0
-            },
-            "text": {
-              "field": "a"
-            }
-          }
-        },
-        {
-          "mark": {
-            "type": "text",
-            "align": "right",
-            "baseline": "top",
-            "fontSize": 11,
-            "color": "#697786",
-            "lineBreak": "|",
-            "lineHeight": 14
-          },
-          "encoding": {
-            "x": {
-              "value": 388
-            },
-            "y": {
-              "value": 26
-            },
-            "text": {
-              "field": "b"
-            }
-          }
-        }
-      ]
     }
   ],
   "config": {
