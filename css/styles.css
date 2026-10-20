@@ -133,17 +133,8 @@ a {
 
 
 /* ---------- 4. Title and introduction ---------- */
-/* Editorial opening on the white page. Everything shares one left edge with the
-   section banners and charts below; the section tabs close the introduction. */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Section tabs jump to a section with a little breathing room above its banner */
-.level {
-  scroll-margin-top: 20px;
-}
-
+/* Editorial opening on the white page, sharing one left edge with the
+   section banners and charts below */
 .intro {
   margin: 0 0 32px;
   padding: 0;
@@ -212,77 +203,6 @@ html {
   color: #3E4353;
 }
 
-/* Section tabs: six equal tabs with an indigo bar that fills in on hover */
-.intro-nav {
-  margin-top: 28px;
-}
-
-.intro-nav ul {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.intro-nav a {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  height: 100%;
-  box-sizing: border-box;
-  padding: 12px 12px 14px;
-  border-top: 3px solid #D6D2EB;
-  background: #F7F6FC;
-  color: var(--ink);
-  text-decoration: none;
-  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
-}
-
-.tab-num {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.tab-name {
-  font-family: var(--font-heading);
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1.25;
-}
-
-.intro-nav a:hover,
-.intro-nav a:focus-visible {
-  border-top-color: var(--accent);
-  background: var(--accent-soft);
-  color: var(--accent);
-  outline: none;
-}
-
-.intro-nav a:focus-visible {
-  box-shadow: 0 0 0 2px var(--accent);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  .intro-nav a {
-    transition: none;
-  }
-}
-
-@media (max-width: 1023px) {
-  .intro-nav ul {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
 @media (max-width: 767px) {
   .intro {
     margin-bottom: 24px;
@@ -294,7 +214,6 @@ html {
     text-wrap: balance;
   }
 
-
   .intro-text {
     grid-template-columns: 1fr;
     row-gap: 16px;
@@ -304,14 +223,6 @@ html {
 
   .intro .lead {
     font-size: 16px;
-  }
-
-  .intro-nav {
-    margin-top: 24px;
-  }
-
-  .intro-nav ul {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -530,7 +441,7 @@ html {
   color: #6A3D9A;   /* Simulator, same as the chart */
 }
 
-/* Game-mode figures beside the radial chart, in darker versions of the chart's ring colours
+/* Game-mode figures beside the game-mode bar chart, in darker versions of the chart's bar colours
    (darkened so they are readable as text on white) */
 .mode-multi {
   color: #125D73;   /* Multiplayer ring (deep petrol), same colour */
