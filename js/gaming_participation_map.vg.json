@@ -13,7 +13,13 @@
     }
   },
   "projection": {
-    "type": "equalEarth"
+    "type": "equalEarth",
+    "center": {
+      "expr": "center_to"
+    },
+    "scale": {
+      "expr": "zoom_level"
+    }
   },
   "layer": [
     {
@@ -25,7 +31,8 @@
       ],
       "mark": {
         "type": "geoshape",
-        "stroke": "white"
+        "stroke": "white",
+        "clip": true
       },
       "encoding": {
         "tooltip": {
@@ -65,7 +72,8 @@
       "mark": {
         "type": "geoshape",
         "fill": "skyblue",
-        "stroke": null
+        "stroke": null,
+        "clip": true
       }
     },
     {
@@ -79,7 +87,8 @@
       "mark": {
         "type": "geoshape",
         "fill": null,
-        "stroke": "lightgray"
+        "stroke": "lightgray",
+        "clip": true
       }
     },
     {
@@ -102,7 +111,8 @@
       ],
       "mark": {
         "type": "geoshape",
-        "stroke": "white"
+        "stroke": "white",
+        "clip": true
       },
       "encoding": {
         "color": {
@@ -181,7 +191,8 @@
       "mark": {
         "type": "rule",
         "color": "#000000",
-        "strokeWidth": 0.8
+        "strokeWidth": 0.8,
+        "clip": true
       },
       "encoding": {
         "longitude": {
@@ -222,7 +233,8 @@
         "fontWeight": "bold",
         "color": "#000000",
         "baseline": "middle",
-        "align": "left"
+        "align": "left",
+        "clip": true
       },
       "encoding": {
         "longitude": {
@@ -256,7 +268,8 @@
         "fontWeight": "bold",
         "color": "#000000",
         "baseline": "middle",
-        "align": "center"
+        "align": "center",
+        "clip": true
       },
       "encoding": {
         "longitude": {
@@ -293,5 +306,58 @@
     "legend": {
       "color": "independent"
     }
-  }
+  },
+  "params": [
+    {
+      "name": "zoom_level",
+      "value": 188,
+      "bind": {
+        "input": "range",
+        "min": 188,
+        "max": 1200,
+        "step": 10,
+        "name": "Zoom: "
+      }
+    },
+    {
+      "name": "center_to",
+      "value": [
+        0,
+        0
+      ],
+      "bind": {
+        "input": "select",
+        "options": [
+          [
+            0,
+            0
+          ],
+          [
+            110,
+            5
+          ],
+          [
+            10,
+            50
+          ],
+          [
+            -60,
+            0
+          ],
+          [
+            -98,
+            40
+          ]
+        ],
+        "labels": [
+          "World",
+          "Southeast Asia",
+          "Europe",
+          "South America",
+          "North America"
+        ],
+        "name": "Map Centre: "
+      }
+    }
+  ]
 }

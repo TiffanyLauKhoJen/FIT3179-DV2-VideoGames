@@ -2,6 +2,27 @@
 // "renderer: svg" lets the CSS shrink a chart on narrow screens without breaking tooltips.
 var embedOptions = { "renderer": "svg" };
 
+// Maps: add a "Reset view" button next to the Zoom and Map Centre controls.
+// It sets both parameters back to the full-world view (the values in each map's spec);
+// the slider and dropdown update themselves because they are bound to the same parameters.
+function addMapReset(result) {
+  var view = result.view;
+  var startZoom = view.signal("zoom_level");
+  var startCentre = view.signal("center_to");
+  var container = view.container();
+  var panel = container.querySelector(".vega-bindings");
+  if (!panel) { return; }
+  var button = document.createElement("button");
+  button.type = "button";
+  button.className = "map-reset";
+  button.textContent = "Reset view";
+  button.addEventListener("click", function () {
+    view.signal("zoom_level", startZoom).signal("center_to", startCentre).runAsync();
+  });
+  panel.appendChild(button);
+}
+
+
 // Level 1: the catalogue keeps growing
 var vg_release_trend = "js/release_trend.vg.json";
 var vg_genre_dumbbell = "js/igdb_genre_dumbbell_8_2010_2024.vg.json";
@@ -35,9 +56,9 @@ vegaEmbed("#game_mode_bar", vg_game_mode_bar, embedOptions).catch(console.error)
 vegaEmbed("#platform_treemap", vg_platform_treemap, embedOptions).catch(console.error);
 
 vegaEmbed("#publisher_genre_stacked", vg_publisher_genre_stacked, embedOptions).catch(console.error);
-vegaEmbed("#organisation_dot_map", vg_organisation_dot_map, embedOptions).catch(console.error);
-vegaEmbed("#company_symbol_map", vg_company_symbol_map, embedOptions).catch(console.error);
+vegaEmbed("#organisation_dot_map", vg_organisation_dot_map, embedOptions).then(addMapReset).catch(console.error);
+vegaEmbed("#company_symbol_map", vg_company_symbol_map, embedOptions).then(addMapReset).catch(console.error);
 vegaEmbed("#publisher_heatmap", vg_publisher_heatmap, embedOptions).catch(console.error);
 
-vegaEmbed("#participation_map", vg_participation_map, embedOptions).catch(console.error);
+vegaEmbed("#participation_map", vg_participation_map, embedOptions).then(addMapReset).catch(console.error);
 vegaEmbed("#top_sales_lollipop", vg_top_sales_lollipop, embedOptions).catch(console.error);

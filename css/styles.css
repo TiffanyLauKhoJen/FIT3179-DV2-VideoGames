@@ -530,6 +530,78 @@ a {
   text-align: left;
 }
 
+/* Zoom slider and map-centre dropdown (Vega-Lite parameter bindings):
+   on wide screens they sit at the bottom right, level with the legend on the left */
+.map-row .vis-container {
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .map-row .vega-bindings {
+    position: absolute;
+    right: 8px;
+    bottom: 4px;
+    margin-top: 0;
+  }
+
+  /* Level with the middle of the size circles and the colour bar */
+  #company_symbol_map .vega-bindings {
+    bottom: 22px;
+  }
+
+  #participation_map .vega-bindings {
+    bottom: 19px;
+  }
+}
+
+.vega-bindings {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 28px;
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--ink-muted);
+}
+
+.vega-bind label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vega-bind-name {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.vega-bind input[type="range"] {
+  accent-color: var(--accent);
+  width: 160px;
+}
+
+.vega-bind select {
+  font: inherit;
+  padding: 2px 6px;
+}
+
+/* Reset button beside the map controls: outlined in the page's purple accent */
+.map-reset {
+  font: inherit;
+  font-weight: 600;
+  padding: 3px 12px;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  background: #FFFFFF;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.map-reset:hover,
+.map-reset:focus-visible {
+  background: var(--accent-soft);
+}
+
 .map-text {
   display: grid;
   grid-template-columns: 1fr 1fr;

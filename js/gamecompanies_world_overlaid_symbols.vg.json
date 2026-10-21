@@ -6,7 +6,13 @@
   "width": 1020,
   "height": 500,
   "projection": {
-    "type": "equalEarth"
+    "type": "equalEarth",
+    "center": {
+      "expr": "center_to"
+    },
+    "scale": {
+      "expr": "zoom_level"
+    }
   },
   "layer": [
     {
@@ -20,7 +26,8 @@
       "mark": {
         "type": "geoshape",
         "fill": "lightgray",
-        "stroke": "white"
+        "stroke": "white",
+        "clip": true
       }
     },
     {
@@ -34,7 +41,8 @@
       "mark": {
         "type": "geoshape",
         "fill": "skyblue",
-        "stroke": null
+        "stroke": null,
+        "clip": true
       }
     },
     {
@@ -48,7 +56,8 @@
       "mark": {
         "type": "geoshape",
         "fill": null,
-        "stroke": "lightgray"
+        "stroke": "lightgray",
+        "clip": true
       }
     },
     {
@@ -82,7 +91,8 @@
         "fillOpacity": 0.9,
         "stroke": "#8A2E0A",
         "strokeWidth": 1,
-        "strokeOpacity": 1
+        "strokeOpacity": 1,
+        "clip": true
       },
       "encoding": {
         "longitude": {
@@ -183,5 +193,58 @@
       "subtitleFontSize": 12,
       "subtitleColor": "#526274"
     }
-  }
+  },
+  "params": [
+    {
+      "name": "zoom_level",
+      "value": 188,
+      "bind": {
+        "input": "range",
+        "min": 188,
+        "max": 1200,
+        "step": 10,
+        "name": "Zoom: "
+      }
+    },
+    {
+      "name": "center_to",
+      "value": [
+        0,
+        0
+      ],
+      "bind": {
+        "input": "select",
+        "options": [
+          [
+            0,
+            0
+          ],
+          [
+            -98,
+            40
+          ],
+          [
+            10,
+            50
+          ],
+          [
+            125,
+            33
+          ],
+          [
+            110,
+            5
+          ]
+        ],
+        "labels": [
+          "World",
+          "North America",
+          "Europe",
+          "East Asia",
+          "Southeast Asia"
+        ],
+        "name": "Map Centre: "
+      }
+    }
+  ]
 }
