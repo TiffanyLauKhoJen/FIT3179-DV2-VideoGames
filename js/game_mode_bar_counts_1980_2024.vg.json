@@ -7,7 +7,7 @@
     "fontSize": 17,
     "offset": 14
   },
-  "width": 391,
+  "width": 387,
   "height": 392,
   "background": "white",
   "data": {
@@ -45,7 +45,8 @@
         "ticks": false,
         "domainColor": "#9AA1AD",
         "labelExpr": "split(datum.value, ' ')",
-        "labelColor": "#333333"
+        "labelColor": "#333333",
+        "titleFontSize": 12
       }
     },
     "y": {
@@ -71,7 +72,7 @@
         "grid": false,
         "domain": false,
         "ticks": false,
-        "titleFontSize": 11,
+        "titleFontSize": 12,
         "labelFontSize": 11
       }
     }
@@ -128,7 +129,7 @@
         "type": "text",
         "baseline": "bottom",
         "dy": -4,
-        "fontSize": 12,
+        "fontSize": 11,
         "fontWeight": "bold",
         "color": "#333333"
       },
@@ -147,7 +148,16 @@
       "stroke": null
     },
     "axis": {
-      "titleFontWeight": "bold"
+      "titleFontWeight": "bold",
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "text": {
+      "fontSize": 11
     }
   }
 }

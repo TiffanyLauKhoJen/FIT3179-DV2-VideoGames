@@ -7,7 +7,7 @@
     "fontSize": 17,
     "offset": 14
   },
-  "width": 480,
+  "width": 484,
   "height": {
     "step": 27
   },
@@ -53,10 +53,11 @@
       "axis": {
         "orient": "top",
         "labelAngle": 0,
-        "labelFontSize": 12,
+        "labelFontSize": 11,
         "labelPadding": 10,
         "domain": false,
-        "ticks": false
+        "ticks": false,
+        "titleFontSize": 12
       },
       "scale": {
         "paddingInner": 0.035,
@@ -82,11 +83,12 @@
       ],
       "title": null,
       "axis": {
-        "labelFontSize": 12,
+        "labelFontSize": 11,
         "labelLimit": 400,
         "labelPadding": 10,
         "domain": false,
-        "ticks": false
+        "ticks": false,
+        "titleFontSize": 12
       },
       "scale": {
         "paddingInner": 0.055,
@@ -184,7 +186,7 @@
       ],
       "mark": {
         "type": "text",
-        "fontSize": 12,
+        "fontSize": 11,
         "fontWeight": "bold"
       },
       "encoding": {
@@ -208,7 +210,16 @@
       "stroke": null
     },
     "axis": {
-      "grid": false
+      "grid": false,
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "text": {
+      "fontSize": 11
     }
   }
 }

@@ -34,7 +34,9 @@
       "axis": {
         "format": "d",
         "grid": false,
-        "tickCount": 8
+        "tickCount": 8,
+        "labelFontSize": 11,
+        "titleFontSize": 12
       }
     },
     "y": {
@@ -48,7 +50,9 @@
         ]
       },
       "axis": {
-        "grid": false
+        "grid": false,
+        "labelFontSize": 11,
+        "titleFontSize": 12
       }
     }
   },
@@ -185,7 +189,7 @@
             "type": "text",
             "align": "left",
             "baseline": "top",
-            "fontSize": 11.5,
+            "fontSize": 11,
             "fontWeight": "bold",
             "color": "#1F2937"
           },
@@ -239,6 +243,13 @@
     "axis": {
       "labelFontSize": 11,
       "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "text": {
+      "fontSize": 11
     }
   }
 }

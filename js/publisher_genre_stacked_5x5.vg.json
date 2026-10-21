@@ -93,7 +93,8 @@
         "labelFontWeight": "bold",
         "labelPadding": 8,
         "ticks": false,
-        "domain": false
+        "domain": false,
+        "titleFontSize": 12
       }
     },
     "y": {
@@ -118,7 +119,9 @@
         ],
         "grid": true,
         "gridColor": "#E5E7EB",
-        "domain": false
+        "domain": false,
+        "labelFontSize": 11,
+        "titleFontSize": 12
       }
     },
     "y2": {
@@ -148,7 +151,7 @@
         "columns": 4,
         "offset": 16,
         "labelFontSize": 11,
-        "titleFontSize": 11
+        "titleFontSize": 12
       }
     },
     "tooltip": [
@@ -190,6 +193,13 @@
     "axis": {
       "labelFontSize": 11,
       "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "text": {
+      "fontSize": 11
     }
   }
 }

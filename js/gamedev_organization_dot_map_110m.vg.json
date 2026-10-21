@@ -109,8 +109,9 @@
             "symbolOpacity": 1,
             "symbolStrokeColor": "lightgrey",
             "symbolStrokeWidth": 0.5,
-            "labelFontSize": 12,
-            "labelLimit": 250
+            "labelFontSize": 11,
+            "labelLimit": 250,
+            "titleFontSize": 12
           }
         },
         "tooltip": [
@@ -146,6 +147,17 @@
       "anchor": "start",
       "fontSize": 17,
       "subtitleFontSize": 12
+    },
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "text": {
+      "fontSize": 11
     }
   },
   "params": [

@@ -113,11 +113,6 @@ a {
   color: var(--ink);
 }
 
-/* Opening claim of a paragraph: about 20px, allowed to wrap */
-.key-figure-lead {
-  font-size: 1.25em;
-  white-space: normal;
-}
 
 
 /* ---------- 3. Page layout ---------- */

@@ -134,8 +134,8 @@
             ],
             "format": ",.0f",
             "symbolFillColor": "#C2410C",
-            "labelFontSize": 12,
-            "titleFontSize": 13,
+            "labelFontSize": 11,
+            "titleFontSize": 12,
             "offset": 16,
             "encode": {
               "symbols": {
@@ -192,6 +192,17 @@
       "fontSize": 17,
       "subtitleFontSize": 12,
       "subtitleColor": "#526274"
+    },
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "text": {
+      "fontSize": 11
     }
   },
   "params": [

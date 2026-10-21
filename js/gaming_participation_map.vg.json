@@ -54,9 +54,10 @@
             "symbolSize": 200,
             "symbolStrokeColor": "#9AA1AD",
             "symbolStrokeWidth": 0.5,
-            "labelFontSize": 12,
+            "labelFontSize": 11,
             "legendX": 222,
-            "legendY": 497
+            "legendY": 497,
+            "titleFontSize": 12
           }
         }
       }
@@ -121,7 +122,9 @@
           "title": "Play video games (%)",
           "legend": {
             "orient": "bottom",
-            "direction": "horizontal"
+            "direction": "horizontal",
+            "labelFontSize": 11,
+            "titleFontSize": 12
           },
           "scale": {
             "type": "threshold",
@@ -297,6 +300,17 @@
       "fontSize": 17,
       "subtitleFontSize": 12,
       "subtitleColor": "#526274"
+    },
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "text": {
+      "fontSize": 11
     }
   },
   "resolve": {
@@ -304,7 +318,9 @@
       "color": "independent"
     },
     "legend": {
-      "color": "independent"
+      "color": "independent",
+      "labelFontSize": 11,
+      "titleFontSize": 12
     }
   },
   "params": [

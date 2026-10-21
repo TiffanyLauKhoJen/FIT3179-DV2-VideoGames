@@ -58,11 +58,12 @@
       },
       "title": null,
       "axis": {
-        "labelFontSize": 12,
+        "labelFontSize": 11,
         "labelPadding": 12,
         "labelLimit": 155,
         "domain": false,
-        "ticks": false
+        "ticks": false,
+        "titleFontSize": 12
       }
     }
   },
@@ -231,7 +232,7 @@
             "orient": "right",
             "symbolSize": 150,
             "titleFontSize": 12,
-            "labelFontSize": 12
+            "labelFontSize": 11
           }
         },
         "tooltip": [
@@ -301,6 +302,17 @@
     "view": {
       "stroke": null
     },
-    "font": "Arial"
+    "font": "Arial",
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "text": {
+      "fontSize": 11
+    }
   }
 }

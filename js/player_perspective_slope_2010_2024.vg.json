@@ -45,7 +45,7 @@
       "title": "Release year",
       "axis": {
         "labelAngle": 0,
-        "labelFontSize": 13,
+        "labelFontSize": 11,
         "labelFontWeight": "bold",
         "labelPadding": 12,
         "domain": false,
@@ -401,7 +401,7 @@
         "align": "right",
         "baseline": "middle",
         "dx": -11,
-        "fontSize": 12,
+        "fontSize": 11,
         "fontWeight": "bold"
       },
       "encoding": {
@@ -438,7 +438,7 @@
         "align": "left",
         "baseline": "middle",
         "dx": 11,
-        "fontSize": 12,
+        "fontSize": 11,
         "fontWeight": "bold"
       },
       "encoding": {
@@ -540,6 +540,17 @@
     "font": "Arial",
     "view": {
       "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "text": {
+      "fontSize": 11
     }
   }
 }

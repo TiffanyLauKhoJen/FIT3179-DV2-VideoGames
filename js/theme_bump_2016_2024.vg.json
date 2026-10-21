@@ -32,7 +32,9 @@
       "axis": {
         "labelAngle": 0,
         "labelPadding": 8,
-        "grid": false
+        "grid": false,
+        "labelFontSize": 11,
+        "titleFontSize": 12
       }
     },
     "y": {
@@ -63,7 +65,9 @@
         "grid": true,
         "gridColor": "#E5E7EB",
         "domain": false,
-        "ticks": false
+        "ticks": false,
+        "labelFontSize": 11,
+        "titleFontSize": 12
       }
     },
     "color": {
@@ -227,7 +231,12 @@
       "titleFontSize": 12
     },
     "legend": {
-      "padding": 8
+      "padding": 8,
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "text": {
+      "fontSize": 11
     }
   }
 }

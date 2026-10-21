@@ -52,7 +52,8 @@
             "value": "bold"
           },
           "value": "normal"
-        }
+        },
+        "titleFontSize": 12
       }
     },
     "x": {
@@ -66,7 +67,9 @@
         "format": ",.0f",
         "grid": false,
         "domain": false,
-        "tickMinStep": 10
+        "tickMinStep": 10,
+        "labelFontSize": 11,
+        "titleFontSize": 12
       }
     }
   },
@@ -305,6 +308,13 @@
     "axis": {
       "labelFontSize": 11,
       "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "text": {
+      "fontSize": 11
     }
   },
   "transform": [
