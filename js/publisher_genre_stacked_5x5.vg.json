@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "100% stacked columns showing the genre mix of four selected publishers (Konami, Electronic Arts, Microsoft, Nintendo) across four selected genres (Sports, Action, Role-Playing, Simulator); Sega and Shooter are filtered out, from Video Games Sales (1980–2024) – Raw. Includes records with release dates in 1980–2024. Each distinct publisher–title–genre combination is counted once across platforms. Simulation is displayed as Simulator. Publishers are selected for contrasting profiles, not a top-five ranking. Each column totals 100% of that publisher's selected records. Sales values are not used.",
-  "width": 603,
+  "width": 547,
   "height": 321,
   "padding": {
     "left": 10,

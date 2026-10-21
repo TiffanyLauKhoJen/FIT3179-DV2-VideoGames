@@ -122,10 +122,13 @@ a {
 
 /* ---------- 3. Page layout ---------- */
 /* A centred white page on a grey background, as in the studio lab */
+/* The white page is 1100 px wide; its content area is 952 px (74 px side padding), so the banners,
+   divider lines, charts and text all share the same left and right edges.
+   On narrower screens the side padding shrinks to 32 px. */
 .page {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 24px 32px 0;
+  padding: 24px max(32px, calc((min(1100px, 100vw) - 952px) / 2)) 0;
   box-sizing: border-box;
   background-color: var(--page);
   min-height: 100vh;
@@ -354,6 +357,18 @@ a {
 }
 
 /* Rows with the chart in 2/3 of the width and the text in 1/3 */
+/* The row is as wide as the two-column text blocks (952 px) and centred, so the chart starts
+   at the same left edge and the text ends at the same right edge as those blocks */
+.chart-row-wide {
+  max-width: 952px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chart-row-wide .vis-container {
+  text-align: left;   /* chart starts exactly at the left edge */
+}
+
 .chart-row-wide .text-side-right {
   padding-left: 22px;   /* plus the chart's centring slack, about a 26 px gap */
 }
@@ -662,6 +677,7 @@ a {
 /* Conclusion: two equal columns under the heading, like the map explanations */
 .outro h2 {
   margin-bottom: 0;
+  text-align: center;
 }
 
 .outro-text {
