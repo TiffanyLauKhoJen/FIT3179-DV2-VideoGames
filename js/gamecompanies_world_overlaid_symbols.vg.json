@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Total Game Development and Publishing Listings by Country"
+    "text": "Which Countries Lead Game Development and Publishing?"
   },
   "width": 920,
   "height": 450,

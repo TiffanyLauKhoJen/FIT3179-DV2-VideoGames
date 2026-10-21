@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Geographic Distribution of Game Organisations"
+    "text": "Where Are Game Organisations Located?"
   },
   "width": 920,
   "height": 450,

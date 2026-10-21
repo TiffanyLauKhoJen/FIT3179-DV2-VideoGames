@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Annual ranks of seven selected IGDB themes, based on distinct main-game release counts. Rank 1 has the largest count. Games may have multiple themes; each game is counted once per theme. Tied counts share a rank.",
   "title": {
-    "text": "Changes in Video Game Theme Rankings (2016–2024)",
+    "text": "Which Video Game Themes Rose or Fell in Rank (2016–2024)?",
     "anchor": "start",
     "fontSize": 17,
     "subtitleFontSize": 12,
@@ -81,13 +81,13 @@
           "Romance"
         ],
         "range": [
-          "#D95F02",
+          "#C5CAD1",
           "#7570B3",
           "#00A6D6",
           "#A6761D",
-          "#666666",
-          "#1B9E77",
-          "#E6AB02"
+          "#C5CAD1",
+          "#C5CAD1",
+          "#C5CAD1"
         ]
       },
       "legend": null
@@ -122,9 +122,9 @@
     {
       "mark": {
         "type": "line",
-        "strokeWidth": 2.8,
+        "strokeWidth": 2.2,
         "interpolate": "linear",
-        "opacity": 0.9
+        "opacity": 1
       },
       "encoding": {
         "order": {
@@ -132,7 +132,46 @@
           "type": "quantitative",
           "sort": "ascending"
         }
-      }
+      },
+      "transform": [
+        {
+          "filter": "!(indexof(['Horror','Erotic','Science fiction'], datum.Theme) >= 0)"
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 60,
+        "stroke": "white",
+        "strokeWidth": 1.2,
+        "opacity": 1
+      },
+      "transform": [
+        {
+          "filter": "!(indexof(['Horror','Erotic','Science fiction'], datum.Theme) >= 0)"
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3,
+        "interpolate": "linear",
+        "opacity": 1
+      },
+      "encoding": {
+        "order": {
+          "field": "Year",
+          "type": "quantitative",
+          "sort": "ascending"
+        }
+      },
+      "transform": [
+        {
+          "filter": "indexof(['Horror','Erotic','Science fiction'], datum.Theme) >= 0"
+        }
+      ]
     },
     {
       "mark": {
@@ -141,11 +180,20 @@
         "stroke": "white",
         "strokeWidth": 1.2,
         "opacity": 1
-      }
+      },
+      "transform": [
+        {
+          "filter": "indexof(['Horror','Erotic','Science fiction'], datum.Theme) >= 0"
+        }
+      ]
     },
     {
       "description": "Theme names at the end of each line (2024), replacing the legend.",
-      "transform": [{"filter": "datum.Year === 2024"}],
+      "transform": [
+        {
+          "filter": "datum.Year === 2024"
+        }
+      ],
       "mark": {
         "type": "text",
         "align": "left",
@@ -155,7 +203,17 @@
         "fontWeight": "bold"
       },
       "encoding": {
-        "text": {"field": "Theme"}
+        "text": {
+          "field": "Theme"
+        },
+        "color": {
+          "condition": {
+            "test": "indexof(['Horror','Erotic','Science fiction'], datum.Theme) >= 0",
+            "field": "Theme",
+            "type": "nominal"
+          },
+          "value": "#8A919C"
+        }
       }
     }
   ],

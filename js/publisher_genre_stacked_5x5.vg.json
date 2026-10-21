@@ -1,0 +1,195 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "100% stacked columns showing the genre mix of five selected publishers across five selected genres, from Video Games Sales (1980–2024) – Raw. Includes records with release dates in 1980–2024. Each distinct publisher–title–genre combination is counted once across platforms. Simulation is displayed as Simulator. Publishers are selected for contrasting profiles, not a top-five ranking. Each column totals 100% of that publisher's selected records. Sales values are not used.",
+  "width": 539,
+  "height": 321,
+  "padding": {
+    "left": 10,
+    "right": 20,
+    "top": 10,
+    "bottom": 8
+  },
+  "background": "white",
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/publisher_genre_marimekko_5x5.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "distinct_title_count": "number"
+      }
+    }
+  },
+  "title": {
+    "text": "Which Genres Do Selected Publishers Focus On?",
+    "anchor": "start",
+    "fontSize": 17,
+    "offset": 12
+  },
+  "transform": [
+    {
+      "calculate": "indexof(['Sports','Action','Shooter','Role-Playing','Simulator'], datum.genre)",
+      "as": "genre_order"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "sum",
+          "field": "distinct_title_count",
+          "as": "publisher_total"
+        }
+      ],
+      "groupby": [
+        "publisher"
+      ]
+    },
+    {
+      "calculate": "datum.distinct_title_count / datum.publisher_total",
+      "as": "genre_share_within_publisher"
+    },
+    {
+      "stack": "distinct_title_count",
+      "groupby": [
+        "publisher"
+      ],
+      "as": [
+        "y0",
+        "y1"
+      ],
+      "offset": "normalize",
+      "sort": [
+        {
+          "field": "genre_order",
+          "order": "ascending"
+        }
+      ]
+    }
+  ],
+  "mark": {
+    "type": "bar",
+    "stroke": "white",
+    "strokeWidth": 1.5
+  },
+  "encoding": {
+    "x": {
+      "field": "publisher",
+      "type": "nominal",
+      "sort": [
+        "Sega",
+        "Konami",
+        "Electronic Arts",
+        "Microsoft",
+        "Nintendo"
+      ],
+      "title": null,
+      "scale": {
+        "paddingInner": 0.14,
+        "paddingOuter": 0.07
+      },
+      "axis": {
+        "labelAngle": 0,
+        "labelFontSize": 11,
+        "labelFontWeight": "bold",
+        "labelPadding": 8,
+        "ticks": false,
+        "domain": false
+      }
+    },
+    "y": {
+      "field": "y0",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          0,
+          1
+        ]
+      },
+      "axis": {
+        "title": "Share within selected genres (%)",
+        "format": ".0%",
+        "values": [
+          0,
+          0.2,
+          0.4,
+          0.6,
+          0.8,
+          1
+        ],
+        "grid": true,
+        "gridColor": "#E5E7EB",
+        "domain": false
+      }
+    },
+    "y2": {
+      "field": "y1"
+    },
+    "color": {
+      "field": "genre",
+      "type": "nominal",
+      "title": "Genre",
+      "scale": {
+        "domain": [
+          "Sports",
+          "Action",
+          "Shooter",
+          "Role-Playing",
+          "Simulator"
+        ],
+        "range": [
+          "#393B79",
+          "#E78AC3",
+          "#790606",
+          "#B15928",
+          "#6A3D9A"
+        ]
+      },
+      "legend": {
+        "orient": "bottom",
+        "direction": "horizontal",
+        "columns": 3,
+        "offset": 16,
+        "labelFontSize": 11,
+        "titleFontSize": 11
+      }
+    },
+    "tooltip": [
+      {
+        "field": "publisher",
+        "type": "nominal",
+        "title": "Publisher"
+      },
+      {
+        "field": "genre",
+        "type": "nominal",
+        "title": "Genre"
+      },
+      {
+        "field": "distinct_title_count",
+        "type": "quantitative",
+        "title": "Records",
+        "format": ",d"
+      },
+      {
+        "field": "genre_share_within_publisher",
+        "type": "quantitative",
+        "title": "Share within publisher",
+        "format": ".1%"
+      },
+      {
+        "field": "publisher_total",
+        "type": "quantitative",
+        "title": "Publisher total records",
+        "format": ",d"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial",
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  }
+}

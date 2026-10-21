@@ -3,7 +3,7 @@
   "description": "Dumbbell chart comparing eight selected genres across recorded IGDB main games released in 2010 and 2024.",
   "title": {
     "text": [
-      "Differences in Video Game Genre Shares (2010–2024)"
+      "How Did Video Game Genre Shares Change (2010–2024)?"
     ],
     "anchor": "start",
     "fontSize": 17,
@@ -12,7 +12,9 @@
     "offset": 16
   },
   "width": 460,
-  "height": {"step": 40},
+  "height": {
+    "step": 40
+  },
   "data": {
     "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/igdb_genre_dumbbell_8_2010_2024.csv",
     "format": {
@@ -43,7 +45,16 @@
         "Puzzle"
       ],
       "scale": {
-        "domain": ["Adventure", "Action", "Simulator", "Strategy", "Role-Playing", "Shooter", "Sports", "Puzzle"]
+        "domain": [
+          "Adventure",
+          "Action",
+          "Simulator",
+          "Strategy",
+          "Role-Playing",
+          "Shooter",
+          "Sports",
+          "Puzzle"
+        ]
       },
       "title": null,
       "axis": {
@@ -58,9 +69,18 @@
   "layer": [
     {
       "transform": [
-        {"calculate": "format(datum.Pct_2010, '.1f') + '%'", "as": "Share_2010_label"},
-        {"calculate": "format(datum.Pct_2024, '.1f') + '%'", "as": "Share_2024_label"},
-        {"calculate": "format(datum.Change_pp, '+.1f') + ' percentage points'", "as": "Change_label"}
+        {
+          "calculate": "format(datum.Pct_2010, '.1f') + '%'",
+          "as": "Share_2010_label"
+        },
+        {
+          "calculate": "format(datum.Pct_2024, '.1f') + '%'",
+          "as": "Share_2024_label"
+        },
+        {
+          "calculate": "format(datum.Change_pp, '+.1f') + ' percentage points'",
+          "as": "Change_label"
+        }
       ],
       "mark": {
         "type": "rule",
@@ -71,22 +91,53 @@
         "x": {
           "field": "Pct_2010",
           "type": "quantitative",
-          "scale": {"domain": [0, 50], "nice": false},
+          "scale": {
+            "domain": [
+              0,
+              50
+            ],
+            "nice": false
+          },
           "title": "Share of recorded main games (%)",
           "axis": {
-            "values": [0, 10, 20, 30, 40, 50],
+            "values": [
+              0,
+              10,
+              20,
+              30,
+              40,
+              50
+            ],
             "grid": true,
             "gridColor": "#E6EBF0",
             "labelFontSize": 11,
             "titleFontSize": 12
           }
         },
-        "x2": {"field": "Pct_2024"},
+        "x2": {
+          "field": "Pct_2024"
+        },
         "tooltip": [
-          {"field": "Genre", "type": "nominal", "title": "Genre"},
-          {"field": "Share_2010_label", "type": "nominal", "title": "2010 share"},
-          {"field": "Share_2024_label", "type": "nominal", "title": "2024 share"},
-          {"field": "Change_label", "type": "nominal", "title": "Change"}
+          {
+            "field": "Genre",
+            "type": "nominal",
+            "title": "Genre"
+          },
+          {
+            "field": "Share_2010_label",
+            "type": "nominal",
+            "title": "2010 share"
+          },
+          {
+            "field": "Share_2024_label",
+            "type": "nominal",
+            "title": "2024 share"
+          },
+          {
+            "field": "Change_label",
+            "type": "nominal",
+            "title": "Change"
+          }
         ]
       }
     },
@@ -94,22 +145,49 @@
       "description": "Leader lines from each 2024 circle to its note (drawn before the circles so the circles cover the line ends).",
       "data": {
         "values": [
-          {"x": 38.42, "x2": 46, "Genre": "Adventure", "Genre2": "Simulator"},
-          {"x": 21.47, "x2": 26, "Genre": "Simulator", "Genre2": "Role-Playing"}
+          {
+            "x": 38.42,
+            "x2": 46,
+            "Genre": "Adventure",
+            "Genre2": "Simulator"
+          },
+          {
+            "x": 21.47,
+            "x2": 26,
+            "Genre": "Simulator",
+            "Genre2": "Role-Playing"
+          }
         ]
       },
-      "mark": {"type": "rule", "color": "#9AA1AD", "strokeWidth": 1},
+      "mark": {
+        "type": "rule",
+        "color": "#9AA1AD",
+        "strokeWidth": 1
+      },
       "encoding": {
-        "x": {"field": "x", "type": "quantitative"},
-        "x2": {"field": "x2"},
-        "y2": {"field": "Genre2"}
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "x2": {
+          "field": "x2"
+        },
+        "y2": {
+          "field": "Genre2"
+        }
       }
     },
     {
       "transform": [
         {
-          "fold": ["Pct_2010", "Pct_2024"],
-          "as": ["Year_field", "Share_pct"]
+          "fold": [
+            "Pct_2010",
+            "Pct_2024"
+          ],
+          "as": [
+            "Year_field",
+            "Share_pct"
+          ]
         },
         {
           "calculate": "datum.Year_field === 'Pct_2010' ? '2010' : '2024'",
@@ -127,15 +205,27 @@
         "x": {
           "field": "Share_pct",
           "type": "quantitative",
-          "scale": {"domain": [0, 50], "nice": false}
+          "scale": {
+            "domain": [
+              0,
+              50
+            ],
+            "nice": false
+          }
         },
         "color": {
           "field": "Year",
           "type": "nominal",
           "title": "Year",
           "scale": {
-            "domain": ["2010", "2024"],
-            "range": ["#EE6677", "#882255"]
+            "domain": [
+              "2010",
+              "2024"
+            ],
+            "range": [
+              "#EE6677",
+              "#882255"
+            ]
           },
           "legend": {
             "orient": "right",
@@ -197,13 +287,20 @@
         "color": "#3F4756"
       },
       "encoding": {
-        "x": {"field": "x", "type": "quantitative"},
-        "text": {"field": "note"}
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "note"
+        }
       }
     }
   ],
   "config": {
-    "view": {"stroke": null},
+    "view": {
+      "stroke": null
+    },
     "font": "Arial"
   }
 }

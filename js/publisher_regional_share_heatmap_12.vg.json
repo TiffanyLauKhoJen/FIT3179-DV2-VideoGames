@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Regional sales shares for 12 selected publishers using complete regional-sales records. Each publisher's four regional shares total 100% before rounding. Selected labels highlight regional concentrations and NIS America's nearly equal North American and Japanese shares.",
   "title": {
-    "text": "Regional Sales Distribution by Publisher",
+    "text": "Where Do Publishers Earn Their Recorded Sales?",
     "anchor": "start",
     "fontSize": 17,
     "offset": 14

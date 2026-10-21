@@ -4,12 +4,11 @@
   "width": 545,
   "height": 280,
   "title": {
-    "text": "Recorded Video Game Releases (2010–2025)",
+    "text": "How Many Video Games Were Released Each Year (2010–2025)?",
     "anchor": "start",
     "fontSize": 17,
     "offset": 12
   },
-
   "data": {
     "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/dataset_g1.csv",
     "format": {
@@ -20,14 +19,16 @@
       }
     }
   },
-
   "encoding": {
     "x": {
       "field": "Year",
       "type": "quantitative",
       "title": "Release Year",
       "scale": {
-        "domain": [2010, 2025],
+        "domain": [
+          2010,
+          2025
+        ],
         "nice": false
       },
       "axis": {
@@ -41,14 +42,16 @@
       "type": "quantitative",
       "title": "Recorded Main-Game Releases",
       "scale": {
-        "domain": [0, 20000]
+        "domain": [
+          0,
+          20000
+        ]
       },
       "axis": {
         "grid": false
       }
     }
   },
-
   "layer": [
     {
       "mark": {
@@ -78,7 +81,6 @@
         ]
       }
     },
-
     {
       "transform": [
         {
@@ -109,13 +111,27 @@
         ]
       }
     },
-
     {
       "data": {
         "values": [
-          {"x": 2015.12, "y": 4700, "x2": 2015.42, "y2": 4250},
-          {"x": 2017.12, "y": 9050, "x2": 2017.42, "y2": 8350},
-          {"x": 2023.75, "y": 18300, "x2": 2023.35, "y2": 18850}
+          {
+            "x": 2015.12,
+            "y": 4700,
+            "x2": 2015.42,
+            "y2": 4250
+          },
+          {
+            "x": 2017.12,
+            "y": 9050,
+            "x2": 2017.42,
+            "y2": 8350
+          },
+          {
+            "x": 2023.75,
+            "y": 18300,
+            "x2": 2023.35,
+            "y2": 18850
+          }
         ]
       },
       "mark": {
@@ -124,13 +140,22 @@
         "strokeWidth": 1
       },
       "encoding": {
-        "x": {"field": "x", "type": "quantitative"},
-        "y": {"field": "y", "type": "quantitative"},
-        "x2": {"field": "x2"},
-        "y2": {"field": "y2"}
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "x2": {
+          "field": "x2"
+        },
+        "y2": {
+          "field": "y2"
+        }
       }
     },
-
     {
       "data": {
         "values": [
@@ -147,7 +172,7 @@
             "body": "· Steam Direct replaced|Greenlight voting with|submission and review."
           },
           {
-            "x": 2017.0,
+            "x": 2017,
             "y": 19900,
             "year": "2024",
             "body": "· Developers' first Steam games|accounted for around 25% of Steam's|monthly top new releases."
@@ -165,9 +190,17 @@
             "color": "#1F2937"
           },
           "encoding": {
-            "x": {"field": "x", "type": "quantitative"},
-            "y": {"field": "y", "type": "quantitative"},
-            "text": {"field": "year"}
+            "x": {
+              "field": "x",
+              "type": "quantitative"
+            },
+            "y": {
+              "field": "y",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "year"
+            }
           }
         },
         {
@@ -182,15 +215,22 @@
             "color": "#3F4756"
           },
           "encoding": {
-            "x": {"field": "x", "type": "quantitative"},
-            "y": {"field": "y", "type": "quantitative"},
-            "text": {"field": "body"}
+            "x": {
+              "field": "x",
+              "type": "quantitative"
+            },
+            "y": {
+              "field": "y",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "body"
+            }
           }
         }
       ]
     }
   ],
-
   "config": {
     "view": {
       "stroke": null

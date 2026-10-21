@@ -2,13 +2,13 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Annual comparison of five visual player perspectives in 2010 and 2024. Source: game_dataset_cleaned(1).csv. Distinct main_game IDs, valid release dates. Each year denominator is the union of games tagged with at least one selected visual perspective (2010: 1,211; 2024: 6,376). Text/Auditory-only and missing perspective records are excluded; games with a selected visual perspective are retained even if they also have a Text/Auditory tag. Games can have multiple perspectives, so percentages need not sum to 100. The 2010 baseline maximizes the sum of absolute percentage-point differences from 2024 across the five perspectives, among baseline years 2010–2023. Endpoint comparison only. Colour values avoid exact reuse of the supplied dashboard palette; families necessarily recur.",
   "title": {
-    "text": "Changes in Visual Game Perspectives (2010–2024)",
+    "text": "How Did Game Perspectives Change (2010–2024)?",
     "anchor": "start",
     "fontSize": 17,
     "offset": 16
   },
-  "width": 392,
-  "height": 307,
+  "width": 436,
+  "height": 377,
   "padding": 8,
   "background": "white",
   "data": {
@@ -30,7 +30,7 @@
       "as": "percentage_label"
     },
     {
-      "calculate": "datum.perspective === 'Side view' ? '#69733F' : datum.perspective === 'Bird view / Isometric' ? '#516B5D' : datum.perspective === 'Virtual Reality' ? '#526A99' : datum.perspective === 'First person' ? '#C41FD6' : '#9B633E'",
+      "calculate": "datum.perspective === 'First person' ? '#C41FD6' : datum.perspective === 'Third person' ? '#9B633E' : '#8A919C'",
       "as": "label_color"
     }
   ],
@@ -52,6 +52,12 @@
         "ticks": false,
         "titleFontSize": 12,
         "titlePadding": 8
+      },
+      "scale": {
+        "range": [
+          40,
+          290
+        ]
       }
     },
     "y": {
@@ -64,23 +70,7 @@
         ],
         "nice": false
       },
-      "axis": {
-        "title": "Share of games with this perspective (%)",
-        "values": [
-          0,
-          10,
-          20,
-          30,
-          40
-        ],
-        "labelFontSize": 12,
-        "titleFontSize": 12,
-        "grid": true,
-        "gridColor": "#E5E7EB",
-        "domain": false,
-        "tickColor": "#D1D5DB",
-        "titlePadding": 10
-      }
+      "axis": null
     },
     "color": {
       "field": "perspective",
@@ -95,23 +85,14 @@
           "Virtual Reality"
         ],
         "range": [
-          "#7A852F",
+          "#C5CAD1",
           "#C41FD6",
-          "#507D68",
+          "#C5CAD1",
           "#9B633E",
-          "#8F9FBD"
+          "#C5CAD1"
         ]
       },
-      "legend": {
-        "orient": "bottom",
-        "direction": "horizontal",
-        "columns": 2,
-        "labelFontSize": 12,
-        "titleFontSize": 12,
-        "labelLimit": 230,
-        "symbolSize": 95,
-        "offset": 18
-      }
+      "legend": null
     },
     "opacity": {
       "field": "perspective",
@@ -152,8 +133,8 @@
       ],
       "mark": {
         "type": "rule",
-        "strokeWidth": 1,
-        "color": "#C0C5CC"
+        "strokeWidth": 1.5,
+        "color": "#7A93B8"
       },
       "encoding": {
         "y": {
@@ -165,13 +146,14 @@
               40
             ],
             "nice": false
-          }
+          },
+          "axis": null
         },
         "y2": {
           "datum": 40
         },
         "color": {
-          "value": "#C0C5CC"
+          "value": "#7A93B8"
         },
         "opacity": {
           "value": 1
@@ -234,7 +216,12 @@
           },
           "value": 2
         }
-      }
+      },
+      "transform": [
+        {
+          "filter": "!(datum.perspective === 'First person' || datum.perspective === 'Third person')"
+        }
+      ]
     },
     {
       "mark": {
@@ -281,7 +268,127 @@
             "format": "+.1f"
           }
         ]
-      }
+      },
+      "transform": [
+        {
+          "filter": "!(datum.perspective === 'First person' || datum.perspective === 'Third person')"
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "detail": {
+          "field": "perspective"
+        },
+        "order": {
+          "field": "year",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "perspective",
+            "type": "nominal",
+            "title": "Player perspective"
+          },
+          {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Release year"
+          },
+          {
+            "field": "share_pct",
+            "type": "quantitative",
+            "title": "Share of games with visual perspective recorded (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "games_with_perspective",
+            "type": "quantitative",
+            "title": "Games with this perspective",
+            "format": ",d"
+          },
+          {
+            "field": "denominator_games",
+            "type": "quantitative",
+            "title": "Games with a selected visual perspective",
+            "format": ",d"
+          },
+          {
+            "field": "change_pp",
+            "type": "quantitative",
+            "title": "2010–2024 change (percentage points)",
+            "format": "+.1f"
+          }
+        ],
+        "strokeWidth": {
+          "condition": {
+            "test": "datum.perspective === 'First person' || datum.perspective === 'Third person'",
+            "value": 3
+          },
+          "value": 2
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.perspective === 'First person' || datum.perspective === 'Third person'"
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 105,
+        "stroke": "white",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "perspective",
+            "type": "nominal",
+            "title": "Player perspective"
+          },
+          {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Release year"
+          },
+          {
+            "field": "share_pct",
+            "type": "quantitative",
+            "title": "Share of games with visual perspective recorded (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "games_with_perspective",
+            "type": "quantitative",
+            "title": "Games with this perspective",
+            "format": ",d"
+          },
+          {
+            "field": "denominator_games",
+            "type": "quantitative",
+            "title": "Games with a selected visual perspective",
+            "format": ",d"
+          },
+          {
+            "field": "change_pp",
+            "type": "quantitative",
+            "title": "2010–2024 change (percentage points)",
+            "format": "+.1f"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "filter": "datum.perspective === 'First person' || datum.perspective === 'Third person'"
+        }
+      ]
     },
     {
       "transform": [
@@ -320,6 +427,10 @@
         {
           "calculate": "datum.perspective === 'Bird view / Isometric' ? datum.share_pct + 1.2 : datum.perspective === 'Side view' ? datum.share_pct - 0.8 : datum.perspective === 'First person' ? datum.share_pct - 0.1 : datum.share_pct",
           "as": "label_y"
+        },
+        {
+          "calculate": "datum.percentage_label + '  ' + datum.perspective",
+          "as": "end_label"
         }
       ],
       "mark": {
@@ -340,10 +451,11 @@
               40
             ],
             "nice": false
-          }
+          },
+          "axis": null
         },
         "text": {
-          "field": "percentage_label"
+          "field": "end_label"
         },
         "color": {
           "field": "label_color",
@@ -370,16 +482,16 @@
       },
       "encoding": {
         "x": {
-          "value": 140
+          "value": 146
         },
         "y": {
-          "value": 202
+          "value": 248.1
         },
         "x2": {
-          "value": 152
+          "value": 136.9
         },
         "y2": {
-          "value": 152.8
+          "value": 187.6
         },
         "color": {
           "value": "#C41FD6"
@@ -407,10 +519,10 @@
       },
       "encoding": {
         "x": {
-          "value": 106
+          "value": 112
         },
         "y": {
-          "value": 205
+          "value": 251.7
         },
         "text": {
           "field": "note"

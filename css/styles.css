@@ -397,7 +397,7 @@ a {
 }
 
 .persp-vr {
-  color: #8F9FBD;   /* Virtual Reality line (same as legend) */
+  color: var(--ink);   /* Virtual Reality is a grey background line in the chart, so no colour here */
 }
 
 /* Platform figures beside the treemap, in the treemap's ecosystem colours
@@ -419,7 +419,7 @@ a {
   white-space: normal;
 }
 
-/* Genre highlights beside the Marimekko chart, in its legend colours
+/* Genre highlights beside the publisher genre-mix chart, in its legend colours
    (Action and Shooter darkened so they are readable as text on white) */
 .genre-sports {
   color: #393B79;   /* Sports, same as the chart */
