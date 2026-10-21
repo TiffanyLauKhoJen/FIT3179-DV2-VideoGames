@@ -3,8 +3,8 @@
   "title": {
     "text": "Where Is Video Game Participation Highest?"
   },
-  "width": 920,
-  "height": 450,
+  "width": 1020,
+  "height": 500,
   "data": {
     "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/ne_110m_admin_0_countries.topojson",
     "format": {
@@ -49,7 +49,7 @@
             "symbolStrokeWidth": 0.5,
             "labelFontSize": 12,
             "legendX": 222,
-            "legendY": 485
+            "legendY": 535
           }
         }
       }

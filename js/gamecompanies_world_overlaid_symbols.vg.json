@@ -3,8 +3,8 @@
   "title": {
     "text": "Which Countries Lead Game Development and Publishing?"
   },
-  "width": 920,
-  "height": 450,
+  "width": 1020,
+  "height": 500,
   "projection": {
     "type": "equalEarth"
   },
@@ -79,7 +79,10 @@
       "mark": {
         "type": "circle",
         "color": "#C2410C",
-        "opacity": 0.75
+        "fillOpacity": 0.9,
+        "stroke": "#8A2E0A",
+        "strokeWidth": 1,
+        "strokeOpacity": 1
       },
       "encoding": {
         "longitude": {
@@ -121,10 +124,24 @@
             ],
             "format": ",.0f",
             "symbolFillColor": "#C2410C",
-            "symbolOpacity": 0.75,
             "labelFontSize": 12,
             "titleFontSize": 13,
-            "offset": 16
+            "offset": 16,
+            "encode": {
+              "symbols": {
+                "update": {
+                  "stroke": {
+                    "value": "#8A2E0A"
+                  },
+                  "strokeWidth": {
+                    "value": 1
+                  },
+                  "fillOpacity": {
+                    "value": 0.9
+                  }
+                }
+              }
+            }
           }
         },
         "tooltip": [

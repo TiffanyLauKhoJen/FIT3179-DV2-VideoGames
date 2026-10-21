@@ -123,7 +123,7 @@ a {
 /* ---------- 3. Page layout ---------- */
 /* A centred white page on a grey background, as in the studio lab */
 .page {
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 24px 32px 0;
   box-sizing: border-box;
@@ -198,6 +198,7 @@ a {
 
 .intro .lead {
   margin: 0;
+  max-width: 452px;   /* about 8-10 words per line */
   font-size: 16px;
   line-height: 1.7;
   color: #3E4353;
@@ -349,7 +350,7 @@ a {
   padding-top: 0;
 }
 
-/* Rows with the chart in 2/3 of the width and the text in 1/3 */
+/* Rows with the chart on one side and its text on the other */
 .chart-row-wide .text-side-right {
   padding-left: 22px;   /* plus the chart's centring slack, about a 26 px gap */
 }
@@ -360,6 +361,18 @@ a {
 
 .chart-row-wide .text-side p {
   max-width: none;
+}
+
+/* On wide screens the chart takes 61% and the text 39% (about 380 px of text),
+   so the side texts reach 8-10 words per line while charts keep their size */
+@media screen and (min-width: 64em) {
+  .chart-row-wide > .pure-u-lg-2-3 {
+    width: 61%;
+  }
+
+  .chart-row-wide > .pure-u-lg-1-3 {
+    width: 39%;
+  }
 }
 
 /* Text starts level with the top of the chart (its title) */
@@ -492,7 +505,7 @@ a {
    centred as a block with the text itself left-aligned */
 .chart-pair-text {
   width: 100%;
-  max-width: 48ch;
+  max-width: 436px;   /* about 8-10 words per line */
   justify-self: center;
   /* Share the pair's paragraph rows, so both second paragraphs start at the same height */
   display: grid;
@@ -527,6 +540,7 @@ a {
 .map-text p {
   line-height: 1.5;
   margin: 0;
+  max-width: 452px;   /* about 8-10 words per line on the wider page */
 }
 
 /* Dot map and participation map text: full-width equal columns (8-10 words per line), a little more space below the legend */
