@@ -7,7 +7,7 @@
     "fontSize": 17,
     "offset": 16
   },
-  "width": 486,
+  "width": 436,
   "height": 377,
   "padding": 8,
   "background": "white",
@@ -55,8 +55,8 @@
       },
       "scale": {
         "range": [
-          44,
-          334
+          40,
+          290
         ]
       }
     },
@@ -482,13 +482,13 @@
       },
       "encoding": {
         "x": {
-          "value": 162
+          "value": 146
         },
         "y": {
           "value": 248.1
         },
         "x2": {
-          "value": 156.4
+          "value": 136.9
         },
         "y2": {
           "value": 187.6
@@ -519,7 +519,7 @@
       },
       "encoding": {
         "x": {
-          "value": 128
+          "value": 112
         },
         "y": {
           "value": 251.7

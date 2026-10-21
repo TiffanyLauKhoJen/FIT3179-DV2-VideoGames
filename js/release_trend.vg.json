@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Line chart of recorded IGDB main-game releases per year, annotated with industry developments in 2015, 2017 and 2024.",
-  "width": 545,
+  "width": 614,
   "height": 280,
   "title": {
     "text": "How Many Video Games Were Released Each Year (2010–2025)?",

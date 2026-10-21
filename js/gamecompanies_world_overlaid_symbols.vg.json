@@ -3,8 +3,8 @@
   "title": {
     "text": "Which Countries Lead Game Development and Publishing?"
   },
-  "width": 1020,
-  "height": 500,
+  "width": 942,
+  "height": 462,
   "projection": {
     "type": "equalEarth",
     "center": {
@@ -197,10 +197,10 @@
   "params": [
     {
       "name": "zoom_level",
-      "value": 188,
+      "value": 174,
       "bind": {
         "input": "range",
-        "min": 188,
+        "min": 174,
         "max": 1200,
         "step": 10,
         "name": "Zoom: "
