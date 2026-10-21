@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "100% stacked columns showing the genre mix of five selected publishers across five selected genres, from Video Games Sales (1980–2024) – Raw. Includes records with release dates in 1980–2024. Each distinct publisher–title–genre combination is counted once across platforms. Simulation is displayed as Simulator. Publishers are selected for contrasting profiles, not a top-five ranking. Each column totals 100% of that publisher's selected records. Sales values are not used.",
+  "description": "100% stacked columns showing the genre mix of four selected publishers (Konami, Electronic Arts, Microsoft, Nintendo) across four selected genres (Sports, Action, Role-Playing, Simulator); Sega and Shooter are filtered out, from Video Games Sales (1980–2024) – Raw. Includes records with release dates in 1980–2024. Each distinct publisher–title–genre combination is counted once across platforms. Simulation is displayed as Simulator. Publishers are selected for contrasting profiles, not a top-five ranking. Each column totals 100% of that publisher's selected records. Sales values are not used.",
   "width": 539,
   "height": 321,
   "padding": {
@@ -27,7 +27,10 @@
   },
   "transform": [
     {
-      "calculate": "indexof(['Sports','Action','Shooter','Role-Playing','Simulator'], datum.genre)",
+      "filter": "datum.publisher !== 'Sega' && datum.genre !== 'Shooter'"
+    },
+    {
+      "calculate": "indexof(['Sports','Action','Role-Playing','Simulator'], datum.genre)",
       "as": "genre_order"
     },
     {
@@ -74,7 +77,6 @@
       "field": "publisher",
       "type": "nominal",
       "sort": [
-        "Sega",
         "Konami",
         "Electronic Arts",
         "Microsoft",
@@ -130,14 +132,12 @@
         "domain": [
           "Sports",
           "Action",
-          "Shooter",
           "Role-Playing",
           "Simulator"
         ],
         "range": [
           "#393B79",
           "#E78AC3",
-          "#790606",
           "#B15928",
           "#6A3D9A"
         ]
@@ -145,7 +145,7 @@
       "legend": {
         "orient": "bottom",
         "direction": "horizontal",
-        "columns": 3,
+        "columns": 4,
         "offset": 16,
         "labelFontSize": 11,
         "titleFontSize": 11
