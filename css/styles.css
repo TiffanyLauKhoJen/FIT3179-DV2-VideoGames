@@ -637,16 +637,6 @@ a {
   background: var(--accent-soft);
 }
 
-/* Maps can be dragged with the mouse: show a hand cursor, and a closed hand while dragging */
-.map-draggable {
-  cursor: grab;
-  user-select: none;   /* dragging should move the map, not highlight its text */
-}
-
-.map-dragging {
-  cursor: grabbing;
-}
-
 .map-text {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 452px));

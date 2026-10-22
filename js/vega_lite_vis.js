@@ -27,7 +27,8 @@ function addMapReset(result) {
 // Maps: drag with the mouse to move the map, and hold Ctrl while scrolling to zoom.
 // Vega-Lite cannot drag maps by itself (Week 10 studio), so this updates the same
 // "center_to" and "zoom_level" parameters that the slider and dropdown control.
-// Plain scrolling still scrolls the page, and touch screens keep normal swiping.
+// The normal arrow cursor is kept; plain scrolling still scrolls the page,
+// and touch screens keep normal swiping.
 function addMapDrag(result) {
   var view = result.view;
   var svg = view.container().querySelector("svg");
@@ -36,13 +37,12 @@ function addMapDrag(result) {
   var maxZoom = slider ? +slider.max : 1200;
   var dragStart = null;
 
-  svg.classList.add("map-draggable");
+  svg.style.userSelect = "none";   // dragging should move the map, not highlight its text
 
   svg.addEventListener("pointerdown", function (event) {
     if (event.pointerType !== "mouse" || event.button !== 0) { return; }
     event.preventDefault();   // stop the drag from selecting text on the page
     dragStart = { x: event.clientX, y: event.clientY, centre: view.signal("center_to").slice() };
-    svg.classList.add("map-dragging");
     svg.setPointerCapture(event.pointerId);
   });
 
@@ -59,7 +59,6 @@ function addMapDrag(result) {
 
   function endDrag() {
     dragStart = null;
-    svg.classList.remove("map-dragging");
   }
   svg.addEventListener("pointerup", endDrag);
   svg.addEventListener("pointercancel", endDrag);
