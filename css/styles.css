@@ -130,6 +130,72 @@ a {
 }
 
 
+/* ---------- Section links at the top of the page ---------- */
+/* Numbered links ("1 Evolution") that stay at the top while scrolling; the current section is
+   purple and underlined. Clicking a link scrolls smoothly to its section. */
+html {
+  scroll-behavior: smooth;
+}
+
+.section-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px 40px;                  /* generous space between the links */
+  margin: -24px 0 28px;          /* sits flush with the top of the white page */
+  padding: 16px 0 0;
+  background: var(--page);
+  border-bottom: 1px solid var(--line);
+}
+
+.section-nav a {
+  padding: 4px 0 12px;
+  border-bottom: 2px solid transparent;
+  font-family: var(--font-body);   /* Open Sans, the page's body font */
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  color: #4A5263;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.section-nav a:hover,
+.section-nav a:focus-visible,
+.section-nav a.is-active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  outline: none;
+}
+
+/* Clicking a link stops each section just below the sticky bar */
+.level {
+  scroll-margin-top: 64px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Phones: the links scroll sideways in one row instead of wrapping */
+@media (max-width: 767px) {
+  .section-nav {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    gap: 22px;
+    margin-top: -16px;
+    padding-top: 12px;
+    scrollbar-width: none;
+  }
+}
+
+
 /* ---------- 4. Title and introduction ---------- */
 /* Editorial opening on the white page, sharing one left edge with the
    section banners and charts below */

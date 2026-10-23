@@ -144,3 +144,21 @@ vegaEmbed("#publisher_heatmap", vg_publisher_heatmap, embedOptions).catch(consol
 // Section 6
 vegaEmbed("#participation_map", vg_participation_map, embedOptions).then(addMapInteractions).catch(console.error);
 vegaEmbed("#top_sales_lollipop", vg_top_sales_lollipop, embedOptions).catch(console.error);
+
+
+// Section links at the top: underline the link of the section currently on screen.
+// IntersectionObserver reports when a section crosses a band near the top of the window.
+var navLinks = document.querySelectorAll(".section-nav a");
+if (navLinks.length && "IntersectionObserver" in window) {
+  var sectionObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) { return; }
+      navLinks.forEach(function (link) {
+        link.classList.toggle("is-active", link.getAttribute("href") === "#" + entry.target.id);
+      });
+    });
+  }, { rootMargin: "-80px 0px -60% 0px" });
+  document.querySelectorAll("section.level[id]").forEach(function (section) {
+    sectionObserver.observe(section);
+  });
+}

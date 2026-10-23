@@ -82,7 +82,7 @@
         "Microsoft",
         "Nintendo"
       ],
-      "title": null,
+      "title": "Publisher",
       "scale": {
         "paddingInner": 0.14,
         "paddingOuter": 0.07
@@ -94,7 +94,8 @@
         "labelPadding": 8,
         "ticks": false,
         "domain": false,
-        "titleFontSize": 12
+        "titleFontSize": 12,
+        "titlePadding": 8
       }
     },
     "y": {

@@ -86,7 +86,7 @@
       "mark": {
         "type": "rule",
         "stroke": "#A5B2C2",
-        "strokeWidth": 3
+        "strokeWidth": 2
       },
       "encoding": {
         "x": {

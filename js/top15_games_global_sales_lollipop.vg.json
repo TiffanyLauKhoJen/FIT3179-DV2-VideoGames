@@ -325,6 +325,10 @@
     {
       "calculate": "datum.title === 'Tetris' ? '#54541C' : datum.title === 'Mario Kart DS' ? '#A9048E' : '#A3ACB8'",
       "as": "highlight_color"
+    },
+    {
+      "calculate": "datum.genre === 'Misc' ? 'Miscellaneous' : datum.genre",
+      "as": "genre"
     }
   ]
 }

@@ -83,6 +83,10 @@
         },
         {
           "filter": "datum.Total_listings > 0"
+        },
+        {
+          "calculate": "datum.country === 'USA' ? 'United States' : datum.country",
+          "as": "country"
         }
       ],
       "mark": {

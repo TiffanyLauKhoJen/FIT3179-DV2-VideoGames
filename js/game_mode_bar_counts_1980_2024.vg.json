@@ -8,7 +8,7 @@
     "offset": 14
   },
   "width": 387,
-  "height": 392,
+  "height": 372,
   "background": "white",
   "data": {
     "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/game_mode_bar_counts_1980_2024.csv",
@@ -36,7 +36,7 @@
         "Split screen",
         "Massively Multiplayer Online"
       ],
-      "title": null,
+      "title": "Game mode",
       "axis": {
         "labelAngle": 0,
         "labelFontSize": 11,
@@ -46,7 +46,8 @@
         "domainColor": "#9AA1AD",
         "labelExpr": "split(datum.value, ' ')",
         "labelColor": "#333333",
-        "titleFontSize": 12
+        "titleFontSize": 12,
+        "titlePadding": 8
       }
     },
     "y": {

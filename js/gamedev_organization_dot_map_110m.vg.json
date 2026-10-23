@@ -74,6 +74,18 @@
       "transform": [
         {
           "filter": "isValid(datum.lat) && isValid(datum.lon)"
+        },
+        {
+          "calculate": "!datum.Category ? 'Not specified' : datum.Category === 'Extended Reality (XR)' ? 'Extended Reality' : datum.Category",
+          "as": "Category"
+        },
+        {
+          "calculate": "datum.Country === 'Congo (DRC)' ? 'Democratic Republic of the Congo' : datum.Country",
+          "as": "Country"
+        },
+        {
+          "calculate": "datum.City === 'Washington DC' ? 'Washington, District of Columbia' : datum.City",
+          "as": "City"
         }
       ],
       "mark": {

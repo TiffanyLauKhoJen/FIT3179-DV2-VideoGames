@@ -27,7 +27,7 @@
         {
           "type": "formula",
           "as": "family",
-          "expr": "datum.family === 'PC / Computer' ? 'Computer' : datum.family"
+          "expr": "datum.family === 'PC / Computer' ? 'Computer' : datum.family === 'VR' ? 'Virtual Reality' : datum.family"
         },
         {
           "type": "formula",
@@ -147,7 +147,7 @@
         "Nintendo",
         "PlayStation",
         "Xbox",
-        "VR",
+        "Virtual Reality",
         "Sega"
       ],
       "range": [
