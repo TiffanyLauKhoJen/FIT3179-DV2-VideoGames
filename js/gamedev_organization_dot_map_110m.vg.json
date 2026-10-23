@@ -111,7 +111,7 @@
           "type": "nominal",
           "scale": {
             "range": [
-              "#B2182B"
+              "#4E342E"
             ]
           },
           "legend": {
@@ -157,7 +157,7 @@
     },
     "title": {
       "anchor": "start",
-      "fontSize": 17,
+      "fontSize": 19,
       "subtitleFontSize": 12
     },
     "axis": {

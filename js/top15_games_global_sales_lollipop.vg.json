@@ -1,13 +1,13 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Horizontal lollipop chart of games ranked 1 to 15 in videogame.csv by recorded global sales.",
-  "width": 801,
+  "width": 784,
   "height": 320,
   "background": "white",
   "title": {
     "text": "Which Games Have the Highest Recorded Sales?",
     "anchor": "start",
-    "fontSize": 17,
+    "fontSize": 19,
     "offset": 12
   },
   "data": {
@@ -29,7 +29,7 @@
         "field": "rank",
         "order": "ascending"
       },
-      "title": null,
+      "title": "Game",
       "axis": {
         "labelLimit": 260,
         "labelFontSize": 11,
@@ -41,7 +41,7 @@
             },
             {
               "test": "datum.value === 'Mario Kart DS'",
-              "value": "#A9048E"
+              "value": "#6A3D9A"
             }
           ],
           "value": "#000000"
@@ -210,7 +210,7 @@
         "fontSize": 11,
         "lineHeight": 14,
         "dy": -14,
-        "color": "#A9048E"
+        "color": "#6A3D9A"
       },
       "encoding": {
         "x": {
@@ -236,7 +236,7 @@
         "values": [
           {
             "title": "Tetris",
-            "x": 35.13,
+            "x": 35.24,
             "x2": 43.5
           }
         ]
@@ -270,7 +270,7 @@
         "values": [
           {
             "title": "Mario Kart DS",
-            "x": 28.31,
+            "x": 28.42,
             "x2": 43.5
           }
         ]
@@ -278,7 +278,7 @@
       "mark": {
         "type": "rule",
         "strokeWidth": 1,
-        "color": "#A9048E"
+        "color": "#6A3D9A"
       },
       "encoding": {
         "x": {
@@ -323,7 +323,7 @@
       "as": "title"
     },
     {
-      "calculate": "datum.title === 'Tetris' ? '#54541C' : datum.title === 'Mario Kart DS' ? '#A9048E' : '#A3ACB8'",
+      "calculate": "datum.title === 'Tetris' ? '#54541C' : datum.title === 'Mario Kart DS' ? '#6A3D9A' : '#A3ACB8'",
       "as": "highlight_color"
     },
     {

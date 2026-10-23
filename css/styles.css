@@ -105,7 +105,7 @@ a {
 }
 
 .year-2024 {
-  color: #882255;
+  color: #0033CC;
 }
 
 /* Same enlarged emphasis, in the main text colour */
@@ -325,7 +325,7 @@ html {
 
 .level-banner h2 {
   color: #FFFFFF;
-  font-size: 1.75rem;
+  font-size: 30px;
   margin: 0;
 }
 
@@ -455,43 +455,41 @@ html {
 
 /* Theme names coloured to match their lines in the bump chart */
 .theme-horror {
-  color: #00A6D6;
+  color: #B2182B;
 }
 
 .theme-erotic {
-  color: #A6761D;
+  color: #C23B92;
 }
 
 .theme-scifi {
-  color: #7570B3;
+  color: #B07D2B;
 }
 
-/* Perspective figures beside the slope chart, in darker versions of its line colours
-   (darkened so they are readable as text on white) */
+/* Perspective figures beside the slope chart, in exactly its line colours */
 .persp-first {
-  color: #C41FD6;   /* First person line (vivid purple) */
+  color: #E78AC3;   /* First person line (Set2 pink) */
 }
 
 .persp-third {
-  color: #9B633E;   /* Third person line (copper) */
+  color: #7A285A;   /* Third person line (dark plum) */
 }
 
 .persp-vr {
   color: var(--ink);   /* Virtual Reality is a grey background line in the chart, so no colour here */
 }
 
-/* Platform figures beside the treemap, in the treemap's ecosystem colours
-   (darkened where needed so they are readable as text on white) */
+/* Platform figures beside the treemap, in exactly the treemap's ecosystem colours */
 .plat-pc {
-  color: #4269D0;   /* PC / Computer, same as the chart */
+  color: #6484D8;   /* Computer, same as the chart */
 }
 
 .plat-nintendo {
-  color: #437F7A;   /* Nintendo #76B7B2, darkened */
+  color: #8FC4C0;   /* Nintendo, same as the chart */
 }
 
 .plat-playstation {
-  color: #488240;   /* PlayStation #59A14F, darkened */
+  color: #CD8A90;   /* PlayStation, same as the chart */
 }
 
 /* Long enlarged phrases beside the treemap may wrap instead of overflowing the narrow text column */
@@ -501,37 +499,40 @@ html {
 
 /* Genre highlights beside the publisher genre-mix chart, in its legend colours */
 .genre-sports {
-  color: #393B79;   /* Sports, same as the chart */
+  color: #879A39;   /* Sports, same as the chart */
 }
 
 .genre-action {
-  color: #E78AC3;   /* Action, same as the chart legend */
+  color: #EDA100;   /* Action, same as the chart */
 }
 
 .genre-rpg {
-  color: #B15928;   /* Role-Playing, same as the chart */
+  color: #393B79;
 }
 
 .genre-sim {
-  color: #6A3D9A;   /* Simulator, same as the chart */
+  color: #347C82;   /* Simulator, same as the chart */
 }
 
-/* Game-mode figures beside the game-mode bar chart, in darker versions of the chart's bar colours
-   (darkened so they are readable as text on white) */
+/* Game-mode text uses exactly the same colours as the bars. */
 .mode-multi {
-  color: #125D73;   /* Multiplayer ring (deep petrol), same colour */
+  color: #00A6D6;
 }
 
 .mode-single {
-  color: #946D00;   /* Single player ring #B88700 (gold), darkened for text */
-}
-
-.mode-split {
-  color: #966699;   /* Split screen ring (dusty mauve), same as the chart */
+  color: #C9B27D;
 }
 
 .mode-coop {
-  color: #A6595E;   /* Co-operative ring (muted rose), same colour */
+  color: #1B9E77;
+}
+
+.mode-split {
+  color: #8C564B;
+}
+
+.mode-mmo {
+  color: #666666;
 }
 
 /* Two charts side by side, each with its text underneath (Section 2).

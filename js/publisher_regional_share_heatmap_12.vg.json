@@ -4,10 +4,10 @@
   "title": {
     "text": "Where Do Publishers Earn Their Recorded Sales?",
     "anchor": "start",
-    "fontSize": 17,
+    "fontSize": 19,
     "offset": 14
   },
-  "width": 484,
+  "width": 472,
   "height": {
     "step": 27
   },
@@ -49,7 +49,7 @@
         "Japan",
         "Other"
       ],
-      "title": null,
+      "title": "Region",
       "axis": {
         "orient": "top",
         "labelAngle": 0,
@@ -81,7 +81,7 @@
         "KOEI",
         "Tecmo Koei"
       ],
-      "title": null,
+      "title": "Publisher",
       "axis": {
         "labelFontSize": 11,
         "labelLimit": 400,
@@ -176,6 +176,21 @@
             "offset": 18
           }
         }
+      }
+    },
+    {
+      "description": "Dark outline on the labelled cells, so the highlighted values do not rely on colour alone.",
+      "transform": [
+        {
+          "filter": "datum.Share_pct >= 50 || (datum.Publisher === 'NIS America' && (datum.Region === 'North America' || datum.Region === 'Japan'))"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "fill": null,
+        "stroke": "#1F2937",
+        "strokeWidth": 1.5,
+        "cornerRadius": 1
       }
     },
     {

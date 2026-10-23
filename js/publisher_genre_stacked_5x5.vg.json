@@ -22,7 +22,7 @@
   "title": {
     "text": "Which Genres Do Selected Publishers Focus On?",
     "anchor": "start",
-    "fontSize": 17,
+    "fontSize": 19,
     "offset": 12
   },
   "transform": [
@@ -140,10 +140,10 @@
           "Simulator"
         ],
         "range": [
+          "#879A39",
+          "#EDA100",
           "#393B79",
-          "#E78AC3",
-          "#B15928",
-          "#6A3D9A"
+          "#347C82"
         ]
       },
       "legend": {

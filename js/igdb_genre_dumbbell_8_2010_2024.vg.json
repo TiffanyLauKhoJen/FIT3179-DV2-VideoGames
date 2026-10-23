@@ -6,12 +6,12 @@
       "How Did Video Game Genre Shares Change (2010–2024)?"
     ],
     "anchor": "start",
-    "fontSize": 17,
+    "fontSize": 19,
     "subtitleFontSize": 11,
     "subtitleColor": "#526274",
     "offset": 16
   },
-  "width": 476,
+  "width": 467,
   "height": {
     "step": 40
   },
@@ -56,7 +56,7 @@
           "Puzzle"
         ]
       },
-      "title": null,
+      "title": "Genre",
       "axis": {
         "labelFontSize": 11,
         "labelPadding": 12,
@@ -143,42 +143,6 @@
       }
     },
     {
-      "description": "Leader lines from each 2024 circle to its note (drawn before the circles so the circles cover the line ends).",
-      "data": {
-        "values": [
-          {
-            "x": 38.42,
-            "x2": 46,
-            "Genre": "Adventure",
-            "Genre2": "Simulator"
-          },
-          {
-            "x": 21.47,
-            "x2": 26,
-            "Genre": "Simulator",
-            "Genre2": "Role-Playing"
-          }
-        ]
-      },
-      "mark": {
-        "type": "rule",
-        "color": "#9AA1AD",
-        "strokeWidth": 1
-      },
-      "encoding": {
-        "x": {
-          "field": "x",
-          "type": "quantitative"
-        },
-        "x2": {
-          "field": "x2"
-        },
-        "y2": {
-          "field": "Genre2"
-        }
-      }
-    },
-    {
       "transform": [
         {
           "fold": [
@@ -225,7 +189,7 @@
             ],
             "range": [
               "#EE6677",
-              "#882255"
+              "#0033CC"
             ]
           },
           "legend": {
@@ -262,40 +226,131 @@
       }
     },
     {
-      "description": "Annotation text, positioned by share (x) and genre row (y) like the release trend notes; | starts a new line.",
-      "data": {
-        "values": [
-          {
-            "x": 30,
-            "Genre": "Simulator",
-            "note": "Digital downloads and crowdfunding|helped smaller developers create and|release new adventure games."
+      "description": "Annotations placed beside the row they explain; | starts a new line.",
+      "layer": [
+        {
+          "data": {
+            "values": [
+              {
+                "x": 19.3,
+                "Genre": "Adventure",
+                "note": "Double Fine's 2012 Kickstarter|revived interest in adventures"
+              }
+            ]
           },
-          {
-            "x": 24,
-            "Genre": "Role-Playing",
-            "note": "Supermarket Simulator’s success encouraged|similar shop-management games, including|TCG Card Shop Simulator."
+          "mark": {
+            "type": "text",
+            "baseline": "middle",
+            "fontSize": 11,
+            "lineHeight": 14,
+            "lineBreak": "|",
+            "color": "#3F4756",
+            "align": "right"
+          },
+          "encoding": {
+            "x": {
+              "field": "x",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "note"
+            }
           }
-        ]
-      },
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "baseline": "top",
-        "dy": 2,
-        "fontSize": 11,
-        "lineHeight": 14,
-        "lineBreak": "|",
-        "color": "#3F4756"
-      },
-      "encoding": {
-        "x": {
-          "field": "x",
-          "type": "quantitative"
         },
-        "text": {
-          "field": "note"
+        {
+          "description": "Simulator note: game title in italics, with dx offsets from the measured title width.",
+          "layer": [
+            {
+              "data": {
+                "values": [
+                  {
+                    "x": 23.5,
+                    "Genre": "Simulator",
+                    "note": "Supermarket Simulator"
+                  }
+                ]
+              },
+              "mark": {
+                "type": "text",
+                "baseline": "middle",
+                "fontSize": 11,
+                "color": "#3F4756",
+                "align": "left",
+                "dx": 0,
+                "dy": -7,
+                "fontStyle": "italic"
+              },
+              "encoding": {
+                "x": {
+                  "field": "x",
+                  "type": "quantitative"
+                },
+                "text": {
+                  "field": "note"
+                }
+              }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "x": 23.5,
+                    "Genre": "Simulator",
+                    "note": "'s 2024 hit"
+                  }
+                ]
+              },
+              "mark": {
+                "type": "text",
+                "baseline": "middle",
+                "fontSize": 11,
+                "color": "#3F4756",
+                "align": "left",
+                "dx": 112.49,
+                "dy": -7
+              },
+              "encoding": {
+                "x": {
+                  "field": "x",
+                  "type": "quantitative"
+                },
+                "text": {
+                  "field": "note"
+                }
+              }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "x": 23.5,
+                    "Genre": "Simulator",
+                    "note": "sparked many shop-management games"
+                  }
+                ]
+              },
+              "mark": {
+                "type": "text",
+                "baseline": "middle",
+                "fontSize": 11,
+                "color": "#3F4756",
+                "align": "left",
+                "dx": 0,
+                "dy": 7
+              },
+              "encoding": {
+                "x": {
+                  "field": "x",
+                  "type": "quantitative"
+                },
+                "text": {
+                  "field": "note"
+                }
+              }
+            }
+          ]
         }
-      }
+      ]
     }
   ],
   "config": {

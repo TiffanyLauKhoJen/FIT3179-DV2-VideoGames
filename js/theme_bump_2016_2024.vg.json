@@ -4,7 +4,7 @@
   "title": {
     "text": "Which Video Game Themes Rose or Fell in Rank (2016–2024)?",
     "anchor": "start",
-    "fontSize": 17,
+    "fontSize": 19,
     "subtitleFontSize": 12,
     "subtitleColor": "#526274",
     "offset": 14
@@ -86,9 +86,9 @@
         ],
         "range": [
           "#C5CAD1",
-          "#7570B3",
-          "#00A6D6",
-          "#A6761D",
+          "#B07D2B",
+          "#B2182B",
+          "#C23B92",
           "#C5CAD1",
           "#C5CAD1",
           "#C5CAD1"
@@ -123,6 +123,66 @@
     ]
   },
   "layer": [
+    {
+      "description": "Leader line from the Lethal Company note to Horror's 2023 point (pixel positions within the plot).",
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "value": 372
+        },
+        "y": {
+          "value": 40
+        },
+        "x2": {
+          "value": 440
+        },
+        "y2": {
+          "value": 19
+        },
+        "color": {
+          "value": "#B2182B"
+        },
+        "tooltip": null
+      }
+    },
+    {
+      "description": "Leader line from the Negligee note to Erotic's 2018 point (pixel positions within the plot).",
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "value": 172
+        },
+        "y": {
+          "value": 189
+        },
+        "x2": {
+          "value": 154
+        },
+        "y2": {
+          "value": 174
+        },
+        "color": {
+          "value": "#C23B92"
+        },
+        "tooltip": null
+      }
+    },
     {
       "mark": {
         "type": "line",
@@ -219,6 +279,237 @@
           "value": "#8A919C"
         }
       }
+    },
+    {
+      "description": "Callout for Horror reaching first place in 2023, in the gap between ranks 1 and 2 (game title in italics; dx offsets follow the measured text widths).",
+      "data": {
+        "values": [
+          {
+            "Year": 2019,
+            "Rank": 1.5
+          }
+        ]
+      },
+      "layer": [
+        {
+          "transform": [
+            {
+              "calculate": "'Solo-made'",
+              "as": "note"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "fontSize": 11,
+            "dx": -12,
+            "dy": -7
+          },
+          "encoding": {
+            "y": {
+              "field": "Rank",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "note"
+            },
+            "color": {
+              "value": "#3F4756"
+            },
+            "tooltip": null
+          }
+        },
+        {
+          "transform": [
+            {
+              "calculate": "'Lethal Company'",
+              "as": "note"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "fontSize": 11,
+            "dx": 44.25,
+            "dy": -7,
+            "fontStyle": "italic"
+          },
+          "encoding": {
+            "y": {
+              "field": "Rank",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "note"
+            },
+            "color": {
+              "value": "#3F4756"
+            },
+            "tooltip": null
+          }
+        },
+        {
+          "transform": [
+            {
+              "calculate": "'(2023)'",
+              "as": "note"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "fontSize": 11,
+            "dx": 127.44999999999999,
+            "dy": -7
+          },
+          "encoding": {
+            "y": {
+              "field": "Rank",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "note"
+            },
+            "color": {
+              "value": "#3F4756"
+            },
+            "tooltip": null
+          }
+        },
+        {
+          "transform": [
+            {
+              "calculate": "'sparked a wave of cooperative horror'",
+              "as": "note"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "fontSize": 11,
+            "dx": -12,
+            "dy": 7
+          },
+          "encoding": {
+            "y": {
+              "field": "Rank",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "note"
+            },
+            "color": {
+              "value": "#3F4756"
+            },
+            "tooltip": null
+          }
+        }
+      ]
+    },
+    {
+      "description": "Callout for Erotic's 2018 climb, in the gap between ranks 4 and 5 (game title in italics on its own line).",
+      "data": {
+        "values": [
+          {
+            "Year": 2018,
+            "Rank": 4.5
+          }
+        ]
+      },
+      "layer": [
+        {
+          "transform": [
+            {
+              "calculate": "'Negligee: Love Stories'",
+              "as": "note"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "dx": 26,
+            "fontSize": 11,
+            "dy": -7,
+            "fontStyle": "italic"
+          },
+          "encoding": {
+            "y": {
+              "field": "Rank",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "note"
+            },
+            "color": {
+              "value": "#3F4756"
+            },
+            "tooltip": null
+          }
+        },
+        {
+          "transform": [
+            {
+              "calculate": "'(2018)'",
+              "as": "note"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "dx": 139.78,
+            "dy": -7,
+            "fontSize": 11
+          },
+          "encoding": {
+            "y": {
+              "field": "Rank",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "note"
+            },
+            "color": {
+              "value": "#3F4756"
+            },
+            "tooltip": null
+          }
+        },
+        {
+          "transform": [
+            {
+              "calculate": "'approved for uncensored Steam release'",
+              "as": "note"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "dx": 26,
+            "fontSize": 11,
+            "dy": 7
+          },
+          "encoding": {
+            "y": {
+              "field": "Rank",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "note"
+            },
+            "color": {
+              "value": "#3F4756"
+            },
+            "tooltip": null
+          }
+        }
+      ]
     }
   ],
   "config": {

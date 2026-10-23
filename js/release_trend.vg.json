@@ -1,12 +1,12 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Line chart of recorded IGDB main-game releases per year, annotated with industry developments in 2015, 2017 and 2024.",
-  "width": 558, 
+  "description": "Line chart of recorded IGDB main-game releases per year, with vertical reference lines for industry events in 2015 and 2017 and a callout on 2024.",
+  "width": 558,
   "height": 280,
   "title": {
     "text": "How Many Video Games Were Released Each Year (2010–2025)?",
     "anchor": "start",
-    "fontSize": 17,
+    "fontSize": 19,
     "offset": 12
   },
   "data": {
@@ -58,6 +58,44 @@
   },
   "layer": [
     {
+      "data": {
+        "values": [
+          {
+            "x": 2015,
+            "y": 0,
+            "y2": 20000
+          },
+          {
+            "x": 2017,
+            "y": 0,
+            "y2": 20000
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#6B7280",
+        "strokeWidth": 1,
+        "strokeDash": [
+          4,
+          3
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "y2": {
+          "field": "y2"
+        }
+      }
+    },
+    {
       "mark": {
         "type": "line",
         "color": "#0072B2",
@@ -88,7 +126,7 @@
     {
       "transform": [
         {
-          "filter": "datum.Year === 2015 || datum.Year === 2017 || datum.Year === 2024"
+          "filter": "datum.Year === 2024"
         }
       ],
       "mark": {
@@ -116,25 +154,85 @@
       }
     },
     {
+      "layer": [
+        {
+          "data": {
+            "values": [
+              {
+                "x": 2015,
+                "y": 19900,
+                "text": "Unity and Unreal Engine|become free to use"
+              }
+            ]
+          },
+          "mark": {
+            "baseline": "top",
+            "fontSize": 11,
+            "lineHeight": 14,
+            "lineBreak": "|",
+            "color": "#3F4756",
+            "type": "text",
+            "align": "right",
+            "dx": -5
+          },
+          "encoding": {
+            "x": {
+              "field": "x",
+              "type": "quantitative"
+            },
+            "y": {
+              "field": "y",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "text"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "x": 2017,
+                "y": 19900,
+                "text": "Steam Direct replaced|Greenlight voting|with review"
+              }
+            ]
+          },
+          "mark": {
+            "baseline": "top",
+            "fontSize": 11,
+            "lineHeight": 14,
+            "lineBreak": "|",
+            "color": "#3F4756",
+            "type": "text",
+            "align": "left",
+            "dx": 5
+          },
+          "encoding": {
+            "x": {
+              "field": "x",
+              "type": "quantitative"
+            },
+            "y": {
+              "field": "y",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "text"
+            }
+          }
+        }
+      ]
+    },
+    {
       "data": {
         "values": [
           {
-            "x": 2015.12,
-            "y": 4700,
-            "x2": 2015.42,
-            "y2": 4250
-          },
-          {
-            "x": 2017.12,
-            "y": 9050,
-            "x2": 2017.42,
-            "y2": 8350
-          },
-          {
-            "x": 2023.75,
-            "y": 18300,
-            "x2": 2023.35,
-            "y2": 18850
+            "x": 2023.55,
+            "y": 19250,
+            "x2": 2023.85,
+            "y2": 18650
           }
         ]
       },
@@ -164,75 +262,34 @@
       "data": {
         "values": [
           {
-            "x": 2015.5,
-            "y": 4400,
-            "year": "2015",
-            "body": "· Unity 5 introduced a free Personal|edition; Unreal Engine 4 removed|its subscription fee."
-          },
-          {
-            "x": 2017.5,
-            "y": 8500,
-            "year": "2017",
-            "body": "· Steam Direct replaced|Greenlight voting with|submission and review."
-          },
-          {
-            "x": 2017,
+            "x": 2023.45,
             "y": 19900,
-            "year": "2024",
-            "body": "· Developers' first Steam games|accounted for around 25% of Steam's|monthly top new releases."
+            "text": "About 25% of top new|Steam games came from|first-time developers"
           }
         ]
       },
-      "layer": [
-        {
-          "mark": {
-            "type": "text",
-            "align": "left",
-            "baseline": "top",
-            "fontSize": 11,
-            "fontWeight": "bold",
-            "color": "#1F2937"
-          },
-          "encoding": {
-            "x": {
-              "field": "x",
-              "type": "quantitative"
-            },
-            "y": {
-              "field": "y",
-              "type": "quantitative"
-            },
-            "text": {
-              "field": "year"
-            }
-          }
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "top",
+        "fontSize": 11,
+        "lineHeight": 14,
+        "lineBreak": "|",
+        "color": "#3F4756"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
         },
-        {
-          "mark": {
-            "type": "text",
-            "align": "left",
-            "baseline": "top",
-            "dx": 31,
-            "fontSize": 11,
-            "lineHeight": 14,
-            "lineBreak": "|",
-            "color": "#3F4756"
-          },
-          "encoding": {
-            "x": {
-              "field": "x",
-              "type": "quantitative"
-            },
-            "y": {
-              "field": "y",
-              "type": "quantitative"
-            },
-            "text": {
-              "field": "body"
-            }
-          }
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
         }
-      ]
+      }
     }
   ],
   "config": {

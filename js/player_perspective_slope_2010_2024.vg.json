@@ -4,7 +4,7 @@
   "title": {
     "text": "How Did Game Perspectives Change (2010–2024)?",
     "anchor": "start",
-    "fontSize": 17,
+    "fontSize": 19,
     "offset": 16
   },
   "width": 436,
@@ -30,7 +30,7 @@
       "as": "percentage_label"
     },
     {
-      "calculate": "datum.perspective === 'First person' ? '#C41FD6' : datum.perspective === 'Third person' ? '#9B633E' : '#8A919C'",
+      "calculate": "datum.perspective === 'First person' ? '#E78AC3' : datum.perspective === 'Third person' ? '#7A285A' : '#8A919C'",
       "as": "label_color"
     }
   ],
@@ -86,9 +86,9 @@
         ],
         "range": [
           "#C5CAD1",
-          "#C41FD6",
+          "#E78AC3",
           "#C5CAD1",
-          "#9B633E",
+          "#7A285A",
           "#C5CAD1"
         ]
       },
@@ -477,7 +477,7 @@
       },
       "mark": {
         "type": "rule",
-        "color": "#C41FD6",
+        "color": "#E78AC3",
         "strokeWidth": 1
       },
       "encoding": {
@@ -494,7 +494,7 @@
           "value": 187.6
         },
         "color": {
-          "value": "#C41FD6"
+          "value": "#E78AC3"
         },
         "opacity": {
           "value": 1

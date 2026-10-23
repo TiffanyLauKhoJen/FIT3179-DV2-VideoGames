@@ -4,11 +4,12 @@
   "title": {
     "text": "What Modes Do Multiplayer-Capable Games Offer?",
     "anchor": "start",
-    "fontSize": 17,
-    "offset": 14
+    "fontSize": 19,
+    "offset": 16
   },
   "width": 387,
   "height": 372,
+  "padding": 8,
   "background": "white",
   "data": {
     "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/game_mode_bar_counts_1980_2024.csv",
@@ -101,11 +102,11 @@
               "Massively Multiplayer Online"
             ],
             "range": [
-              "#125D73",
-              "#B88700",
-              "#A6595E",
-              "#966699",
-              "#B19A78"
+              "#00A6D6",
+              "#C9B27D",
+              "#1B9E77",
+              "#8C564B",
+              "#666666"
             ]
           },
           "legend": null
@@ -141,6 +142,55 @@
           "format": ",d"
         }
       }
+    },
+    {
+      "description": "Annotation explaining why so few games are massively multiplayer, with a short leader to the bar's label.",
+      "data": {
+        "values": [
+          {
+            "Mode_display": "Massively Multiplayer Online",
+            "Games": 13000,
+            "y2": 8500,
+            "y3": 4100,
+            "note": "Massive online worlds need|servers and new content long|after launch, a cost few|studios can sustain"
+          }
+        ]
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "baseline": "top",
+            "dx": 38,
+            "fontSize": 11,
+            "lineHeight": 14,
+            "lineBreak": "|",
+            "color": "#3F4756"
+          },
+          "encoding": {
+            "text": {
+              "field": "note"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "rule",
+            "color": "#9AA1AD",
+            "strokeWidth": 1
+          },
+          "encoding": {
+            "y": {
+              "field": "y2",
+              "type": "quantitative"
+            },
+            "y2": {
+              "field": "y3"
+            }
+          }
+        }
+      ]
     }
   ],
   "config": {

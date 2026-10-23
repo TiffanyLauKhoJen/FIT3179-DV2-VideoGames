@@ -92,7 +92,7 @@
       "mark": {
         "type": "circle",
         "color": "#C2410C",
-        "fillOpacity": 0.9,
+        "fillOpacity": 0.8,
         "stroke": "#8A2E0A",
         "strokeWidth": 1,
         "strokeOpacity": 1,
@@ -115,7 +115,7 @@
         "size": {
           "field": "Total_listings",
           "type": "quantitative",
-          "title": "Total listings",
+          "title": "Total development and publishing listings",
           "scale": {
             "type": "linear",
             "domain": [
@@ -140,6 +140,7 @@
             "symbolFillColor": "#C2410C",
             "labelFontSize": 11,
             "titleFontSize": 12,
+            "titleLimit": 500,
             "offset": 16,
             "encode": {
               "symbols": {
@@ -167,7 +168,7 @@
           {
             "field": "Total_listings",
             "type": "quantitative",
-            "title": "Total listings",
+            "title": "Total development and publishing listings",
             "format": ",.0f"
           },
           {
@@ -184,6 +185,91 @@
           }
         ]
       }
+    },
+    {
+      "description": "Country names beside the two largest circles. Offsets clear each circle's radius; they follow zoom and map centre.",
+      "layer": [
+        {
+          "layer": [
+            {
+              "mark": {
+                "type": "text",
+                "align": "right",
+                "baseline": "middle",
+                "dx": -32,
+                "dy": 0,
+                "fontSize": 11,
+                "fontWeight": "bold",
+                "color": "#1F2937",
+                "clip": true
+              },
+              "encoding": {
+                "longitude": {
+                  "field": "longitude",
+                  "type": "quantitative"
+                },
+                "latitude": {
+                  "field": "latitude",
+                  "type": "quantitative"
+                },
+                "text": {
+                  "field": "name"
+                }
+              }
+            }
+          ],
+          "data": {
+            "values": [
+              {
+                "name": "United States",
+                "longitude": -95.712891,
+                "latitude": 37.09024,
+                "align": "right"
+              }
+            ]
+          }
+        },
+        {
+          "layer": [
+            {
+              "mark": {
+                "type": "text",
+                "align": "left",
+                "baseline": "middle",
+                "dx": 28,
+                "dy": 0,
+                "fontSize": 11,
+                "fontWeight": "bold",
+                "color": "#1F2937",
+                "clip": true
+              },
+              "encoding": {
+                "longitude": {
+                  "field": "longitude",
+                  "type": "quantitative"
+                },
+                "latitude": {
+                  "field": "latitude",
+                  "type": "quantitative"
+                },
+                "text": {
+                  "field": "name"
+                }
+              }
+            }
+          ],
+          "data": {
+            "values": [
+              {
+                "name": "Japan",
+                "longitude": 138.252924,
+                "latitude": 36.204824,
+                "align": "left"
+              }
+            ]
+          }
+        }
+      ]
     }
   ],
   "config": {
@@ -193,7 +279,7 @@
     "font": "Arial",
     "title": {
       "anchor": "start",
-      "fontSize": 17,
+      "fontSize": 19,
       "subtitleFontSize": 12,
       "subtitleColor": "#526274"
     },

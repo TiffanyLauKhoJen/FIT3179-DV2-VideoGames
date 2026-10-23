@@ -1,16 +1,16 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Vega hierarchical treemap of 35 selected platforms in seven families, counting distinct main-game ID–platform pairs released in 1980–2025. A game supported on multiple platforms contributes to multiple rectangles. The CSV contains only family, platform and game_count. The nest and treemap transforms calculate layout coordinates at runtime. Full tooltip names and compact display labels are defined in this specification. The selected counts total 253,355.",
-  "width": 900,
-  "height": 560,
+  "width": 611,
+  "height": 360,
   "padding": 5,
   "autosize": "pad",
   "background": "white",
   "title": {
-    "text": "Recorded Games on Selected Platforms",
+    "text": "Which Platforms Have the Most Games?",
     "anchor": "start",
     "frame": "group",
-    "fontSize": 17,
+    "fontSize": 19,
     "offset": 12
   },
   "data": [
@@ -27,12 +27,49 @@
         {
           "type": "formula",
           "as": "platform_full_name",
-          "expr": "({\"PC (Microsoft Windows)\":\"Microsoft Windows personal computer platform\",\"Mac\":\"Apple Macintosh (Mac)\",\"Linux\":\"Linux\",\"iOS\":\"Apple iOS mobile operating system\",\"Nintendo Switch\":\"Nintendo Switch\",\"Android\":\"Android\",\"PlayStation 4\":\"PlayStation 4\",\"Xbox One\":\"Xbox One\",\"PlayStation 5\":\"PlayStation 5\",\"Xbox Series X|S\":\"Xbox Series X and Xbox Series S\",\"PlayStation 2\":\"PlayStation 2\",\"DOS\":\"Disk Operating System (DOS)\",\"PlayStation\":\"PlayStation\",\"PlayStation 3\":\"PlayStation 3\",\"Commodore C64/128/MAX\":\"Commodore 64 / Commodore 128 / Commodore MAX\",\"Wii\":\"Wii\",\"Xbox 360\":\"Xbox 360\",\"Nintendo DS\":\"Nintendo DS (dual-screen handheld console)\",\"SteamVR\":\"SteamVR (Steam virtual reality platform)\",\"Nintendo 3DS\":\"Nintendo 3DS (handheld console with a three-dimensional display)\",\"Super Famicom\":\"Super Famicom\",\"Game Boy Advance\":\"Game Boy Advance\",\"Sega Mega Drive/Genesis\":\"Sega Mega Drive / Sega Genesis\",\"Xbox\":\"Xbox\",\"Meta Quest 2\":\"Meta Quest 2\",\"Sega Saturn\":\"Sega Saturn\",\"Dreamcast\":\"Dreamcast\",\"Windows Phone\":\"Windows Phone\",\"Oculus Quest\":\"Oculus Quest\",\"Oculus Rift\":\"Oculus Rift\",\"Sega Master System/Mark III\":\"Sega Master System / Sega Mark III\",\"Oculus VR\":\"Oculus virtual reality (general source platform category)\",\"Sega Game Gear\":\"Sega Game Gear\",\"BlackBerry OS\":\"BlackBerry operating system\",\"Windows Mobile\":\"Windows Mobile\"})[datum.platform] || datum.platform"
+          "expr": "({\"PC (Microsoft Windows)\":\"Microsoft Windows personal computer platform\",\"Mac\":\"Apple Macintosh (Mac)\",\"Linux\":\"Linux\",\"iOS\":\"Apple iPhone operating system\",\"Nintendo Switch\":\"Nintendo Switch\",\"Android\":\"Android\",\"PlayStation 4\":\"PlayStation 4\",\"Xbox One\":\"Xbox One\",\"PlayStation 5\":\"PlayStation 5\",\"Xbox Series X|S\":\"Xbox Series X and Xbox Series S\",\"PlayStation 2\":\"PlayStation 2\",\"DOS\":\"Disk Operating System (DOS)\",\"PlayStation\":\"PlayStation\",\"PlayStation 3\":\"PlayStation 3\",\"Commodore C64/128/MAX\":\"Commodore 64 / Commodore 128 / Commodore MAX\",\"Wii\":\"Wii\",\"Xbox 360\":\"Xbox 360\",\"Nintendo DS\":\"Nintendo DS (dual-screen handheld console)\",\"SteamVR\":\"SteamVR (Steam virtual reality platform)\",\"Nintendo 3DS\":\"Nintendo 3DS (handheld console with a three-dimensional display)\",\"Super Famicom\":\"Super Famicom\",\"Game Boy Advance\":\"Game Boy Advance\",\"Sega Mega Drive/Genesis\":\"Sega Mega Drive / Sega Genesis\",\"Xbox\":\"Xbox\",\"Meta Quest 2\":\"Meta Quest 2\",\"Sega Saturn\":\"Sega Saturn\",\"Dreamcast\":\"Dreamcast\",\"Windows Phone\":\"Windows Phone\",\"Oculus Quest\":\"Oculus Quest\",\"Oculus Rift\":\"Oculus Rift\",\"Sega Master System/Mark III\":\"Sega Master System / Sega Mark III\",\"Oculus VR\":\"Oculus virtual reality (general source platform category)\",\"Sega Game Gear\":\"Sega Game Gear\",\"BlackBerry OS\":\"BlackBerry operating system\",\"Windows Mobile\":\"Windows Mobile\"})[datum.platform] || datum.platform"
         },
         {
           "type": "formula",
           "as": "Display_label",
           "expr": "datum.platform === \"PC (Microsoft Windows)\" ? \"Microsoft Windows\" : (datum.platform === \"Commodore C64/128/MAX\" ? \"Commodore\\nC64 / C128 /\\nMAX\" : (datum.platform === \"Nintendo Switch\" ? \"Nintendo\\nSwitch\" : (datum.platform === \"Nintendo DS\" ? \"Nintendo\\nDS\" : (datum.platform === \"Nintendo 3DS\" ? \"Nintendo\\n3DS\" : (datum.platform === \"Game Boy Advance\" ? \"Game Boy\\nAdvance\" : (datum.platform === \"Super Famicom\" ? \"Super\\nFamicom\" : (datum.platform === \"PlayStation 4\" ? \"PlayStation\\n4\" : (datum.platform === \"PlayStation 5\" ? \"PlayStation\\n5\" : (datum.platform === \"PlayStation 2\" ? \"PlayStation\\n2\" : (datum.platform === \"PlayStation 3\" ? \"PlayStation\\n3\" : (datum.platform === \"Xbox Series X|S\" ? \"Xbox\\nSeries\\nX|S\" : (datum.platform === \"Xbox 360\" ? \"Xbox\\n360\" : (datum.platform === \"Windows Phone\" ? \"Windows\\nPhone\" : (datum.platform === \"BlackBerry OS\" ? \"BlackBerry\\nOS\" : (datum.platform === \"Windows Mobile\" ? \"Windows\\nMobile\" : (datum.platform === \"Meta Quest 2\" ? \"Meta\\nQuest 2\" : (datum.platform === \"Oculus Quest\" ? \"Oculus\\nQuest\" : (datum.platform === \"Oculus Rift\" ? \"Oculus\\nRift\" : (datum.platform === \"Oculus VR\" ? \"Oculus\\nVR\" : (datum.platform === \"Sega Mega Drive/Genesis\" ? \"Mega\\nDrive\" : (datum.platform === \"Sega Saturn\" ? \"Sega\\nSaturn\" : (datum.platform === \"Sega Master System/Mark III\" ? \"Master\\nSystem /\\nMark III\" : (datum.platform === \"Sega Game Gear\" ? \"Sega\\nGame Gear\" : (datum.platform))))))))))))))))))))))))"
+        },
+        {
+          "type": "joinaggregate",
+          "ops": [
+            "sum"
+          ],
+          "fields": [
+            "game_count"
+          ],
+          "as": [
+            "selected_total"
+          ]
+        },
+        {
+          "type": "joinaggregate",
+          "groupby": [
+            "family"
+          ],
+          "ops": [
+            "sum"
+          ],
+          "fields": [
+            "game_count"
+          ],
+          "as": [
+            "family_total"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "platform_share_selected_pct",
+          "expr": "datum.game_count / datum.selected_total * 100"
+        },
+        {
+          "type": "formula",
+          "as": "platform_share_family_pct",
+          "expr": "datum.game_count / datum.family_total * 100"
         }
       ]
     },
@@ -111,7 +148,42 @@
         {
           "type": "formula",
           "as": "Label_y",
-          "expr": "datum.Center_y - (length(split(datum.Display_label, '\\n')) - 1) * 7"
+          "expr": "datum.Center_y - 9 - (length(split(datum.Display_label, '\\n')) - 1) * 7"
+        },
+        {
+          "type": "formula",
+          "as": "Label_lines",
+          "expr": "split(datum.Display_label, '\\n')"
+        },
+        {
+          "type": "formula",
+          "as": "Label_width",
+          "expr": "max(length(datum.Label_lines[0]), length(datum.Label_lines[1] || \"\"), length(datum.Label_lines[2] || \"\")) * 7 + 12"
+        },
+        {
+          "type": "formula",
+          "as": "Label_height",
+          "expr": "length(datum.Label_lines) * 14 + 10"
+        },
+        {
+          "type": "formula",
+          "as": "Count_text",
+          "expr": "format(datum.game_count, ',d') + ' games'"
+        },
+        {
+          "type": "formula",
+          "as": "Count_width",
+          "expr": "length(datum.Count_text) * (datum.rect_width < 76 ? 5.6 : 6.2) + (datum.rect_width < 76 ? 6 : 12)"
+        },
+        {
+          "type": "formula",
+          "as": "Count_y",
+          "expr": "datum.Center_y + 9 + (length(datum.Label_lines) - 1) * 7"
+        },
+        {
+          "type": "formula",
+          "as": "Label_fits",
+          "expr": "datum.rect_width >= max(datum.Label_width, datum.Count_width) && datum.rect_height >= datum.Label_height + 18"
         }
       ]
     },
@@ -121,7 +193,7 @@
       "transform": [
         {
           "type": "filter",
-          "expr": "datum.rect_width >= 40 && datum.rect_height >= 36"
+          "expr": "datum.Label_fits"
         }
       ]
     },
@@ -131,7 +203,7 @@
       "transform": [
         {
           "type": "filter",
-          "expr": "datum.rect_width >= 100 && datum.rect_height >= 110"
+          "expr": "datum.Label_fits"
         }
       ]
     }
@@ -150,13 +222,13 @@
         "Sega"
       ],
       "range": [
-        "#4269D0",
+        "#6484D8",
         "#F28E2B",
-        "#76B7B2",
-        "#59A14F",
-        "#F2CF5B",
+        "#8FC4C0",
+        "#CD8A90",
+        "#D5A06F",
         "#BF8CF2",
-        "#D5A06F"
+        "#FFED6F"
       ]
     }
   ],
@@ -166,22 +238,24 @@
       "title": "Platform family",
       "orient": "bottom",
       "direction": "horizontal",
-      "columns": 6,
+      "columns": 4,
       "titleFontSize": 12,
       "labelFontSize": 11,
       "symbolType": "square",
-      "symbolSize": 110,
+      "symbolSize": 100,
       "offset": 14,
       "padding": 0,
       "encode": {
         "symbols": {
           "update": {
             "opacity": {
-              "value": 0.82
+              "value": 1
             }
           }
         }
-      }
+      },
+      "columnPadding": 14,
+      "rowPadding": 4
     }
   ],
   "marks": [
@@ -204,7 +278,7 @@
             "value": 1.4
           },
           "fillOpacity": {
-            "value": 0.82
+            "value": 1
           }
         },
         "update": {
@@ -221,7 +295,7 @@
             "field": "y1"
           },
           "tooltip": {
-            "signal": "{'Platform': datum.platform_full_name, 'Platform family': datum.family, 'Recorded main games': format(datum.game_count, ',d')}"
+            "signal": "{'Platform family': datum.family, 'Platform': datum.platform_full_name, 'Games on platform': format(datum.game_count, ',d'), 'Share within family (%)': format(datum.platform_share_family_pct, '.1f'), 'Share of selected platforms (%)': format(datum.platform_share_selected_pct, '.1f')}"
           }
         }
       }
@@ -285,14 +359,14 @@
           "fontWeight": {
             "value": "bold"
           },
-          "fill": {
-            "value": "#111111"
-          },
           "lineHeight": {
             "value": 14
           },
           "lineBreak": {
             "value": "\n"
+          },
+          "fill": {
+            "value": "#111111"
           }
         },
         "update": {
@@ -326,14 +400,8 @@
           "baseline": {
             "value": "middle"
           },
-          "dy": {
-            "value": 30
-          },
           "font": {
             "value": "Arial"
-          },
-          "fontSize": {
-            "value": 11
           },
           "fill": {
             "value": "#222222"
@@ -344,13 +412,16 @@
             "field": "Center_x"
           },
           "y": {
-            "field": "Center_y"
+            "field": "Count_y"
           },
           "text": {
-            "signal": "format(datum.game_count, ',d') + ' games'"
+            "field": "Count_text"
           },
           "limit": {
             "signal": "datum.rect_width - 4"
+          },
+          "fontSize": {
+            "signal": "datum.rect_width < 76 ? 10 : 11"
           }
         }
       }
@@ -366,20 +437,5 @@
       "labelFontSize": 11,
       "titleFontSize": 12
     }
-  },
-  "usermeta": {
-    "platform_name_sources": [
-      "https://computerhistory.org/press-releases/ms-source-code/",
-      "https://www.nintendo.com/en-gb/Nintendo-DS/Nintendo-DS/Nintendo-DS-116439.html",
-      "https://www.nintendo.com/en-gb/Hardware/Nintendo-3DS-Family/Nintendo-3DS/Nintendo-3DS-Features-114646.html",
-      "https://partner.steamgames.com/doc/features/steamvr",
-      "https://www.xbox.com/en-US/consoles",
-      "https://www.sega.jp/history/hard/megadrive/",
-      "https://www.sega.jp/history/hard/segamark3/",
-      "https://www.igdb.com/platforms/c64",
-      "https://www.apple.com/sg/newsroom/2010/06/07Apple-Presents-iPhone-4/",
-      "https://www-leland.stanford.edu/dept/SUL/sites/mac/primary/docs/pr1.html",
-      "https://www.blackberry.com/en/secure-communications/support/smartphones-tablets-operating-systems"
-    ]
   }
 }

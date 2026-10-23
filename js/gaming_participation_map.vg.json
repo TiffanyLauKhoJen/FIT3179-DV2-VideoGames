@@ -297,7 +297,7 @@
     "font": "Arial",
     "title": {
       "anchor": "start",
-      "fontSize": 17,
+      "fontSize": 19,
       "subtitleFontSize": 12,
       "subtitleColor": "#526274"
     },
