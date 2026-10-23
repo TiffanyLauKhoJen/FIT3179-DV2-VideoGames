@@ -1,365 +1,465 @@
 {
-  "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "Hierarchical treemap of distinct IGDB main-game platform associations for selected major platform ecosystems, 1980-2024",
-  "width": 620,
-  "height": 350,
-  "padding": 5,
-  "autosize": "pad",
-  "background": "white",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Hierarchical treemap of 35 explicitly selected individual platforms in seven families, for distinct (game ID, original platform) associations among main_game records released in 1980–2025 inclusive in game_dataset_cleaned(2).csv. Selection: five highest-count platforms from each original Computer, PlayStation, VR and Sega family; six highest-count Nintendo platforms; all four Xbox platforms; five highest-count specifically named phone/tablet platforms (iOS, Android, Windows Phone, BlackBerry OS, Windows Mobile), excluding the broad Legacy Mobile Device label. Web browser, Arcade, television and spatial-computing platforms are outside this selection. No Other categories, and no merging of different source platforms. Games supporting several platforms contribute once per supported platform, so summed family areas count game-platform entries rather than distinct family-level games. Compact display labels retain official product names. Tooltips use platform_full_name to expand abbreviations or explain branded names, with exact counts. Nintendo DS and Nintendo 3DS are preserved as product names rather than given invented formal expansions. The source category Oculus VR remains separate from Oculus Rift and Oculus Quest. Rectangle coordinates were precomputed with a nested squarified treemap; the selected counts sum to 253355.",
+  "usermeta": {
+    "platform_name_sources": [
+      "https://computerhistory.org/press-releases/ms-source-code/",
+      "https://www.nintendo.com/en-gb/Nintendo-DS/Nintendo-DS/Nintendo-DS-116439.html",
+      "https://www.nintendo.com/en-gb/Hardware/Nintendo-3DS-Family/Nintendo-3DS/Nintendo-3DS-Features-114646.html",
+      "https://partner.steamgames.com/doc/features/steamvr",
+      "https://www.xbox.com/en-US/consoles",
+      "https://www.sega.jp/history/hard/megadrive/",
+      "https://www.sega.jp/history/hard/segamark3/",
+      "https://www.igdb.com/platforms/c64",
+      "https://www.apple.com/sg/newsroom/2010/06/07Apple-Presents-iPhone-4/",
+      "https://www-leland.stanford.edu/dept/SUL/sites/mac/primary/docs/pr1.html",
+      "https://www.blackberry.com/en/secure-communications/support/smartphones-tablets-operating-systems"
+    ]
+  },
   "title": {
-    "text": "Which Platforms Have the Most Games?",
+    "text": "Recorded Games on Selected Platforms",
     "anchor": "start",
-    "frame": "group",
     "fontSize": 17,
     "offset": 12
   },
-  "data": [
+  "width": 900,
+  "height": 560,
+  "padding": 5,
+  "background": "white",
+  "data": {
+    "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/platform_family_treemap_grouped_1980_2025.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "game_count": "number",
+        "x0": "number",
+        "x1": "number",
+        "y0": "number",
+        "y1": "number"
+      }
+    }
+  },
+  "transform": [
     {
-      "name": "platforms",
-      "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/platform_family_treemap_igdb_selected.csv",
-      "format": {
-        "type": "csv",
-        "parse": {
-          "game_platform_count": "number"
-        }
-      },
-      "transform": [
-        {
-          "type": "formula",
-          "as": "family",
-          "expr": "datum.family === 'PC / Computer' ? 'Computer' : datum.family === 'VR' ? 'Virtual Reality' : datum.family"
-        },
-        {
-          "type": "formula",
-          "as": "platform",
-          "expr": "datum.platform === 'PC (Microsoft Windows)' ? 'Microsoft Windows' : datum.platform"
-        },
-        {
-          "type": "joinaggregate",
-          "ops": [
-            "sum"
-          ],
-          "fields": [
-            "game_platform_count"
-          ],
-          "as": [
-            "selected_total"
-          ]
-        },
-        {
-          "type": "joinaggregate",
-          "groupby": [
-            "family"
-          ],
-          "ops": [
-            "sum"
-          ],
-          "fields": [
-            "game_platform_count"
-          ],
-          "as": [
-            "family_total"
-          ]
-        },
-        {
-          "type": "formula",
-          "as": "platform_share_selected_pct",
-          "expr": "datum.game_platform_count / datum.selected_total * 100"
-        },
-        {
-          "type": "formula",
-          "as": "platform_share_family_pct",
-          "expr": "datum.game_platform_count / datum.family_total * 100"
-        }
-      ]
+      "calculate": "(datum.x0 + datum.x1) / 2",
+      "as": "Center_x"
     },
     {
-      "name": "tree",
-      "source": "platforms",
+      "calculate": "(datum.y0 + datum.y1) / 2",
+      "as": "Center_y"
+    },
+    {
+      "calculate": "datum.x1 - datum.x0",
+      "as": "Box_width"
+    },
+    {
+      "calculate": "datum.y1 - datum.y0",
+      "as": "Box_height"
+    },
+    {
+      "calculate": "datum.platform === \"PC (Microsoft Windows)\" ? \"Microsoft Windows\" : (datum.platform === \"Commodore C64/128/MAX\" ? \"Commodore\\nC64 / C128 /\\nMAX\" : (datum.platform === \"Nintendo Switch\" ? \"Nintendo\\nSwitch\" : (datum.platform === \"Nintendo DS\" ? \"Nintendo\\nDS\" : (datum.platform === \"Nintendo 3DS\" ? \"Nintendo\\n3DS\" : (datum.platform === \"Game Boy Advance\" ? \"Game Boy\\nAdvance\" : (datum.platform === \"Super Famicom\" ? \"Super\\nFamicom\" : (datum.platform === \"PlayStation 4\" ? \"PlayStation\\n4\" : (datum.platform === \"PlayStation 5\" ? \"PlayStation\\n5\" : (datum.platform === \"PlayStation 2\" ? \"PlayStation\\n2\" : (datum.platform === \"PlayStation 3\" ? \"PlayStation\\n3\" : (datum.platform === \"Xbox Series X|S\" ? \"Xbox\\nSeries\\nX|S\" : (datum.platform === \"Xbox 360\" ? \"Xbox\\n360\" : (datum.platform === \"Windows Phone\" ? \"Windows\\nPhone\" : (datum.platform === \"BlackBerry OS\" ? \"BlackBerry\\nOS\" : (datum.platform === \"Windows Mobile\" ? \"Windows\\nMobile\" : (datum.platform === \"Meta Quest 2\" ? \"Meta\\nQuest 2\" : (datum.platform === \"Oculus Quest\" ? \"Oculus\\nQuest\" : (datum.platform === \"Oculus Rift\" ? \"Oculus\\nRift\" : (datum.platform === \"Oculus VR\" ? \"Oculus\\nVR\" : (datum.platform === \"Sega Mega Drive/Genesis\" ? \"Mega\\nDrive\" : (datum.platform === \"Sega Saturn\" ? \"Sega\\nSaturn\" : (datum.platform === \"Sega Master System/Mark III\" ? \"Master\\nSystem /\\nMark III\" : (datum.platform === \"Sega Game Gear\" ? \"Sega\\nGame Gear\" : (datum.platform))))))))))))))))))))))))",
+      "as": "Display_label"
+    },
+    {
+      "calculate": "datum.Center_y - (length(split(datum.Display_label, '\\n')) - 1) * 7",
+      "as": "Label_y"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "fillOpacity": 0.82,
+        "stroke": "white",
+        "strokeWidth": 1.4
+      },
+      "encoding": {
+        "x": {
+          "field": "x0",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              900
+            ],
+            "nice": false
+          }
+        },
+        "x2": {
+          "field": "x1"
+        },
+        "y": {
+          "field": "y0",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              560
+            ],
+            "reverse": true,
+            "nice": false
+          }
+        },
+        "y2": {
+          "field": "y1"
+        },
+        "color": {
+          "field": "family",
+          "type": "nominal",
+          "title": "Platform family",
+          "scale": {
+            "domain": [
+              "Computer",
+              "Mobile",
+              "Nintendo",
+              "PlayStation",
+              "Xbox",
+              "Virtual reality",
+              "Sega"
+            ],
+            "range": [
+              "#4269D0",
+              "#F28E2B",
+              "#76B7B2",
+              "#59A14F",
+              "#F2CF5B",
+              "#BF8CF2",
+              "#D5A06F"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": 6,
+            "symbolType": "square",
+            "symbolSize": 110,
+            "labelFontSize": 11,
+            "titleFontSize": 12,
+            "labelLimit": 160,
+            "offset": 14
+          }
+        },
+        "tooltip": [
+          {
+            "field": "platform_full_name",
+            "type": "nominal",
+            "title": "Platform"
+          },
+          {
+            "field": "family",
+            "type": "nominal",
+            "title": "Platform family"
+          },
+          {
+            "field": "game_count",
+            "type": "quantitative",
+            "title": "Recorded main games",
+            "format": ",d"
+          }
+        ]
+      }
+    },
+    {
       "transform": [
         {
-          "type": "nest",
-          "keys": [
-            "family"
-          ],
-          "generate": true
+          "filter": "datum.Box_width >= 40 && datum.Box_height >= 36"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "lineBreak": "\n",
+        "lineHeight": 14,
+        "baseline": "middle",
+        "align": "center",
+        "font": "Arial",
+        "fontWeight": "bold",
+        "color": "#17212B"
+      },
+      "encoding": {
+        "x": {
+          "field": "Center_x",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              900
+            ],
+            "nice": false
+          }
+        },
+        "y": {
+          "field": "Label_y",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              560
+            ],
+            "reverse": true,
+            "nice": false
+          }
+        },
+        "size": {
+          "condition": {
+            "test": "datum.Box_width < 76",
+            "value": 10
+          },
+          "value": 12
+        },
+        "text": {
+          "field": "Display_label",
+          "type": "nominal"
+        },
+        "tooltip": [
+          {
+            "field": "platform_full_name",
+            "type": "nominal",
+            "title": "Platform"
+          },
+          {
+            "field": "family",
+            "type": "nominal",
+            "title": "Platform family"
+          },
+          {
+            "field": "game_count",
+            "type": "quantitative",
+            "title": "Recorded main games",
+            "format": ",d"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.Box_width >= 100 && datum.Box_height >= 110"
         },
         {
-          "type": "treemap",
-          "field": "game_platform_count",
-          "sort": {
-            "field": "value",
-            "order": "descending"
+          "calculate": "format(datum.game_count, ',d') + ' games'",
+          "as": "Count_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": 30,
+        "font": "Arial",
+        "fontSize": 11,
+        "color": "#17212B"
+      },
+      "encoding": {
+        "x": {
+          "field": "Center_x",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              900
+            ],
+            "nice": false
+          }
+        },
+        "y": {
+          "field": "Center_y",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              560
+            ],
+            "reverse": true,
+            "nice": false
+          }
+        },
+        "text": {
+          "field": "Count_label",
+          "type": "nominal"
+        },
+        "tooltip": [
+          {
+            "field": "platform_full_name",
+            "type": "nominal",
+            "title": "Platform"
           },
-          "round": true,
-          "method": "squarify",
-          "ratio": 1.618,
-          "paddingOuter": 3,
-          "size": [
+          {
+            "field": "family",
+            "type": "nominal",
+            "title": "Platform family"
+          },
+          {
+            "field": "game_count",
+            "type": "quantitative",
+            "title": "Recorded main games",
+            "format": ",d"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [
             {
-              "signal": "width"
+              "op": "min",
+              "field": "x0",
+              "as": "left"
             },
             {
-              "signal": "height"
+              "op": "max",
+              "field": "x1",
+              "as": "right"
+            },
+            {
+              "op": "min",
+              "field": "y0",
+              "as": "top"
+            },
+            {
+              "op": "max",
+              "field": "y1",
+              "as": "bottom"
             }
+          ],
+          "groupby": [
+            "family"
+          ]
+        },
+        {
+          "fold": [
+            "top",
+            "bottom"
+          ],
+          "as": [
+            "edge",
+            "edge_y"
           ]
         }
-      ]
-    },
-    {
-      "name": "families",
-      "source": "tree",
-      "transform": [
-        {
-          "type": "filter",
-          "expr": "datum.depth === 1"
-        }
-      ]
-    },
-    {
-      "name": "leaves",
-      "source": "tree",
-      "transform": [
-        {
-          "type": "filter",
-          "expr": "datum.depth === 2"
-        },
-        {
-          "type": "formula",
-          "as": "rect_width",
-          "expr": "datum.x1 - datum.x0"
-        },
-        {
-          "type": "formula",
-          "as": "rect_height",
-          "expr": "datum.y1 - datum.y0"
-        }
-      ]
-    }
-  ],
-  "scales": [
-    {
-      "name": "color",
-      "type": "ordinal",
-      "domain": [
-        "Computer",
-        "Mobile / Web",
-        "Nintendo",
-        "PlayStation",
-        "Xbox",
-        "Virtual Reality",
-        "Sega"
       ],
-      "range": [
-        "#4269D0",
-        "#F28E2B",
-        "#76B7B2",
-        "#59A14F",
-        "#F2CF5B",
-        "#BF8CF2",
-        "#D5A06F"
-      ]
-    }
-  ],
-  "legends": [
+      "mark": {
+        "type": "rule",
+        "color": "#000000",
+        "strokeWidth": 2,
+        "tooltip": false
+      },
+      "encoding": {
+        "x": {
+          "field": "left",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              900
+            ],
+            "nice": false
+          }
+        },
+        "x2": {
+          "field": "right"
+        },
+        "y": {
+          "field": "edge_y",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              560
+            ],
+            "reverse": true,
+            "nice": false
+          }
+        }
+      }
+    },
     {
-      "fill": "color",
-      "title": "Platform ecosystem",
-      "orient": "bottom",
-      "direction": "horizontal",
-      "columns": 4,
-      "titleFontSize": 12,
-      "labelFontSize": 11,
-      "symbolType": "square",
-      "symbolSize": 120,
-      "offset": 14,
-      "padding": 6,
-      "encode": {
-        "symbols": {
-          "update": {
-            "opacity": {
-              "value": 0.82
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "min",
+              "field": "x0",
+              "as": "left"
+            },
+            {
+              "op": "max",
+              "field": "x1",
+              "as": "right"
+            },
+            {
+              "op": "min",
+              "field": "y0",
+              "as": "top"
+            },
+            {
+              "op": "max",
+              "field": "y1",
+              "as": "bottom"
             }
-          }
+          ],
+          "groupby": [
+            "family"
+          ]
+        },
+        {
+          "fold": [
+            "left",
+            "right"
+          ],
+          "as": [
+            "edge",
+            "edge_x"
+          ]
         }
-      }
-    }
-  ],
-  "marks": [
-    {
-      "description": "One rectangle per platform, coloured by its ecosystem",
-      "type": "rect",
-      "from": {
-        "data": "leaves"
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "#000000",
+        "strokeWidth": 2,
+        "tooltip": false
       },
-      "encode": {
-        "enter": {
-          "fill": {
-            "scale": "color",
-            "field": "family"
-          },
-          "opacity": {
-            "value": 0.82
-          },
-          "stroke": {
-            "value": "white"
-          },
-          "strokeWidth": {
-            "value": 1.1
+      "encoding": {
+        "x": {
+          "field": "edge_x",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              900
+            ],
+            "nice": false
           }
         },
-        "update": {
-          "x": {
-            "field": "x0"
-          },
-          "x2": {
-            "field": "x1"
-          },
-          "y": {
-            "field": "y0"
-          },
-          "y2": {
-            "field": "y1"
-          },
-          "tooltip": {
-            "signal": "{'Platform ecosystem': datum.family, 'Platform': datum.platform, 'Games on platform': format(datum.game_platform_count, ',d'), 'Share within ecosystem (%)': format(datum.platform_share_family_pct, '.1f'), 'Share of selected ecosystems (%)': format(datum.platform_share_selected_pct, '.1f')}"
-          }
-        }
-      }
-    },
-    {
-      "description": "Dark outline around each ecosystem",
-      "type": "rect",
-      "from": {
-        "data": "families"
-      },
-      "interactive": false,
-      "encode": {
-        "enter": {
-          "fillOpacity": {
-            "value": 0
-          },
-          "stroke": {
-            "value": "#30343B"
-          },
-          "strokeWidth": {
-            "value": 2
+        "y": {
+          "field": "top",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              560
+            ],
+            "reverse": true,
+            "nice": false
           }
         },
-        "update": {
-          "x": {
-            "field": "x0"
-          },
-          "x2": {
-            "field": "x1"
-          },
-          "y": {
-            "field": "y0"
-          },
-          "y2": {
-            "field": "y1"
-          }
-        }
-      }
-    },
-    {
-      "description": "Platform name, only where the rectangle is large enough",
-      "type": "text",
-      "from": {
-        "data": "leaves"
-      },
-      "interactive": false,
-      "encode": {
-        "enter": {
-          "align": {
-            "value": "center"
-          },
-          "baseline": {
-            "value": "middle"
-          },
-          "font": {
-            "value": "Arial"
-          },
-          "fontSize": {
-            "value": 11.5
-          },
-          "fontWeight": {
-            "value": "bold"
-          },
-          "fill": {
-            "value": "#111111"
-          }
-        },
-        "update": {
-          "x": {
-            "signal": "(datum.x0 + datum.x1) / 2"
-          },
-          "y": {
-            "signal": "(datum.y0 + datum.y1) / 2"
-          },
-          "text": {
-            "signal": "datum.rect_height >= 30 && length(datum.platform) * 6.1 <= datum.rect_width - 6 ? datum.platform : ''"
-          },
-          "limit": {
-            "signal": "datum.rect_width - 4"
-          }
-        }
-      }
-    },
-    {
-      "description": "Game count under the platform name, only in the largest rectangles",
-      "type": "text",
-      "from": {
-        "data": "leaves"
-      },
-      "interactive": false,
-      "encode": {
-        "enter": {
-          "align": {
-            "value": "center"
-          },
-          "baseline": {
-            "value": "middle"
-          },
-          "dy": {
-            "value": 15
-          },
-          "font": {
-            "value": "Arial"
-          },
-          "fontSize": {
-            "value": 10.5
-          },
-          "fill": {
-            "value": "#222222"
-          }
-        },
-        "update": {
-          "x": {
-            "signal": "(datum.x0 + datum.x1) / 2"
-          },
-          "y": {
-            "signal": "(datum.y0 + datum.y1) / 2"
-          },
-          "text": {
-            "signal": "datum.rect_height >= 30 && length(datum.platform) * 6.1 <= datum.rect_width - 6 && datum.rect_height >= 48 && length(format(datum.game_platform_count, ',d') + ' games') * 5.6 <= datum.rect_width - 8 ? format(datum.game_platform_count, ',d') + ' games' : ''"
-          },
-          "limit": {
-            "signal": "datum.rect_width - 4"
-          }
+        "y2": {
+          "field": "bottom"
         }
       }
     }
   ],
   "config": {
-    "title": {
-      "font": "Arial"
+    "view": {
+      "stroke": null
     },
-    "legend": {
-      "labelFont": "Arial",
-      "titleFont": "Arial",
-      "labelFontSize": 11,
-      "titleFontSize": 12
-    }
+    "font": "Arial"
   }
 }
