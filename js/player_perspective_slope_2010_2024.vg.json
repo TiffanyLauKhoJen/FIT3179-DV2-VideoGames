@@ -210,7 +210,7 @@
           {
             "field": "share_pct",
             "type": "quantitative",
-            "title": "Share of games with visual perspective recorded (%)",
+            "title": "Share of games (%)",
             "format": ".1f"
           },
           {
@@ -222,13 +222,13 @@
           {
             "field": "denominator_games",
             "type": "quantitative",
-            "title": "Games with a selected visual perspective",
+            "title": "Total games counted",
             "format": ",d"
           },
           {
             "field": "change_pp",
             "type": "quantitative",
-            "title": "2010–2024 change (percentage points)",
+            "title": "Change in share, 2010–2024 (%)",
             "format": "+.1f"
           }
         ],
@@ -269,7 +269,7 @@
           {
             "field": "share_pct",
             "type": "quantitative",
-            "title": "Share of games with visual perspective recorded (%)",
+            "title": "Share of games (%)",
             "format": ".1f"
           },
           {
@@ -281,13 +281,13 @@
           {
             "field": "denominator_games",
             "type": "quantitative",
-            "title": "Games with a selected visual perspective",
+            "title": "Total games counted",
             "format": ",d"
           },
           {
             "field": "change_pp",
             "type": "quantitative",
-            "title": "2010–2024 change (percentage points)",
+            "title": "Change in share, 2010–2024 (%)",
             "format": "+.1f"
           }
         ]
@@ -325,7 +325,7 @@
           {
             "field": "share_pct",
             "type": "quantitative",
-            "title": "Share of games with visual perspective recorded (%)",
+            "title": "Share of games (%)",
             "format": ".1f"
           },
           {
@@ -337,13 +337,13 @@
           {
             "field": "denominator_games",
             "type": "quantitative",
-            "title": "Games with a selected visual perspective",
+            "title": "Total games counted",
             "format": ",d"
           },
           {
             "field": "change_pp",
             "type": "quantitative",
-            "title": "2010–2024 change (percentage points)",
+            "title": "Change in share, 2010–2024 (%)",
             "format": "+.1f"
           }
         ],
@@ -384,7 +384,7 @@
           {
             "field": "share_pct",
             "type": "quantitative",
-            "title": "Share of games with visual perspective recorded (%)",
+            "title": "Share of games (%)",
             "format": ".1f"
           },
           {
@@ -396,13 +396,13 @@
           {
             "field": "denominator_games",
             "type": "quantitative",
-            "title": "Games with a selected visual perspective",
+            "title": "Total games counted",
             "format": ",d"
           },
           {
             "field": "change_pp",
             "type": "quantitative",
-            "title": "2010–2024 change (percentage points)",
+            "title": "Change in share, 2010–2024 (%)",
             "format": "+.1f"
           }
         ]

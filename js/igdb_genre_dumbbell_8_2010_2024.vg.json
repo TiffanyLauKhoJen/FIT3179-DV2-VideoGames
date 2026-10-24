@@ -79,7 +79,7 @@
           "as": "Share_2024_label"
         },
         {
-          "calculate": "format(datum.Change_pp, '+.1f') + ' percentage points'",
+          "calculate": "format(datum.Change_pp, '+.1f') + '%'",
           "as": "Change_label"
         }
       ],
@@ -137,7 +137,7 @@
           {
             "field": "Change_label",
             "type": "nominal",
-            "title": "Change"
+            "title": "Change in share"
           }
         ]
       }
@@ -219,7 +219,7 @@
           {
             "field": "Change_pp",
             "type": "quantitative",
-            "title": "Change (percentage points)",
+            "title": "Change in share (%)",
             "format": "+.1f"
           }
         ]
