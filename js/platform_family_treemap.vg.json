@@ -228,14 +228,14 @@
         "#CD8A90",
         "#D5A06F",
         "#BF8CF2",
-        "#FFED6F"
+        "#FFF084"
       ]
     }
   ],
   "legends": [
     {
       "fill": "color",
-      "title": "Platform family",
+      "title": "Platform Family",
       "orient": "bottom",
       "direction": "horizontal",
       "columns": 4,

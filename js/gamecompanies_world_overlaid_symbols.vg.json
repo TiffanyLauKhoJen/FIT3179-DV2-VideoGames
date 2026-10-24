@@ -115,7 +115,7 @@
         "size": {
           "field": "Total_listings",
           "type": "quantitative",
-          "title": "Total development and publishing listings",
+          "title": "Total Development and Publishing Listings",
           "scale": {
             "type": "linear",
             "domain": [

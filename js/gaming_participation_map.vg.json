@@ -119,7 +119,7 @@
         "color": {
           "field": "ParticipationPct",
           "type": "quantitative",
-          "title": "Play video games (%)",
+          "title": "Play Video Games (%)",
           "legend": {
             "orient": "bottom",
             "direction": "horizontal",

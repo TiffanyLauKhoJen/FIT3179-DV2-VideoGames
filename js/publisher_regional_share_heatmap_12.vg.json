@@ -136,7 +136,7 @@
         "color": {
           "field": "Share_pct",
           "type": "quantitative",
-          "title": "Share of publisher’s included sales (%)",
+          "title": "Share of Publisher’s Included Sales (%)",
           "scale": {
             "type": "linear",
             "domain": [

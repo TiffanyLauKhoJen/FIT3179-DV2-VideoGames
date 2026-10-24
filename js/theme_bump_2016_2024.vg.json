@@ -28,7 +28,7 @@
       "field": "Year",
       "type": "ordinal",
       "sort": "ascending",
-      "title": "Release year",
+      "title": "Release Year",
       "axis": {
         "labelAngle": 0,
         "labelPadding": 8,
@@ -40,7 +40,7 @@
     "y": {
       "field": "Rank",
       "type": "quantitative",
-      "title": "Rank among selected themes",
+      "title": "Rank Among Selected Themes",
       "scale": {
         "domain": [
           1,

@@ -42,7 +42,7 @@
     "y": {
       "field": "Main_game_count",
       "type": "quantitative",
-      "title": "Recorded Main-Game Releases",
+      "title": "Number of Game Releases",
       "scale": {
         "domain": [
           0,

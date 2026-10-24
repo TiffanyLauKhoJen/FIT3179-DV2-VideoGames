@@ -2,14 +2,23 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Vertical bars, sorted from most to fewest (24,694 down to 2,706), showing distinct game counts per mode in 27,416 IGDB main games released in 1980–2024 with at least one retained shared-play mode. Battle Royale is removed before selecting the subset. Single-player-only games are excluded. Modes overlap, so the bars add up to more than 27,416.",
   "title": {
-    "text": "What Modes Do Multiplayer-Capable Games Offer?",
+    "text": "What Modes Do Multiplayer Games Offer?",
     "anchor": "start",
+    "dx": -11,
     "fontSize": 19,
-    "offset": 16
+    "offset": 28
   },
-  "width": 387,
-  "height": 372,
-  "padding": 8,
+  "width": 366,
+  "height": 365,
+  "autosize": {
+    "type": "none"
+  },
+  "padding": {
+    "left": 70,
+    "right": 16,
+    "top": 60,
+    "bottom": 72
+  },
   "background": "white",
   "data": {
     "url": "https://raw.githubusercontent.com/TiffanyLauKhoJen/FIT3179-DV2-VideoGames/main/data/game_mode_bar_counts_1980_2024.csv",
@@ -37,7 +46,7 @@
         "Split screen",
         "Massively Multiplayer Online"
       ],
-      "title": "Game mode",
+      "title": "Game Mode",
       "axis": {
         "labelAngle": 0,
         "labelFontSize": 11,
@@ -48,13 +57,14 @@
         "labelExpr": "split(datum.value, ' ')",
         "labelColor": "#333333",
         "titleFontSize": 12,
-        "titlePadding": 8
+        "titlePadding": 8,
+        "titleY": 55
       }
     },
     "y": {
       "field": "Games",
       "type": "quantitative",
-      "title": "Games offering this mode",
+      "title": "Number of Games Offering This Mode",
       "scale": {
         "domain": [
           0,

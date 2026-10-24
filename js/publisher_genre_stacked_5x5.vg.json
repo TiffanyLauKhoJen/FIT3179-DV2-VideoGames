@@ -108,7 +108,7 @@
         ]
       },
       "axis": {
-        "title": "Share within selected genres (%)",
+        "title": "Share Within Selected Genres (%)",
         "format": ".0%",
         "values": [
           0,
