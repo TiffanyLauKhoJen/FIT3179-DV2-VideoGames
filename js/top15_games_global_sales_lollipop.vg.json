@@ -111,13 +111,13 @@
           {
             "field": "global_sales_millions",
             "type": "quantitative",
-            "title": "Global Sales (Millions)",
+            "title": "Global sales (millions)",
             "format": ".2f"
           },
           {
             "field": "year",
             "type": "quantitative",
-            "title": "Release Year",
+            "title": "Release year",
             "format": "d"
           },
           {

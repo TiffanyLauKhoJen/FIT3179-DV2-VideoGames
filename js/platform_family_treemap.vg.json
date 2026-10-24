@@ -295,7 +295,7 @@
             "field": "y1"
           },
           "tooltip": {
-            "signal": "{'Platform family': datum.family, 'Platform': datum.platform_full_name, 'Games on platform': format(datum.game_count, ',d'), 'Share within family (%)': format(datum.platform_share_family_pct, '.1f'), 'Share of selected platforms (%)': format(datum.platform_share_selected_pct, '.1f')}"
+            "signal": "{'Platform family': datum.family, 'Individual platform': datum.platform_full_name, 'Games on platform': format(datum.game_count, ',d'), 'Share within family (%)': format(datum.platform_share_family_pct, '.1f'), 'Share of selected platforms (%)': format(datum.platform_share_selected_pct, '.1f')}"
           }
         }
       }
